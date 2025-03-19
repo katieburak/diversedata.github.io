@@ -1,1 +1,6 @@
-# diverse-data-hub
+# Diverse Data Hub
+
+Welcome to the Diverse Data Hub repository. This project creates a user-friendly data repository featuring datasets centered on a wide range of diverse topics, including EDI-related data. By curating freely available and open-source data, the repository provides users with an accessible resource to explore diverse and meaningful topics in their work or studies. The datasets are easily accessible through an open-access website and as R and Python packages, enabling seamless integration into the workflows of students, educators, and practitioners. Along with the datasets, there are example problems that showcase various types of data science questions, offering users motivation and practical inspiration for incorporating these topics into their work. The history of each dataset, along with a narrative and key points for discussion, is also documented and highlighted to promote the connection to real-world issues and stimulate meaningful discussions.
+
+
+
