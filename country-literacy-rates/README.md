@@ -1,4 +1,4 @@
 # Country Literacy Rates
 
 
-> “Data Page: Literacy rate”, part of the following publication: Hannah Ritchie, Veronika Samborska, Natasha Ahuja, Esteban Ortiz-Ospina and Max Roser (2023) - “Global Education”. Data adapted from World Bank, Various sources. Retrieved from [https://ourworldindata.org/grapher/cross-country-literacy-rates](https://ourworldindata.org/grapher/cross-country-literacy-rates) [online resource]
+> World Bank (2024); Various sources (2018) – processed by Our World in Data. “Literacy rate” [dataset](https://ourworldindata.org/grapher/cross-country-literacy-rates?time=1650..2023). World Bank, “World Bank Education Statistics (EdStats)” licensed under [CC-BY 4.0](https://datacatalog.worldbank.org/public-licenses?fragment=cc)); Various sources, “Cross-country literacy rates” [original data](https://data.worldbank.org/indicator/SE.ADT.LITR.ZS). Retrieved March 20, 2025 from https://ourworldindata.org/grapher/cross-country-literacy-rates
