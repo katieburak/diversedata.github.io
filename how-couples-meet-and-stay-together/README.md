@@ -2,6 +2,8 @@
 
 > Attribution: Rosenfeld, Michael J., Reuben J. Thomas, and Sonia Hausen. (2023). *How Couples Meet and Stay Together 2017-2020-2022 Combined Dataset*. Stanford University Libraries. Retrieved April 1, 2025, from [https://data.stanford.edu/hcmst2017](https://data.stanford.edu/hcmst2017).
 
+> **Note:** See the **Data Use Agreement** below for terms of use.  
+
 ## Overview
 This dataset, *How Couples Meet and Stay Together 2017-2022*, includes survey responses from 3,510 individuals who participated in the 2017 survey, followed up in 2020 (2,107 respondents) and 2022 (1,722 respondents). The study investigates how individuals meet their partners, the dynamics of their relationships, and the impacts of factors like online dating apps and the COVID-19 pandemic on relationships.
 
@@ -43,7 +45,10 @@ The survey was conducted by Ipsos, using Address-Based Sampling (ABS) to recruit
   - RData (version 2.2)
 
 ### Data Use Agreement:
-- The dataset is available for public use, but users are expected to follow ethical guidelines, including not attempting to identify individuals in the data.
+1. The data I download from the Data Archive will not be used to identify individuals.
+2. I will not charge a fee for the data if I distribute it to others.
+3. I will inform the contact person for each dataset about work I do using their dataset. (This helps us keep an accurate bibliography. See each data page for its contact email.)
+4. I will cite the data appropriately. (See each data page for its bibliographic citation.)
 - For full access to documentation, codebooks, and other data use guidelines, refer to the provided user's guide.
 
 ## How to Cite
