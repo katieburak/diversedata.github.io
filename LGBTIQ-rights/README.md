@@ -47,10 +47,6 @@ This dataset will be comprised of data from a variety of datasets available on [
 - “Data Page: Gini Coefficient”, part of the following publication: Joe Hasell, Bertha Rohenkohl, Pablo Arriagada, Esteban Ortiz-Ospina, and Max Roser (2023) - “Economic Inequality”. Data adapted from World Bank Poverty and Inequality Platform. Retrieved from https://ourworldindata.org/grapher/economic-inequality-gini-index [online resource]
 - World Bank Poverty and Inequality Platform (2024) – with major processing by Our World in Data. “Gini Coefficient – World Bank” [dataset]. World Bank Poverty and Inequality Platform, “World Bank Poverty and Inequality Platform (PIP) 20240627_2017, 20240627_2011” [original data]. Retrieved April 16, 2025 from https://ourworldindata.org/grapher/economic-inequality-gini-index
 
-## Carbon tax
-
-- “Data Page: Which countries have a carbon tax?”. Our World in Data (2025). Data adapted from Resources for the Future. Retrieved from https://ourworldindata.org/grapher/carbon-tax-instruments [online resource]
-- Dolphin and Xiahou (2022) – with major processing by Our World in Data. “Which countries have a carbon tax?” [dataset]. Resources for the Future, “World Carbon Pricing Database” [original data]. Retrieved April 16, 2025 from https://ourworldindata.org/grapher/carbon-tax-instruments
 
 ## Human rights index
 
