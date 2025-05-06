@@ -1,0 +1,241 @@
+---
+title: 'Diverse Data Hub Template: Wildfire Dataset'
+format: html
+editor: visual
+---
+
+# Wildfire Dataset
+
+## About the Data
+
+This dataset contains information on wildfires in Canada, compiled from official government sources. It includes key variables such as:
+
+-   **Fire size (in hectares)**
+-   **Cause of fire (e.g., lightning, human activity)**
+-   **Detection method**
+-   **Response team size**
+-   **Latitude/longitude of the fire**
+-   **Weather conditions at the time of fire**
+
+The data was collected to monitor, assess, and respond to wildfire risks across regions. Wildfires have significant environmental, social, and economic impacts—especially for **remote, Indigenous, and underserved communities** that may lack the infrastructure to respond effectively.
+
+From an equity and inclusion perspective, studying wildfire data can help identify **geographic and resource disparities** in fire detection and containment efforts, as well as the disproportionate risks certain populations face due to **climate change** and **infrastructure gaps**.
+
+## Case Study
+
+### Objective
+
+**Can we identify the environmental and human factors most associated with large wildfires (\>10 hectares)?**\
+The goal is to explore potential predictors of fire size, such as weather, fire cause, and detection method, and provide insights that could inform early interventions and resource planning.
+
+### Methodology
+
+#### 1. Data Cleaning & Processing
+
+-   Converted fire size to numeric
+-   Created a binary variable `large_fire` (TRUE if \>10 ha)
+-   Filtered out incomplete records
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+library(readr) 
+library(dplyr)
+library(lubridate)
+library(gt)
+
+## Reading Data
+wildfire_data <- read_csv("wildfire.csv") 
+
+## Clean and prepare base data
+wildfire_clean <- wildfire_data %>%
+  filter(!is.na(ASSESSMENT_HECTARES), ASSESSMENT_HECTARES > 0) %>%
+  mutate(
+    large_fire = ASSESSMENT_HECTARES > 10,
+    TRUE_CAUSE = as.factor(TRUE_CAUSE),
+    DETECTION_AGENT_TYPE = as.factor(DETECTION_AGENT_TYPE),
+    TEMPERATURE = as.numeric(TEMPERATURE),
+    WIND_SPEED = as.numeric(WIND_SPEED)
+  )
+
+## Drop unused levels for modeling
+wildfire_clean <- wildfire_clean %>%
+  filter(!is.na(TRUE_CAUSE), !is.na(DETECTION_AGENT_TYPE)) %>%
+  mutate(
+    TRUE_CAUSE = droplevels(TRUE_CAUSE),
+    DETECTION_AGENT_TYPE = droplevels(DETECTION_AGENT_TYPE)
+  )
+```
+
+**2. Exploratory Data Analysis (EDA)**
+
+**Fire Size Distribution**
+
+```{r}
+library(ggplot2)
+
+ggplot(wildfire_clean, aes(x = ASSESSMENT_HECTARES)) +
+  geom_histogram(bins = 40) +
+  scale_x_log10() +
+  labs(
+    title = "Distribution of Fire Size (Assessment Hectares)",
+    x = "Fire Size (log scale)",
+    y = "Number of Fires"
+  )
+
+
+```
+
+**Proportion of Large Fires by Cause**
+
+```{r}
+wildfire_clean %>%
+  group_by(TRUE_CAUSE) %>%
+  summarize(prop_large = mean(large_fire, na.rm = TRUE)) %>%
+  ggplot(aes(x = reorder(TRUE_CAUSE, prop_large), y = prop_large)) +
+  geom_col() +
+  coord_flip() +
+  labs(
+    title = "Proportion of Large Fires by True Cause",
+    x = "True Cause",
+    y = "Proportion of Fires > 10 ha"
+  )
+
+```
+
+#### 3. Logistic Regression Model
+
+We build a logistic regression model to predict the likelihood of a fire becoming large based on **temperature**, **wind speed**, and **cause**.
+
+```{r, warning=FALSE}
+
+library(broom)
+
+model <- glm(
+  large_fire ~ TEMPERATURE + WIND_SPEED + TRUE_CAUSE + DETECTION_AGENT_TYPE,
+  data = wildfire_clean,
+  family = "binomial"
+)
+
+
+# Tidy and clean model output
+tidy_model <- broom::tidy(model) %>%
+  dplyr::mutate(
+    estimate = round(estimate, 3),
+    std.error = round(std.error, 3),
+    statistic = round(statistic, 2),
+    p.value = round(p.value, 4)
+  )
+
+# Create a nice table
+gt_table <- tidy_model %>%
+  gt::gt() %>%
+  gt::tab_header(
+    title = "Logistic Regression Results",
+    subtitle = "Predicting Large Fires (> 10 ha)"
+  ) %>%
+  gt::cols_label(
+    term = "Variable",
+    estimate = "Estimate (Log-Odds)",
+    std.error = "Std. Error",
+    statistic = "z value",
+    p.value = "p-value"
+  ) %>%
+  gt::fmt_missing(everything(), missing_text = "-") %>%
+  gt::tab_options(
+    table.font.size = "small",
+    data_row.padding = gt::px(4),
+    heading.title.font.size = 16,
+    heading.subtitle.font.size = 12
+  )
+
+gt_table
+```
+
+### Discussion
+
+The logistic regression model revealed that **higher wind speeds** are strongly associated with an increased likelihood of a fire becoming large (over 10 hectares), consistent with our expectations about fire spread dynamics.
+
+Surprisingly, **temperature showed a small negative association** with fire size, though this may be influenced by interactions with other environmental factors like humidity or fuel type.
+
+Among causes, **"Insufficient Resources"** and **"Line Impact"** were associated with significantly higher odds of large fires. This suggests that both human-related limitations and infrastructure vulnerability (like power lines) play a role in fire escalation.
+
+The detection agent type showed weak evidence that **fires detected by UNP agents** may be less likely to become large, compared to FPD Staff, but the effect was not statistically strong (p = 0.09). Further exploration is needed here, especially considering the early intervention ability of different detection teams.
+
+These findings provide insights into key environmental and operational factors influencing wildfire severity. Importantly, they point to the **need for targeted mitigation strategies** in areas with poor detection access or high infrastructure risks.
+
+In the broader context of equity, this analysis reinforces that **resource constraints and delayed detection**—often more common in remote or underfunded regions—can amplify wildfire impacts. Data-informed strategies can help ensure **more equitable protection** against climate-driven disasters.
+
+#### Interpretation Boost using `marginaleffects`
+
+**Wind Speed**
+
+As wind speed increases, the model estimates a higher probability of a fire becoming large (\>10 hectares). However, the variability in the predicted probabilities also increases at higher wind speeds, as indicated by the wider confidence intervals. This suggests that while there is a general upward trend, the model's certainty about the exact magnitude of the effect decreases in this range—likely due to fewer observations or greater variability in fire outcomes at high wind speeds.
+
+```{r}
+library(marginaleffects)
+## continuous variable
+plot_predictions(
+  model,
+  by = "WIND_SPEED"
+)
+```
+
+**Temperature**
+
+As temperature increases, the model predicts a relatively stable probability of a fire becoming large. The trend line flattens and the confidence intervals narrow, indicating that the model is more confident and consistent in its estimates across higher temperature ranges. This suggests that the relationship between temperature and fire size is more stable and predictable at higher temperatures, possibly due to a larger number of observations or less variability in outcomes.
+
+```{r}
+## continuous variable "TEMPERATURE"
+
+plot_predictions(
+  model,
+  by = "TEMPERATURE"
+)
+```
+
+**True Cause**
+
+The predicted probability of a large fire is near zero for most `TRUE_CAUSE` categories, indicating that these causes (e.g., natural ignition, campfires, equipment use) are generally not associated with large-scale fires. However, the category **"Insufficient Resources"** stands out with a significantly higher predicted probability and a wide confidence interval. This suggests that fires classified under this cause are much more likely to become large, though the wide interval reflects substantial uncertainty — likely due to a small number of observations in that category.
+
+```{r}
+## categorical variable "TRUE_CAUSE"
+plot_predictions(model, by = "TRUE_CAUSE") +
+  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1)) +
+  ggplot2::labs(
+    title = "Predicted Probability of Large Fire by True Cause",
+    x = "True Cause",
+    y = "Predicted Probability"
+  )
+
+```
+
+**Detection Agent Type**
+
+Although fires detected by AIR agents appear more likely to become large, the model is relatively uncertain about this pattern. The wide confidence interval indicates that this result should be interpreted cautiously, and may reflect **data sparsity** or **high variability** in fire outcomes for AIR-detected cases.
+
+```{r}
+## categorical variable "DETECTION_AGENT_TYPE"
+plot_predictions(
+  model,
+  by = "DETECTION_AGENT_TYPE"
+)
+```
+
+## Attribution
+
+-   **Original Data Source**: Government of Canada – National Fire Database (NFDB)
+
+-   **License**: Open Government License – Canada
+
+-   **Citation**: Canadian Forest Service. National Fire Database (NFDB). Natural Resources Canada.
+
+-   **References**:
+
+```         
+-   Logistic regression using `glm()` in R
+
+-   EDA best practices from Wickham & Grolemund (2017)
+
+-   Average Marginal Effects and Model Interpretation using `marginaleffects` (Vincent Arel-Bundock, 2022)
+```
+
+-   **Acknowledgements**: Thanks to the Diverse Data Hub team for cleaning and contextualizing the data.

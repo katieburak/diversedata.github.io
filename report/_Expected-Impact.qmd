@@ -1,0 +1,7 @@
+This project is expected to have a meaningful impact on data education enabling the incorporation of Equity, Diversity, and Inclusion (EDI) topics into the lecture room. 
+
+By providing accessible datasets and ready-to-use analysis materials, the project equips educators with practical tools to promote socially relevant learning. 
+
+The R package and educational website will support accessible, reproducible, data science instruction, helping students engage not only with technical skills but also with the societal implications of data. 
+
+Ultimately, this initiative contributes to a more inclusive and informed data-literate data science community.

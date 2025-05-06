@@ -1,0 +1,68 @@
+---
+title: "Diverse Data Hub"
+author: "Siddarth Subrahmanian, Francisco Ramírez, Azin Piran"
+date: "2025/05/05"
+engine: knitr
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+  pdf:
+    toc: true
+    toc-depth: 2
+    fig-pos: 'h'
+bibliography: references.bib
+citation: true
+execute:
+  echo: true    
+  warning: false
+editor: source
+---
+
+\newpage
+
+# **Introduction and Background**
+
+{{< include _Introduction-and-Background.qmd >}}
+
+
+# **Partner Needs and Project Motivation**
+
+{{< include _Partner-Needs-and-Project-Motivation.qmd >}}
+
+# **Proposed Deliverables**
+
+{{< include _Proposed-Deliverables.qmd >}}
+
+\newpage
+
+# **Data Science Approach**
+
+{{< include _Data-Science-Approach.qmd >}}
+
+\newpage
+
+# **Project Timeline**
+
+{{< include _Project-Timeline.qmd >}}
+
+
+\newpage
+
+# **Expected Impact**
+
+{{< include _Expected-Impact.qmd >}}
+
+# **Feedback and Iteration**
+
+{{< include _Feedback-and-Iteration.qmd >}}
+
+\newpage
+
+# **Appendices**
+
+{{< include _Appendices.qmd >}}
+
+\newpage
+
+## **References**

@@ -1,0 +1,64 @@
+Our project is designed with the goal of long-term utility, adaptability, and extensibility in mind. To meet these goals, we structured our deliverables around three key principles:
+
+-   **Modularity** Each component of the project—datasets, notebooks, and the website can function independently. For example, educators may choose to use only the R package in their own materials, or they might rely solely on the website for teaching demonstrations. This modular structure ensures flexibility for different user needs and teaching styles.
+
+-   **Reusability** All tools and content are developed with reuse in mind. The notebook template can be adapted for new datasets, and the R package can be extended to include additional topics in the future. Each dataset includes documentation and metadata that allows instructors and students to reuse the data across multiple educational contexts without additional preparation.
+
+-   **Scalability** The project is built to grow. New datasets can be added to the package and linked through the website with minimal extra work, thanks to a standardized structure. Each deliverable is designed to scale across:
+
+-   Additional datasets
+
+-   New exploratory questions and case studies
+
+-   Broader institutional or cross-course adoption
+
+By designing our outputs to meet these three core principles, we ensure that the final product is not only impactful at launch but also sustainable and expandable over time.
+
+## **a. R Data Package**
+
+We will package the selected datasets into a standalone R package, following the standards and best practices commonly used in well-established R data packages. Each dataset will include:
+
+-   Cleaned and standardized data
+
+-   Metadata and source attribution
+
+-   A detailed description of the dataset’s background and relevance to EDI topics
+
+-   Suggestions for discussion questions or learning activities
+
+This format allows educators to easily install and access datasets in a consistent format across institutions.
+
+## **b. Notebook template**
+
+We are creating a reusable notebook template written in Markdown to ensure consistency across exercises.
+
+[🔗 View the Template on GitHub](https://github.com/katieburak/diverse-data-hub/tree/main/template)
+
+This will be used as a base format for each dataset's analysis and made available on the website and GitHub. The sections include:
+
+-   **About the data**: Source, description, relevance
+
+-   **Case Study Objective**: Framing a meaningful EDI-related question
+
+-   **Data Wrangling**: Cleaning steps and justifications
+
+-   **Exploratory Data Analysis**: Descriptive plots, summaries
+
+-   **Statistical Modeling or Inference**: (if applicable)
+
+-   **Discussion and Interpretation**: Real-world implications
+
+We are using this template to make sure that all the key steps are followed in every analysis we conduct. This consistency allows us to maintain quality and structure across all datasets. It also helps users of the website easily compare the examples, understand how different datasets were explored, and apply similar approaches to their own data questions.
+
+See [Appendix A](#appendix-a-quarto-notebook-template) for a full example of the template structure.
+
+
+## **c. Quarto Website**
+
+The strategy for the website’s architecture focuses on creating an intuitive and scalable structure to showcase the project’s datasets, and example analysis notebooks. The website will be organized to ensure that users can easily access important sections, including dataset descriptions, analysis notebooks, and downloadable resources. As shown in the figure (@fig-website_strategy), the layout emphasizes clear navigation paths and consistent design elements across pages to support a smooth user experience.
+
+![Website Development Strategy](img/website_strategy.png){#fig-website_strategy width="80%"}
+
+
+
+\newpage

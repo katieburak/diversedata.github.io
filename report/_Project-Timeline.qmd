@@ -1,0 +1,47 @@
++--------------+---------------+---------------------------------------------+
+| Sprint       | Dates         | Milestone                                   |
++==============+===============+=============================================+
+| Planning     | April 28 - 30 | -   Project Kickoff - Hackathon             |
+|              |               |                                             |
+|              |               | -   Project planning                        |
++--------------+---------------+---------------------------------------------+
+| 1            | May 5 - 9     | -   R packaging                             |
+|              |               |                                             |
+|              |               | -   Data Cleanup                            |
+|              |               |                                             |
+|              |               | -   Analysis & creation of template         |
+|              |               |                                             |
+|              |               | -   Website development using Quarto        |
+|              |               |                                             |
+|              |               | \*\* Above tasks are for 1 dataset          |
++--------------+---------------+---------------------------------------------+
+| 2            | May 12 - 13   | -   R packaging                             |
+|              |               |                                             |
+|              |               | -   Data Cleanup                            |
+|              |               |                                             |
+|              |               | -   Analysis & creation of template         |
+|              |               |                                             |
+|              |               | -   Website development using Quarto        |
+|              |               |                                             |
+|              |               | \*\* Above tasks are for rest of 5 datasets |
++--------------+---------------+---------------------------------------------+
+| 3            | May 26 - 30   | -   Integration                             |
+|              |               |                                             |
+|              |               | -   Data Analysis - Continuous Improvement  |
++--------------+---------------+---------------------------------------------+
+| 4            | June 2 - 6    | -   Testing                                 |
+|              |               |                                             |
+|              |               | -   Data Analysis - Continuous Improvement  |
++--------------+---------------+---------------------------------------------+
+| 5            | June 9 - 13   | -   Code Freeze                             |
+|              |               |                                             |
+|              |               | -   Release ( Prod env )                    |
++--------------+---------------+---------------------------------------------+
+| 6            | June 16 - 26  | -   Bug Fixes                               |
+|              |               |                                             |
+|              |               | -   Feedback Implementation                 |
+|              |               |                                             |
+|              |               | -   Enhancements Stabilization              |
++--------------+---------------+---------------------------------------------+
+
+![Project Timeline - Gantt Chart](img/Proj timeline.png){width="90%"}

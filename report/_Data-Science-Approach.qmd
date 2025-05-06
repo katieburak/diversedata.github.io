@@ -1,0 +1,93 @@
+This project's strategy is organized into three branches, each focusing on an aspect of the project’s deliverables: R Package Development, Analysis, and Website Development. Each branch is designed to ensure the creation of reproducible analysis, and the publication of results in an accessible, user-friendly format. The three branches work in parallel to contribute to the success of the project (@fig-strategy).
+
+![Development Strategy](img/strategy.png){#fig-strategy width="80%"}
+
+1.  R Package Development strategy
+
+    The principles of building R packages are well-documented in [@WickhamBryan2023].The steps involve:
+
+-   Defining the Purpose and Scope :
+
+    The purpose of the R package is to provide educators with easy access to well-documented, curated datasets focused on equity, diversity, and inclusion (EDI) topics for use in teaching data science and statistics.
+
+    Target Audience: Students, Researchers, Academia
+
+    Scope: The scope of this project is to develop an R package featuring 6 curated EDI-focused datasets with educational context and example analyses for classroom use.
+
+-   Set Up the Development Environment
+
+    Software/Tools used:
+
+    -   IDE: RStudio
+
+    -   Libraries: devtools and usethis packages for development
+
+    -   roxygen2 for documentation
+
+    -   testthat for unit testing /test attributes of data
+
+-   Build Core Package Structure:
+
+    Adding the cleaned dataset into the pkg . as .rda files.
+
+    Different methods proposed:
+
+    -   data/: Used for datasets meant to be accessed by users
+
+    -   R/sysdata.rda: Used for internal data needed only by package functions.
+
+    -   inst/extdata/: Used for raw, non-R-specific files (e.g., CSVs, Excel) accessible to users.
+
+-   Testing: Set up testing framework using testthat library. Write unit tests to ensure correctness and stability.
+
+-   Add Metadata and Licensing:
+
+    -   Add DESCRIPTION file with package name, version, authors, title, and dependencies.
+
+    -   License: Use MIT licence
+
+    -   Add README.Rmd which contains description about the Packages and usage.
+
+-   Check Package Health:
+
+    -   Run full checks using: `devtools::check()`
+
+    -   Fix any warnings or errors.
+
+-   Publish:
+
+    Option A: Publish on GitHub
+
+    -   Push to the public GitHub repo.
+
+    -   Add installation instructions using devtools
+
+    Option B: Submit to CRAN
+
+    -   Ensure the package passes `R CMD` check on multiple platforms.
+
+    -   Submit using: `devtools::submit_cran()`
+
+    -   Respond to CRAN reviewers’ feedback and fix issues if any.
+
+-   Maintenance and Updates: Track issues and feature requests (GitHub Issues). Version updates
+
+2.  Analysis
+
+The analysis branch is focused on generating reproducible analyses from the datasets. The main activities in this branch include:
+
+-   Defining a template for analysis notebooks in Quarto.
+
+-   Developing analysis notebooks as datasets become available from the R package.
+
+-   Applying exploratory, inferential and predictive analysis techniques using regression, machine learning, and other statistical methods.
+
+3.  Website Development
+
+The website branch focuses on developing a user-friendly platform to present the project’s work and results. As the interface for the project, the website will offer an interactive space where users can download datasets, and view analysis example notebooks. This branch includes:
+
+-   Building the website structure and defining its architecture.
+
+-   Integrating the datasets, and analysis notebooks into the website.
+
+-   Publishing the website using GitHub Pages, making it accessible to a wider audience.

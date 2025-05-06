@@ -1,0 +1,9 @@
+The motivation behind this project comes from a growing need for educational resources that enable engagement with EDI topics through data-driven learning. This initiative seeks to fill that gap by providing two key deliverables:
+
+- An R data package containing selected datasets focused on EDI-related topics, such as gender equity, socio-economic inclusion, and more. These datasets, provided by the partner, will be curated and documented for use in educational settings, adhering to the [FAIR principles](https://www.go-fair.org/fair-principles/): Findability, Accessibility, Interoperability, and Reusability.
+
+The FAIR data principles are foundational for data stewardship and reuse [@GOFAIR2024].
+
+- A Quarto-based, GitHub-Pages-deployed, educational website featuring simple, interpretable teaching examples and data science projects. These examples will guide instructors through exploratory, inferential, and predictive analyses while offering contextual narratives that highlight real-world relevance and social impact.
+
+By addressing these needs, this project not only tackles the technical challenges of data accessibility but also aims to foster data literacy through content that reflects real-world social issues. 

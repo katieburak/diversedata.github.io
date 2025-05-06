@@ -1,0 +1,22 @@
+As data becomes central to shaping decisions focused on societal issues, it is critical that data science and statistics students engage not only with technical concepts but also with the ethical and social contexts of the data they analyze. 
+
+However, many instructors face challenges in incorporating Equity, Diversity, and Inclusion (EDI) related themes into their teaching due to a lack of accessible, curated datasets and resources.
+
+This project aims to address that need by developing a user-friendly, openly available resource that empowers educators to bring EDI topics into their lecture rooms. 
+
+This project is being developed in collaboration with [Katie Burak PhD](https://github.com/katieburak), Assistant Professor of Teaching in the [Department of Statistics at the University of British Columbia](https://www.stat.ubc.ca/).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
