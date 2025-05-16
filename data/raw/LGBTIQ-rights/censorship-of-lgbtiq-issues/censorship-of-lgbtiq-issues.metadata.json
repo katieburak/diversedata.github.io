@@ -1,0 +1,35 @@
+{
+  "chart": {
+    "title": "Censorship of LGBT issues",
+    "subtitle": "Censorship or prohibition of discussing, promoting, or teaching LGBT topics in media, schools, and the general public.",
+    "citation": "Equaldex (2025)",
+    "originalChartUrl": "https://ourworldindata.org/grapher/censorship-of-lgbt-issues?v=1&csvType=full&useColumnShortNames=false",
+    "selection": [
+      "Kuwait",
+      "Serbia",
+      "Albania",
+      "Turks and Caicos Islands"
+    ]
+  },
+  "columns": {
+    "Censorship of LGBT+ issues (historical)": {
+      "titleShort": "Censorship of LGBT+ issues",
+      "titleLong": "Censorship of LGBT+ issues",
+      "descriptionShort": "Describes censorship or prohibition of discussing, promoting, or teaching LGBT+ topics in media, schools, and in the general public.",
+      "descriptionProcessing": "- We have extracted the data from the official [Equaldex JSON API](https://equaldex.stoplight.io/docs/equaldex/d033e28a5cf0c-equaldex-json-api).\n- We combine the historical and current data extracted from the API to create a time series.\n- Whenever policy implementation dates for a status are not provided in the data, and this status is the only available for the country, we consider that this status has not changed during the entire period of the dataset.\n- We group some of the categories the source has defined for each issue, for further clarity in our visualizations.\n- We present this data only for sovereign states, defined by [Butcher and Griffiths (2020)](https://ourworldindata.org/grapher/sovereign-state-butcher-griffiths). We use the definitions of the latest year available.",
+      "shortUnit": "",
+      "unit": "",
+      "timespan": "1950-2025",
+      "type": "Ordinal",
+      "owidVariableId": 1025395,
+      "shortName": "censorship",
+      "lastUpdated": "2025-04-07",
+      "nextUpdate": "2026-04-07",
+      "citationShort": "Equaldex (2025) – with major processing by Our World in Data",
+      "citationLong": "Equaldex (2025) – with major processing by Our World in Data. “Censorship of LGBT+ issues” [dataset]. Equaldex, “Equaldex” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1025395.metadata.json"
+    }
+  },
+  "dateDownloaded": "2025-04-16",
+  "activeFilters": {}
+}
