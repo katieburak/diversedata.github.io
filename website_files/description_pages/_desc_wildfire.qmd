@@ -7,7 +7,7 @@
 Dataset including information on wildfires in the province of Alberta from 2006 to 2024, inclusive. Information tracked for each fire includes: cause, size, location (latitude and longitude, legal land description, and forest area), time and duration, weather conditions, staffing and physical resources used to suppress the fire, and area burned.
 
 <div class="button-container">
-  <a href="datasets/wildfire.csv" download class="download-button">
+  <a href="../data/clean/wildfire_clean.csv" download class="download-button">
     Download CSV
   </a>
 </div>
