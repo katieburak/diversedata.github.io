@@ -7,7 +7,7 @@
 Dataset contains data for every team that has participated in the NCAA Division I Women’s Basketball Tournament since it began in 1982. Every school is shown with its seed, conference record (when available), regular-season record, tournament record and full season record, including winning percentages. All data is from the NCAA. This dataset contains the data behind the story [The Rise and Fall Of Women's NCAA Tournament Dynasties](https://fivethirtyeight.com/features/louisiana-tech-was-the-uconn-of-the-80s/).
 
 <div class="button-container">
-  <a href="datasets/womens-march-madness-clean.csv" download class="download-button">
+  <a href="../data/clean/womens-march-madness-clean.csv" download class="download-button">
     Download CSV
   </a>
 </div>
