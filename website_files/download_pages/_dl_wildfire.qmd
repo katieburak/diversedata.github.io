@@ -1,0 +1,9 @@
+#### Historical Canadian Wildfire Data (2006-2024)
+
+<div class="button-container">
+  <a href="data/clean/wildfire.csv" download class="download-button">
+    Download CSV
+  </a>
+  </p>
+  <a href="" class="btn btn-outline-dark">More Details</a>
+</div>

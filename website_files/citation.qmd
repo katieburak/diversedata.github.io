@@ -1,0 +1,23 @@
+---
+title: "Authors and Citation"
+---
+
+# [Reference](https://nycflights13.tidyverse.org/authors.html#citation)
+
+## Owners
+
+[Katie Burak PhD](https://github.com/katieburak)
+
+[Copyright Holder]()
+
+#### Collaborators
+[Francisco Ramirez](https://github.com/fraramfra)
+
+[Azin Piran](https://github.com/AzinPiran)
+
+[Siddarth Subrahmanian](https://github.com/siddart-1)
+
+## Citation
+
+Burak K (2025). packagenameTBD: Diverse Dataset Hub. R package version X.X.X, [https://github.com/katieburak/diversedata](https://github.com/katieburak/diversedata)
+

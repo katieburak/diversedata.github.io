@@ -1,0 +1,14 @@
+---
+title: "Python Page With Code"
+format: html
+jupyter: python3
+editor: visual
+---
+
+```{python}
+import matplotlib.pyplot as plt
+
+plt.plot([1, 2, 3], [4, 9, 5])
+plt.title("Simple Python Plot")
+plt.show()
+```

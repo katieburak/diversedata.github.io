@@ -1,0 +1,63 @@
+
+
+
+::: {.hero-banner}
+## Diverse Data Repository for Data Science Education
+
+<img src="website_files/img/logo.png" class="logo">
+
+This website contains information related to a curated R data package focused on EDI-focused datasets, aiming to empower instructors to integrate equity, diversity, and inclusion themes into their classrooms through real-world data, contextual narratives, and applied data science projects. This website also includes teaching examples using the curated datasets.
+
+[Get Started →](){.btn .btn-primary}
+:::
+
+## The Datasets 
+
+:::{.grid-container-3}
+
+<div class="grid-item">
+  {{< include website_files/download_pages/_dl_wildfire.qmd >}}
+</div>
+
+<div class="grid-item">
+  {{< include website_files/download_pages/_dl_marchmadness.qmd >}}
+</div>
+
+:::
+
+## R Package
+
+TBD - View on [CRAN]()
+
+#### Dev Status
+
+TBD - CRAN Flag
+
+## More Information
+
+#### Package Code
+
+- Browse [Source Code](https://github.com/katieburak/diversedata)
+
+- Report a [Bug](https://github.com/katieburak/diversedata/issues)
+
+#### License
+
+- TBD
+
+#### Citation
+
+- Citing this [R Package]()
+
+#### Developers
+
+###### Owners
+
+- [Katie Burak PhD](https://github.com/katieburak)
+
+###### Collaborators
+- [Francisco Ramirez](https://github.com/fraramfra)
+
+- [Azin Piran](https://github.com/AzinPiran)
+
+- [Siddarth Subrahmanian](https://github.com/siddart-1)
