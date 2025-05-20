@@ -41,7 +41,7 @@ library(lubridate)
 library(gt)
 
 ## Reading Data
-wildfire_data <- read_csv("../../data/clean/wildfire_clean.csv") 
+wildfire_data <- read_csv("../../data/raw/wildfire/wildfire.csv") 
 
 ## Clean and prepare base data
 wildfire_clean <- wildfire_data %>%
