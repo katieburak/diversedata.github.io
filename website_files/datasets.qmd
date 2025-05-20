@@ -1,0 +1,21 @@
+::: {.page-layout}
+
+<div class="layout-container">
+
+  <aside class="sidebar">
+    {{< include description_pages/_filters_dataset.qmd >}}
+    {{< include description_pages/_filters.qmd >}}
+  </aside>
+
+  <main class="main-content">
+    {{< include description_pages/_desc_wildfire.qmd >}}
+    {{< include description_pages/_desc_marchmadness.qmd >}}
+    {{< include description_pages/_desc_new.qmd >}}
+  </main>
+
+</div>
+
+:::
+
+<!-- Script for Filtering Cards -->
+{{< include description_pages/_script.qmd >}}

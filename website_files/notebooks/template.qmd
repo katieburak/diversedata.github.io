@@ -1,0 +1,42 @@
+---
+title: "Notebook Template"
+---
+
+# Dataset Title
+
+## About the Data
+
+Provide background information and context about the dataset. Think about answering the following questions:
+
+-   Where does the data come from?
+-   Why was it collected?
+-   Why is the topic of the data socially relevant in the context of equity, diversity and inclusion?
+
+## Case Study
+
+### Objective
+
+Clearly define the problem or question being addressed by this analysis. What is the goal? What data science problem are you trying to solve or understand with this dataset?
+
+### Methodology
+
+Describe the approach taken to address the objective. This could include: 
+
+- Data processing and cleaning steps 
+- Exploratory Data Analysis (EDA) 
+- Models used 
+- Statistical tests
+
+Include relevant code snippets and visualizations where necessary.
+
+### Discussion
+
+Summarize the key findings, insights, and interpretations from the analysis. What did the data reveal? Were there any unexpected results or trends? How do these results relate to the original objective? In what ways do the findings from this analysis connect to real-world challenges?
+
+## Attribution
+
+-   **Original Data Source**: \[Link to the dataset or description of its origin\]\
+-   **License**: \[Dataset license, e.g., "CC BY 4.0"\]\
+-   **Citation**: \[If applicable, how to cite the data source or paper\]\
+-   **References**: \[Links to or descriptions of key methods, algorithms, or resources used\]\
+-   **Acknowledgements**: \[Contributors, collaborators, or any support received\]

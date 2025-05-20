@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Diverse Data Hub"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Welcome
+      - href: website_files/datasets.qmd
+        text: All The Datasets
+
+format:
+  html:
+    theme: minty
+    css: website_files/styles.css
+    toc: false
+    page-layout: full
+    toc-location: right
+
+
+

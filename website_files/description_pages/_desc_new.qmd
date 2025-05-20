@@ -1,0 +1,107 @@
+## Another Dataset
+
+<div id="new-content" style="display: none;">
+
+::: {.static-content}
+
+Dataset description
+
+<div class="button-container">
+  <a href="" download class="download-button">
+    Download CSV
+  </a>
+</div>
+
+<div class="description-grid">
+
+  <div class="field-label">CSV Name</div><div class="field-value">TBD</div>
+  <div class="field-label">Dataset Characteristics</div><div class="field-value">TBD</div>
+  <div class="field-label">Subject Area</div><div class="field-value">TBD</div>
+  <div class="field-label">Associated Tasks</div><div class="field-value">TBD</div>
+  <div class="field-label">Feature Type</div><div class="field-value">TBD</div>
+  <div class="field-label">Instances</div><div class="field-value">TBD</div>
+  <div class="field-label">Features</div><div class="field-value">TBD</div>
+  <div class="field-label">Has Missing Values?</div><div class="field-value">TBD</div>
+
+</div>
+
+::: {.table-container}
+::: {.styled-table}
+
+| Variable Name | Role | Type | Description | Units | Missing Values |
+|-----|-----|-----|-----|-----|-----|
+| X | X | X | X | X | X |
+| X | X | X | X | X | X |
+
+:::
+:::
+
+:::
+
+:::{.grid-container}
+
+<div class="grid-item" data-tags="na">
+  <img src="img/dataset.png" width="20px" height="20px">
+  <h3>Dataset Example A</h3>
+  <p>
+<strong>Inquiry</strong>: TBD
+
+<strong>Code Tags</strong>: TBD
+
+<strong>Data Science Tags</strong>: TBD
+
+<strong>Library Tags</strong>: TBD
+
+<strong>Developer</strong>: TBD
+</p>
+  <a href="" class="btn btn-outline-dark">Notebook</a>
+  <a href="" class="btn btn-outline-dark">GitHub</a>
+</div>
+
+
+<div class="grid-item" data-tags="na">
+  <img src="img/dataset.png" width="20px" height="20px">
+  <h3>Dataset Example B</h3>
+  <p>
+<strong>Inquiry</strong>: TBD
+
+<strong>Code Tags</strong>: TBD
+
+<strong>Data Science Tags</strong>: TBD
+
+<strong>Library Tags</strong>: TBD
+
+<strong>Developer</strong>: TBD
+</p>
+  <a href="" class="btn btn-outline-dark">Notebook</a>
+  <a href="" class="btn btn-outline-dark">GitHub</a>
+</div>
+
+
+<div class="grid-item" data-tags="na">
+  <img src="img/dataset.png" width="20px" height="20px">
+  <h3>Dataset Example C</h3>
+  <p>
+<strong>Inquiry</strong>: TBD
+
+<strong>Code Tags</strong>: TBD
+
+<strong>Data Science Tags</strong>: TBD
+
+<strong>Library Tags</strong>: TBD
+
+<strong>Developer</strong>: TBD
+</p>
+  <a href="" class="btn btn-outline-dark">Notebook</a>
+  <a href="" class="btn btn-outline-dark">GitHub</a>
+</div>
+
+:::
+
+::: {.static-content}
+
+> Attribution: TBD
+
+:::
+
+</div>
