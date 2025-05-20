@@ -19,5 +19,5 @@ title: "Authors and Citation"
 
 ## Citation
 
-Burak K (2025). packagenameTBD: Diverse Dataset Hub. R package version X.X.X, [https://github.com/katieburak/diverse-data-package](https://github.com/katieburak/diverse-data-package)
+Burak K (2025). packagenameTBD: Diverse Dataset Hub. R package version X.X.X, [https://github.com/katieburak/diversedata](https://github.com/katieburak/diversedata)
 

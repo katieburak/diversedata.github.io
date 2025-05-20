@@ -8,7 +8,7 @@
 
 This website contains information related to a curated R data package focused on EDI-focused datasets, aiming to empower instructors to integrate equity, diversity, and inclusion themes into their classrooms through real-world data, contextual narratives, and applied data science projects. This website also includes teaching examples using the curated datasets.
 
-[Get Started →](https://fraramfra.github.io/capstoneproposal/website_files/datasets.html){.btn .btn-primary}
+[Get Started →](){.btn .btn-primary}
 :::
 
 ## The Datasets 
@@ -37,9 +37,9 @@ TBD - CRAN Flag
 
 #### Package Code
 
-- Browse [Source Code](https://github.com/katieburak/diverse-data-package)
+- Browse [Source Code](https://github.com/katieburak/diversedata)
 
-- Report a [Bug](https://github.com/katieburak/diverse-data-package/issues)
+- Report a [Bug](https://github.com/katieburak/diversedata/issues)
 
 #### License
 
@@ -47,7 +47,7 @@ TBD - CRAN Flag
 
 #### Citation
 
-- Citing this [R Package](https://fraramfra.github.io/capstoneproposal/website_files/citation.html)
+- Citing this [R Package]()
 
 #### Developers
 
