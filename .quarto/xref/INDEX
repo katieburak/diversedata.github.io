@@ -61,5 +61,47 @@
   },
   "website_files/download_pages/script_simple.qmd": {
     "script_simple.html": "4ddb6fb6"
+  },
+  "data/raw/LGBTIQ-rights/censorship-of-lgbtiq-issues/readme.md": {
+    "readme.html": "da043ece"
+  },
+  "data/raw/LGBTIQ-rights/economic-inequality-gini-index/readme.md": {
+    "readme.html": "4c1abd8a"
+  },
+  "data/raw/LGBTIQ-rights/employment-discrimination/readme.md": {
+    "readme.html": "042638d2"
+  },
+  "data/raw/LGBTIQ-rights/gdp-per-capita/readme.md": {
+    "readme.html": "efc2a143"
+  },
+  "data/raw/LGBTIQ-rights/gender-affirming-care/readme.md": {
+    "readme.html": "07984f40"
+  },
+  "data/raw/LGBTIQ-rights/government-expenditure-on-education/readme.md": {
+    "readme.html": "98f554e7"
+  },
+  "data/raw/LGBTIQ-rights/marriage-same-sex-partners/readme.md": {
+    "readme.html": "8cf7b74b"
+  },
+  "data/raw/LGBTIQ-rights/right-to-change-legal-gender/readme.md": {
+    "readme.html": "cb7b22a5"
+  },
+  "scripts/bcindegeniouslistings_clean.ipynb": {
+    "bcindegeniouslistings_clean.html": "b87bfcad"
+  },
+  "scripts/HCMST_clean.ipynb": {
+    "HCMST_clean.html": "d4819569"
+  },
+  "scripts/LGBTIQ-rights_clean.ipynb": {
+    "LGBTIQ-rights_clean.html": "2577bd25"
+  },
+  "scripts/march_madness_clean.ipynb": {
+    "march_madness_clean.html": "be9908e5"
+  },
+  "scripts/wildfire_clean.ipynb": {
+    "wildfire_clean.html": "27ecb367"
+  },
+  "template/template.qmd": {
+    "template.html": "aca2ad2f"
   }
 }
