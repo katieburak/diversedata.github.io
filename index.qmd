@@ -68,7 +68,10 @@ TBD - CRAN Flag
 
 - [Katie Burak PhD](https://github.com/katieburak)
 
+- [Elham E Khoda](https://github.com/elhamekhoda)
+
 ###### Collaborators
+
 - [Francisco Ramirez](https://github.com/fraramfra)
 
 - [Azin Piran](https://github.com/AzinPiran)
