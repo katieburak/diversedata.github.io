@@ -103,5 +103,17 @@
   },
   "template/template.qmd": {
     "template.html": "aca2ad2f"
+  },
+  "website_files/description_pages/marchmadness.qmd": {
+    "marchmadness.html": "b765cb24"
+  },
+  "website_files/notebooks/marchmadness.qmd": {
+    "marchmadness.html": "0729dd22"
+  },
+  "website_files/description_pages/wildfire.qmd": {
+    "wildfire.html": "337fbf48"
+  },
+  "website_files/notebooks/wildfire.qmd": {
+    "wildfire.html": "f0491f70"
   }
 }
