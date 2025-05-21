@@ -1,21 +1,74 @@
-::: {.page-layout}
+{{< include description_pages/_filters.qmd >}}
 
-<div class="layout-container">
+:::{.grid-container}
 
-  <aside class="sidebar">
-    {{< include description_pages/_filters_dataset.qmd >}}
-    {{< include description_pages/_filters.qmd >}}
-  </aside>
+<div class="grid-item" data-tags="r">
+  <img src="img/dataset.png" width="20px" height="20px">
+  <h3>Women's March Madness</h3>
+  <p>
+<strong>Data Set</strong>: XXX
 
-  <main class="main-content">
-    {{< include description_pages/_desc_wildfire.qmd >}}
-    {{< include description_pages/_desc_marchmadness.qmd >}}
-    {{< include description_pages/_desc_new.qmd >}}
-  </main>
+</p>
+  <a href="" class="btn btn-outline-dark">Data Set</a>
+</div>
 
+
+<div class="grid-item" data-tags="r">
+  <img src="img/dataset.png" width="20px" height="20px">
+  <h3>Wildfire</h3>
+  <p>
+<strong>Data Set</strong>: XXX
+
+</p>
+  <a href="" class="btn btn-outline-dark">Data Set</a>
+</div>
+
+
+<div class="grid-item" data-tags="r">
+  <img src="img/dataset.png" width="20px" height="20px">
+  <h3>How Couples Meet and Stay Together</h3>
+  <p>
+<strong>Data Set</strong>: XXX
+
+</p>
+  <a href="" class="btn btn-outline-dark">Data Set</a>
+</div>
+
+
+<div class="grid-item" data-tags="r">
+  <img src="img/dataset.png" width="20px" height="20px">
+  <h3>Gender Assessment</h3>
+  <p>
+<strong>Data Set</strong>: XXX
+
+</p>
+  <a href="" class="btn btn-outline-dark">Data Set</a>
+</div>
+
+
+<div class="grid-item" data-tags="r">
+  <img src="img/dataset.png" width="20px" height="20px">
+  <h3>Indigenous Businesses</h3>
+  <p>
+<strong>Data Set</strong>: XXX
+
+</p>
+  <a href="" class="btn btn-outline-dark">Data Set</a>
+</div>
+
+
+<div class="grid-item" data-tags="r">
+  <img src="img/dataset.png" width="20px" height="20px">
+  <h3>Global Rights</h3>
+  <p>
+<strong>Data Set</strong>: XXX
+
+</p>
+  <a href="" class="btn btn-outline-dark">Data Set</a>
 </div>
 
 :::
+
 
 <!-- Script for Filtering Cards -->
 {{< include description_pages/_script.qmd >}}

@@ -1,7 +1,0 @@
-### Select to Expand
-
-<div id="dataset-toggle">
-  <label><input type="checkbox" id="wildfire-checkbox" checked> Historical Canadian Wildfire Data</label>
-  <label><input type="checkbox" id="marchmadness-checkbox" checked> Women's March Madness History</label>
-  <label><input type="checkbox" id="new-checkbox" checked> New Dataset</label>
-</div>

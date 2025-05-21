@@ -1,38 +1,7 @@
-### Notebooks By Tag
-
-##### Language Filter
+### Language Filter
 
 <div id="code-filters" class="tag-filter-container">
   <label><input type="checkbox" value="r"> R</label>
   <label><input type="checkbox" value="python"> Python</label>
 </div>
 
-##### Technique Filter
-
-<div id="tag-filters" class="tag-filter-container">
-  <label><input type="checkbox" value="data-wrangling"> Data Wrangling</label>
-  <label><input type="checkbox" value="eda"> EDA</label>
-  <label><input type="checkbox" value="geospatial"> Geospatial</label>
-  <label><input type="checkbox" value="data-visualization"> Data Visualization</label>
-  <label><input type="checkbox" value="classification"> Classification</label>
-  <label><input type="checkbox" value="regression"> Regression</label>
-  <label><input type="checkbox" value="machine-learning"> Machine Learning</label>
-  <label><input type="checkbox" value="supervised-learning"> Supervised Learning</label>
-  <label><input type="checkbox" value="unsupervised-learning">Unsupervised Learning</label>
-  <label><input type="checkbox" value="time-series"> Time Series</label>
-  <label><input type="checkbox" value="hypothesis-testing"> Hypothesis Testing</label>
-  <label><input type="checkbox" value="logistic-regression"> Logistic Regression</label>
-  <label><input type="checkbox" value="na"> NA</label>
-</div>
-
-##### Library/Package Filter
-
-<div id="library-filters" class="tag-filter-container">
-  <label><input type="checkbox" value="dplyr"> R = dplyr</label>
-  <label><input type="checkbox" value="ggplot2"> R = ggplot2</label>
-  <label><input type="checkbox" value="broom"> R = broom</label>
-  <label><input type="checkbox" value="gt"> R = gt</label>
-  <label><input type="checkbox" value="marginaleffects"> R = marginaleffects</label>
-</div>
-
-<button id="clear-filters">Clear Filters</button>
