@@ -143,6 +143,16 @@ Wildfire
 <p></p>
 <p><a href="https://diverse-data-hub.github.io/website_files/description_pages/wildfire.html" class="btn btn-outline-dark">More Details</a></p>
 </div>
+<div class="grid-item">
+<img src="website_files/img/dataset.png" width="200px" height="200px">
+<h3 class="anchored">
+Test
+</h3>
+<p>
+</p><p><strong>Description</strong>: Test</p>
+<p></p>
+<p><a href="" class="btn btn-outline-dark">More Details</a></p>
+</div>
 </div>
 </section>
 <section id="r-package" class="level2">
@@ -190,6 +200,28 @@ Wildfire
 <li><p><a href="https://github.com/AzinPiran">Azin Piran</a></p></li>
 <li><p><a href="https://github.com/siddart-1">Siddarth Subrahmanian</a></p></li>
 </ul>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const items = document.querySelectorAll(".grid-container-3 .grid-item");
+    const total = items.length;
+
+    if (total <= 2) return;
+
+    const indexes = Array.from(items.keys());
+    for (let i = indexes.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indexes[i], indexes[j]] = [indexes[j], indexes[i]];
+    }
+
+    items.forEach((item, i) => {
+      if (i === indexes[0] || i === indexes[1]) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  });
+</script>
 
 
 </section>
