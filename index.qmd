@@ -1,6 +1,3 @@
-
-
-
 ::: {.hero-banner}
 
 <img src="website_files/img/logo.png" class="logo">

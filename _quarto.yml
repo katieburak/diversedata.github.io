@@ -13,7 +13,9 @@ website:
 
 format:
   html:
-    theme: minty
+    theme:
+      - minty
+      - styles.scss
     css: website_files/styles.css
     page-layout: full
 
