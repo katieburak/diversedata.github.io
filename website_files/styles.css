@@ -107,7 +107,6 @@ Variable Table
   width: 100%;
 }
 
-/* Table itself */
 .styled-table {
   width: 100%;
   border-collapse: collapse;
@@ -181,35 +180,6 @@ Clear Filters button
 #clear-filters:hover {
   background-color: #d0f0e1;
   border-color: #4da87e;
-}
-
-
-/*
-Datasets Page Layout
-*/
-
-html, body {
-  margin: 0;
-  padding: 00;
-  height: 100%;
-}
-
-.layout-container {
-  display: flex;
-  min-height: 100%;
-}
-
-.sidebar {
-  width: 350px;
-  padding: 1rem;
-  flex-shrink: 0;
-}
-
-.main-content {
-  flex-grow: 1;
-  padding: 0 1rem 1rem 1rem;
-  margin: 0;
-  overflow-y: auto;
 }
 
 /*
