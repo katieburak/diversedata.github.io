@@ -12,16 +12,38 @@ Datasets are available through the `diversedata` R package, allowing for straigh
 [Get Started →](){.btn .btn-primary}
 :::
 
-## The Datasets 
+## Featured Datasets 
 
 :::{.grid-container-3}
 
 <div class="grid-item">
-  {{< include website_files/download_pages/_dl_wildfire.qmd >}}
+  <img src="website_files/img/dataset.png" width="20px" height="20px">
+  <h3>Women's March Madness</h3>
+  <p>
+<strong>Data Set</strong>: XXX
+
+</p>
+  <a href="" class="btn btn-outline-dark">Data Set</a>
 </div>
 
 <div class="grid-item">
-  {{< include website_files/download_pages/_dl_marchmadness.qmd >}}
+  <img src="website_files/img/dataset.png" width="20px" height="20px">
+  <h3>Wildfire</h3>
+  <p>
+<strong>Data Set</strong>: XXX
+
+</p>
+  <a href="" class="btn btn-outline-dark">Data Set</a>
+</div>
+
+<div class="grid-item">
+  <img src="website_files/img/dataset.png" width="20px" height="20px">
+  <h3>How Couples Meet and Stay Together</h3>
+  <p>
+<strong>Data Set</strong>: XXX
+
+</p>
+  <a href="" class="btn btn-outline-dark">Data Set</a>
 </div>
 
 :::
@@ -38,9 +60,9 @@ TBD - CRAN Flag
 
 #### Package Code
 
-- Browse [Source Code](https://github.com/katieburak/diversedata)
+- Browse [Source Code](https://github.com/diverse-data-hub/diversedata)
 
-- Report a [Bug](https://github.com/katieburak/diversedata/issues)
+- Report a [Bug](https://github.com/diverse-data-hub/diversedata/issues)
 
 #### License
 
