@@ -12,7 +12,7 @@ Dataset including information on wildfires in the province of Alberta from 2006 
 ### Download
 
 <div class="button-container">
-  <a href="" download class="download-button">
+  <a href="../../data/clean/wildfire_clean.csv" download class="download-button">
     Download CSV
   </a>
 </div>

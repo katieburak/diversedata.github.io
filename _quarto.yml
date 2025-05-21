@@ -9,11 +9,7 @@ website:
       - href: index.qmd
         text: Welcome
       - href: website_files/datasets.qmd
-        text: All The Datasets
-      - href: website_files/description_pages/marchmadness.qmd
-        text: MarchMadness
-      - href: website_files/description_pages/wildfire.qmd
-        text: Wildfire
+        text: Datasets
 
 format:
   html:

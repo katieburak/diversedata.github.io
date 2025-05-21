@@ -9,7 +9,7 @@
 
 Datasets are available through the `diversedata` R package, allowing for straightforward integration into data science workflows. Each dataset includes detailed documentation and contextual background to support informed exploration and connection to real-world topics. Example case studies are also included to illustrate practical applications.
 
-[Get Started →](){.btn .btn-primary}
+[Get Started →](https://diverse-data-hub.github.io/website_files/datasets.html){.btn .btn-primary}
 :::
 
 ## Featured Datasets 
