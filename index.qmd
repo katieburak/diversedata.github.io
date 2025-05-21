@@ -2,11 +2,12 @@
 
 
 ::: {.hero-banner}
-## Diverse Data Repository for Data Science Education
 
 <img src="website_files/img/logo.png" class="logo">
 
-This website contains information related to a curated R data package focused on EDI-focused datasets, aiming to empower instructors to integrate equity, diversity, and inclusion themes into their classrooms through real-world data, contextual narratives, and applied data science projects. This website also includes teaching examples using the curated datasets.
+**Diverse Data Hub** is an open educational resource offering curated datasets focused on equity, diversity, inclusion, and other socially relevant topics. It is designed to support students, educators, and researchers in accessing and working with meaningful data in their teaching, learning, and analysis.
+
+Datasets are available through the `diversedata` R package, allowing for straightforward integration into data science workflows. Each dataset includes detailed documentation and contextual background to support informed exploration and connection to real-world topics. Example case studies are also included to illustrate practical applications.
 
 [Get Started →](){.btn .btn-primary}
 :::
