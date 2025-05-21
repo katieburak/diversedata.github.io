@@ -24,7 +24,7 @@
 </div>
 
 
-<div class="grid-item" data-tags="r">
+<div class="grid-item" data-tags="">
   <img src="img/dataset.png" width="20px" height="20px">
   <h3>How Couples Meet and Stay Together</h3>
   <p>
@@ -35,7 +35,7 @@
 </div>
 
 
-<div class="grid-item" data-tags="r">
+<div class="grid-item" data-tags="">
   <img src="img/dataset.png" width="20px" height="20px">
   <h3>Gender Assessment</h3>
   <p>
@@ -46,7 +46,7 @@
 </div>
 
 
-<div class="grid-item" data-tags="r">
+<div class="grid-item" data-tags="">
   <img src="img/dataset.png" width="20px" height="20px">
   <h3>Indigenous Businesses</h3>
   <p>
@@ -57,7 +57,7 @@
 </div>
 
 
-<div class="grid-item" data-tags="r">
+<div class="grid-item" data-tags="">
   <img src="img/dataset.png" width="20px" height="20px">
   <h3>Global Rights</h3>
   <p>
