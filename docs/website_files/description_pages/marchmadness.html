@@ -471,7 +471,7 @@ Yes
 </section>
 <section id="about-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="about-the-data">About the Data</h2>
-<p>This data set contains historical records of every NCAA Division I Women’s Basketball Tournament appearance since the tournament began in 1982. Sourced from official NCAA data, it captures team-level performance and tournament outcomes across more than four decades of collegiate women’s basketball.</p>
+<p>This data set contains historical records of every NCAA Division I Women’s Basketball Tournament appearance since the tournament began in 1982. Sourced from official NCAA data, it captures tournament results across more than four decades of collegiate women’s basketball.</p>
 <section id="key-features-of-the-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="key-features-of-the-dataset">Key Features of the Dataset</h3>
 <p>Each row represents a single team’s appearance in a specific tournament year and includes information such as:</p>
@@ -482,17 +482,17 @@ Yes
 <li><p><strong>Season Records</strong> – Regular season, conference, and total win/loss stats and percentages</p></li>
 <li><p><strong>Conference Information</strong> – Team’s conference name, record, and rank within the conference</p></li>
 <li><p><strong>Division</strong> – Regional placement in the tournament bracket (e.g., East, West)</p></li>
-<li><p><strong>Home Game Indicator</strong> – Whether the team played its first game at home</p></li>
+<li><p><strong>Home Game Indication</strong> – Whether the team played its first game at home</p></li>
 </ul>
 </section>
 <section id="purpose-and-use-cases" class="level3">
 <h3 class="anchored" data-anchor-id="purpose-and-use-cases">Purpose and Use Cases</h3>
 <p>This dataset is designed to support analysis of:</p>
 <ul>
-<li><p>Team success and consistency over time</p></li>
-<li><p>Impact of seeding and bid types on tournament outcomes</p></li>
-<li><p>Conference strength and historical performance trends</p></li>
-<li><p>Emergence and decline of dynasties in women’s college basketball</p></li>
+<li><p>Team performance over time</p></li>
+<li><p>Impact of seeding and bid types on tournament results</p></li>
+<li><p>Conference strength</p></li>
+<li><p>Emergence and decline of winning teams in women’s college basketball</p></li>
 </ul>
 </section>
 </section>
@@ -501,13 +501,13 @@ Yes
 <section id="objective" class="level3">
 <h3 class="anchored" data-anchor-id="objective">Objective</h3>
 <p><strong>How much does a team’s tournament seed predict its success in the NCAA Division I Women’s Basketball Tournament?</strong></p>
-<p>This analysis explores the relationship between a team’s <code>seed</code> and its tournament performance, as measured by tournament wins, to evaluate whether higher-seeded teams consistently outperform lower-seeded ones.</p>
-<p>By examining over four decades of historical data, we aim to:</p>
+<p>This analysis explores the relationship between a team’s <code>seed</code> and its results on a tournament to evaluate whether teams with lower seeds consistently outperform ones with higher seeds.</p>
+<p>By examining historical data, we aim to:</p>
 <ul>
 <li>Identify trends in tournament advancement by seed level</li>
 </ul>
-<p>Seeding is intended to reflect a team’s regular-season performance and overall strength. In theory, lower-numbered seeds (e.g., #1, #2) are given to the strongest teams, who should be more likely to advance. But upsets, bracket surprises, and standout performances from lower seeds raise questions like “How reliable is seeding as a predictor of success?”</p>
-<p>Understanding these dynamics can inform not just fan expectations and bracket predictions.</p>
+<p>Seeding is intended to reflect a team’s regular-season performance. In theory, lower-numbered seeds (e.g., #1, #2) are given to the strongest teams, who should be more likely to advance. But upsets, bracket surprises, and standout performances from lower seeds raise questions like “How reliable is seeding as a predictor of success?”</p>
+<p>Understanding these dynamics can inform fan expectations and bracket predictions.</p>
 </section>
 <section id="methodology" class="level3">
 <h3 class="anchored" data-anchor-id="methodology">Methodology</h3>
@@ -554,7 +554,7 @@ Yes
 </section>
 <section id="exploratory-data-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="exploratory-data-analysis">2. Exploratory Data Analysis</h4>
-<p>First, we can see which seeds appear more often.</p>
+<p>We can see which seeds appear more often.</p>
 <p>Note that, the <code>seed</code> = 0 designation in 1983 notes the eight teams that played an opening-round game to become the No.8 seed in each region. For this exercise, we will note take them into consideration.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>marchmadness <span class="ot">&lt;-</span> marchmadness <span class="sc">|&gt;</span> </span>
@@ -629,8 +629,7 @@ Yes
 </section>
 <section id="hypothesis-testing-are-seed-and-wins-associated" class="level4">
 <h4 class="anchored" data-anchor-id="hypothesis-testing-are-seed-and-wins-associated">3. Hypothesis Testing: Are Seed and Wins Associated?</h4>
-<p><span class="math inline">\(H_o\)</span>(Null): Seed and tournament wins are not associated<br>
-</p>
+<p><span class="math inline">\(H_o\)</span>(Null): Seed and tournament wins are not associated</p>
 <p><span class="math inline">\(H_a\)</span>(Alternative): Seed and tournament wins are associated</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(marchmadness<span class="sc">$</span>seed, marchmadness<span class="sc">$</span>tourney_wins, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -718,8 +717,8 @@ Number of Fisher Scoring iterations: 5</code></pre>
 </section>
 <section id="overdispersion-testing" class="level4">
 <h4 class="anchored" data-anchor-id="overdispersion-testing">4. Overdispersion Testing</h4>
-<p>Remember, Poisson assumes that the mean is equal to the variance of the count variable. If the variance is much greater, we might need a Negative Binomial model. We can do an dispersion test to evaluate this matter.</p>
-<p>Let <span class="math inline">\(Y_i\)</span> be the <span class="math inline">\(ith\)</span> Poisson response in the count regression model. In the presence of equidispersion, <span class="math inline">\(Y_i\)</span> has the following parameters:</p>
+<p>It is noteworthy that Poisson assumes that the mean is equal to the variance of the count variable. If the variance is much greater, we might need a Negative Binomial model. We can do an dispersion test to evaluate this matter.</p>
+<p>Letting <span class="math inline">\(Y_i\)</span> be the <span class="math inline">\(ith\)</span> Poisson response in the count regression model, in the presence of equidispersion, <span class="math inline">\(Y_i\)</span> has the following parameters:</p>
 <p><span class="math inline">\(E(Y_i)=\lambda_i, Var(Y_i)=\lambda_i\)</span></p>
 <p>The test uses the following mathematical expression (using a <span class="math inline">\(1+\gamma\)</span> dispersion factor):</p>
 <p><span class="math inline">\(Var(Y_i)=(1+\gamma)*\lambda_i\)</span></p>
@@ -749,11 +748,11 @@ dispersion
 <h4 class="anchored" data-anchor-id="discussion">5. Discussion</h4>
 <p>This analysis examined the relationship between a team’s tournament seed and its performance in the NCAA Division I Women’s Basketball Tournament. The results suggest that:</p>
 <ol type="1">
-<li><p><strong>Seed strongly predicts performance</strong>: Lower-numbered seeds (higher-ranked teams) tend to win more games on average. The correlation between seed and wins was statistically significant, with higher seeds associated with fewer wins.</p></li>
-<li><p><strong>Poisson regression supports seeding as a predictor</strong>: The Poisson regression model confirmed that seed is a significant predictor of tournament wins, as expected for a count variable like wins.</p></li>
-<li><p><strong>Variability remains</strong>: While seeding generally reflects team strength, upsets and unexpected performances do occur, showing that other factors also influence tournament outcomes.</p></li>
+<li><p><em>Seed strongly predicts performance</em>: Lower-numbered seeds (higher-ranked teams) tend to win more games on average. The correlation between seed and wins was statistically significant, with higher seeds associated with fewer wins.</p></li>
+<li><p><em>Poisson regression supports seeding as a predictor</em>: The Poisson regression model confirmed that seed is a significant predictor of tournament wins, as expected for a count variable like wins.</p></li>
+<li><p><em>There is a lot of variation around the prediction</em>: While seeding generally reflects team strength, upsets and unexpected performances do occur, showing that other factors also influence tournament outcomes.</p></li>
 </ol>
-<p>Seeding is an important predictor of success, but it is not foolproof. It sets expectations, but unexpected performances still shape the narrative of March Madness. Understanding this relationship can inform future discussions on fairness and tournament structure.</p>
+<p>Seeding is an important predictor of success, but clearly other factors influence the results. It sets expectations, but unexpected performances still shape March Madness.</p>
 </section>
 </section>
 </section>
