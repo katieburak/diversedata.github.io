@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../website_files/styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -126,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Welcome</span></a>
   </li>  
   <li class="nav-item">
@@ -139,14 +139,124 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Wildfire Dataset Cleaning Steps</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../website_files/img/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+ <span class="menu-text">CRAN Page (TBD)</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Source Code</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/diverse-data-hub/diversedata" class="sidebar-item-text sidebar-link"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/diverse-data-hub/diversedata/issues" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Report an Issue</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+ <span class="menu-text">License (TBD)</span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://diverse-data-hub.github.io/website_files/citation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Citation (TBD)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Owners</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/katieburak" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Katie Burak PhD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/elhamekhoda" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Elham E Khoda</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Collaborators</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/fraramfra" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Francisco Ramirez</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/AzinPiran" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Azin Piran</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/siddart-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Siddarth Subrahmanian</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -155,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -427,30 +537,31 @@ dtype: int64</code></pre>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"DISPATCH_DATE"</span>] <span class="op">=</span> pd.to_datetime(wildfire[<span class="st">"DISPATCH_DATE"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>) <span class="co"># I converted this column to date, and If a value can't be converted to a date (e.g., it's missing or malformed), it will be replaced with NaT</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"START_FOR_FIRE_DATE"</span>] <span class="op">=</span> pd.to_datetime(wildfire[<span class="st">"START_FOR_FIRE_DATE"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"INITIAL_ACTION_BY"</span>] <span class="op">=</span> wildfire[<span class="st">"INITIAL_ACTION_BY"</span>].fillna(<span class="st">"Unknown"</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRST_EX_DATE"</span>] <span class="op">=</span> pd.to_datetime(wildfire[<span class="st">"FIRST_EX_DATE"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRST_EX_SIZE_PERIMETER"</span>] <span class="op">=</span> wildfire[<span class="st">"FIRST_EX_SIZE_PERIMETER"</span>].fillna(<span class="op">-</span><span class="dv">1</span>) <span class="co"># missing or unknown numeric data</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Moderate missing</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRE_START_DATE"</span>] <span class="op">=</span> pd.to_datetime(wildfire[<span class="st">"FIRE_START_DATE"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"DISCOVERED_DATE"</span>] <span class="op">=</span> pd.to_datetime(wildfire[<span class="st">"DISCOVERED_DATE"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRE_SPREAD_RATE"</span>] <span class="op">=</span> wildfire[<span class="st">"FIRE_SPREAD_RATE"</span>].fillna(wildfire[<span class="st">"FIRE_SPREAD_RATE"</span>].mean())  <span class="co">## mean value</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRE_POSITION_ON_SLOPE"</span>] <span class="op">=</span> wildfire[<span class="st">"FIRE_POSITION_ON_SLOPE"</span>].fillna(<span class="st">"Unknown"</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"WEATHER_CONDITIONS_OVER_FIRE"</span>] <span class="op">=</span> wildfire[<span class="st">"WEATHER_CONDITIONS_OVER_FIRE"</span>].fillna(<span class="st">"Unknown"</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"WIND_DIRECTION"</span>] <span class="op">=</span> wildfire[<span class="st">"WIND_DIRECTION"</span>].fillna(<span class="st">"Unknown"</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FUEL_TYPE"</span>] <span class="op">=</span> wildfire[<span class="st">"FUEL_TYPE"</span>].fillna(<span class="st">"Unknown"</span>)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"TRUE_CAUSE"</span>] <span class="op">=</span> wildfire[<span class="st">"TRUE_CAUSE"</span>].fillna(<span class="st">"Unknown"</span>) </span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRE_TYPE"</span>] <span class="op">=</span> wildfire[<span class="st">"FIRE_TYPE"</span>].fillna(<span class="st">"Unknown"</span>) </span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Higher missing </span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"RESPONSIBLE_GROUP"</span>] <span class="op">=</span> wildfire[<span class="st">"RESPONSIBLE_GROUP"</span>].fillna(<span class="st">"Unknown"</span>)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"ACTIVITY_CLASS"</span>] <span class="op">=</span> wildfire[<span class="st">"ACTIVITY_CLASS"</span>].fillna(<span class="st">"Unknown"</span>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"IA_ARRIVAL_AT_FIRE_DATE"</span>] <span class="op">=</span> pd.to_datetime(wildfire[<span class="st">"IA_ARRIVAL_AT_FIRE_DATE"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"IA_ACCESS"</span>] <span class="op">=</span> wildfire[<span class="st">"IA_ACCESS"</span>].fillna(<span class="st">"Unknown"</span>)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRE_FIGHTING_START_DATE"</span>] <span class="op">=</span> pd.to_datetime(wildfire[<span class="st">"FIRE_FIGHTING_START_DATE"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRE_FIGHTING_START_SIZE"</span>] <span class="op">=</span> wildfire[<span class="st">"FIRE_FIGHTING_START_SIZE"</span>].fillna(wildfire[<span class="st">"FIRE_FIGHTING_START_SIZE"</span>].median()) <span class="co">## median value</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"BUCKETING_ON_FIRE"</span>] <span class="op">=</span> wildfire[<span class="st">"BUCKETING_ON_FIRE"</span>].fillna(<span class="st">"Unknown"</span>)</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRE_ORIGIN"</span>] <span class="op">=</span> wildfire[<span class="st">"INITIAL_ACTION_BY"</span>].fillna(<span class="st">"Unknown"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRST_EX_DATE"</span>] <span class="op">=</span> pd.to_datetime(wildfire[<span class="st">"FIRST_EX_DATE"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRST_EX_SIZE_PERIMETER"</span>] <span class="op">=</span> wildfire[<span class="st">"FIRST_EX_SIZE_PERIMETER"</span>].fillna(<span class="op">-</span><span class="dv">1</span>) <span class="co"># missing or unknown numeric data</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Moderate missing</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRE_START_DATE"</span>] <span class="op">=</span> pd.to_datetime(wildfire[<span class="st">"FIRE_START_DATE"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"DISCOVERED_DATE"</span>] <span class="op">=</span> pd.to_datetime(wildfire[<span class="st">"DISCOVERED_DATE"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRE_SPREAD_RATE"</span>] <span class="op">=</span> wildfire[<span class="st">"FIRE_SPREAD_RATE"</span>].fillna(wildfire[<span class="st">"FIRE_SPREAD_RATE"</span>].mean())  <span class="co">## mean value</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRE_POSITION_ON_SLOPE"</span>] <span class="op">=</span> wildfire[<span class="st">"FIRE_POSITION_ON_SLOPE"</span>].fillna(<span class="st">"Unknown"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"WEATHER_CONDITIONS_OVER_FIRE"</span>] <span class="op">=</span> wildfire[<span class="st">"WEATHER_CONDITIONS_OVER_FIRE"</span>].fillna(<span class="st">"Unknown"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"WIND_DIRECTION"</span>] <span class="op">=</span> wildfire[<span class="st">"WIND_DIRECTION"</span>].fillna(<span class="st">"Unknown"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FUEL_TYPE"</span>] <span class="op">=</span> wildfire[<span class="st">"FUEL_TYPE"</span>].fillna(<span class="st">"Unknown"</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"TRUE_CAUSE"</span>] <span class="op">=</span> wildfire[<span class="st">"TRUE_CAUSE"</span>].fillna(<span class="st">"Unknown"</span>) </span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRE_TYPE"</span>] <span class="op">=</span> wildfire[<span class="st">"FIRE_TYPE"</span>].fillna(<span class="st">"Unknown"</span>) </span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Higher missing </span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"RESPONSIBLE_GROUP"</span>] <span class="op">=</span> wildfire[<span class="st">"RESPONSIBLE_GROUP"</span>].fillna(<span class="st">"Unknown"</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"ACTIVITY_CLASS"</span>] <span class="op">=</span> wildfire[<span class="st">"ACTIVITY_CLASS"</span>].fillna(<span class="st">"Unknown"</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"IA_ARRIVAL_AT_FIRE_DATE"</span>] <span class="op">=</span> pd.to_datetime(wildfire[<span class="st">"IA_ARRIVAL_AT_FIRE_DATE"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"IA_ACCESS"</span>] <span class="op">=</span> wildfire[<span class="st">"IA_ACCESS"</span>].fillna(<span class="st">"Unknown"</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRE_FIGHTING_START_DATE"</span>] <span class="op">=</span> pd.to_datetime(wildfire[<span class="st">"FIRE_FIGHTING_START_DATE"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"FIRE_FIGHTING_START_SIZE"</span>] <span class="op">=</span> wildfire[<span class="st">"FIRE_FIGHTING_START_SIZE"</span>].fillna(wildfire[<span class="st">"FIRE_FIGHTING_START_SIZE"</span>].median()) <span class="co">## median value</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">"BUCKETING_ON_FIRE"</span>] <span class="op">=</span> wildfire[<span class="st">"BUCKETING_ON_FIRE"</span>].fillna(<span class="st">"Unknown"</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="9c34ff10-7df1-4167-a4e7-add161903932" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Double check everything one more time  --&gt; alll of the date columns now have NaT </span></span>
@@ -463,7 +574,7 @@ CURRENT_SIZE                       0
 SIZE_CLASS                         0
 LATITUDE                           0
 LONGITUDE                          0
-FIRE_ORIGIN                       12
+FIRE_ORIGIN                        0
 GENERAL_CAUSE                      0
 RESPONSIBLE_GROUP                  0
 ACTIVITY_CLASS                     0
@@ -630,17 +741,215 @@ dtype: object</code></pre>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>wildfire.columns <span class="op">=</span> wildfire.columns.<span class="bu">str</span>.lower()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="export-cleaned-dataset" class="level1">
-<h1>Export cleaned dataset</h1>
-<div id="dc7885e9-9c05-4114-9b1b-b3334098c1f4" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>wildfire.to_csv(<span class="st">"../data/clean/wildfire_clean.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="investigation-of-the-date-columns" class="level1">
+<h1>Investigation of the Date columns</h1>
+<div id="03745514-7f55-40cf-9be6-456de9312639" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>date_cols <span class="op">=</span> [</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'fire_start_date'</span>, <span class="st">'discovered_date'</span>, <span class="st">'reported_date'</span>, <span class="st">'dispatch_date'</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'start_for_fire_date'</span>, <span class="st">'assessment_datetime'</span>, <span class="st">'ia_arrival_at_fire_date'</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'fire_fighting_start_date'</span>, <span class="st">'first_bh_date'</span>, <span class="st">'first_uc_date'</span>, <span class="st">'first_ex_date'</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> date_cols:</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    n_unique <span class="op">=</span> wildfire[col].nunique()</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> wildfire[col].notna().<span class="bu">sum</span>()</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    ratio <span class="op">=</span> <span class="bu">round</span>(n_unique <span class="op">/</span> total, <span class="dv">3</span>) <span class="cf">if</span> total <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    results.append({</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"column"</span>: col,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"unique_values"</span>: n_unique,</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"non_null_values"</span>: total,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"uniqueness_ratio"</span>: ratio</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>date_stats_df <span class="op">=</span> pd.DataFrame(results)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>date_stats_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">column</th>
+<th data-quarto-table-cell-role="th">unique_values</th>
+<th data-quarto-table-cell-role="th">non_null_values</th>
+<th data-quarto-table-cell-role="th">uniqueness_ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>fire_start_date</td>
+<td>20199</td>
+<td>25858</td>
+<td>0.781</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>discovered_date</td>
+<td>20276</td>
+<td>21142</td>
+<td>0.959</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>reported_date</td>
+<td>25442</td>
+<td>26551</td>
+<td>0.958</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>dispatch_date</td>
+<td>25408</td>
+<td>26539</td>
+<td>0.957</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>start_for_fire_date</td>
+<td>25432</td>
+<td>26534</td>
+<td>0.958</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>assessment_datetime</td>
+<td>25678</td>
+<td>26551</td>
+<td>0.967</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>ia_arrival_at_fire_date</td>
+<td>18146</td>
+<td>18848</td>
+<td>0.963</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>fire_fighting_start_date</td>
+<td>18128</td>
+<td>18979</td>
+<td>0.955</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>first_bh_date</td>
+<td>25450</td>
+<td>26551</td>
+<td>0.959</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>first_uc_date</td>
+<td>25406</td>
+<td>26551</td>
+<td>0.957</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>first_ex_date</td>
+<td>25140</td>
+<td>26545</td>
+<td>0.947</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<section id="validate-cleaned-file" class="level2">
-<h2 class="anchored" data-anchor-id="validate-cleaned-file">Validate cleaned file</h2>
-<div id="2db79355-94ca-4e79-8f34-b4b79c16af38" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> pd.read_csv(<span class="st">"../data/clean/wildfire_clean.csv"</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>clean.shape</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>clean.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<section id="based-on-alberta-historical-wildfire-data-dictionary-20062024" class="level2">
+<h2 class="anchored" data-anchor-id="based-on-alberta-historical-wildfire-data-dictionary-20062024">Based on Alberta Historical Wildfire Data Dictionary (2006–2024)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column Name</th>
+<th>Official Definition (From Data Dictionary)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>fire_start_date</code></td>
+<td>The <strong>estimated or known time and date</strong> the wildfire began. May come from storm tracking, witness statements, or lightning map data.</td>
+</tr>
+<tr class="even">
+<td><code>discovered_date</code></td>
+<td>The <strong>time the detection agent</strong> first discovered the wildfire. May be blank for unplanned detections.</td>
+</tr>
+<tr class="odd">
+<td><code>reported_date</code></td>
+<td>The <strong>time and date the wildfire was reported</strong> to Alberta Wildfire (usually when the detection agent contacts dispatch).</td>
+</tr>
+<tr class="even">
+<td><code>dispatch_date</code></td>
+<td>The <strong>date and time the first resource was dispatched</strong> to respond to the wildfire.</td>
+</tr>
+<tr class="odd">
+<td><code>start_for_fire_date</code></td>
+<td>The <strong>time and date the dispatched resource left for the wildfire</strong>, e.g., wheels roll, skids up, or vehicle departure.</td>
+</tr>
+<tr class="even">
+<td><code>assessment_datetime</code></td>
+<td>The <strong>date and time of the initial wildfire assessment</strong>, which determines the fire year.</td>
+</tr>
+<tr class="odd">
+<td><code>ia_arrival_at_fire_date</code></td>
+<td>The <strong>date and time the initial action resource arrived</strong> at the wildfire site.</td>
+</tr>
+<tr class="even">
+<td><code>fire_fighting_start_date</code></td>
+<td>The <strong>date and time suppression efforts began</strong> (e.g., digging firelines, water drops).</td>
+</tr>
+<tr class="odd">
+<td><code>first_bh_date</code></td>
+<td>The <strong>date/time the wildfire status changed to Being Held (BH)</strong> — unlikely to spread further under current conditions.</td>
+</tr>
+<tr class="even">
+<td><code>first_uc_date</code></td>
+<td>The <strong>date/time the fire was declared Under Control (UC)</strong> — fire perimeter secured, no further spread expected.</td>
+</tr>
+<tr class="odd">
+<td><code>first_ex_date</code></td>
+<td>The <strong>date/time the fire was declared Extinguished (EX)</strong> — fully out, no hot spots remaining.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="i-just-keep-these-date-columns-and-i-think-these-columns-are-most-informative" class="level2">
+<h2 class="anchored" data-anchor-id="i-just-keep-these-date-columns-and-i-think-these-columns-are-most-informative">I just keep these date columns and I think these columns are most informative</h2>
+<div id="11233eff-36b1-40f9-8a0b-1edce215689a" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">## I keep these columns</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">##   'fire_start_date',</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">##   'discovered_date',</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">##   'ia_arrival_at_fire_date',</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">##   'fire_fighting_start_date',</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">##   'first_bh_date',</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">##   'first_uc_date',</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">##   'first_ex_date'</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># I deleted these columns</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>cols_to_delete <span class="op">=</span> [</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">'reported_date'</span>,</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'dispatch_date'</span>,</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'start_for_fire_date'</span>,</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'first_ex_date'</span>,</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'discovered_date'</span>, </span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'assessment_datetime'</span>,</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'dispatched_resource'</span>, <span class="co">## This is not a date column, but it is not useful so I deleted it here</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'assessment_resource'</span> <span class="co">## This is not date column but it is not usefull so I deleted here</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>wildfire <span class="op">=</span> wildfire.drop(columns<span class="op">=</span>cols_to_delete, errors<span class="op">=</span><span class="st">'ignore'</span>)</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>wildfire.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
@@ -660,6 +969,7 @@ dtype: object</code></pre>
 <th data-quarto-table-cell-role="th">responsible_group</th>
 <th data-quarto-table-cell-role="th">activity_class</th>
 <th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">ia_arrival_at_fire_date</th>
 <th data-quarto-table-cell-role="th">ia_access</th>
 <th data-quarto-table-cell-role="th">fire_fighting_start_date</th>
 <th data-quarto-table-cell-role="th">fire_fighting_start_size</th>
@@ -668,7 +978,6 @@ dtype: object</code></pre>
 <th data-quarto-table-cell-role="th">first_bh_size</th>
 <th data-quarto-table-cell-role="th">first_uc_date</th>
 <th data-quarto-table-cell-role="th">first_uc_size</th>
-<th data-quarto-table-cell-role="th">first_ex_date</th>
 <th data-quarto-table-cell-role="th">first_ex_size_perimeter</th>
 </tr>
 </thead>
@@ -681,20 +990,20 @@ dtype: object</code></pre>
 <td>A</td>
 <td>56.25</td>
 <td>-117.18</td>
-<td>Private Land</td>
+<td>Land Owner</td>
 <td>Resident</td>
 <td>Resident</td>
 <td>Grass</td>
 <td>...</td>
+<td>NaT</td>
 <td>Unknown</td>
-<td>NaN</td>
+<td>NaT</td>
 <td>0.02</td>
 <td>Unknown</td>
 <td>2006-04-02 22:00:00</td>
 <td>0.01</td>
 <td>2006-04-02 22:00:00</td>
 <td>0.01</td>
-<td>2006-04-03 10:20:00</td>
 <td>0.10</td>
 </tr>
 <tr class="even">
@@ -705,20 +1014,20 @@ dtype: object</code></pre>
 <td>B</td>
 <td>53.61</td>
 <td>-115.92</td>
-<td>Provincial Land</td>
+<td>Fire Department</td>
 <td>Incendiary</td>
 <td>Others (explain in remarks)</td>
 <td>Lighting Fires</td>
 <td>...</td>
+<td>NaT</td>
 <td>Unknown</td>
-<td>NaN</td>
+<td>NaT</td>
 <td>0.02</td>
 <td>Unknown</td>
 <td>2006-04-03 13:20:00</td>
 <td>0.20</td>
 <td>2006-04-03 13:20:00</td>
 <td>0.20</td>
-<td>2006-04-03 14:00:00</td>
 <td>0.20</td>
 </tr>
 <tr class="odd">
@@ -729,20 +1038,20 @@ dtype: object</code></pre>
 <td>B</td>
 <td>53.61</td>
 <td>-115.59</td>
-<td>Provincial Land</td>
+<td>Fire Department</td>
 <td>Incendiary</td>
 <td>Others (explain in remarks)</td>
 <td>Lighting Fires</td>
 <td>...</td>
+<td>NaT</td>
 <td>Unknown</td>
-<td>NaN</td>
+<td>NaT</td>
 <td>0.02</td>
 <td>Unknown</td>
 <td>2006-04-03 13:23:00</td>
 <td>0.50</td>
 <td>2006-04-03 13:23:00</td>
 <td>0.50</td>
-<td>2006-04-03 15:00:00</td>
 <td>0.50</td>
 </tr>
 <tr class="even">
@@ -753,20 +1062,20 @@ dtype: object</code></pre>
 <td>A</td>
 <td>53.61</td>
 <td>-115.61</td>
-<td>Provincial Land</td>
+<td>Industry</td>
 <td>Incendiary</td>
 <td>Others (explain in remarks)</td>
 <td>Lighting Fires</td>
 <td>...</td>
+<td>NaT</td>
 <td>Unknown</td>
-<td>NaN</td>
+<td>NaT</td>
 <td>0.02</td>
 <td>Unknown</td>
 <td>2006-04-03 14:08:00</td>
 <td>0.01</td>
 <td>2006-04-03 14:08:00</td>
 <td>0.01</td>
-<td>2006-04-03 15:05:00</td>
 <td>0.01</td>
 </tr>
 <tr class="odd">
@@ -777,11 +1086,286 @@ dtype: object</code></pre>
 <td>A</td>
 <td>56.25</td>
 <td>-117.05</td>
-<td>Provincial Land</td>
+<td>Fire Department</td>
 <td>Other Industry</td>
 <td>Employees</td>
 <td>Refuse</td>
 <td>...</td>
+<td>NaT</td>
+<td>Unknown</td>
+<td>NaT</td>
+<td>0.02</td>
+<td>Unknown</td>
+<td>2006-04-03 19:57:00</td>
+<td>0.10</td>
+<td>2006-04-03 20:19:00</td>
+<td>0.10</td>
+<td>0.10</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 35 columns</p>
+</div>
+</div>
+</div>
+<div id="b0850059-7fa8-4cf9-bc1f-75f731598320" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>wildfire.columns.tolist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>['year',
+ 'fire_number',
+ 'current_size',
+ 'size_class',
+ 'latitude',
+ 'longitude',
+ 'fire_origin',
+ 'general_cause',
+ 'responsible_group',
+ 'activity_class',
+ 'true_cause',
+ 'fire_start_date',
+ 'detection_agent_type',
+ 'detection_agent',
+ 'assessment_hectares',
+ 'fire_spread_rate',
+ 'fire_type',
+ 'fire_position_on_slope',
+ 'weather_conditions_over_fire',
+ 'temperature',
+ 'relative_humidity',
+ 'wind_direction',
+ 'wind_speed',
+ 'fuel_type',
+ 'initial_action_by',
+ 'ia_arrival_at_fire_date',
+ 'ia_access',
+ 'fire_fighting_start_date',
+ 'fire_fighting_start_size',
+ 'bucketing_on_fire',
+ 'first_bh_date',
+ 'first_bh_size',
+ 'first_uc_date',
+ 'first_uc_size',
+ 'first_ex_size_perimeter']</code></pre>
+</div>
+</div>
+</section>
+<section id="please-let-me-know-which-columns-you-think-are-better-to-keep" class="level2">
+<h2 class="anchored" data-anchor-id="please-let-me-know-which-columns-you-think-are-better-to-keep">Please let me know which columns you think are better to keep</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 83%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Columns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Identifiers</strong></td>
+<td><code>'year'</code>, <code>'fire_number'</code></td>
+</tr>
+<tr class="even">
+<td><strong>Fire Size &amp; Status</strong></td>
+<td><code>'current_size'</code>, <code>'size_class'</code>, <code>'fire_fighting_start_size'</code>, <code>'first_bh_size'</code>, <code>'first_uc_size'</code>, <code>'first_ex_size_perimeter'</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Location</strong></td>
+<td><code>'latitude'</code>, <code>'longitude'</code>, <code>'fire_origin'</code></td>
+</tr>
+<tr class="even">
+<td><strong>Cause &amp; Activity</strong></td>
+<td><code>'general_cause'</code>, <code>'true_cause'</code>, <code>'activity_class'</code>, <code>'responsible_group'</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Key Dates</strong></td>
+<td><code>'fire_start_date'</code>, <code>'discovered_date'</code>, <code>'ia_arrival_at_fire_date'</code>, <code>'fire_fighting_start_date'</code>, <code>'first_bh_date'</code>, <code>'first_uc_date'</code></td>
+</tr>
+<tr class="even">
+<td><strong>Detection &amp; Resources</strong></td>
+<td><code>'detection_agent_type'</code>, <code>'detection_agent'</code>, <code>'initial_action_by'</code>, <code>'ia_access'</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Assessment &amp; Behavior</strong></td>
+<td><code>'assessment_hectares'</code>, <code>'fire_spread_rate'</code>, <code>'fire_type'</code>, <code>'fire_position_on_slope'</code>, <code>'fuel_type'</code></td>
+</tr>
+<tr class="even">
+<td><strong>Weather</strong></td>
+<td><code>'weather_conditions_over_fire'</code>, <code>'temperature'</code>, <code>'relative_humidity'</code>, <code>'wind_direction'</code>, <code>'wind_speed'</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Suppression</strong></td>
+<td><code>'bucketing_on_fire'</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="cleaning-some-values-o-columns" class="level1">
+<h1>Cleaning some values o Columns</h1>
+<div id="4bb0e755-24e9-43d7-92bb-0dbe3ed86512" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>wildfire[<span class="st">'responsible_group'</span>] <span class="op">=</span> wildfire[<span class="st">'responsible_group'</span>].replace(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Others (explain in remarks)'</span>, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Others'</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="export-cleaned-dataset" class="level1">
+<h1>Export cleaned dataset</h1>
+<div id="dc7885e9-9c05-4114-9b1b-b3334098c1f4" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>wildfire.to_csv(<span class="st">"../data/clean/wildfire.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="validate-cleaned-file" class="level2">
+<h2 class="anchored" data-anchor-id="validate-cleaned-file">Validate cleaned file</h2>
+<div id="2db79355-94ca-4e79-8f34-b4b79c16af38" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>clean <span class="op">=</span> pd.read_csv(<span class="st">"../data/clean/wildfire.csv"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>clean.shape</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>clean.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">fire_number</th>
+<th data-quarto-table-cell-role="th">current_size</th>
+<th data-quarto-table-cell-role="th">size_class</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">fire_origin</th>
+<th data-quarto-table-cell-role="th">general_cause</th>
+<th data-quarto-table-cell-role="th">responsible_group</th>
+<th data-quarto-table-cell-role="th">activity_class</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">ia_arrival_at_fire_date</th>
+<th data-quarto-table-cell-role="th">ia_access</th>
+<th data-quarto-table-cell-role="th">fire_fighting_start_date</th>
+<th data-quarto-table-cell-role="th">fire_fighting_start_size</th>
+<th data-quarto-table-cell-role="th">bucketing_on_fire</th>
+<th data-quarto-table-cell-role="th">first_bh_date</th>
+<th data-quarto-table-cell-role="th">first_bh_size</th>
+<th data-quarto-table-cell-role="th">first_uc_date</th>
+<th data-quarto-table-cell-role="th">first_uc_size</th>
+<th data-quarto-table-cell-role="th">first_ex_size_perimeter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2006</td>
+<td>PWF001</td>
+<td>0.10</td>
+<td>A</td>
+<td>56.25</td>
+<td>-117.18</td>
+<td>Land Owner</td>
+<td>Resident</td>
+<td>Resident</td>
+<td>Grass</td>
+<td>...</td>
+<td>NaN</td>
+<td>Unknown</td>
+<td>NaN</td>
+<td>0.02</td>
+<td>Unknown</td>
+<td>2006-04-02 22:00:00</td>
+<td>0.01</td>
+<td>2006-04-02 22:00:00</td>
+<td>0.01</td>
+<td>0.10</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2006</td>
+<td>EWF002</td>
+<td>0.20</td>
+<td>B</td>
+<td>53.61</td>
+<td>-115.92</td>
+<td>Fire Department</td>
+<td>Incendiary</td>
+<td>Others</td>
+<td>Lighting Fires</td>
+<td>...</td>
+<td>NaN</td>
+<td>Unknown</td>
+<td>NaN</td>
+<td>0.02</td>
+<td>Unknown</td>
+<td>2006-04-03 13:20:00</td>
+<td>0.20</td>
+<td>2006-04-03 13:20:00</td>
+<td>0.20</td>
+<td>0.20</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2006</td>
+<td>EWF001</td>
+<td>0.50</td>
+<td>B</td>
+<td>53.61</td>
+<td>-115.59</td>
+<td>Fire Department</td>
+<td>Incendiary</td>
+<td>Others</td>
+<td>Lighting Fires</td>
+<td>...</td>
+<td>NaN</td>
+<td>Unknown</td>
+<td>NaN</td>
+<td>0.02</td>
+<td>Unknown</td>
+<td>2006-04-03 13:23:00</td>
+<td>0.50</td>
+<td>2006-04-03 13:23:00</td>
+<td>0.50</td>
+<td>0.50</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2006</td>
+<td>EWF003</td>
+<td>0.01</td>
+<td>A</td>
+<td>53.61</td>
+<td>-115.61</td>
+<td>Industry</td>
+<td>Incendiary</td>
+<td>Others</td>
+<td>Lighting Fires</td>
+<td>...</td>
+<td>NaN</td>
+<td>Unknown</td>
+<td>NaN</td>
+<td>0.02</td>
+<td>Unknown</td>
+<td>2006-04-03 14:08:00</td>
+<td>0.01</td>
+<td>2006-04-03 14:08:00</td>
+<td>0.01</td>
+<td>0.01</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2006</td>
+<td>PWF002</td>
+<td>0.10</td>
+<td>A</td>
+<td>56.25</td>
+<td>-117.05</td>
+<td>Fire Department</td>
+<td>Other Industry</td>
+<td>Employees</td>
+<td>Refuse</td>
+<td>...</td>
+<td>NaN</td>
 <td>Unknown</td>
 <td>NaN</td>
 <td>0.02</td>
@@ -790,13 +1374,12 @@ dtype: object</code></pre>
 <td>0.10</td>
 <td>2006-04-03 20:19:00</td>
 <td>0.10</td>
-<td>2006-04-05 10:18:00</td>
 <td>0.10</td>
 </tr>
 </tbody>
 </table>
 
-<p>5 rows × 43 columns</p>
+<p>5 rows × 35 columns</p>
 </div>
 </div>
 </div>
