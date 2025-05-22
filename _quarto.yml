@@ -23,6 +23,12 @@ website:
         href: https://github.com/diverse-data-hub
     collapse-level: 1
     contents:
+      - section: "Datasets"
+        contents:
+          - text: "March Madness"
+            href: "https://diverse-data-hub.github.io/website_files/description_pages/marchmadness.html"
+          - text: "Wildfire"
+            href: "https://diverse-data-hub.github.io/website_files/description_pages/wildfire.html"
       - text: "CRAN Page (TBD)"
         href: ""
       - text: "Report an Issue"
