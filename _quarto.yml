@@ -10,20 +10,23 @@ website:
         text: Welcome
       - href: website_files/datasets.qmd
         text: Datasets
+  page-footer:
+    right: "This page is built with [Quarto](https://quarto.org/)."
+    background: "rgb(97, 179, 230)"
   sidebar:
     logo: "website_files/img/logo.png"
     style: "floating"
     search: false
+    align: center
+    tools: 
+      - icon: github
+        href: https://github.com/diverse-data-hub
+    collapse-level: 1
     contents:
       - text: "CRAN Page (TBD)"
         href: ""
-      - section: "Source Code"
-        contents:
-          - text: "GitHub"
-            href: "https://github.com/diverse-data-hub/diversedata"
-            icon: github
-          - text: "Report an Issue"
-            href: "https://github.com/diverse-data-hub/diversedata/issues"
+      - text: "Report an Issue"
+        href: "https://github.com/diverse-data-hub/diversedata/issues"
       - text: "License (TBD)"
         href: ""
       - text: "Citation (TBD)"
