@@ -66,7 +66,7 @@ First, let's load our data and remove all NA values for our variables of interes
 library(tidyverse) 
 
 # Reading Data
-marchmadness <- read_csv("../../data/clean/womens-march-madness-clean.csv") 
+marchmadness <- read_csv("../../data/clean/womensmarchmadness.csv") 
 
 # Review total rows
 nrow(marchmadness)
