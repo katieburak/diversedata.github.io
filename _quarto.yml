@@ -17,30 +17,31 @@ website:
     contents:
       - text: "CRAN Page (TBD)"
         href: ""
-      - section: "Code/Issues"
+      - section: "Source Code"
         contents:
           - text: "GitHub"
-            href: https://github.com/diverse-data-hub/diversedata
-          - text: "Report a Bug"
-            href: https://github.com/diverse-data-hub/diversedata/issues
+            href: "https://github.com/diverse-data-hub/diversedata"
+            icon: github
+          - text: "Report an Issue"
+            href: "https://github.com/diverse-data-hub/diversedata/issues"
       - text: "License (TBD)"
         href: ""
       - text: "Citation (TBD)"
-        href: https://diverse-data-hub.github.io/website_files/citation.html
+        href: "https://diverse-data-hub.github.io/website_files/citation.html"
       - section: "Owners"
         contents:
           - text: "Katie Burak PhD"
-            href: https://github.com/katieburak
+            href: "https://github.com/katieburak"
           - text: "Elham E Khoda"
-            href: https://github.com/elhamekhoda
+            href: "https://github.com/elhamekhoda"
       - section: "Collaborators"
         contents:
           - text: "Francisco Ramirez"
-            href: https://github.com/fraramfra
+            href: "https://github.com/fraramfra"
           - text: "Azin Piran"
-            href: https://github.com/AzinPiran
+            href: "https://github.com/AzinPiran"
           - text: "Siddarth Subrahmanian"
-            href: https://github.com/siddart-1
+            href: "https://github.com/siddart-1"
 
 format:
   html:
