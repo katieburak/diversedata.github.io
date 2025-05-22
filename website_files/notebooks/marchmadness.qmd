@@ -305,6 +305,8 @@ This analysis examined the relationship between a team’s tournament seed and i
 
 2.  *Poisson regression supports seeding as a predictor*: The Poisson regression model confirmed that seed is a significant predictor of tournament wins, as expected for a count variable like wins.
 
-3.  *There is a lot of variation around the prediction*: While seeding generally reflects team strength, upsets and unexpected performances do occur, showing that other factors also influence tournament outcomes.
+3.  *Model assumptions are key*: Treating seed as a numeric variable assumes a linear effect across all seed values, which oversimplifies the relationship with the outcome. Ensuring that explanatory variables are approapriately coded is key. In this case, the influence of seeds could be described as slightly non-linear, which opens the door to discussion over model selection.
+
+4.  *There is a lot of variation around the prediction*: While seeding generally reflects team strength, upsets and unexpected performances do occur, showing that other factors also influence tournament outcomes.
 
 Seeding is an important predictor of success, but clearly other factors influence the results. It sets expectations, but unexpected performances still shape March Madness.
