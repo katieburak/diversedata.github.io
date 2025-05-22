@@ -94,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../website_files/datasets.html" aria-current="page"> 
-<span class="menu-text">All The Datasets</span></a>
+<span class="menu-text">Datasets</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -114,588 +114,78 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="page-layout">
-<div class="layout-container">
-<aside class="sidebar">
-<section id="select-to-expand" class="level3">
-<h3 class="anchored" data-anchor-id="select-to-expand">Select to Expand</h3>
-<div id="dataset-toggle">
-<p><label><input type="checkbox" id="wildfire-checkbox" checked=""> Historical Canadian Wildfire Data</label> <label><input type="checkbox" id="marchmadness-checkbox" checked=""> Women’s March Madness History</label> <label><input type="checkbox" id="new-checkbox" checked=""> New Dataset</label></p>
-</div>
-</section>
-<section id="notebooks-by-tag" class="level3">
-<h3 class="anchored" data-anchor-id="notebooks-by-tag">Notebooks By Tag</h3>
-<section id="language-filter" class="level5">
-<h5 class="anchored" data-anchor-id="language-filter">Language Filter</h5>
+<section id="language-filter" class="level3">
+<h3 class="anchored" data-anchor-id="language-filter">Language Filter</h3>
 <div id="code-filters" class="tag-filter-container">
 <p><label><input type="checkbox" value="r"> R</label> <label><input type="checkbox" value="python"> Python</label></p>
 </div>
-</section>
-<section id="technique-filter" class="level5">
-<h5 class="anchored" data-anchor-id="technique-filter">Technique Filter</h5>
-<div id="tag-filters" class="tag-filter-container">
-<p><label><input type="checkbox" value="data-wrangling"> Data Wrangling</label> <label><input type="checkbox" value="eda"> EDA</label> <label><input type="checkbox" value="geospatial"> Geospatial</label> <label><input type="checkbox" value="data-visualization"> Data Visualization</label> <label><input type="checkbox" value="classification"> Classification</label> <label><input type="checkbox" value="regression"> Regression</label> <label><input type="checkbox" value="machine-learning"> Machine Learning</label> <label><input type="checkbox" value="supervised-learning"> Supervised Learning</label> <label><input type="checkbox" value="unsupervised-learning">Unsupervised Learning</label> <label><input type="checkbox" value="time-series"> Time Series</label> <label><input type="checkbox" value="hypothesis-testing"> Hypothesis Testing</label> <label><input type="checkbox" value="logistic-regression"> Logistic Regression</label> <label><input type="checkbox" value="na"> NA</label></p>
-</div>
-</section>
-<section id="librarypackage-filter" class="level5">
-<h5 class="anchored" data-anchor-id="librarypackage-filter">Library/Package Filter</h5>
-<div id="library-filters" class="tag-filter-container">
-<p><label><input type="checkbox" value="dplyr"> R = dplyr</label> <label><input type="checkbox" value="ggplot2"> R = ggplot2</label> <label><input type="checkbox" value="broom"> R = broom</label> <label><input type="checkbox" value="gt"> R = gt</label> <label><input type="checkbox" value="marginaleffects"> R = marginaleffects</label></p>
-</div>
-<button id="clear-filters">
-Clear Filters
-</button>
-</section></section></aside>
-<main class="main-content">
-
-
-<section id="historical-canadian-wildfire-data" class="level2">
-<h2 class="anchored" data-anchor-id="historical-canadian-wildfire-data">Historical Canadian Wildfire Data</h2>
-<div id="wildfire-content" style="display: none;">
-<div class="static-content">
-<p>Dataset including information on wildfires in the province of Alberta from 2006 to 2024, inclusive. Information tracked for each fire includes: cause, size, location (latitude and longitude, legal land description, and forest area), time and duration, weather conditions, staffing and physical resources used to suppress the fire, and area burned.</p>
-<div class="button-container">
-<p><a href="../data/clean/wildfire_clean.csv" download="" class="download-button"> Download CSV </a></p>
-</div>
-<div class="description-grid">
-<div class="field-label">
-CSV Name
-</div>
-<div class="field-value">
-wildfire.csv
-</div>
-<div class="field-label">
-Dataset Characteristics
-</div>
-<div class="field-value">
-Multivariate
-</div>
-<div class="field-label">
-Subject Area
-</div>
-<div class="field-value">
-Climate Change
-</div>
-<div class="field-label">
-Associated Tasks
-</div>
-<div class="field-value">
-Classification, Regression, Time Series, Geospatial Analysis
-</div>
-<div class="field-label">
-Feature Type
-</div>
-<div class="field-value">
-Categorical, Integer
-</div>
-<div class="field-label">
-Instances
-</div>
-<div class="field-value">
-26551 records
-</div>
-<div class="field-label">
-Features
-</div>
-<div class="field-value">
-50
-</div>
-<div class="field-label">
-Has Missing Values?
-</div>
-<div class="field-value">
-Yes
-</div>
-</div>
-<div class="table-container">
-<div class="styled-table">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variable Name</th>
-<th>Role</th>
-<th>Type</th>
-<th>Description</th>
-<th>Units</th>
-<th>Missing Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ASSESSMENT_HECTARES</td>
-<td>Feature</td>
-<td>Float</td>
-<td>Fire Size</td>
-<td>Hectares</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>TRUE_CAUSE</td>
-<td>Feature</td>
-<td>Categorical</td>
-<td>Insufficient Resources, Insufficient Buffer, Winter Burning, Incendiary Device, Permit Related, Friction Spark, Hot Exhaust, Unclassified, Burning Substance, Arson Suspected, Unattended Fire, Unpredictable Event, Mechanical Failure, Abandoned Fire, Vehicle Fire, Unsafe Fire, Line Impact, High Hazard, Flammable Fluids, Arson Known, Animals</td>
-<td>-</td>
-<td>No</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
 <div class="grid-container">
-<div class="grid-item" data-tags="r,data-wrangling,eda,regression,logistic-regression,dplyr,ggplot2,broom,gt,marginaleffects">
-<img src="img/dataset.png" width="20px" height="20px">
+<div class="grid-item" data-tags="r">
+<img src="img/marchmadness.png" width="20px" height="20px">
 <h3 class="anchored">
-Wildfire Example A
+Women’s March Madness
 </h3>
 <p>
-</p><p><strong>Inquiry</strong>: Can we identify the environmental and human factors most associated with large wildfires (&gt;10 hectares)?</p>
-<p><strong>Code Tags</strong>: r</p>
-<p><strong>Data Science Tags</strong>: data-wrangling, eda, regression, logistic-regression</p>
-<p><strong>Library Tags</strong>: dplyr, ggplot2, broom, gt, marginaleffects</p>
-<strong>Developer</strong>: Azin Piran
+</p><p><strong>Description</strong>: This dataset tracks every NCAA Division I Women’s Basketball Tournament appearance since 1982. It includes team seeds, results, bid types, season and conference records, and regional placements. Useful for analyzing team success, seeding impact, conference strength, and historical trends in women’s college basketball over four decades.</p>
 <p></p>
-<p><a href="https://fraramfra.github.io/capstoneproposal/website_files/notebooks/wildfire_exA.html" class="btn btn-outline-dark">Notebook</a> <a href="https://github.com/UBC-MDS/diverse-data-hub-dev/tree/main/Analysis/wildfire" class="btn btn-outline-dark">GitHub</a></p>
+<p><a href="https://diverse-data-hub.github.io/website_files/description_pages/marchmadness.html" class="btn btn-outline-dark">More Details</a></p>
 </div>
-</div>
-<div class="static-content">
-<blockquote class="blockquote">
-<p>Attribution: Data sourced from the Government of Alberta via the Government of Canada’s Open Government Portal, available under an <a href="https://open.alberta.ca/licence">Open Government Licence - Alberta</a>. Original dataset: <a href="https://open.canada.ca/data/en/dataset/a221e7a0-4f46-4be7-9c5a-e29de9a3447e">Historical wildfire data: 2006-2024</a>.</p>
-</blockquote>
-</div>
-</div>
-</section>
-<section id="womens-march-madness-history" class="level2">
-<h2 class="anchored" data-anchor-id="womens-march-madness-history">Women’s March Madness History</h2>
-<div id="marchmadness-content" style="display: none;">
-<div class="static-content">
-<p>Dataset contains data for every team that has participated in the NCAA Division I Women’s Basketball Tournament since it began in 1982. Every school is shown with its seed, conference record (when available), regular-season record, tournament record and full season record, including winning percentages. All data is from the NCAA. This dataset contains the data behind the story <a href="https://fivethirtyeight.com/features/louisiana-tech-was-the-uconn-of-the-80s/">The Rise and Fall Of Women’s NCAA Tournament Dynasties</a>.</p>
-<div class="button-container">
-<p><a href="../data/clean/womens-march-madness-clean.csv" download="" class="download-button"> Download CSV </a></p>
-</div>
-<div class="description-grid">
-<div class="field-label">
-CSV Name
-</div>
-<div class="field-value">
-womens-march-madness-clean.csv
-</div>
-<div class="field-label">
-Dataset Characteristics
-</div>
-<div class="field-value">
-Multivariate
-</div>
-<div class="field-label">
-Subject Area
-</div>
-<div class="field-value">
-Women In Sports
-</div>
-<div class="field-label">
-Associated Tasks
-</div>
-<div class="field-value">
-Regression
-</div>
-<div class="field-label">
-Feature Type
-</div>
-<div class="field-value">
-Categorical, Integer, Float
-</div>
-<div class="field-label">
-Instances
-</div>
-<div class="field-value">
-2092
-</div>
-<div class="field-label">
-Features
-</div>
-<div class="field-value">
-20
-</div>
-<div class="field-label">
-Has Missing Values?
-</div>
-<div class="field-value">
-Yes
-</div>
-</div>
-<div class="table-container">
-<div class="styled-table">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variable Name</th>
-<th>Role</th>
-<th>Type</th>
-<th>Description</th>
-<th>Units</th>
-<th>Missing Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>year</td>
-<td>Feature</td>
-<td>int64</td>
-<td>Year</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>school</td>
-<td>Feature</td>
-<td>Categorical</td>
-<td>School</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>seed</td>
-<td>Feature</td>
-<td>int64</td>
-<td>Seed. The 0 seeding designation in 1983 notes the eight teams that played an opening-round game to become the No.&nbsp;8 seed in each region.</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>conference</td>
-<td>Feature</td>
-<td>Categorical</td>
-<td>Conference</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>conf_wins</td>
-<td>Feature</td>
-<td>float64</td>
-<td>Conference Wins</td>
-<td>-</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>conf_losses</td>
-<td>Feature</td>
-<td>float64</td>
-<td>Conference Losses</td>
-<td>-</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td>conf_wins_pct</td>
-<td>Feature</td>
-<td>float64</td>
-<td>Conference Win Percentage</td>
-<td>-</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>conf_rank</td>
-<td>Feature</td>
-<td>float64</td>
-<td>Place in Conference</td>
-<td>-</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td>division</td>
-<td>Feature</td>
-<td>Categorical</td>
-<td>Conference Division</td>
-<td>-</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>reg_wins</td>
-<td>Feature</td>
-<td>int64</td>
-<td>Regional Wins</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>reg_losses</td>
-<td>Feature</td>
-<td>int64</td>
-<td>Regional Losses</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>reg_wins_pct</td>
-<td>Feature</td>
-<td>float64</td>
-<td>Regional Win Percentage</td>
-<td>%</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>bid</td>
-<td>Feature</td>
-<td>Categorical</td>
-<td>Whether the school qualified with an automatic bid (by winning its conference or conference tournament) or an at-large bid. [‘at-large’, ‘auto’]</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>first_game_at_home</td>
-<td>Feature</td>
-<td>Categorical</td>
-<td>Whether the school played its first-round tournament games on its home court. [‘Y’, ‘N’]</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>tourney_wins</td>
-<td>Feature</td>
-<td>int64</td>
-<td>Tourney Wins</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>tourney_losses</td>
-<td>Feature</td>
-<td>int64</td>
-<td>Tourney Losses</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>tourney_finish</td>
-<td>Target</td>
-<td>Categorical</td>
-<td>Ordered categories: [‘opening_round_loss’ &lt; ‘first_round_loss’ &lt; ‘second_round_loss’ &lt; ‘top_16_loss’ &lt; ‘top_8_loss’ &lt; ‘top_4_loss’ &lt; ‘top_2_loss’ &lt; ‘champ’]</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>total_wins</td>
-<td>Feature</td>
-<td>int64</td>
-<td>Total Wins</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>total_losses</td>
-<td>Feature</td>
-<td>int64</td>
-<td>Total Losses</td>
-<td>-</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>total_wins_pct</td>
-<td>Feature</td>
-<td>float64</td>
-<td>Total Win Percentage</td>
-<td>%</td>
-<td>No</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="grid-container">
-<div class="grid-item" data-tags="r,eda,data-visualization,regression,hypothesis-testing">
-<img src="img/dataset.png" width="20px" height="20px">
+<div class="grid-item" data-tags="r">
+<img src="img/wildfire.png" width="20px" height="20px">
 <h3 class="anchored">
-Women’s March Madness Example A
+Wildfire
 </h3>
 <p>
-</p><p><strong>Inquiry</strong>: Does seed matter?</p>
-<p><strong>Code Tags</strong>: r</p>
-<p><strong>Data Science Tags</strong>: eda, data-visualization, regression, hypothesis-testing</p>
-<p><strong>Library Tags</strong>: TBD</p>
-<strong>Developer</strong>: Francisco Ramirez
+</p><p><strong>Description</strong>: This dataset on Canadian wildfires includes data on fire size, cause, location, detection method, response, and weather. Collected from official sources, it supports wildfire risk assessment and response. It also highlights social and geographic disparities, emphasizing impacts on remote and underserved communities facing climate-related and infrastructure challenges.</p>
 <p></p>
-<p><a href="" class="btn btn-outline-dark">Notebook</a> <a href="" class="btn btn-outline-dark">GitHub</a></p>
+<p><a href="https://diverse-data-hub.github.io/website_files/description_pages/wildfire.html" class="btn btn-outline-dark">More Details</a></p>
 </div>
-</div>
-<div class="static-content">
-<blockquote class="blockquote">
-<p>Attribution: Data sourced from FiveThirtyEight’s NCAA Women’s Basketball Tournament dataset, available under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. Original dataset: <a href="https://github.com/fivethirtyeight/data/tree/master/ncaa-womens-basketball-tournament">FiveThirtyEight GitHub Repository</a>. Story: <a href="https://fivethirtyeight.com/features/louisiana-tech-was-the-uconn-of-the-80s/">Louisiana Tech Was the UConn of the ’80s</a>.</p>
-</blockquote>
-</div>
-</div>
-</section>
-<section id="another-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="another-dataset">Another Dataset</h2>
-<div id="new-content" style="display: none;">
-<div class="static-content">
-<p>Dataset description</p>
-<div class="button-container">
-<p><a href="" download="" class="download-button"> Download CSV </a></p>
-</div>
-<div class="description-grid">
-<div class="field-label">
-CSV Name
-</div>
-<div class="field-value">
-TBD
-</div>
-<div class="field-label">
-Dataset Characteristics
-</div>
-<div class="field-value">
-TBD
-</div>
-<div class="field-label">
-Subject Area
-</div>
-<div class="field-value">
-TBD
-</div>
-<div class="field-label">
-Associated Tasks
-</div>
-<div class="field-value">
-TBD
-</div>
-<div class="field-label">
-Feature Type
-</div>
-<div class="field-value">
-TBD
-</div>
-<div class="field-label">
-Instances
-</div>
-<div class="field-value">
-TBD
-</div>
-<div class="field-label">
-Features
-</div>
-<div class="field-value">
-TBD
-</div>
-<div class="field-label">
-Has Missing Values?
-</div>
-<div class="field-value">
-TBD
-</div>
-</div>
-<div class="table-container">
-<div class="styled-table">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Variable Name</th>
-<th>Role</th>
-<th>Type</th>
-<th>Description</th>
-<th>Units</th>
-<th>Missing Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>X</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>X</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="grid-container">
-<div class="grid-item" data-tags="na">
+<div class="grid-item" data-tags="">
 <img src="img/dataset.png" width="20px" height="20px">
 <h3 class="anchored">
-Dataset Example A
+How Couples Meet and Stay Together
 </h3>
 <p>
-</p><p><strong>Inquiry</strong>: TBD</p>
-<p><strong>Code Tags</strong>: TBD</p>
-<p><strong>Data Science Tags</strong>: TBD</p>
-<p><strong>Library Tags</strong>: TBD</p>
-<strong>Developer</strong>: TBD
+</p><p><strong>Description</strong>: XXX</p>
 <p></p>
-<p><a href="" class="btn btn-outline-dark">Notebook</a> <a href="" class="btn btn-outline-dark">GitHub</a></p>
+<p><a href="" class="btn btn-outline-dark">More Details</a></p>
 </div>
-<div class="grid-item" data-tags="na">
+<div class="grid-item" data-tags="">
 <img src="img/dataset.png" width="20px" height="20px">
 <h3 class="anchored">
-Dataset Example B
+Gender Assessment
 </h3>
 <p>
-</p><p><strong>Inquiry</strong>: TBD</p>
-<p><strong>Code Tags</strong>: TBD</p>
-<p><strong>Data Science Tags</strong>: TBD</p>
-<p><strong>Library Tags</strong>: TBD</p>
-<strong>Developer</strong>: TBD
+</p><p><strong>Description</strong>: XXX</p>
 <p></p>
-<p><a href="" class="btn btn-outline-dark">Notebook</a> <a href="" class="btn btn-outline-dark">GitHub</a></p>
+<p><a href="" class="btn btn-outline-dark">More Details</a></p>
 </div>
-<div class="grid-item" data-tags="na">
+<div class="grid-item" data-tags="">
 <img src="img/dataset.png" width="20px" height="20px">
 <h3 class="anchored">
-Dataset Example C
+Indigenous Businesses
 </h3>
 <p>
-</p><p><strong>Inquiry</strong>: TBD</p>
-<p><strong>Code Tags</strong>: TBD</p>
-<p><strong>Data Science Tags</strong>: TBD</p>
-<p><strong>Library Tags</strong>: TBD</p>
-<strong>Developer</strong>: TBD
+</p><p><strong>Description</strong>: XXX</p>
 <p></p>
-<p><a href="" class="btn btn-outline-dark">Notebook</a> <a href="" class="btn btn-outline-dark">GitHub</a></p>
+<p><a href="" class="btn btn-outline-dark">More Details</a></p>
 </div>
-</div>
-<div class="static-content">
-<blockquote class="blockquote">
-<p>Attribution: TBD</p>
-</blockquote>
-</div>
-</div>
-</section></main>
-
+<div class="grid-item" data-tags="">
+<img src="img/dataset.png" width="20px" height="20px">
+<h3 class="anchored">
+Global Rights
+</h3>
+<p>
+</p><p><strong>Description</strong>: XXX</p>
+<p></p>
+<p><a href="" class="btn btn-outline-dark">More Details</a></p>
 </div>
 </div>
 <!-- Script for Filtering Cards -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const checkboxes = document.querySelectorAll(".tag-filter-container input[type='checkbox']");
-  const datasetCheckboxes = document.querySelectorAll("#dataset-toggle input[type='checkbox']");
   const gridItems = document.querySelectorAll(".grid-item");
-  const staticContentSections = document.querySelectorAll(".static-content");
-  const clearButton = document.getElementById("clear-filters");
 
   function filterItems() {
     const selectedTags = Array.from(checkboxes)
@@ -704,46 +194,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const filteringActive = selectedTags.length > 0;
 
-    // Show/hide grid items
     gridItems.forEach(item => {
       const tags = item.dataset.tags ? item.dataset.tags.split(",") : [];
       const matches = selectedTags.every(tag => tags.includes(tag));
       item.style.display = (!filteringActive || matches) ? "block" : "none";
     });
-
-    // Manage visibility of dataset content sections
-    datasetCheckboxes.forEach(cb => {
-      const datasetId = cb.id.replace("-checkbox", "-content");
-      const datasetContent = document.getElementById(datasetId);
-
-      if (!datasetContent) return;
-
-      if (filteringActive) {
-        datasetContent.style.display = cb.checked ? "block" : "none";
-        staticContentSections.forEach(section => section.style.display = "none");
-      } else {
-        datasetContent.style.display = cb.checked ? "block" : "none";
-        if (cb.checked) {
-          staticContentSections.forEach(section => section.style.display = "block");
-        }
-      }
-    });
   }
 
-  // Attach listeners to dataset checkboxes
-  datasetCheckboxes.forEach(cb => {
-    cb.addEventListener("change", filterItems);
-  });
-
-  // Attach listeners to tag filters
   checkboxes.forEach(cb => cb.addEventListener("change", filterItems));
-
-  // Clear button resets all filters
-  clearButton.addEventListener("click", function () {
-    checkboxes.forEach(cb => cb.checked = false);
-    datasetCheckboxes.forEach(cb => cb.checked = false); // We can remove this line if we dont want the button to act on dataset filter.
-    filterItems();
-  });
 
   // Initialize view
   filterItems();
@@ -751,6 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

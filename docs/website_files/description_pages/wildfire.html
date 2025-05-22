@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Wildfire Dataset Example A – Diverse Data Hub</title>
+<title>Historical Canadian Wildfire Data – Diverse Data Hub</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../website_files/datasets.html"> 
-<span class="menu-text">All The Datasets</span></a>
+<span class="menu-text">Datasets</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -141,18 +141,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-set-information" id="toc-data-set-information" class="nav-link active" data-scroll-target="#data-set-information">Data Set Information</a>
+  <ul class="collapse">
+  <li><a href="#download" id="toc-download" class="nav-link" data-scroll-target="#download">Download</a></li>
+  <li><a href="#metadata" id="toc-metadata" class="nav-link" data-scroll-target="#metadata">Metadata</a></li>
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
+  </ul></li>
+  <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link" data-scroll-target="#about-the-data">About the Data</a>
+  <ul class="collapse">
+  <li><a href="#key-features-of-the-dataset" id="toc-key-features-of-the-dataset" class="nav-link" data-scroll-target="#key-features-of-the-dataset">Key Features of the Dataset</a></li>
+  <li><a href="#purpose-and-use-cases" id="toc-purpose-and-use-cases" class="nav-link" data-scroll-target="#purpose-and-use-cases">Purpose and Use Cases</a></li>
+  </ul></li>
+  <li><a href="#case-study" id="toc-case-study" class="nav-link" data-scroll-target="#case-study">Case Study</a>
+  <ul class="collapse">
+  <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective">Objective</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
+  </ul></li>
+  <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Wildfire Dataset Example A</h1>
+<h1 class="title">Historical Canadian Wildfire Data</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -164,9 +188,119 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="data-set-information" class="level2">
+<h2 class="anchored" data-anchor-id="data-set-information">Data Set Information</h2>
+<p>Dataset including information on wildfires in the province of Alberta from 2006 to 2024, inclusive. Information tracked for each fire includes: cause, size, location (latitude and longitude, legal land description, and forest area), time and duration, weather conditions, staffing and physical resources used to suppress the fire, and area burned.</p>
+<section id="download" class="level3">
+<h3 class="anchored" data-anchor-id="download">Download</h3>
+<div class="button-container">
+<p><a href="../../data/clean/wildfire_clean.csv" download="" class="download-button"> Download CSV </a></p>
+</div>
+</section>
+<section id="metadata" class="level3">
+<h3 class="anchored" data-anchor-id="metadata">Metadata</h3>
+<div class="description-grid">
+<div class="field-label">
+CSV Name
+</div>
+<div class="field-value">
+wildfire.csv
+</div>
+<div class="field-label">
+Dataset Characteristics
+</div>
+<div class="field-value">
+Multivariate
+</div>
+<div class="field-label">
+Subject Area
+</div>
+<div class="field-value">
+Climate Change
+</div>
+<div class="field-label">
+Associated Tasks
+</div>
+<div class="field-value">
+Classification, Time Series, Geospatial Analysis
+</div>
+<div class="field-label">
+Feature Type
+</div>
+<div class="field-value">
+Categorical, Integer
+</div>
+<div class="field-label">
+Instances
+</div>
+<div class="field-value">
+26551 records
+</div>
+<div class="field-label">
+Features
+</div>
+<div class="field-value">
+50
+</div>
+<div class="field-label">
+Has Missing Values?
+</div>
+<div class="field-value">
+Yes
+</div>
+</div>
+</section>
+<section id="variables" class="level3">
+<h3 class="anchored" data-anchor-id="variables">Variables</h3>
+<div class="table-container">
+<div class="styled-table">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable Name</th>
+<th>Role</th>
+<th>Type</th>
+<th>Description</th>
+<th>Units</th>
+<th>Missing Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ASSESSMENT_HECTARES</td>
+<td>Feature</td>
+<td>Float</td>
+<td>Fire Size</td>
+<td>Hectares</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>TRUE_CAUSE</td>
+<td>Feature</td>
+<td>Categorical</td>
+<td>Insufficient Resources, Insufficient Buffer, Winter Burning, Incendiary Device, Permit Related, Friction Spark, Hot Exhaust, Unclassified, Burning Substance, Arson Suspected, Unattended Fire, Unpredictable Event, Mechanical Failure, Abandoned Fire, Vehicle Fire, Unsafe Fire, Line Impact, High Hazard, Flammable Fluids, Arson Known, Animals</td>
+<td>-</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
 <section id="about-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="about-the-data">About the Data</h2>
-<p>This dataset contains information on wildfires in Canada, compiled from official government sources. It includes key variables such as:</p>
+<p>This dataset contains information on wildfires in Canada, compiled from official government sources.</p>
+<section id="key-features-of-the-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="key-features-of-the-dataset">Key Features of the Dataset</h3>
 <ul>
 <li><strong>Fire size (in hectares)</strong></li>
 <li><strong>Cause of fire (e.g., lightning, human activity)</strong></li>
@@ -175,8 +309,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Latitude/longitude of the fire</strong></li>
 <li><strong>Weather conditions at the time of fire</strong></li>
 </ul>
+</section>
+<section id="purpose-and-use-cases" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-and-use-cases">Purpose and Use Cases</h3>
 <p>The data was collected to monitor, assess, and respond to wildfire risks across regions. Wildfires have significant environmental, social, and economic impacts—especially for <strong>remote, Indigenous, and underserved communities</strong> that may lack the infrastructure to respond effectively.</p>
 <p>From an equity and inclusion perspective, studying wildfire data can help identify <strong>geographic and resource disparities</strong> in fire detection and containment efforts, as well as the disproportionate risks certain populations face due to <strong>climate change</strong> and <strong>infrastructure gaps</strong>.</p>
+</section>
 </section>
 <section id="case-study" class="level2">
 <h2 class="anchored" data-anchor-id="case-study">Case Study</h2>
@@ -194,7 +332,9 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 <li>Created a binary variable <code>large_fire</code> (TRUE if &gt;10 ha)</li>
 <li>Filtered out incomplete records</li>
 </ul>
-<p><strong>2. Exploratory Data Analysis (EDA)</strong></p>
+</section>
+<section id="exploratory-data-analysis-eda" class="level4">
+<h4 class="anchored" data-anchor-id="exploratory-data-analysis-eda">2. Exploratory Data Analysis (EDA)</h4>
 <p><strong>Fire Size Distribution</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -210,7 +350,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wildfire_exA_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="wildfire_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -231,7 +371,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wildfire_exA_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="wildfire_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -283,23 +423,23 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>gt_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="igkjuaajec" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#igkjuaajec table {
+<div id="jehjfsmzvg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jehjfsmzvg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#igkjuaajec thead, #igkjuaajec tbody, #igkjuaajec tfoot, #igkjuaajec tr, #igkjuaajec td, #igkjuaajec th {
+#jehjfsmzvg thead, #jehjfsmzvg tbody, #jehjfsmzvg tfoot, #jehjfsmzvg tr, #jehjfsmzvg td, #jehjfsmzvg th {
   border-style: none;
 }
 
-#igkjuaajec p {
+#jehjfsmzvg p {
   margin: 0;
   padding: 0;
 }
 
-#igkjuaajec .gt_table {
+#jehjfsmzvg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -325,12 +465,12 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-left-color: #D3D3D3;
 }
 
-#igkjuaajec .gt_caption {
+#jehjfsmzvg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#igkjuaajec .gt_title {
+#jehjfsmzvg .gt_title {
   color: #333333;
   font-size: 16px;
   font-weight: initial;
@@ -342,7 +482,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-bottom-width: 0;
 }
 
-#igkjuaajec .gt_subtitle {
+#jehjfsmzvg .gt_subtitle {
   color: #333333;
   font-size: 12px;
   font-weight: initial;
@@ -354,7 +494,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-top-width: 0;
 }
 
-#igkjuaajec .gt_heading {
+#jehjfsmzvg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -366,13 +506,13 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-right-color: #D3D3D3;
 }
 
-#igkjuaajec .gt_bottom_border {
+#jehjfsmzvg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#igkjuaajec .gt_col_headings {
+#jehjfsmzvg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -387,7 +527,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-right-color: #D3D3D3;
 }
 
-#igkjuaajec .gt_col_heading {
+#jehjfsmzvg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -407,7 +547,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   overflow-x: hidden;
 }
 
-#igkjuaajec .gt_column_spanner_outer {
+#jehjfsmzvg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -419,15 +559,15 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   padding-right: 4px;
 }
 
-#igkjuaajec .gt_column_spanner_outer:first-child {
+#jehjfsmzvg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#igkjuaajec .gt_column_spanner_outer:last-child {
+#jehjfsmzvg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#igkjuaajec .gt_column_spanner {
+#jehjfsmzvg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -439,11 +579,11 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   width: 100%;
 }
 
-#igkjuaajec .gt_spanner_row {
+#jehjfsmzvg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#igkjuaajec .gt_group_heading {
+#jehjfsmzvg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -469,7 +609,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   text-align: left;
 }
 
-#igkjuaajec .gt_empty_group_heading {
+#jehjfsmzvg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -484,15 +624,15 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   vertical-align: middle;
 }
 
-#igkjuaajec .gt_from_md > :first-child {
+#jehjfsmzvg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#igkjuaajec .gt_from_md > :last-child {
+#jehjfsmzvg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#igkjuaajec .gt_row {
+#jehjfsmzvg .gt_row {
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
@@ -511,7 +651,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   overflow-x: hidden;
 }
 
-#igkjuaajec .gt_stub {
+#jehjfsmzvg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -524,7 +664,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   padding-right: 5px;
 }
 
-#igkjuaajec .gt_stub_row_group {
+#jehjfsmzvg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -538,15 +678,15 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   vertical-align: top;
 }
 
-#igkjuaajec .gt_row_group_first td {
+#jehjfsmzvg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#igkjuaajec .gt_row_group_first th {
+#jehjfsmzvg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#igkjuaajec .gt_summary_row {
+#jehjfsmzvg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -556,16 +696,16 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   padding-right: 5px;
 }
 
-#igkjuaajec .gt_first_summary_row {
+#jehjfsmzvg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#igkjuaajec .gt_first_summary_row.thick {
+#jehjfsmzvg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#igkjuaajec .gt_last_summary_row {
+#jehjfsmzvg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -575,7 +715,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-bottom-color: #D3D3D3;
 }
 
-#igkjuaajec .gt_grand_summary_row {
+#jehjfsmzvg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -585,7 +725,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   padding-right: 5px;
 }
 
-#igkjuaajec .gt_first_grand_summary_row {
+#jehjfsmzvg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -595,7 +735,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-top-color: #D3D3D3;
 }
 
-#igkjuaajec .gt_last_grand_summary_row_top {
+#jehjfsmzvg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -605,11 +745,11 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-bottom-color: #D3D3D3;
 }
 
-#igkjuaajec .gt_striped {
+#jehjfsmzvg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#igkjuaajec .gt_table_body {
+#jehjfsmzvg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -618,7 +758,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-bottom-color: #D3D3D3;
 }
 
-#igkjuaajec .gt_footnotes {
+#jehjfsmzvg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -632,7 +772,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-right-color: #D3D3D3;
 }
 
-#igkjuaajec .gt_footnote {
+#jehjfsmzvg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -641,7 +781,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   padding-right: 5px;
 }
 
-#igkjuaajec .gt_sourcenotes {
+#jehjfsmzvg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -655,7 +795,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-right-color: #D3D3D3;
 }
 
-#igkjuaajec .gt_sourcenote {
+#jehjfsmzvg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -663,72 +803,72 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   padding-right: 5px;
 }
 
-#igkjuaajec .gt_left {
+#jehjfsmzvg .gt_left {
   text-align: left;
 }
 
-#igkjuaajec .gt_center {
+#jehjfsmzvg .gt_center {
   text-align: center;
 }
 
-#igkjuaajec .gt_right {
+#jehjfsmzvg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#igkjuaajec .gt_font_normal {
+#jehjfsmzvg .gt_font_normal {
   font-weight: normal;
 }
 
-#igkjuaajec .gt_font_bold {
+#jehjfsmzvg .gt_font_bold {
   font-weight: bold;
 }
 
-#igkjuaajec .gt_font_italic {
+#jehjfsmzvg .gt_font_italic {
   font-style: italic;
 }
 
-#igkjuaajec .gt_super {
+#jehjfsmzvg .gt_super {
   font-size: 65%;
 }
 
-#igkjuaajec .gt_footnote_marks {
+#jehjfsmzvg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#igkjuaajec .gt_asterisk {
+#jehjfsmzvg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#igkjuaajec .gt_indent_1 {
+#jehjfsmzvg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#igkjuaajec .gt_indent_2 {
+#jehjfsmzvg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#igkjuaajec .gt_indent_3 {
+#jehjfsmzvg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#igkjuaajec .gt_indent_4 {
+#jehjfsmzvg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#igkjuaajec .gt_indent_5 {
+#jehjfsmzvg .gt_indent_5 {
   text-indent: 25px;
 }
 
-#igkjuaajec .katex-display {
+#jehjfsmzvg .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#igkjuaajec div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#jehjfsmzvg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -939,17 +1079,17 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 </div>
 </div>
 </section>
-</section>
-<section id="discussion" class="level3">
-<h3 class="anchored" data-anchor-id="discussion">Discussion</h3>
+<section id="discussion" class="level4">
+<h4 class="anchored" data-anchor-id="discussion">4. Discussion</h4>
 <p>The logistic regression model revealed that <strong>higher wind speeds</strong> are strongly associated with an increased likelihood of a fire becoming large (over 10 hectares), consistent with our expectations about fire spread dynamics.</p>
 <p>Surprisingly, <strong>temperature showed a small negative association</strong> with fire size, though this may be influenced by interactions with other environmental factors like humidity or fuel type.</p>
 <p>Among causes, <strong>“Insufficient Resources”</strong> and <strong>“Line Impact”</strong> were associated with significantly higher odds of large fires. This suggests that both human-related limitations and infrastructure vulnerability (like power lines) play a role in fire escalation.</p>
 <p>The detection agent type showed weak evidence that <strong>fires detected by UNP agents</strong> may be less likely to become large, compared to FPD Staff, but the effect was not statistically strong (p = 0.09). Further exploration is needed here, especially considering the early intervention ability of different detection teams.</p>
 <p>These findings provide insights into key environmental and operational factors influencing wildfire severity. Importantly, they point to the <strong>need for targeted mitigation strategies</strong> in areas with poor detection access or high infrastructure risks.</p>
 <p>In the broader context of equity, this analysis reinforces that <strong>resource constraints and delayed detection</strong>—often more common in remote or underfunded regions—can amplify wildfire impacts. Data-informed strategies can help ensure <strong>more equitable protection</strong> against climate-driven disasters.</p>
+</section>
 <section id="interpretation-boost-using-marginaleffects" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-boost-using-marginaleffects">Interpretation Boost using <code>marginaleffects</code></h4>
+<h4 class="anchored" data-anchor-id="interpretation-boost-using-marginaleffects">5. Interpretation Boost using <code>marginaleffects</code></h4>
 <p><strong>Wind Speed</strong></p>
 <p>As wind speed increases, the model estimates a higher probability of a fire becoming large (&gt;10 hectares). However, the variability in the predicted probabilities also increases at higher wind speeds, as indicated by the wider confidence intervals. This suggests that while there is a general upward trend, the model’s certainty about the exact magnitude of the effect decreases in this range—likely due to fewer observations or greater variability in fire outcomes at high wind speeds.</p>
 <div class="cell">
@@ -965,7 +1105,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wildfire_exA_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="wildfire_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -982,7 +1122,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wildfire_exA_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="wildfire_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1001,7 +1141,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wildfire_exA_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="wildfire_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1017,7 +1157,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wildfire_exA_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="wildfire_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1027,20 +1167,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 </section>
 <section id="attribution" class="level2">
 <h2 class="anchored" data-anchor-id="attribution">Attribution</h2>
-<ul>
-<li><p><strong>Original Data Source</strong>: Government of Canada – National Fire Database (NFDB)</p></li>
-<li><p><strong>License</strong>: Open Government License – Canada</p></li>
-<li><p><strong>Citation</strong>: Canadian Forest Service. National Fire Database (NFDB). Natural Resources Canada.</p></li>
-<li><p><strong>References</strong>:</p></li>
-</ul>
-<pre><code>-   Logistic regression using `glm()` in R
-
--   EDA best practices from Wickham &amp; Grolemund (2017)
-
--   Average Marginal Effects and Model Interpretation using `marginaleffects` (Vincent Arel-Bundock, 2022)</code></pre>
-<ul>
-<li><strong>Acknowledgements</strong>: Thanks to the Diverse Data Hub team for cleaning and contextualizing the data.</li>
-</ul>
+<p>Data sourced from the Government of Alberta via the Government of Canada’s Open Government Portal, available under an <a href="https://open.alberta.ca/licence">Open Government Licence - Alberta</a>. Original dataset: <a href="https://open.canada.ca/data/en/dataset/a221e7a0-4f46-4be7-9c5a-e29de9a3447e">Historical wildfire data: 2006-2024</a>.</p>
 
 
 </section>

@@ -1,12 +1,15 @@
----
-title: 'Wildfire Dataset Example A'
-format: html
-editor: visual
----
+```{r}
+#| echo: true
+#| warning: false
+#| message: false
+#| collapse: true
+```
 
 ## About the Data
 
-This dataset contains information on wildfires in Canada, compiled from official government sources. It includes key variables such as:
+This dataset contains information on wildfires in Canada, compiled from official government sources.
+
+### Key Features of the Dataset
 
 -   **Fire size (in hectares)**
 -   **Cause of fire (e.g., lightning, human activity)**
@@ -14,6 +17,8 @@ This dataset contains information on wildfires in Canada, compiled from official
 -   **Response team size**
 -   **Latitude/longitude of the fire**
 -   **Weather conditions at the time of fire**
+
+### Purpose and Use Cases
 
 The data was collected to monitor, assess, and respond to wildfire risks across regions. Wildfires have significant environmental, social, and economic impacts—especially for **remote, Indigenous, and underserved communities** that may lack the infrastructure to respond effectively.
 
@@ -63,7 +68,7 @@ wildfire_clean <- wildfire_clean %>%
   )
 ```
 
-**2. Exploratory Data Analysis (EDA)**
+#### 2. Exploratory Data Analysis (EDA)
 
 **Fire Size Distribution**
 
@@ -148,7 +153,7 @@ gt_table <- tidy_model %>%
 gt_table
 ```
 
-### Discussion
+#### 4. Discussion
 
 The logistic regression model revealed that **higher wind speeds** are strongly associated with an increased likelihood of a fire becoming large (over 10 hectares), consistent with our expectations about fire spread dynamics.
 
@@ -162,7 +167,7 @@ These findings provide insights into key environmental and operational factors i
 
 In the broader context of equity, this analysis reinforces that **resource constraints and delayed detection**—often more common in remote or underfunded regions—can amplify wildfire impacts. Data-informed strategies can help ensure **more equitable protection** against climate-driven disasters.
 
-#### Interpretation Boost using `marginaleffects`
+#### 5. Interpretation Boost using `marginaleffects`
 
 **Wind Speed**
 
@@ -218,22 +223,3 @@ plot_predictions(
 )
 ```
 
-## Attribution
-
--   **Original Data Source**: Government of Canada – National Fire Database (NFDB)
-
--   **License**: Open Government License – Canada
-
--   **Citation**: Canadian Forest Service. National Fire Database (NFDB). Natural Resources Canada.
-
--   **References**:
-
-```         
--   Logistic regression using `glm()` in R
-
--   EDA best practices from Wickham & Grolemund (2017)
-
--   Average Marginal Effects and Model Interpretation using `marginaleffects` (Vincent Arel-Bundock, 2022)
-```
-
--   **Acknowledgements**: Thanks to the Diverse Data Hub team for cleaning and contextualizing the data.

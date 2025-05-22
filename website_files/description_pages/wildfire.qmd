@@ -1,29 +1,36 @@
-## Historical Canadian Wildfire Data
+---
+title: "Historical Canadian Wildfire Data"
+toc: true
+toc-depth: 3
+toc-location: right
+---
 
-<div id="wildfire-content" style="display: none;">
-
-::: {.static-content}
+## Data Set Information
 
 Dataset including information on wildfires in the province of Alberta from 2006 to 2024, inclusive. Information tracked for each fire includes: cause, size, location (latitude and longitude, legal land description, and forest area), time and duration, weather conditions, staffing and physical resources used to suppress the fire, and area burned.
 
+### Download
+
 <div class="button-container">
-  <a href="../data/clean/wildfire_clean.csv" download class="download-button">
+  <a href="../../data/clean/wildfire_clean.csv" download class="download-button">
     Download CSV
   </a>
 </div>
 
-<div class="description-grid">
+### Metadata
 
+<div class="description-grid">
   <div class="field-label">CSV Name</div><div class="field-value">wildfire.csv</div>
   <div class="field-label">Dataset Characteristics</div><div class="field-value">Multivariate</div>
   <div class="field-label">Subject Area</div><div class="field-value">Climate Change</div>
-  <div class="field-label">Associated Tasks</div><div class="field-value">Classification, Regression, Time Series, Geospatial Analysis</div>
+  <div class="field-label">Associated Tasks</div><div class="field-value">Classification, Time Series, Geospatial Analysis</div>
   <div class="field-label">Feature Type</div><div class="field-value">Categorical, Integer</div>
   <div class="field-label">Instances</div><div class="field-value">26551 records</div>
   <div class="field-label">Features</div><div class="field-value">50</div>
   <div class="field-label">Has Missing Values?</div><div class="field-value">Yes</div>
-
 </div>
+
+### Variables
 
 ::: {.table-container}
 ::: {.styled-table}
@@ -36,34 +43,8 @@ Dataset including information on wildfires in the province of Alberta from 2006 
 :::
 :::
 
-:::
+{{< include ../notebooks/wildfire.qmd >}}
 
-:::{.grid-container}
+## Attribution
 
-<div class="grid-item" data-tags="r,data-wrangling,eda,regression,logistic-regression,dplyr,ggplot2,broom,gt,marginaleffects">
-  <img src="img/dataset.png" width="20px" height="20px">
-  <h3>Wildfire Example A</h3>
-  <p>
-<strong>Inquiry</strong>: Can we identify the environmental and human factors most associated with large wildfires (>10 hectares)?
-
-<strong>Code Tags</strong>: r
-
-<strong>Data Science Tags</strong>: data-wrangling, eda, regression, logistic-regression
-
-<strong>Library Tags</strong>: dplyr, ggplot2, broom, gt, marginaleffects
-
-<strong>Developer</strong>: Azin Piran
-</p>
-  <a href="https://fraramfra.github.io/capstoneproposal/website_files/notebooks/wildfire_exA.html" class="btn btn-outline-dark">Notebook</a>
-  <a href="https://github.com/UBC-MDS/diverse-data-hub-dev/tree/main/Analysis/wildfire" class="btn btn-outline-dark">GitHub</a>
-</div>
-
-:::
-
-::: {.static-content}
-
-> Attribution: Data sourced from the Government of Alberta via the Government of Canada's Open Government Portal, available under an [Open Government Licence - Alberta](https://open.alberta.ca/licence). Original dataset: [Historical wildfire data: 2006-2024](https://open.canada.ca/data/en/dataset/a221e7a0-4f46-4be7-9c5a-e29de9a3447e).
-
-:::
-
-</div>
+Data sourced from the Government of Alberta via the Government of Canada's Open Government Portal, available under an [Open Government Licence - Alberta](https://open.alberta.ca/licence). Original dataset: [Historical wildfire data: 2006-2024](https://open.canada.ca/data/en/dataset/a221e7a0-4f46-4be7-9c5a-e29de9a3447e).

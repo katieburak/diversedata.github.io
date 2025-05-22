@@ -9,15 +9,15 @@ website:
       - href: index.qmd
         text: Welcome
       - href: website_files/datasets.qmd
-        text: All The Datasets
+        text: Datasets
 
 format:
   html:
-    theme: minty
+    theme:
+      - minty
+      - styles.scss
     css: website_files/styles.css
-    toc: false
     page-layout: full
-    toc-location: right
 
 
 

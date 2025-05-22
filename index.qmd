@@ -1,26 +1,46 @@
-
-
-
 ::: {.hero-banner}
-## Diverse Data Repository for Data Science Education
 
 <img src="website_files/img/logo.png" class="logo">
 
-This website contains information related to a curated R data package focused on EDI-focused datasets, aiming to empower instructors to integrate equity, diversity, and inclusion themes into their classrooms through real-world data, contextual narratives, and applied data science projects. This website also includes teaching examples using the curated datasets.
+**Diverse Data Hub** is an open educational resource offering curated datasets focused on equity, diversity, inclusion, and other socially relevant topics. It is designed to support students, educators, and researchers in accessing and working with meaningful data in their teaching, learning, and analysis.
 
-[Get Started →](){.btn .btn-primary}
+Datasets are available through the `diversedata` R package, allowing for straightforward integration into data science workflows. Each dataset includes detailed documentation and contextual background to support informed exploration and connection to real-world topics. Example case studies are also included to illustrate practical applications.
+
+[Get Started →](https://diverse-data-hub.github.io/website_files/datasets.html){.btn .btn-primary}
 :::
 
-## The Datasets 
+## Featured Datasets 
 
 :::{.grid-container-3}
 
 <div class="grid-item">
-  {{< include website_files/download_pages/_dl_wildfire.qmd >}}
+  <img src="website_files/img/marchmadness.png" width="50px" height="50px">
+  <h3>Women's March Madness</h3>
+  <p>
+<strong>Description</strong>: This dataset tracks every NCAA Division I Women’s Basketball Tournament appearance since 1982. It includes team seeds, results, bid types, season and conference records, and regional placements. Useful for analyzing team success, seeding impact, conference strength, and historical trends in women’s college basketball over four decades.
+
+</p>
+  <a href="https://diverse-data-hub.github.io/website_files/description_pages/marchmadness.html" class="btn btn-outline-dark">More Details</a>
 </div>
 
 <div class="grid-item">
-  {{< include website_files/download_pages/_dl_marchmadness.qmd >}}
+  <img src="website_files/img/wildfire.png" width="200px" height="200px">
+  <h3>Wildfire</h3>
+  <p>
+<strong>Description</strong>: This dataset on Canadian wildfires includes data on fire size, cause, location, detection method, response, and weather. Collected from official sources, it supports wildfire risk assessment and response. It also highlights social and geographic disparities, emphasizing impacts on remote and underserved communities facing climate-related and infrastructure challenges.
+
+</p>
+  <a href="https://diverse-data-hub.github.io/website_files/description_pages/wildfire.html" class="btn btn-outline-dark">More Details</a>
+</div>
+
+<div class="grid-item">
+  <img src="website_files/img/dataset.png" width="200px" height="200px">
+  <h3>Test</h3>
+  <p>
+<strong>Description</strong>: Test
+
+</p>
+  <a href="" class="btn btn-outline-dark">More Details</a>
 </div>
 
 :::
@@ -37,9 +57,9 @@ TBD - CRAN Flag
 
 #### Package Code
 
-- Browse [Source Code](https://github.com/katieburak/diversedata)
+- Browse [Source Code](https://github.com/diverse-data-hub/diversedata)
 
-- Report a [Bug](https://github.com/katieburak/diversedata/issues)
+- Report a [Bug](https://github.com/diverse-data-hub/diversedata/issues)
 
 #### License
 
@@ -55,9 +75,36 @@ TBD - CRAN Flag
 
 - [Katie Burak PhD](https://github.com/katieburak)
 
+- [Elham E Khoda](https://github.com/elhamekhoda)
+
 ###### Collaborators
+
 - [Francisco Ramirez](https://github.com/fraramfra)
 
 - [Azin Piran](https://github.com/AzinPiran)
 
 - [Siddarth Subrahmanian](https://github.com/siddart-1)
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const items = document.querySelectorAll(".grid-container-3 .grid-item");
+    const total = items.length;
+
+    if (total <= 2) return;
+
+    const indexes = Array.from(items.keys());
+    for (let i = indexes.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indexes[i], indexes[j]] = [indexes[j], indexes[i]];
+    }
+
+    items.forEach((item, i) => {
+      if (i === indexes[0] || i === indexes[1]) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  });
+</script>

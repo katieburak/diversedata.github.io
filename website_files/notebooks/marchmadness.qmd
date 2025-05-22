@@ -1,0 +1,228 @@
+
+```{r}
+#| echo: true
+#| warning: false
+#| message: false
+#| collapse: true
+```
+
+## About the Data
+
+This data set contains historical records of every NCAA Division I Women’s Basketball Tournament appearance since the tournament began in 1982. Sourced from official NCAA data, it captures tournament results across more than four decades of collegiate women’s basketball.
+
+### Key Features of the Dataset
+
+Each row represents a single team's appearance in a specific tournament year and includes information such as:
+
+-   **Tournament Seed** – Seed assigned to the team
+
+-   **Tournament Results** – Number of wins, losses, and how far the team advanced
+
+-   **Bid Type** – Whether the team received an automatic bid or was selected at-large.
+
+-   **Season Records** – Regular season, conference, and total win/loss stats and percentages
+
+-   **Conference Information** – Team's conference name, record, and rank within the conference
+
+-   **Division** – Regional placement in the tournament bracket (e.g., East, West)
+
+-   **Home Game Indication** – Whether the team played its first game at home
+
+### Purpose and Use Cases
+
+This dataset is designed to support analysis of:
+
+-   Team performance over time
+
+-   Impact of seeding and bid types on tournament results
+
+-   Conference strength
+
+-   Emergence and decline of winning teams in women’s college basketball
+
+## Case Study
+
+### Objective
+
+**How much does a team’s tournament seed predict its success in the NCAA Division I Women’s Basketball Tournament?**
+
+This analysis explores the relationship between a team’s `seed` and its results on a tournament to evaluate whether teams with lower seeds consistently outperform ones with higher seeds.
+
+By examining historical data, we aim to:
+
+-   Identify trends in tournament advancement by seed level
+
+Seeding is intended to reflect a team’s regular-season performance. In theory, lower-numbered seeds (e.g., #1, #2) are given to the strongest teams, who should be more likely to advance. But upsets, bracket surprises, and standout performances from lower seeds raise questions like "How reliable is seeding as a predictor of success?"
+
+Understanding these dynamics can inform fan expectations and bracket predictions.
+
+### Methodology
+
+#### 1. Data Cleaning & Processing
+
+First, let's load our data and remove all NA values for our variables of interest `seed` and `tourney_wins`.
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse) 
+
+# Reading Data
+marchmadness <- read_csv("../../data/clean/womens-march-madness-clean.csv") 
+
+# Review total rows
+nrow(marchmadness)
+
+# Removing NA but only in selected columns
+marchmadness <- marchmadness |> drop_na(seed, tourney_wins)
+
+# Notice no rows were removed
+nrow(marchmadness)
+
+# Visualize the data set
+head(marchmadness)
+```
+
+#### 2. Exploratory Data Analysis
+
+We can see which seeds appear more often.
+
+Note that, the `seed` = 0 designation in 1983 notes the eight teams that played an opening-round game to become the No.8 seed in each region. For this exercise, we will note take them into consideration.
+
+```{r}
+marchmadness <- marchmadness |> 
+  filter(seed != 0)
+
+ggplot(
+  marchmadness, 
+  aes(x = as.factor(seed))
+  ) +
+  geom_bar(fill = "steelblue") +
+  labs(
+    title = "Distribution of Tournament Seeds",
+    x = "Seed",
+    y = "Number of Teams") +
+  theme_minimal()
+```
+
+We can also take a look at the average tournament wins for each seed:
+
+```{r}
+marchmadness |> 
+  filter(!is.na(seed), seed != 0) |> 
+  group_by(seed) |> 
+  summarise(
+    avg_tourney_wins = mean(tourney_wins, na.rm = TRUE)
+    ) |> 
+  ggplot(
+    aes(
+      x = as.factor(seed),
+      y = avg_tourney_wins)
+    ) +
+  geom_col(fill = "darkorange") +
+  labs(
+    title = "Average Tournament Wins by Seed",
+    x = "Seed",
+    y = "Avg. Tourney Wins"
+  ) +
+  theme_minimal()
+```
+
+We can note that a teams with a higher seed tend to win more tournaments! We can also see the total amount of tourney wins for each seed.
+
+```{r}
+marchmadness |> 
+  filter(!is.na(seed), seed != 0) |> 
+  ggplot(
+    aes(x = as.factor(seed), y = tourney_wins)
+    ) +
+  geom_boxplot(fill = "mediumpurple") +
+  labs(title = "Distribution of Tournament Wins by Seed",
+       x = "Seed",
+       y = "Tournament Wins") +
+  theme_minimal()
+```
+
+#### 3. Hypothesis Testing: Are Seed and Wins Associated?
+
+$H_o$(Null): Seed and tournament wins are not associated
+
+$H_a$(Alternative): Seed and tournament wins are associated
+
+```{r, warning=FALSE}
+
+cor.test(marchmadness$seed, marchmadness$tourney_wins, method = "spearman")
+```
+
+We can note that from this correlation test, with a P-value below 0.05, we can reject the null hypothesis, denoting that `seed` and `wins` are likely associated.
+
+This can be visualized with the following plot:
+
+```{r}
+ggplot(marchmadness, aes(x = seed, y = tourney_wins)) +
+  geom_jitter(width = 0.2, height = 0.2, alpha = 0.5) +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  labs(title = "Seed vs Tournament Wins",
+       x = "Seed (lower is better)",
+       y = "Tournament Wins") +
+  theme_minimal()
+```
+
+However, we can note that given that we're setting `tourney_wins` as a response, our linear regression model may output negative values at high seed values. Therefore, a Poisson Regression model is better suited, considering that tourney wins is a count variable and is always non-negative.
+
+```{r}
+poisson_model <- glm(tourney_wins ~ seed, family = "poisson", data = marchmadness)
+summary(poisson_model)
+```
+
+```{r}
+marchmadness$predicted_wins <- predict(poisson_model, type = "response")
+
+ggplot(marchmadness, aes(x = seed, y = tourney_wins)) +
+  geom_jitter(width = 0.3, alpha = 0.5) +
+  geom_line(aes(y = predicted_wins), color = "darkred", size = 1.2) +
+  labs(title = "Poisson Regression: Predicted Tournament Wins by Seed",
+       x = "Seed",
+       y = "Tournament Wins") +
+  theme_minimal()
+```
+
+Based on this results, and using an $\alpha = 0.05$, we reject $H_o$ since the p-value is lower than the threshold. Hence, `seed` is statistically associated with `tourney_wins`.
+
+#### 4. Overdispersion Testing
+
+It is noteworthy that Poisson assumes that the mean is equal to the variance of the count variable. If the variance is much greater, we might need a Negative Binomial model. We can do an dispersion test to evaluate this matter.
+
+Letting $Y_i$ be the $ith$ Poisson response in the count regression model, in the presence of equidispersion, $Y_i$ has the following parameters:
+
+$E(Y_i)=\lambda_i, Var(Y_i)=\lambda_i$
+
+The test uses the following mathematical expression (using a $1+\gamma$ dispersion factor):
+
+$Var(Y_i)=(1+\gamma)*\lambda_i$
+
+with the hypotheses:
+
+$Ho:1 + \gamma = 1$
+
+$Ha: 1 + \gamma > 1$
+
+When there is evidence of overdispersion in our data, we will reject $H_o$.
+
+```{r, warning=FALSE, message=FALSE}
+library(AER)
+
+dispersiontest(poisson_model)
+```
+
+With an $\alpha = 0.05$, we fail to reject $H_o$ since the p-value is above 0.05. Hence, the `poisson_model` does not have overdispersion.
+
+#### 5. Discussion
+
+This analysis examined the relationship between a team’s tournament seed and its performance in the NCAA Division I Women’s Basketball Tournament. The results suggest that:
+
+1.  *Seed strongly predicts performance*: Lower-numbered seeds (higher-ranked teams) tend to win more games on average. The correlation between seed and wins was statistically significant, with higher seeds associated with fewer wins.
+
+2.  *Poisson regression supports seeding as a predictor*: The Poisson regression model confirmed that seed is a significant predictor of tournament wins, as expected for a count variable like wins.
+
+3.  *There is a lot of variation around the prediction*: While seeding generally reflects team strength, upsets and unexpected performances do occur, showing that other factors also influence tournament outcomes.
+
+Seeding is an important predictor of success, but clearly other factors influence the results. It sets expectations, but unexpected performances still shape March Madness.

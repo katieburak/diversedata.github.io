@@ -1,10 +1,7 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const checkboxes = document.querySelectorAll(".tag-filter-container input[type='checkbox']");
-  const datasetCheckboxes = document.querySelectorAll("#dataset-toggle input[type='checkbox']");
   const gridItems = document.querySelectorAll(".grid-item");
-  const staticContentSections = document.querySelectorAll(".static-content");
-  const clearButton = document.getElementById("clear-filters");
 
   function filterItems() {
     const selectedTags = Array.from(checkboxes)
@@ -13,46 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const filteringActive = selectedTags.length > 0;
 
-    // Show/hide grid items
     gridItems.forEach(item => {
       const tags = item.dataset.tags ? item.dataset.tags.split(",") : [];
       const matches = selectedTags.every(tag => tags.includes(tag));
       item.style.display = (!filteringActive || matches) ? "block" : "none";
     });
-
-    // Manage visibility of dataset content sections
-    datasetCheckboxes.forEach(cb => {
-      const datasetId = cb.id.replace("-checkbox", "-content");
-      const datasetContent = document.getElementById(datasetId);
-
-      if (!datasetContent) return;
-
-      if (filteringActive) {
-        datasetContent.style.display = cb.checked ? "block" : "none";
-        staticContentSections.forEach(section => section.style.display = "none");
-      } else {
-        datasetContent.style.display = cb.checked ? "block" : "none";
-        if (cb.checked) {
-          staticContentSections.forEach(section => section.style.display = "block");
-        }
-      }
-    });
   }
 
-  // Attach listeners to dataset checkboxes
-  datasetCheckboxes.forEach(cb => {
-    cb.addEventListener("change", filterItems);
-  });
-
-  // Attach listeners to tag filters
   checkboxes.forEach(cb => cb.addEventListener("change", filterItems));
-
-  // Clear button resets all filters
-  clearButton.addEventListener("click", function () {
-    checkboxes.forEach(cb => cb.checked = false);
-    datasetCheckboxes.forEach(cb => cb.checked = false); // We can remove this line if we dont want the button to act on dataset filter.
-    filterItems();
-  });
 
   // Initialize view
   filterItems();

@@ -1,20 +1,26 @@
-## Women's March Madness History
+---
+title: "Women's March Madness"
+toc: true
+toc-depth: 3
+toc-location: right
+---
 
-<div id="marchmadness-content" style="display: none;">
-
-::: {.static-content}
+## Data Set Information
 
 Dataset contains data for every team that has participated in the NCAA Division I Women’s Basketball Tournament since it began in 1982. Every school is shown with its seed, conference record (when available), regular-season record, tournament record and full season record, including winning percentages. All data is from the NCAA. This dataset contains the data behind the story [The Rise and Fall Of Women's NCAA Tournament Dynasties](https://fivethirtyeight.com/features/louisiana-tech-was-the-uconn-of-the-80s/).
 
+### Download
+
 <div class="button-container">
-  <a href="../data/clean/womens-march-madness-clean.csv" download class="download-button">
+  <a href="../../data/clean/womensmarchmadness.csv" download class="download-button">
     Download CSV
   </a>
 </div>
 
-<div class="description-grid">
+### Metadata
 
-  <div class="field-label">CSV Name</div><div class="field-value">womens-march-madness-clean.csv</div>
+<div class="description-grid">
+  <div class="field-label">CSV Name</div><div class="field-value">womensmarchmadness.csv</div>
   <div class="field-label">Dataset Characteristics</div><div class="field-value">Multivariate</div>
   <div class="field-label">Subject Area</div><div class="field-value">Women In Sports</div>
   <div class="field-label">Associated Tasks</div><div class="field-value">Regression</div>
@@ -22,8 +28,9 @@ Dataset contains data for every team that has participated in the NCAA Division 
   <div class="field-label">Instances</div><div class="field-value">2092</div>
   <div class="field-label">Features</div><div class="field-value">20</div>
   <div class="field-label">Has Missing Values?</div><div class="field-value">Yes</div>
-
 </div>
+
+### Variables
 
 ::: {.table-container}
 ::: {.styled-table}
@@ -50,38 +57,11 @@ Dataset contains data for every team that has participated in the NCAA Division 
 | total_wins | Feature | int64 | Total Wins | - | No |
 | total_losses | Feature | int64 | Total Losses | - | No |
 | total_wins_pct | Feature | float64 | Total Win Percentage | % | No |
-
 :::
 :::
 
-:::
+{{< include ../notebooks/marchmadness.qmd >}}
 
-:::{.grid-container}
+## Attribution
 
-<div class="grid-item" data-tags="r,eda,data-visualization,regression,hypothesis-testing">
-  <img src="img/dataset.png" width="20px" height="20px">
-  <h3>Women's March Madness Example A</h3>
-  <p>
-<strong>Inquiry</strong>: Does seed matter?
-
-<strong>Code Tags</strong>: r
-
-<strong>Data Science Tags</strong>: eda, data-visualization, regression, hypothesis-testing
-
-<strong>Library Tags</strong>: TBD
-
-<strong>Developer</strong>: Francisco Ramirez
-</p>
-  <a href="" class="btn btn-outline-dark">Notebook</a>
-  <a href="" class="btn btn-outline-dark">GitHub</a>
-</div>
-
-:::
-
-::: {.static-content}
-
-> Attribution: Data sourced from FiveThirtyEight's NCAA Women's Basketball Tournament dataset, available under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). Original dataset: [FiveThirtyEight GitHub Repository](https://github.com/fivethirtyeight/data/tree/master/ncaa-womens-basketball-tournament). Story: [Louisiana Tech Was the UConn of the '80s](https://fivethirtyeight.com/features/louisiana-tech-was-the-uconn-of-the-80s/).
-
-:::
-
-</div>
+Data sourced from FiveThirtyEight's NCAA Women's Basketball Tournament dataset, available under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). Original dataset: [FiveThirtyEight GitHub Repository](https://github.com/fivethirtyeight/data/tree/master/ncaa-womens-basketball-tournament). Story: [Louisiana Tech Was the UConn of the '80s](https://fivethirtyeight.com/features/louisiana-tech-was-the-uconn-of-the-80s/).
