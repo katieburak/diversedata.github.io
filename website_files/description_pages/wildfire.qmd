@@ -3,6 +3,7 @@ title: "Historical Canadian Wildfire Data"
 toc: true
 toc-depth: 3
 toc-location: right
+sidebar: false
 ---
 
 ## Data Set Information
