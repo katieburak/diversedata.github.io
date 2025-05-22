@@ -107,7 +107,7 @@ ggplot(
   seed_count, 
   aes(x = seed, y = n)
   ) +
-  geom_col(fill = "mediumpurple") +
+  geom_col(fill = "skyblue2") +
   labs(
     title = "Distribution of Tournament Seeds",
     x = "Seed",
@@ -131,7 +131,7 @@ marchmadness |>
       x = as.factor(seed),
       y = avg_tourney_wins)
     ) +
-  geom_col(fill = "mediumpurple") +
+  geom_col(fill = "skyblue2") +
   labs(
     title = "Average Tournament Wins by Seed",
     x = "Seed",
@@ -156,7 +156,7 @@ marchmadness |>
   ggplot(
     aes(x = seed, y = tourney_wins)
   ) +
-  geom_violin(fill = "purple") +
+  geom_violin(fill = "skyblue2") +
   labs(
     title = "Distribution of Tournament Wins by Seed",
     x = "Seed",
@@ -183,7 +183,7 @@ This can be visualized with the following plot:
 ```{r}
 ggplot(marchmadness, aes(x = seed, y = tourney_wins)) +
   geom_jitter(width = 0.2, height = 0.2, alpha = 0.5) +
-  geom_smooth(method = "lm", se = FALSE, color = "mediumpurple") +
+  geom_smooth(method = "lm", se = FALSE, color = "skyblue2") +
   labs(title = "Seed vs Tournament Wins",
        x = "Seed",
        y = "Tournament Wins") +
@@ -202,7 +202,7 @@ marchmadness$predicted_wins <- predict(poisson_model, type = "response")
 
 ggplot(marchmadness, aes(x = seed, y = tourney_wins)) +
   geom_jitter(width = 0.3, alpha = 0.5) +
-  geom_line(aes(y = predicted_wins), color = "mediumpurple", linewidth = 1.2) +
+  geom_line(aes(y = predicted_wins), color = "skyblue2", linewidth = 1.2) +
   labs(title = "Poisson Regression: Predicted Tournament Wins by Seed",
        x = "Seed",
        y = "Tournament Wins") +
