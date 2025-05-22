@@ -1,7 +1,5 @@
 ::: {.hero-banner}
 
-<img src="website_files/img/logo.png" class="logo">
-
 **Diverse Data Hub** is an open educational resource offering curated datasets focused on equity, diversity, inclusion, and other socially relevant topics. It is designed to support students, educators, and researchers in accessing and working with meaningful data in their teaching, learning, and analysis.
 
 Datasets are available through the `diversedata` R package, allowing for straightforward integration into data science workflows. Each dataset includes detailed documentation and contextual background to support informed exploration and connection to real-world topics. Example case studies are also included to illustrate practical applications.
@@ -44,47 +42,6 @@ Datasets are available through the `diversedata` R package, allowing for straigh
 </div>
 
 :::
-
-## R Package
-
-TBD - View on [CRAN]()
-
-#### Dev Status
-
-TBD - CRAN Flag
-
-## More Information
-
-#### Package Code
-
-- Browse [Source Code](https://github.com/diverse-data-hub/diversedata)
-
-- Report a [Bug](https://github.com/diverse-data-hub/diversedata/issues)
-
-#### License
-
-- TBD
-
-#### Citation
-
-- Citing this [R Package]()
-
-#### Developers
-
-###### Owners
-
-- [Katie Burak PhD](https://github.com/katieburak)
-
-- [Elham E Khoda](https://github.com/elhamekhoda)
-
-###### Collaborators
-
-- [Francisco Ramirez](https://github.com/fraramfra)
-
-- [Azin Piran](https://github.com/AzinPiran)
-
-- [Siddarth Subrahmanian](https://github.com/siddart-1)
-
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
