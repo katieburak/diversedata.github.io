@@ -147,20 +147,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#data-set-information" id="toc-data-set-information" class="nav-link active" data-scroll-target="#data-set-information">Data Set Information</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#download" id="toc-download" class="nav-link" data-scroll-target="#download">Download</a></li>
   <li><a href="#metadata" id="toc-metadata" class="nav-link" data-scroll-target="#metadata">Metadata</a></li>
   <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
   </ul></li>
   <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link" data-scroll-target="#about-the-data">About the Data</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#key-features-of-the-dataset" id="toc-key-features-of-the-dataset" class="nav-link" data-scroll-target="#key-features-of-the-dataset">Key Features of the Dataset</a></li>
   <li><a href="#purpose-and-use-cases" id="toc-purpose-and-use-cases" class="nav-link" data-scroll-target="#purpose-and-use-cases">Purpose and Use Cases</a></li>
   </ul></li>
   <li><a href="#case-study" id="toc-case-study" class="nav-link" data-scroll-target="#case-study">Case Study</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective">Objective</a></li>
-  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a>
+  <ul class="collapse">
+  <li><a href="#data-cleaning-processing" id="toc-data-cleaning-processing" class="nav-link" data-scroll-target="#data-cleaning-processing">1. Data Cleaning &amp; Processing</a></li>
+  <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda">2. Exploratory Data Analysis (EDA)</a></li>
+  <li><a href="#logistic-regression-model" id="toc-logistic-regression-model" class="nav-link" data-scroll-target="#logistic-regression-model">3. Logistic Regression Model</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">4. Discussion</a></li>
+  <li><a href="#interpretation-boost-using-marginaleffects" id="toc-interpretation-boost-using-marginaleffects" class="nav-link" data-scroll-target="#interpretation-boost-using-marginaleffects">5. Interpretation Boost using <code>marginaleffects</code></a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
   </ul>
@@ -423,23 +430,23 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>gt_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="wgmpcwoguj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wgmpcwoguj table {
+<div id="xcjywsmota" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xcjywsmota table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wgmpcwoguj thead, #wgmpcwoguj tbody, #wgmpcwoguj tfoot, #wgmpcwoguj tr, #wgmpcwoguj td, #wgmpcwoguj th {
+#xcjywsmota thead, #xcjywsmota tbody, #xcjywsmota tfoot, #xcjywsmota tr, #xcjywsmota td, #xcjywsmota th {
   border-style: none;
 }
 
-#wgmpcwoguj p {
+#xcjywsmota p {
   margin: 0;
   padding: 0;
 }
 
-#wgmpcwoguj .gt_table {
+#xcjywsmota .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -465,12 +472,12 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-left-color: #D3D3D3;
 }
 
-#wgmpcwoguj .gt_caption {
+#xcjywsmota .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wgmpcwoguj .gt_title {
+#xcjywsmota .gt_title {
   color: #333333;
   font-size: 16px;
   font-weight: initial;
@@ -482,7 +489,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-bottom-width: 0;
 }
 
-#wgmpcwoguj .gt_subtitle {
+#xcjywsmota .gt_subtitle {
   color: #333333;
   font-size: 12px;
   font-weight: initial;
@@ -494,7 +501,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-top-width: 0;
 }
 
-#wgmpcwoguj .gt_heading {
+#xcjywsmota .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -506,13 +513,13 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-right-color: #D3D3D3;
 }
 
-#wgmpcwoguj .gt_bottom_border {
+#xcjywsmota .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wgmpcwoguj .gt_col_headings {
+#xcjywsmota .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -527,7 +534,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-right-color: #D3D3D3;
 }
 
-#wgmpcwoguj .gt_col_heading {
+#xcjywsmota .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -547,7 +554,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   overflow-x: hidden;
 }
 
-#wgmpcwoguj .gt_column_spanner_outer {
+#xcjywsmota .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -559,15 +566,15 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   padding-right: 4px;
 }
 
-#wgmpcwoguj .gt_column_spanner_outer:first-child {
+#xcjywsmota .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wgmpcwoguj .gt_column_spanner_outer:last-child {
+#xcjywsmota .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wgmpcwoguj .gt_column_spanner {
+#xcjywsmota .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -579,11 +586,11 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   width: 100%;
 }
 
-#wgmpcwoguj .gt_spanner_row {
+#xcjywsmota .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wgmpcwoguj .gt_group_heading {
+#xcjywsmota .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -609,7 +616,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   text-align: left;
 }
 
-#wgmpcwoguj .gt_empty_group_heading {
+#xcjywsmota .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -624,15 +631,15 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   vertical-align: middle;
 }
 
-#wgmpcwoguj .gt_from_md > :first-child {
+#xcjywsmota .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wgmpcwoguj .gt_from_md > :last-child {
+#xcjywsmota .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wgmpcwoguj .gt_row {
+#xcjywsmota .gt_row {
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
@@ -651,7 +658,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   overflow-x: hidden;
 }
 
-#wgmpcwoguj .gt_stub {
+#xcjywsmota .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -664,7 +671,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   padding-right: 5px;
 }
 
-#wgmpcwoguj .gt_stub_row_group {
+#xcjywsmota .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -678,15 +685,15 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   vertical-align: top;
 }
 
-#wgmpcwoguj .gt_row_group_first td {
+#xcjywsmota .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wgmpcwoguj .gt_row_group_first th {
+#xcjywsmota .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wgmpcwoguj .gt_summary_row {
+#xcjywsmota .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -696,16 +703,16 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   padding-right: 5px;
 }
 
-#wgmpcwoguj .gt_first_summary_row {
+#xcjywsmota .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wgmpcwoguj .gt_first_summary_row.thick {
+#xcjywsmota .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wgmpcwoguj .gt_last_summary_row {
+#xcjywsmota .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -715,7 +722,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-bottom-color: #D3D3D3;
 }
 
-#wgmpcwoguj .gt_grand_summary_row {
+#xcjywsmota .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -725,7 +732,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   padding-right: 5px;
 }
 
-#wgmpcwoguj .gt_first_grand_summary_row {
+#xcjywsmota .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -735,7 +742,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-top-color: #D3D3D3;
 }
 
-#wgmpcwoguj .gt_last_grand_summary_row_top {
+#xcjywsmota .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -745,11 +752,11 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-bottom-color: #D3D3D3;
 }
 
-#wgmpcwoguj .gt_striped {
+#xcjywsmota .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wgmpcwoguj .gt_table_body {
+#xcjywsmota .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -758,7 +765,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-bottom-color: #D3D3D3;
 }
 
-#wgmpcwoguj .gt_footnotes {
+#xcjywsmota .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -772,7 +779,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-right-color: #D3D3D3;
 }
 
-#wgmpcwoguj .gt_footnote {
+#xcjywsmota .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -781,7 +788,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   padding-right: 5px;
 }
 
-#wgmpcwoguj .gt_sourcenotes {
+#xcjywsmota .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -795,7 +802,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   border-right-color: #D3D3D3;
 }
 
-#wgmpcwoguj .gt_sourcenote {
+#xcjywsmota .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -803,72 +810,72 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
   padding-right: 5px;
 }
 
-#wgmpcwoguj .gt_left {
+#xcjywsmota .gt_left {
   text-align: left;
 }
 
-#wgmpcwoguj .gt_center {
+#xcjywsmota .gt_center {
   text-align: center;
 }
 
-#wgmpcwoguj .gt_right {
+#xcjywsmota .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wgmpcwoguj .gt_font_normal {
+#xcjywsmota .gt_font_normal {
   font-weight: normal;
 }
 
-#wgmpcwoguj .gt_font_bold {
+#xcjywsmota .gt_font_bold {
   font-weight: bold;
 }
 
-#wgmpcwoguj .gt_font_italic {
+#xcjywsmota .gt_font_italic {
   font-style: italic;
 }
 
-#wgmpcwoguj .gt_super {
+#xcjywsmota .gt_super {
   font-size: 65%;
 }
 
-#wgmpcwoguj .gt_footnote_marks {
+#xcjywsmota .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wgmpcwoguj .gt_asterisk {
+#xcjywsmota .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wgmpcwoguj .gt_indent_1 {
+#xcjywsmota .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wgmpcwoguj .gt_indent_2 {
+#xcjywsmota .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wgmpcwoguj .gt_indent_3 {
+#xcjywsmota .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wgmpcwoguj .gt_indent_4 {
+#xcjywsmota .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wgmpcwoguj .gt_indent_5 {
+#xcjywsmota .gt_indent_5 {
   text-indent: 25px;
 }
 
-#wgmpcwoguj .katex-display {
+#xcjywsmota .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#wgmpcwoguj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#xcjywsmota div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
