@@ -1,0 +1,42 @@
+```{r}
+#| echo: true
+#| warning: false
+#| message: false
+#| collapse: true
+```
+
+## About the Data
+
+X
+
+### Key Features of the Dataset
+
+X
+
+### Purpose and Use Cases
+
+X
+
+## Case Study
+
+### Objective
+
+X
+
+### Methodology
+
+#### 1. Data Cleaning & Processing
+
+X
+
+#### 2. Exploratory Data Analysis
+
+X
+
+#### 3. More...
+
+X
+
+#### 4. Discussion
+
+X

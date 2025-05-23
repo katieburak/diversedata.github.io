@@ -1,0 +1,70 @@
+---
+title: "How Couples Meet and Stay Together"
+toc: true
+toc-depth: 3
+toc-location: right
+sidebar: false
+---
+
+## Data Set Information
+
+The 2022 wave of the How Couples Meet and Stay Together (HCMST) study surveyed 1,722 U.S. adults to explore how relationships form and changed with time . Conducted by Ipsos, led by researchers from Stanford University, the survey focused on dating habits and the impact of the COVID-19 pandemic on relationships. Adapted from the original [data set](https://data.stanford.edu/hcmst2017), this data offers a look at how social changes have changed how couples meet and stay together.
+
+### Download
+
+<div class="button-container">
+  <a href="../../data/clean/hcmst.csv" download class="download-button">
+    Download CSV
+  </a>
+</div>
+
+### Metadata
+
+<div class="description-grid">
+  <div class="field-label">CSV Name</div><div class="field-value">hcmst.csv</div>
+  <div class="field-label">Dataset Characteristics</div><div class="field-value">Multivariate</div>
+  <div class="field-label">Subject Area</div><div class="field-value">Family and Relationships</div>
+  <div class="field-label">Associated Tasks</div><div class="field-value">Classification</div>
+  <div class="field-label">Feature Type</div><div class="field-value">Factor, Integer, Numeric</div>
+  <div class="field-label">Instances</div><div class="field-value">1328</div>
+  <div class="field-label">Features</div><div class="field-value">21</div>
+  <div class="field-label">Has Missing Values?</div><div class="field-value">Yes</div>
+</div>
+
+### Variables
+
+::: {.table-container}
+::: {.styled-table}
+
+| Variable Name | Role | Type | Description | Units | Missing Values |
+|-----|-----|-----|-----|-----|-----|
+| subject_age | Feature | Numeric | Subject age | years | No |
+| subject_education | Feature | Ordinal Categorical | Highest degree obtained. Ordered categories: ['no_education' < '1st_4th_grade' < '5th_6th_grade' < '7th_8th_grade' < '9th' < '10th' < '11th' < '12th_nodiploma' < 'high_school_grad' < 'some_college' < 'associate_degree' < 'bach_degree' < 'masters_degree' < 'prof_doct_degree'] | - | No |
+| subject_sex | Feature | Nominal Categorical | Levels: ['male', 'female', 'other'] | - | No |
+| subject_ethnicity | Feature | Nominal Categorical | Levels: ['white', 'black', 'other', 'hispanic', '2_plus_eth'] | - | No |
+| subject_income_category  | Feature | Ordinal Categorical | Ordered categories: ['under_5k' < '5k_7k' < '7k_10k' < '10k_12k' < '12k_15k' < '15k_20k' < '20k_25k' < '25k_30k' < '30k_35k' < '35k_40k' < '40k_50k' < '50k_60k' < '60k_75k' < '75k_85k' < '85k_100k' < '100k_125k' < '125k_150k' < '150k_175k' < '175k_200k' < '200k_250k' < 'over_250k'] | - | No |
+| subject_employment_status | Feature | Nominal Categorical | Levels: ['working_paid_employee', 'working_self_employed', 'not_working_temp_layoff', 'not_working_looking', 'not_working_retired', 'not_working_disabled', 'not_working_other'] | - | No |
+| same_sex_couple | Feature | Nominal Categorical | Levels: ['no', 'yes'] | - | Yes |
+| married | Feature | Nominal Categorical | Levels: ['not_married', 'married'] | - | Yes |
+| sex_frequency | Feature | Ordinal Categorical | Ordered categories: ['once_or_more_a_day' < '3_to_6_times_a_week' < 'once_or_twice_a_week' < '2_to_3_times_a_month' < 'once_a_month_or_less'] | - | Yes |
+| flirts_with_partner | Feature | Ordinal Categorical | Ordered categories: ['every_day' < 'a_few_times_a_week' < 'once_a_week' < '1_to_3_times_a_month' < 'less_than_once_a_month' < 'never'] | - | Yes |
+| fights_with_partner | Feature | Ordinal Categorical | Ordered categories: ['0_times' < '1_time' < '2_times' < '3_times' < '4_times' < '5_times' < '6_times' < '7_or_more_times'] | - | Yes |
+| relationship_duration | Feature | Numeric | Duration of relationship | years | Yes |
+| children | Feature | Numeric | Number of children in the household. | - | No |
+| rel_change_during_pandemic | Feature| Nominal Categorical | Levels: ['better_than_before', 'no_change', 'worse_than_before'] | - | No |
+| inc_change_during_pandemic| Feature| Ordinal Categorical | Ordered categories: ['much_worse' < 'worse' < 'no_change' < 'better' < 'much_better'] | - | Yes |
+| subject_had_covid | Feature | Nominal Categorical | Levels: ['no', 'yes'] | - | Yes |
+| partner_had_covid | Feature | Nominal Categorical | Levels: ['no', 'yes'] | - | Yes |
+| subject_vaccinated | Feature | Nominal Categorical | Levels: ['fully_vaccinated_and_booster', 'fully_vaccinated_no_booster', 'partially_vaccinated', 'not_vaccinated'] | - | Yes |
+| partner_vaccinated | Feature | Nominal Categorical | Levels: ['fully_vaccinated_and_booster', 'fully_vaccinated_no_booster', 'partially_vaccinated', 'not_vaccinated'] | - | Yes |
+| agree_covid_approach | Feature | Nominal Categorical | Levels: ['completely_agree', 'mostly_agree', 'mostly_disagree', 'completely_disagree'] | - | Yes |
+| relationship_quality | Target  | Ordinal Categorical | Levels: ['excellent' < 'good' < 'fair' < 'poor' < 'very_poor'] | - | No |
+
+:::
+:::
+
+{{< include ../notebooks/hcmst.qmd >}}
+
+## Attribution
+
+Data adapted from Rosenfeld, Michael J., Reuben J. Thomas, and Sonia Hausen. 2023. How Couples Meet and Stay Together 2017-2020-2022 Combined Dataset. [Computer files]. Stanford, CA: Stanford University Libraries. [Data](https://data.stanford.edu/hcmst2017).
