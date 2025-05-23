@@ -8,7 +8,7 @@ sidebar: false
 
 ## Data Set Information
 
-Dataset contains data for every team that has participated in the NCAA Division I Women’s Basketball Tournament since it began in 1982. Every school is shown with its seed, conference record (when available), regular-season record, tournament record and full season record, including winning percentages. All data is from the NCAA. This dataset contains the data behind the story [The Rise and Fall Of Women's NCAA Tournament Dynasties](https://fivethirtyeight.com/features/louisiana-tech-was-the-uconn-of-the-80s/).
+Dataset contains data for every team that has participated in the NCAA Division I Women’s Basketball Tournament since it began in 1982 up until 2018. Every school is shown with its seed, conference record (when available), regular-season record, tournament record and full season record, including winning percentages. All data is sourced directly fromthe NCAA and contains the data behind the story [The Rise and Fall Of Women's NCAA Tournament Dynasties](https://fivethirtyeight.com/features/louisiana-tech-was-the-uconn-of-the-80s/).
 
 ### Download
 
@@ -24,8 +24,8 @@ Dataset contains data for every team that has participated in the NCAA Division 
   <div class="field-label">CSV Name</div><div class="field-value">womensmarchmadness.csv</div>
   <div class="field-label">Dataset Characteristics</div><div class="field-value">Multivariate</div>
   <div class="field-label">Subject Area</div><div class="field-value">Women In Sports</div>
-  <div class="field-label">Associated Tasks</div><div class="field-value">Regression</div>
-  <div class="field-label">Feature Type</div><div class="field-value">Categorical, Integer, Float</div>
+  <div class="field-label">Associated Tasks</div><div class="field-value">Regression, Classification</div>
+  <div class="field-label">Feature Type</div><div class="field-value">Factor, Integer, Numeric</div>
   <div class="field-label">Instances</div><div class="field-value">2092</div>
   <div class="field-label">Features</div><div class="field-value">20</div>
   <div class="field-label">Has Missing Values?</div><div class="field-value">Yes</div>
@@ -38,26 +38,26 @@ Dataset contains data for every team that has participated in the NCAA Division 
 
 | Variable Name | Role | Type | Description | Units | Missing Values |
 |-----|-----|-----|-----|-----|-----|
-| year | Feature | int64 | Year | - | No |
-| school | Feature | Categorical | School | - | No |
-| seed | Feature | int64 | Seed. The 0 seeding designation in 1983 notes the eight teams that played an opening-round game to become the No. 8 seed in each region. | - | No |
-| conference | Feature | Categorical | Conference | - | No |
-| conf_wins | Feature | float64 | Conference Wins | - | Yes |
-| conf_losses | Feature | float64 | Conference Losses | - | Yes |
-| conf_wins_pct | Feature | float64 | Conference Win Percentage | - | Yes |
-| conf_rank | Feature | float64 | Place in Conference | - | Yes |
-| division | Feature | Categorical | Conference Division | - | Yes |
-| reg_wins | Feature | int64 | Regional Wins | - | No |
-| reg_losses | Feature | int64 | Regional Losses | - | No |
-| reg_wins_pct | Feature | float64 | Regional Win Percentage | % | No |
-| bid | Feature | Categorical | Whether the school qualified with an automatic bid (by winning its conference or conference tournament) or an at-large bid. ['at-large', 'auto'] | - | No |
-| first_game_at_home | Feature | Categorical | Whether the school played its first-round tournament games on its home court. ['Y', 'N'] | - | No |
-| tourney_wins | Feature | int64 | Tourney Wins | - | No |
-| tourney_losses | Feature | int64 | Tourney Losses | - | No |
-| tourney_finish | Target | Categorical | Ordered categories: ['opening_round_loss' < 'first_round_loss' < 'second_round_loss' < 'top_16_loss' < 'top_8_loss' < 'top_4_loss' < 'top_2_loss' < 'champ'] | - | No |
-| total_wins | Feature | int64 | Total Wins | - | No |
-| total_losses | Feature | int64 | Total Losses | - | No |
-| total_wins_pct | Feature | float64 | Total Win Percentage | % | No |
+| year | Feature | integer | Year | - | No |
+| school | Feature | nominal categorical | School | - | No |
+| seed | Feature | ordinal categorical | Seed. The 0 seeding designation in 1983 notes the eight teams that played an opening-round game to become the No. 8 seed in each region. | - | No |
+| conference | Feature | nominal categorical | Conference | - | No |
+| conf_wins | Feature | numeric | Conference Wins | - | Yes |
+| conf_losses | Feature | numeric | Conference Losses | - | Yes |
+| conf_wins_pct | Feature | numeric | Conference Win Percentage | - | Yes |
+| conf_rank | Feature | numeric | Place in Conference | - | Yes |
+| division | Feature | nominal categorical | Conference Division | - | Yes |
+| reg_wins | Feature | integer | Regional Wins | - | No |
+| reg_losses | Feature | integer | Regional Losses | - | No |
+| reg_wins_pct | Feature | numeric | Regional Win Percentage | % | No |
+| bid | Feature | nominal categorical | Whether the school qualified with an automatic bid (by winning its conference or conference tournament) or an at-large bid. ['at-large', 'auto'] | - | No |
+| first_game_at_home | Feature | nominal categorical | Whether the school played its first-round tournament games on its home court. ['Y', 'N'] | - | No |
+| tourney_wins | Feature | integer | Tourney Wins | - | No |
+| tourney_losses | Feature | integer | Tourney Losses | - | No |
+| tourney_finish | Target | ordinal categorical | Ordered categories: ['opening_round_loss' < 'first_round_loss' < 'second_round_loss' < 'top_16_loss' < 'top_8_loss' < 'top_4_loss' < 'top_2_loss' < 'champ'] | - | No |
+| total_wins | Feature | integer | Total Wins | - | No |
+| total_losses | Feature | integer | Total Losses | - | No |
+| total_wins_pct | Feature | numeric | Total Win Percentage | % | No |
 :::
 :::
 
