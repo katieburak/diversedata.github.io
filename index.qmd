@@ -11,48 +11,19 @@ Datasets are available through the `diversedata` R package, allowing for straigh
 
 :::{.grid-container-3}
 
-<div class="grid-item" data-featured="true">
-  <img src="website_files/img/marchmadness.png" width="50px" height="50px">
-  <h3>Women's March Madness</h3>
-  <p>
-<strong>Description</strong>: This data set tracks every NCAA Division I Women’s Basketball Tournament appearance since 1982 up until 2018. It includes team seeds, results, bid types, season and conference records, and regional placements. Useful for analyzing team success, seeding impact, conference strength, and historical trends in women’s college basketball over four decades.
-</p>
-  <a href="https://diverse-data-hub.github.io/website_files/description_pages/marchmadness.html" class="btn btn-outline-dark">More Details</a>
-</div>
+<!-- To change featured data set, go into file and change value of data-featured="true" -->
 
+<!-- These are the featured datasets -->
 
+{{< include website_files/grid_items/marchmadness.qmd >}}
+{{< include website_files/grid_items/wildfire.qmd >}}
 
-<div class="grid-item" data-featured="true">
-  <img src="website_files/img/wildfire.png" width="200px" height="200px">
-  <h3>Wildfire</h3>
-  <p>
-<strong>Description</strong>: This data set on Canadian wildfires includes data on fire size, cause, location, detection method, response, and weather. Collected from official sources, it supports wildfire risk assessment and response. It also highlights social and geographic disparities, emphasizing impacts on remote and underserved communities facing climate-related and infrastructure challenges.
-</p>
-  <a href="https://diverse-data-hub.github.io/website_files/description_pages/wildfire.html" class="btn btn-outline-dark">More Details</a>
-</div>
+<!-- These are NOT featured datasets -->
 
-
-
-<div class="grid-item">
-  <img src="website_files/img/dataset.png" width="200px" height="200px">
-  <h3>How Couples Meet and Stay Together</h3>
-  <p>
-<strong>Description</strong>: This data set contains information from a 2022 survey of people across the U.S. to understand how couples meet and stay together. It focused on how relationships were influenced by the COVID-19 pandemic. The data offers insight at modern relationships, including changes in dating habits and how couples adapted during a challenging time.
-</p>
-  <a href="https://diverse-data-hub.github.io/website_files/description_pages/hcmst.html" class="btn btn-outline-dark">More Details</a>
-</div>
-
-
-
-<div class="grid-item">
-  <img src="website_files/img/dataset.png" width="200px" height="200px">
-  <h3>Test</h3>
-  <p>
-<strong>Description</strong>: Test
-
-</p>
-  <a href="" class="btn btn-outline-dark">More Details</a>
-</div>
+{{< include website_files/grid_items/hcmst.qmd >}}
+{{< include website_files/grid_items/indigenousbusiness.qmd >}}
+{{< include website_files/grid_items/genderassessment.qmd >}}
+{{< include website_files/grid_items/globalrights.qmd >}}
 
 :::
 

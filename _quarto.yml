@@ -36,7 +36,7 @@ website:
       - text: "Report an Issue"
         href: "https://github.com/diverse-data-hub/diversedata/issues"
       - text: "License (TBD)"
-        href: ""
+        href: "https://diverse-data-hub.github.io/website_files/license.html"
       - text: "Citation (TBD)"
         href: "https://diverse-data-hub.github.io/website_files/citation.html"
       - section: "Owners"
