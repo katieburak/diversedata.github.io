@@ -124,5 +124,29 @@
   },
   "website_files/notebooks/hcmst.qmd": {
     "hcmst.html": "88f65190"
+  },
+  "website_files/index.qmd": {
+    "index.html": "9a1d096b"
+  },
+  "website_files/grid_items/marchmadness.qmd": {
+    "marchmadness.html": "8cdddc3f"
+  },
+  "website_files/grid_items/hcmst.qmd": {
+    "hcmst.html": "f8d78004"
+  },
+  "website_files/grid_items/wildfire.qmd": {
+    "wildfire.html": "bd9cf7f0"
+  },
+  "website_files/grid_items/genderassessment.qmd": {
+    "genderassessment.html": "351a910f"
+  },
+  "website_files/grid_items/globalrights.qmd": {
+    "globalrights.html": "9e481d59"
+  },
+  "website_files/grid_items/indigenousbusiness.qmd": {
+    "indigenousbusiness.html": "c822c821"
+  },
+  "website_files/license.qmd": {
+    "license.html": "7e6f2852"
   }
 }
