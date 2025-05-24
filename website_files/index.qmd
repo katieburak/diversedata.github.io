@@ -1,0 +1,41 @@
+::: {.hero-banner}
+
+**Diverse Data Hub** is an open educational resource offering curated datasets focused on equity, diversity, inclusion, and other socially relevant topics. It is designed to support students, educators, and researchers in accessing and working with meaningful data in their teaching, learning, and analysis.
+
+Datasets are available through the `diversedata` R package, allowing for straightforward integration into data science workflows. Each dataset includes detailed documentation and contextual background to support informed exploration and connection to real-world topics. Example case studies are also included to illustrate practical applications.
+
+[Get Started →](https://diverse-data-hub.github.io/website_files/datasets.html){.btn .btn-primary}
+:::
+
+## Featured Datasets 
+
+:::{.grid-container-3}
+
+<!-- To change featured data set, go into file and change value of data-featured="true" -->
+
+<!-- These are the featured datasets -->
+
+{{< include grid_items/marchmadness.qmd >}}
+{{< include grid_items/wildfire.qmd >}}
+
+<!-- These are NOT featured datasets -->
+
+{{< include grid_items/hcmst.qmd >}}
+{{< include grid_items/indigenousbusiness.qmd >}}
+{{< include grid_items/genderassessment.qmd >}}
+{{< include grid_items/globalrights.qmd >}}
+
+:::
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const allItems = document.querySelectorAll(".grid-container-3 .grid-item");
+    allItems.forEach(item => {
+      if (item.dataset.featured === "true") {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  });
+</script>
