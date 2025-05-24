@@ -200,13 +200,19 @@ summary(poisson_model)
 ```{r}
 marchmadness$predicted_wins <- predict(poisson_model, type = "response")
 
-ggplot(marchmadness, aes(x = seed, y = tourney_wins)) +
+model_plot <- ggplot(marchmadness, aes(x = seed, y = tourney_wins)) +
   geom_jitter(width = 0.3, alpha = 0.5) +
   geom_line(aes(y = predicted_wins), color = "skyblue2", linewidth = 1.2) +
   labs(title = "Poisson Regression: Predicted Tournament Wins by Seed",
        x = "Seed",
        y = "Tournament Wins") +
   theme_minimal()
+
+model_plot
+```
+
+```{r, include=FALSE}
+ggsave("../img/marchmadness.png", plot = model_plot, width = 6, height = 4, dpi = 300)
 ```
 
 The `seed` coefficient $\beta_1 = -0.2501$ represents the log change in the expected number of tournament wins for every 1 unit increase in seed.
