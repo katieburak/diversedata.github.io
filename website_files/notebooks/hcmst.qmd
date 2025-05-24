@@ -27,15 +27,275 @@ X
 
 #### 1. Data Cleaning & Processing
 
-X
+```{r}
+library(tidyverse) 
+
+# Reading Data
+hcmst <- read_csv("../../data/clean/hcmst.csv") 
+
+# Review total rows
+nrow(hcmst)
+
+# Removing NA since we plan on using all columns in our analysis
+hcmst <- hcmst |> 
+  drop_na()
+
+# Notice no rows were removed
+nrow(hcmst)
+
+# Visualize the data set
+head(hcmst)
+```
 
 #### 2. Exploratory Data Analysis
 
-X
+```{r fig.width=10, fig.height=5}
+numeric_vars <- c("subject_age", "relationship_duration", "children")
+
+hcmst_long <- hcmst |>
+  select(all_of(numeric_vars)) |>
+  pivot_longer(cols = everything(), names_to = "variable", values_to = "value")
+
+ggplot(
+  hcmst_long, 
+  aes(x = value)
+  ) +
+  geom_density(fill = "skyblue2") +
+  labs(title = "Density Plots for Numeric Variables", x = NULL, y = "Density") +
+  facet_wrap(~ variable, scales = "free", ncol = 2) +
+  theme_minimal()
+```
+
+```{r fig.width=10, fig.height=25}
+cols_to_plot <- c("subject_education", "subject_sex", "subject_ethnicity", "subject_income_category", "subject_employment_status", "same_sex_couple", "married", "sex_frequency", "flirts_with_partner", "fights_with_partner")
+
+hcmst_long <- hcmst |>
+  select(all_of(cols_to_plot)) |>
+  pivot_longer(cols = everything(), names_to = "variable", values_to = "value") |>
+  count(variable, value)
+
+
+ggplot(
+  hcmst_long, 
+  aes(y = reorder(value, n))
+  ) +
+  geom_bar(aes(x = n), stat = "identity", fill = "skyblue2") +
+  labs(
+    title = "Counts by Category",
+    x = "Count",
+    y = NULL
+  ) +
+  facet_wrap(~ variable, scales = "free", ncol = 1) +
+  theme_minimal()
+```
+
+```{r fig.width=10, fig.height=30}
+cols_to_plot <- c("rel_change_during_pandemic", "inc_change_during_pandemic", "subject_had_covid", "partner_had_covid", "subject_vaccinated", "partner_vaccinated", "agree_covid_approach", "sex_frequency", "flirts_with_partner", "fights_with_partner")
+
+hcmst_long <- hcmst |>
+  select(all_of(cols_to_plot)) |>
+  pivot_longer(cols = everything(), names_to = "variable", values_to = "value") |>
+  count(variable, value)
+
+
+ggplot(
+  hcmst_long, 
+  aes(y = reorder(value, n))
+  ) +
+  geom_bar(aes(x = n), stat = "identity", fill = "skyblue2") +
+  labs(
+    title = "Counts by Category",
+    x = "Count",
+    y = NULL
+  ) +
+  facet_wrap(~ variable, scales = "free", ncol = 1) +
+  theme_minimal()
+```
+
+```{r}
+relationship_quality <- hcmst |> 
+  add_count(relationship_quality) |> 
+  ggplot(aes(y = reorder(relationship_quality, n))) +
+  geom_bar(fill = "skyblue2") +
+  labs(
+    title = "Quality of Relationships",
+    x = "Count",
+    y = NULL
+  ) +
+  theme_minimal()
+
+relationship_quality
+```
+
+```{r}
+ggsave("../img/hcmst.png", plot = relationship_quality, width = 6, height = 4, dpi = 300)
+```
 
 #### 3. More...
 
-X
+```{r}
+hcmst$subject_sex <- as.factor(hcmst$subject_sex)
+levels(hcmst$subject_sex)
+
+hcmst$subject_ethnicity <- as.factor(hcmst$subject_ethnicity)
+levels(hcmst$subject_ethnicity)
+
+hcmst$subject_employment_status <- as.factor(hcmst$subject_employment_status)
+levels(hcmst$subject_employment_status)
+
+hcmst$same_sex_couple <- as.factor(hcmst$same_sex_couple)
+levels(hcmst$same_sex_couple)
+
+hcmst$married <- as.factor(hcmst$married)
+levels(hcmst$married)
+
+hcmst$subject_had_covid <- as.factor(hcmst$subject_had_covid)
+levels(hcmst$subject_had_covid)
+
+hcmst$partner_had_covid <- as.factor(hcmst$partner_had_covid)
+levels(hcmst$partner_had_covid)
+
+hcmst$subject_education <- as.ordered(hcmst$subject_education)
+hcmst$subject_education <- fct_relevel(
+  hcmst$subject_education,
+  c("prof_doct_degree", "masters_degree", "bach_degree", "associate_degree", "some_college", "high_school_grad", "12th_nodiploma", "11th", "10th", "9th", "7th_8th_grade", "5th_6th_grade", "1st_4th_grade", "no_education")
+)
+levels(hcmst$subject_education)
+
+hcmst$subject_income_category <- as.ordered(hcmst$subject_income_category)
+hcmst$subject_income_category <- fct_relevel(
+  hcmst$subject_income_category,
+  c("under_5k", "5k_7k", "7k_10k", "10k_12k", "12k_15k", "15k_20k", "20k_25k", "25k_30k", "30k_35k", "35k_40k", "40k_50k", "50k_60k", "60k_75k", "75k_85k", "85k_100k", "100k_125k", "125k_150k", "150k_175k", "175k_200k", "200k_250k", "over_250k")
+)
+levels(hcmst$subject_income_category)
+
+hcmst$sex_frequency <- as.ordered(hcmst$sex_frequency)
+hcmst$sex_frequency <- fct_relevel(
+  hcmst$sex_frequency,
+  c("once_or_more_a_day", "once_or_twice_a_week", "3_to_6_times_a_week", "2_to_3_times_a_month", "once_a_month_or_less")
+)
+levels(hcmst$sex_frequency)
+
+hcmst$flirts_with_partner <- as.ordered(hcmst$flirts_with_partner)
+hcmst$flirts_with_partner <- fct_relevel(
+  hcmst$flirts_with_partner,
+  c("never", "less_than_once_a_month", "1_to_3_times_a_month", "once_a_week", "a_few_times_a_week", "every_day")
+)
+levels(hcmst$flirts_with_partner)
+
+hcmst$fights_with_partner <- as.ordered(hcmst$fights_with_partner)
+hcmst$fights_with_partner <- fct_relevel(
+  hcmst$fights_with_partner,
+  c("0_times", "1_time", "2_times", "3_times", "4_times", "5_times", "6_times", "7_or_more_times")
+)
+levels(hcmst$fights_with_partner)
+
+hcmst$rel_change_during_pandemic <- as.ordered(hcmst$rel_change_during_pandemic)
+hcmst$rel_change_during_pandemic <- fct_relevel(
+  hcmst$rel_change_during_pandemic,
+  c("better_than_before", "no_change", "worse_than_before")
+)
+levels(hcmst$rel_change_during_pandemic)
+
+hcmst$inc_change_during_pandemic <- as.ordered(hcmst$inc_change_during_pandemic)
+hcmst$inc_change_during_pandemic <- fct_relevel(
+  hcmst$inc_change_during_pandemic,
+  c("much_worse", "worse", "no_change", "better", "much_better")
+)
+levels(hcmst$inc_change_during_pandemic)
+
+hcmst$subject_vaccinated <- as.ordered(hcmst$subject_vaccinated)
+hcmst$subject_vaccinated <- fct_relevel(
+  hcmst$subject_vaccinated,
+  c("not_vaccinated", "partially_vaccinated", "fully_vaccinated_no_booster", "fully_vaccinated_and_booster")
+)
+levels(hcmst$subject_vaccinated)
+
+hcmst$partner_vaccinated <- as.ordered(hcmst$partner_vaccinated)
+hcmst$partner_vaccinated <- fct_relevel(
+  hcmst$partner_vaccinated,
+  c("not_vaccinated", "partially_vaccinated", "fully_vaccinated_no_booster", "fully_vaccinated_and_booster")
+)
+levels(hcmst$partner_vaccinated)
+
+hcmst$agree_covid_approach <- as.ordered(hcmst$agree_covid_approach)
+hcmst$agree_covid_approach <- fct_relevel(
+  hcmst$agree_covid_approach,
+  c("completely_agree", "mostly_agree", "mostly_disagree", "completely_disagree")
+)
+levels(hcmst$agree_covid_approach)
+
+hcmst$relationship_quality <- as.ordered(hcmst$relationship_quality)
+hcmst$relationship_quality <- fct_relevel(
+  hcmst$relationship_quality,
+  c("excellent", "good", "fair", "poor", "very_poor")
+)
+levels(hcmst$relationship_quality)
+
+head(hcmst)
+```
+
+```{r}
+colnames(hcmst)
+```
+
+```{r}
+library(MASS)
+library(broom)
+
+options(contrasts = c("contr.treatment", "contr.sdif"))
+
+full_ordinal_model <- polr(relationship_quality ~ subject_age + subject_education + subject_sex + subject_ethnicity + subject_income_category + subject_employment_status + same_sex_couple + married + sex_frequency + flirts_with_partner + fights_with_partner + relationship_duration + children + rel_change_during_pandemic + inc_change_during_pandemic + subject_had_covid + partner_had_covid + subject_vaccinated + partner_vaccinated + agree_covid_approach,
+  data = hcmst, Hess = TRUE
+)
+
+summary_full_ordinal_model <- cbind(tidy(full_ordinal_model),
+  p.value = pnorm(abs(tidy(full_ordinal_model)$statistic), lower.tail = FALSE) * 2) |>
+  mutate_if(is.numeric, round, 2)
+
+summary_full_ordinal_model |> 
+  filter(p.value < 0.05, 
+         coef.type == "coefficient")
+```
+
+```{r}
+predict(full_ordinal_model, tibble(
+  subject_age = 40, 
+  subject_education = "bach_degree",
+  subject_sex = "male",
+  subject_ethnicity = "hispanic",
+  subject_income_category = "60k_75k",
+  subject_employment_status = "working_paid_employee",
+  same_sex_couple = "yes",
+  married = "not_married",
+  sex_frequency = "2_to_3_times_a_month",
+  flirts_with_partner = "a_few_times_a_week",
+  fights_with_partner = "3_times",
+  relationship_duration = 10,
+  children = 2,
+  rel_change_during_pandemic = "no_change",
+  inc_change_during_pandemic = "much_worse",
+  subject_had_covid = "yes",
+  partner_had_covid = "yes",
+  subject_vaccinated = "fully_vaccinated_no_booster",
+  partner_vaccinated = "not_vaccinated",
+  agree_covid_approach = "completely_disagree"), 
+  type = "probs")
+```
+
+```{r}
+partial_ordinal_model <- polr(relationship_quality ~ subject_age + subject_education + subject_sex + subject_ethnicity + subject_income_category + subject_employment_status + same_sex_couple + married + sex_frequency + flirts_with_partner + fights_with_partner + relationship_duration + children + rel_change_during_pandemic + inc_change_during_pandemic + subject_had_covid + partner_had_covid + subject_vaccinated + partner_vaccinated + agree_covid_approach,
+  data = hcmst, Hess = TRUE
+)
+
+summary_partial_ordinal_model <- cbind(tidy(partial_ordinal_model),
+  p.value = pnorm(abs(tidy(partial_ordinal_model)$statistic), lower.tail = FALSE) * 2) |>
+  mutate_if(is.numeric, round, 2)
+
+summary_partial_ordinal_model |> 
+  filter(p.value < 0.05, 
+         coef.type == "coefficient")
+```
 
 #### 4. Discussion
 
