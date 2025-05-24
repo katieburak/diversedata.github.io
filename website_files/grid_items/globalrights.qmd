@@ -1,5 +1,5 @@
 <div class="grid-item" data-featured="false" data-tags="">
-  <img src="img/dataset.png" width="20px" height="20px">
+  <img src="/website_files/img/dataset.png" width="20px" height="20px">
   <h3>Global Rights</h3>
   <p>
 <strong>Description</strong>: XXX

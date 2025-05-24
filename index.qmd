@@ -15,15 +15,15 @@ Datasets are available through the `diversedata` R package, allowing for straigh
 
 <!-- These are the featured datasets -->
 
-{{< include grid_items/marchmadness.qmd >}}
-{{< include grid_items/wildfire.qmd >}}
+{{< include website_files/grid_items/marchmadness.qmd >}}
+{{< include website_files/grid_items/wildfire.qmd >}}
 
 <!-- These are NOT featured datasets -->
 
-{{< include grid_items/hcmst.qmd >}}
-{{< include grid_items/indigenousbusiness.qmd >}}
-{{< include grid_items/genderassessment.qmd >}}
-{{< include grid_items/globalrights.qmd >}}
+{{< include website_files/grid_items/hcmst.qmd >}}
+{{< include website_files/grid_items/indigenousbusiness.qmd >}}
+{{< include website_files/grid_items/genderassessment.qmd >}}
+{{< include website_files/grid_items/globalrights.qmd >}}
 
 :::
 
