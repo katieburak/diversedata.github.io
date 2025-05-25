@@ -8,7 +8,7 @@ sidebar: false
 
 ## Data Set Information
 
-The 2022 wave of the How Couples Meet and Stay Together (HCMST) study surveyed 1,722 U.S. adults to explore how relationships form and changed with time . Conducted by Ipsos, led by researchers from Stanford University, the survey focused on dating habits and the impact of the COVID-19 pandemic on relationships. Adapted from the original [data set](https://data.stanford.edu/hcmst2017), this data offers a look at how social changes have changed how couples meet and stay together.
+This data set contains information from the "How Couples Meet and Stay Together" (HCMST) study, which surveyed 1,722 U.S. adults in 2022 to explore how relationships form and changed with time. It focuses on how relationships were influenced by the COVID-19 pandemic and offers insight at modern relationships, including changes in dating behaviors and how couples adapted during a challenging time. Conducted by Ipsos, and led by researchers from Stanford University, the survey focused on dating habits and the impact of the COVID-19 pandemic on relationships. Adapted from the original [data set](https://data.stanford.edu/hcmst2017), this data offers a look at how social changes have changed how couples meet and stay together.
 
 ### Download
 
