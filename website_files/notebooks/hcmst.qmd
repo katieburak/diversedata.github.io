@@ -7,21 +7,47 @@
 
 ## About the Data
 
-X
+This data set adapted from the original data set \[How Couples Meet and Stay Together 2017, 2022\](<https://data.stanford.edu/hcmst2017>) survey, collected by Stanford University researchers. The data set explores the dynamics of relationships among adults in the United States, with data points gathered from subjects in 2017, 2020 and 2022. This adapted data set focuses specially on variables that may affect the quality of the relationship, considering demographic characteristics of the subjects, as well as the effect of the COVID-19 pandemic.
+
+The extensive use of dating apps and the impact of COVID-19 had a significant impact on how romantic relationships in the United States. This data set enables exploration of how external factors, like health of the subjects and income changes, as well as personal behaviors, like conflict and intimate dynamics, relate to an individual's perception of the quality of the relationship.
+
+This analysis contributes to discussions around resilience partnerships, well-being, and how norms around sexuality and technology shape romantic relationship.s
 
 ### Key Features of the Dataset
 
-X
+Each row in the data set represents an individual respondent from the 2022 wave and includes the following selected variables:
+
+-   **Subject demographics**: age, sex, ethnicity, education level, income level and employment status
+
+-   **Relationship context**: if the subject is involved in a same-sex relationship, if they are married, the duration of the relationship and how many children are in the household.
+
+-   **Couple behavior indicators**: sex, flirting, fighting frequency.
+
+-   **Pandemic Variables**: interpreted impact of the pandemic in the relationship, income change during the pandemic, if the subject and their partner were sick with COVID-19 and if they were vaccinated.
+
+-   **Quality of the relationship**: variable used to measure the subject's perceived quality of their relationship.
 
 ### Purpose and Use Cases
 
-X
+This data set supports investigations into:
+
+-   Demographic and behavioral predictors of relationship quality.
+
+-   How the pandemic experience affected relationships.
+
+-   Differences in relationship dynamics between different levels of income, gender and sexual orientation.
 
 ## Case Study
 
 ### Objective
 
-X
+**What factors are strongly associated with relationship quality in the context of the COVID-19 pandemic?**
+
+This case study examines the association between `relationship_quality` and a variety of demographic, behavioral and pandemic-related variables.
+
+By examining survey data, we aim to:
+
+-   Identify the factors that most strongly affect the perceived relationship quality in the context of the COVID-19 pandemic.
 
 ### Methodology
 
