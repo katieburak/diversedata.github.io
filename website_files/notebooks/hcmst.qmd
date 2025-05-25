@@ -53,6 +53,8 @@ By examining survey data, we aim to:
 
 #### 1. Data Cleaning & Processing
 
+First, we can load our data and remove all NA values from the data set as we will be interested in using all the available variables as explanatory variables.
+
 ```{r}
 library(tidyverse) 
 
@@ -75,6 +77,8 @@ head(hcmst)
 
 #### 2. Exploratory Data Analysis
 
+We can visualize the distribution of our numerical variables. This way we can notice that most of the subjects that took part in the survey were adults over 30 years old and many of them have had very long relationships.
+
 ```{r fig.width=10, fig.height=5}
 numeric_vars <- c("subject_age", "relationship_duration", "children")
 
@@ -91,6 +95,16 @@ ggplot(
   facet_wrap(~ variable, scales = "free", ncol = 2) +
   theme_minimal()
 ```
+
+We can also see histograms for all our different categorical variables to see how different groups were sampled in the survey. This way we can note that the survey considered:
+
+-   White, male subjects that mostly fought and flirted very little with their partner, and did not have sex often.
+
+-   Mostly married, different-sex couples.
+
+-   Most subjects had a bachelor's degree.
+
+-   Most subjects were employed or retired, and earned over \$50K a year.
 
 ```{r fig.width=10, fig.height=25}
 cols_to_plot <- c("subject_education", "subject_sex", "subject_ethnicity", "subject_income_category", "subject_employment_status", "same_sex_couple", "married", "sex_frequency", "flirts_with_partner", "fights_with_partner")
@@ -115,8 +129,16 @@ ggplot(
   theme_minimal()
 ```
 
+Focusing on pandemic-related variables, we can also note the following about the subjects:
+
+-   Subjects mostly agreed about their approach to the pandemic with their partner, including being fully vaccinated.
+
+-   It can also be noted that subjects mostly did not become ill with COVID-19.
+
+-   Subjects mostly did not perceive a change in income nor in their relationship, during the pandemic.
+
 ```{r fig.width=10, fig.height=30}
-cols_to_plot <- c("rel_change_during_pandemic", "inc_change_during_pandemic", "subject_had_covid", "partner_had_covid", "subject_vaccinated", "partner_vaccinated", "agree_covid_approach", "sex_frequency", "flirts_with_partner", "fights_with_partner")
+cols_to_plot <- c("rel_change_during_pandemic", "inc_change_during_pandemic", "subject_had_covid", "partner_had_covid", "subject_vaccinated", "partner_vaccinated", "agree_covid_approach")
 
 hcmst_long <- hcmst |>
   select(all_of(cols_to_plot)) |>
@@ -138,6 +160,8 @@ ggplot(
   theme_minimal()
 ```
 
+As for our target variables, it can be noted that most subjects perceived the quality of their relationship to be `good` or `excellent`.
+
 ```{r}
 relationship_quality <- hcmst |> 
   add_count(relationship_quality) |> 
@@ -157,9 +181,16 @@ relationship_quality
 ggsave("../img/hcmst.png", plot = relationship_quality, width = 6, height = 4, dpi = 300)
 ```
 
-#### 3. More...
+#### 3. Variable Encoding
+
+At this point we can note that our categorical response follows a specific order. For this reason, we require a model that suits ordinal responses. Hence, we will be using an Ordinal Logistic regression model framework.
+
+In order to do so, we need to make sure that our response variable is encoded as an ordered factor. We will also take this opportunity to encode all our explanatory variables as factors (and ordered factors) as needed.
 
 ```{r}
+
+# First, we can encode all our nomical categorical explanatory variables:
+
 hcmst$subject_sex <- as.factor(hcmst$subject_sex)
 levels(hcmst$subject_sex)
 
@@ -180,6 +211,8 @@ levels(hcmst$subject_had_covid)
 
 hcmst$partner_had_covid <- as.factor(hcmst$partner_had_covid)
 levels(hcmst$partner_had_covid)
+
+# Then, we can encode all our ordinal categorical explanatory variables:
 
 hcmst$subject_education <- as.ordered(hcmst$subject_education)
 hcmst$subject_education <- fct_relevel(
@@ -251,6 +284,8 @@ hcmst$agree_covid_approach <- fct_relevel(
 )
 levels(hcmst$agree_covid_approach)
 
+# Finally, we can encode our ordinal categorical response variables:
+
 hcmst$relationship_quality <- as.ordered(hcmst$relationship_quality)
 hcmst$relationship_quality <- fct_relevel(
   hcmst$relationship_quality,
@@ -261,16 +296,22 @@ levels(hcmst$relationship_quality)
 head(hcmst)
 ```
 
-```{r}
-colnames(hcmst)
-```
+#### 3. Ordinal Logistic Regression
+
+For our modeling purposes, we will use the `MASS` package, `polr()` function to obtain model estimates obtained through maximum likelihood.
+
+Given that we are using ordinal categorical variables as explanatory variables, we will also set our model to use successive differences contrasts to make our interpretation of the estimates more interpretable.
 
 ```{r}
 library(MASS)
 library(broom)
 
 options(contrasts = c("contr.treatment", "contr.sdif"))
+```
 
+Now, we can fit our model. Noting that `polr()` does not calculate p-values, we can compute them and bind them to our model estimates. We will also focus only on statistically significant estimates.
+
+```{r}
 full_ordinal_model <- polr(relationship_quality ~ subject_age + subject_education + subject_sex + subject_ethnicity + subject_income_category + subject_employment_status + same_sex_couple + married + sex_frequency + flirts_with_partner + fights_with_partner + relationship_duration + children + rel_change_during_pandemic + inc_change_during_pandemic + subject_had_covid + partner_had_covid + subject_vaccinated + partner_vaccinated + agree_covid_approach,
   data = hcmst, Hess = TRUE
 )
@@ -283,6 +324,8 @@ summary_full_ordinal_model |>
   filter(p.value < 0.05, 
          coef.type == "coefficient")
 ```
+
+WIth our fitted model, we are now able to make predictions on new examples. Based on demographic, behavioral, COVID-19 related variables, we can predict the probabilities of the different levels of perceived `relationship_quality` for a specific subject.
 
 ```{r}
 predict(full_ordinal_model, tibble(
@@ -309,8 +352,10 @@ predict(full_ordinal_model, tibble(
   type = "probs")
 ```
 
+For purposes of this exercise, we will only use a subset of the variables in our modeling. We will be interested in how behavioral variables (`sex_frequency`, `flirts_with_partner` and `fights_with_partner`) affect the perception of relationship quality.
+
 ```{r}
-partial_ordinal_model <- polr(relationship_quality ~ subject_age + subject_education + subject_sex + subject_ethnicity + subject_income_category + subject_employment_status + same_sex_couple + married + sex_frequency + flirts_with_partner + fights_with_partner + relationship_duration + children + rel_change_during_pandemic + inc_change_during_pandemic + subject_had_covid + partner_had_covid + subject_vaccinated + partner_vaccinated + agree_covid_approach,
+partial_ordinal_model <- polr(relationship_quality ~ sex_frequency + flirts_with_partner + fights_with_partner,
   data = hcmst, Hess = TRUE
 )
 
