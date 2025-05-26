@@ -739,7 +739,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">## summary_all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="ab900b7a-bbd4-454e-bd56-fd0da34b4d41" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">## I've noticed that for some csv files. we do not have code, so I just want to left join on YEsr and Country</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">## I've noticed that for some csv files. we do not have code, so I just want to left join on Year and Country</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>columns_to_check <span class="op">=</span> [<span class="st">"Year"</span>, <span class="st">"Entity"</span>, <span class="st">"Code"</span>]</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -807,21 +807,22 @@ df_legal_gender - Nulls in Key Columns:
 </div>
 <div id="0a549f9b-4c7f-4cca-8683-2d85cbc5c5cb" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, I combined all datasets into one long DataFrame </span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>all_data <span class="op">=</span> pd.concat([</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    df_censorship[[<span class="st">"Entity"</span>, <span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    df_employment_discrimination[[<span class="st">"Entity"</span>,<span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    df_gini[[<span class="st">"Entity"</span>,<span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    df_gdp[[<span class="st">"Entity"</span>,<span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    df_education[[<span class="st">"Entity"</span>,<span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    df_gender_care[[<span class="st">"Entity"</span>,<span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    df_marriage[[<span class="st">"Entity"</span>,<span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    df_legal_gender[[<span class="st">"Entity"</span>,<span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">##</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">## Show rows where 'Code' is null</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>null_code_rows <span class="op">=</span> all_data[all_data[<span class="st">"Code"</span>].isna()]</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(null_code_rows)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Please notice that stacking all the rows from these datasets on top of each other</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>all_data <span class="op">=</span> pd.concat([</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    df_censorship[[<span class="st">"Entity"</span>, <span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    df_employment_discrimination[[<span class="st">"Entity"</span>,<span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    df_gini[[<span class="st">"Entity"</span>,<span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    df_gdp[[<span class="st">"Entity"</span>,<span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    df_education[[<span class="st">"Entity"</span>,<span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    df_gender_care[[<span class="st">"Entity"</span>,<span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    df_marriage[[<span class="st">"Entity"</span>,<span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    df_legal_gender[[<span class="st">"Entity"</span>,<span class="st">"Code"</span>, <span class="st">"Year"</span>]],</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">##</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">## Show rows where 'Code' is null</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>null_code_rows <span class="op">=</span> all_data[all_data[<span class="st">"Code"</span>].isna()]</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(null_code_rows)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                Entity Code  Year
 3108                 Argentina (urban)  NaN  1980
@@ -927,8 +928,8 @@ df_legal_gender - Nulls in Key Columns:
 </div>
 </div>
 <div id="a342e700-1a7c-4186-b0cf-80c8d0ba7a9f" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">## So I just created my base table based on Year and Country and filtered it out for Year &gt; 2000</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="op">=</span> all_data[all_data[<span class="st">"Year"</span>] <span class="op">&gt;</span> <span class="dv">2000</span>]</span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">## So I just created my base table based on Year and Country and filtered it out for Year &gt; 2000  and &lt;= 2023</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="op">=</span> all_data[(all_data[<span class="st">"Year"</span>] <span class="op">&gt;</span> <span class="dv">2000</span>) <span class="op">&amp;</span> (all_data[<span class="st">"Year"</span>] <span class="op">&lt;=</span> <span class="dv">2023</span>)]</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>base_table <span class="op">=</span> filtered_data[[<span class="st">"Year"</span>, <span class="st">"Entity"</span>, <span class="st">"Code"</span>]].drop_duplicates()</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>base_table <span class="op">=</span> base_table.sort_values(by<span class="op">=</span>[<span class="st">"Year"</span>, <span class="st">"Entity"</span>]).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>base_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -983,39 +984,39 @@ df_legal_gender - Nulls in Key Columns:
 <td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">5637</td>
-<td>2025</td>
-<td>Venezuela</td>
-<td>VEN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5638</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5265</td>
+<td>2023</td>
 <td>Vietnam</td>
 <td>VNM</td>
 </tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5266</td>
+<td>2023</td>
+<td>World</td>
+<td>OWID_WRL</td>
+</tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">5639</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5267</td>
+<td>2023</td>
 <td>Yemen</td>
 <td>YEM</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">5640</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5268</td>
+<td>2023</td>
 <td>Zambia</td>
 <td>ZMB</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">5641</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5269</td>
+<td>2023</td>
 <td>Zimbabwe</td>
 <td>ZWE</td>
 </tr>
 </tbody>
 </table>
 
-<p>5642 rows × 3 columns</p>
+<p>5270 rows × 3 columns</p>
 </div>
 </div>
 </div>
@@ -1045,7 +1046,7 @@ df_legal_gender - Nulls in Key Columns:
 <span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Final shape:"</span>, merged_wide_df.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Final shape: (5642, 20)</code></pre>
+<pre><code>Final shape: (5270, 20)</code></pre>
 </div>
 </div>
 <div id="5951968b-6ee8-4e91-8cf9-e39659eb8bb8" class="cell" data-execution_count="10">
@@ -1205,7 +1206,7 @@ df_legal_gender - Nulls in Key Columns:
 <div id="75de7966-1965-401e-9acc-afc188fbd394" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Long format shape:"</span>, merged_wide_df.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Long format shape: (5642, 20)</code></pre>
+<pre><code>Long format shape: (5270, 20)</code></pre>
 </div>
 </div>
 <div id="c328aeb5-be89-473d-96d2-c3ec963d99bc" class="cell" data-execution_count="12">
@@ -1259,7 +1260,7 @@ df_legal_gender - Nulls in Key Columns:
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape after cleaning:"</span>, cleaned_long_df.shape)</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>cleaned_long_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Shape after cleaning: (5642, 12)</code></pre>
+<pre><code>Shape after cleaning: (5270, 12)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
@@ -1375,84 +1376,84 @@ df_legal_gender - Nulls in Key Columns:
 <td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">5637</td>
-<td>2025</td>
-<td>Venezuela</td>
-<td>VEN</td>
-<td>No censorship</td>
-<td>Sexual orientation only</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Restricted</td>
-<td>Banned</td>
-<td>Illegal</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5638</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5265</td>
+<td>2023</td>
 <td>Vietnam</td>
 <td>VNM</td>
-<td>No censorship</td>
-<td>No protections</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
+<td>NaN</td>
+<td>13491.8800</td>
 <td>NaN</td>
 <td>Legal</td>
 <td>Banned</td>
 <td>Legal, surgery required</td>
 </tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5266</td>
+<td>2023</td>
+<td>World</td>
+<td>OWID_WRL</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>20670.9410</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">5639</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5267</td>
+<td>2023</td>
 <td>Yemen</td>
 <td>YEM</td>
-<td>State-enforced</td>
+<td>NaN</td>
+<td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>Banned</td>
-<td>Banned</td>
-<td>Illegal</td>
+<td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">5640</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5268</td>
+<td>2023</td>
 <td>Zambia</td>
 <td>ZMB</td>
 <td>Imprisonment as punishment</td>
-<td>No protections</td>
 <td>NaN</td>
 <td>NaN</td>
+<td>NaN</td>
+<td>3673.4841</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>Banned</td>
-<td>Banned</td>
-<td>Illegal</td>
+<td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">5641</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5269</td>
+<td>2023</td>
 <td>Zimbabwe</td>
 <td>ZWE</td>
 <td>Imprisonment as punishment</td>
-<td>No protections</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
+<td>3442.2512</td>
 <td>NaN</td>
-<td>Restricted</td>
+<td>NaN</td>
 <td>Banned</td>
-<td>Illegal</td>
+<td>NaN</td>
 </tr>
 </tbody>
 </table>
 
-<p>5642 rows × 12 columns</p>
+<p>5270 rows × 12 columns</p>
 </div>
 </div>
 </div>
@@ -1482,79 +1483,79 @@ df_legal_gender - Nulls in Key Columns:
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">5637</td>
-<td>2025</td>
-<td>Venezuela</td>
-<td>VEN</td>
-<td>No censorship</td>
-<td>Sexual orientation only</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Restricted</td>
-<td>Banned</td>
-<td>Illegal</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5638</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5265</td>
+<td>2023</td>
 <td>Vietnam</td>
 <td>VNM</td>
-<td>No censorship</td>
-<td>No protections</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
+<td>NaN</td>
+<td>13491.8800</td>
 <td>NaN</td>
 <td>Legal</td>
 <td>Banned</td>
 <td>Legal, surgery required</td>
 </tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5266</td>
+<td>2023</td>
+<td>World</td>
+<td>OWID_WRL</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>20670.9410</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">5639</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5267</td>
+<td>2023</td>
 <td>Yemen</td>
 <td>YEM</td>
-<td>State-enforced</td>
+<td>NaN</td>
+<td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>Banned</td>
-<td>Banned</td>
-<td>Illegal</td>
+<td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">5640</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5268</td>
+<td>2023</td>
 <td>Zambia</td>
 <td>ZMB</td>
 <td>Imprisonment as punishment</td>
-<td>No protections</td>
 <td>NaN</td>
 <td>NaN</td>
+<td>NaN</td>
+<td>3673.4841</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>Banned</td>
-<td>Banned</td>
-<td>Illegal</td>
+<td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">5641</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5269</td>
+<td>2023</td>
 <td>Zimbabwe</td>
 <td>ZWE</td>
 <td>Imprisonment as punishment</td>
-<td>No protections</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
+<td>3442.2512</td>
 <td>NaN</td>
-<td>Restricted</td>
+<td>NaN</td>
 <td>Banned</td>
-<td>Illegal</td>
+<td>NaN</td>
 </tr>
 </tbody>
 </table>
@@ -1577,13 +1578,12 @@ df_legal_gender - Nulls in Key Columns:
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="st">"Censorship of LGBT+ issues (historical)_censorship"</span>, <span class="st">"lgbtq-censorship"</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="st">"LGBT+ employment discrimination (historical)_employment"</span>, <span class="st">"employment-discrimination"</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="st">"Gini coefficient_gini"</span>, <span class="st">"gini-index"</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="st">"990179-annotations_gini"</span>, <span class="st">"inequality-annotations"</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="st">"GDP per capita, PPP (constant 2021 international $)_gdp"</span>, <span class="st">"gdp-per-capita"</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="st">"Public spending on education as a share of GDP_education"</span>, <span class="st">"education-spending-gdp"</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="st">"Gender-affirming care (historical)_gendercare"</span>, <span class="st">"gender-affirming-care"</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="st">"Same-sex marriage (historical)_marriage"</span>, <span class="st">"same-sex-marriage"</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="st">"Right to change legal gender (historical)_legalgender"</span>, <span class="st">"legal-gender"</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="st">"GDP per capita, PPP (constant 2021 international $)_gdp"</span>, <span class="st">"gdp-per-capita"</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="st">"Public spending on education as a share of GDP_education"</span>, <span class="st">"education-spending-gdp"</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="st">"Gender-affirming care (historical)_gendercare"</span>, <span class="st">"gender-affirming-care"</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="st">"Same-sex marriage (historical)_marriage"</span>, <span class="st">"same-sex-marriage"</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="st">"Right to change legal gender (historical)_legalgender"</span>, <span class="st">"legal-gender"</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="6a77c891-21f0-4958-91aa-36bf1799dc5e" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>cleaned_long_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1601,7 +1601,7 @@ df_legal_gender - Nulls in Key Columns:
 <th data-quarto-table-cell-role="th">lgbtq-censorship</th>
 <th data-quarto-table-cell-role="th">employment-discrimination</th>
 <th data-quarto-table-cell-role="th">gini-index</th>
-<th data-quarto-table-cell-role="th">inequality-annotations</th>
+<th data-quarto-table-cell-role="th">990179-annotations_gini</th>
 <th data-quarto-table-cell-role="th">gdp-per-capita</th>
 <th data-quarto-table-cell-role="th">education-spending-gdp</th>
 <th data-quarto-table-cell-role="th">gender-affirming-care</th>
@@ -1701,84 +1701,84 @@ df_legal_gender - Nulls in Key Columns:
 <td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">5637</td>
-<td>2025</td>
-<td>Venezuela</td>
-<td>VEN</td>
-<td>No censorship</td>
-<td>Sexual orientation only</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Restricted</td>
-<td>Banned</td>
-<td>Illegal</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5638</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5265</td>
+<td>2023</td>
 <td>Vietnam</td>
 <td>VNM</td>
-<td>No censorship</td>
-<td>No protections</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
+<td>NaN</td>
+<td>13491.8800</td>
 <td>NaN</td>
 <td>Legal</td>
 <td>Banned</td>
 <td>Legal, surgery required</td>
 </tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5266</td>
+<td>2023</td>
+<td>World</td>
+<td>OWID_WRL</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>20670.9410</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">5639</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5267</td>
+<td>2023</td>
 <td>Yemen</td>
 <td>YEM</td>
-<td>State-enforced</td>
+<td>NaN</td>
+<td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>Banned</td>
-<td>Banned</td>
-<td>Illegal</td>
+<td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">5640</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5268</td>
+<td>2023</td>
 <td>Zambia</td>
 <td>ZMB</td>
 <td>Imprisonment as punishment</td>
-<td>No protections</td>
 <td>NaN</td>
 <td>NaN</td>
+<td>NaN</td>
+<td>3673.4841</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>Banned</td>
-<td>Banned</td>
-<td>Illegal</td>
+<td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">5641</td>
-<td>2025</td>
+<td data-quarto-table-cell-role="th">5269</td>
+<td>2023</td>
 <td>Zimbabwe</td>
 <td>ZWE</td>
 <td>Imprisonment as punishment</td>
-<td>No protections</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
+<td>3442.2512</td>
 <td>NaN</td>
-<td>Restricted</td>
+<td>NaN</td>
 <td>Banned</td>
-<td>Illegal</td>
+<td>NaN</td>
 </tr>
 </tbody>
 </table>
 
-<p>5642 rows × 12 columns</p>
+<p>5270 rows × 12 columns</p>
 </div>
 </div>
 </div>
@@ -1791,7 +1791,7 @@ country-code                  object
 lgbtq-censorship              object
 employment-discrimination     object
 gini-index                   float64
-inequality-annotations       float64
+990179-annotations_gini      float64
 gdp-per-capita               float64
 education-spending-gdp       float64
 gender-affirming-care         object
@@ -1839,96 +1839,96 @@ dtype: object</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>year</td>
-<td>5642</td>
-<td>5642</td>
+<td>5270</td>
+<td>5270</td>
 <td>100.0</td>
 <td>int64</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>country</td>
-<td>5642</td>
-<td>5642</td>
+<td>5270</td>
+<td>5270</td>
 <td>100.0</td>
 <td>object</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>country-code</td>
-<td>5144</td>
-<td>5642</td>
-<td>91.2</td>
-<td>object</td>
+<td>gdp-per-capita</td>
+<td>4841</td>
+<td>5270</td>
+<td>91.9</td>
+<td>float64</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>gdp-per-capita</td>
-<td>4841</td>
-<td>5642</td>
-<td>85.8</td>
-<td>float64</td>
+<td>country-code</td>
+<td>4772</td>
+<td>5270</td>
+<td>90.6</td>
+<td>object</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>education-spending-gdp</td>
 <td>3601</td>
-<td>5642</td>
-<td>63.8</td>
+<td>5270</td>
+<td>68.3</td>
 <td>float64</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
 <td>same-sex-marriage</td>
-<td>2892</td>
-<td>5642</td>
-<td>51.3</td>
+<td>2560</td>
+<td>5270</td>
+<td>48.6</td>
 <td>object</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">6</td>
 <td>legal-gender</td>
-<td>2000</td>
-<td>5642</td>
-<td>35.4</td>
+<td>1703</td>
+<td>5270</td>
+<td>32.3</td>
 <td>object</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">7</td>
 <td>gini-index</td>
 <td>1664</td>
-<td>5642</td>
-<td>29.5</td>
+<td>5270</td>
+<td>31.6</td>
 <td>float64</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">8</td>
 <td>gender-affirming-care</td>
-<td>1661</td>
-<td>5642</td>
-<td>29.4</td>
+<td>1414</td>
+<td>5270</td>
+<td>26.8</td>
 <td>object</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">9</td>
 <td>employment-discrimination</td>
-<td>1496</td>
-<td>5642</td>
-<td>26.5</td>
+<td>1225</td>
+<td>5270</td>
+<td>23.2</td>
 <td>object</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">10</td>
 <td>lgbtq-censorship</td>
-<td>964</td>
-<td>5642</td>
-<td>17.1</td>
+<td>720</td>
+<td>5270</td>
+<td>13.7</td>
 <td>object</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">11</td>
-<td>inequality-annotations</td>
+<td>990179-annotations_gini</td>
 <td>0</td>
-<td>5642</td>
+<td>5270</td>
 <td>0.0</td>
 <td>float64</td>
 </tr>
@@ -1938,8 +1938,570 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div id="a8f5173c-ba45-43ed-9ae5-653a0da4ab03" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>cleaned_long_df.to_csv(<span class="st">"../data/clean/LGBTIQ-rights_clean.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="395838f0-2040-487f-be57-5b6a9a46f6bd" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Again Dropping some columns based on Non-Null %</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>columns_to_drop <span class="op">=</span> [<span class="st">'990179-annotations_gini'</span>]</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>cleaned_long_df <span class="op">=</span> cleaned_long_df.drop(columns<span class="op">=</span>columns_to_drop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="7cc91ac3-858d-4090-b08a-af63ea48bf94" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">## One more time checking the columns </span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>eda_summary <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Non-Null Count"</span>: cleaned_long_df.notnull().<span class="bu">sum</span>(),</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Total Rows"</span>: <span class="bu">len</span>(cleaned_long_df),</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Non-Null %"</span>: cleaned_long_df.notnull().mean() <span class="op">*</span> <span class="dv">100</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Data Type"</span>: cleaned_long_df.dtypes</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>eda_summary <span class="op">=</span> eda_summary.sort_values(by<span class="op">=</span><span class="st">"Non-Null Count"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>eda_summary[<span class="st">"Non-Null %"</span>] <span class="op">=</span> eda_summary[<span class="st">"Non-Null %"</span>].<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>eda_summary.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>eda_summary.rename(columns<span class="op">=</span>{<span class="st">"index"</span>: <span class="st">"Column"</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>eda_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Column</th>
+<th data-quarto-table-cell-role="th">Non-Null Count</th>
+<th data-quarto-table-cell-role="th">Total Rows</th>
+<th data-quarto-table-cell-role="th">Non-Null %</th>
+<th data-quarto-table-cell-role="th">Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>year</td>
+<td>5270</td>
+<td>5270</td>
+<td>100.0</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>country</td>
+<td>5270</td>
+<td>5270</td>
+<td>100.0</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>gdp-per-capita</td>
+<td>4841</td>
+<td>5270</td>
+<td>91.9</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>country-code</td>
+<td>4772</td>
+<td>5270</td>
+<td>90.6</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>education-spending-gdp</td>
+<td>3601</td>
+<td>5270</td>
+<td>68.3</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>same-sex-marriage</td>
+<td>2560</td>
+<td>5270</td>
+<td>48.6</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>legal-gender</td>
+<td>1703</td>
+<td>5270</td>
+<td>32.3</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>gini-index</td>
+<td>1664</td>
+<td>5270</td>
+<td>31.6</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>gender-affirming-care</td>
+<td>1414</td>
+<td>5270</td>
+<td>26.8</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>employment-discrimination</td>
+<td>1225</td>
+<td>5270</td>
+<td>23.2</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>lgbtq-censorship</td>
+<td>720</td>
+<td>5270</td>
+<td>13.7</td>
+<td>object</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="0aa162a1-65cd-4f30-86a4-ce688f63c3e0" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cleaned_long_df.columns.tolist())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['year', 'country', 'country-code', 'lgbtq-censorship', 'employment-discrimination', 'gini-index', 'gdp-per-capita', 'education-spending-gdp', 'gender-affirming-care', 'same-sex-marriage', 'legal-gender']</code></pre>
+</div>
+</div>
+<div id="3bc4de46-c6bc-46e3-9e7f-1ef81adb93f8" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#3 Checking for each country, how many missing values we have for each column </span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> cleaned_long_df.groupby(<span class="st">"country"</span>).agg(</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    total_rows<span class="op">=</span>(<span class="st">"country"</span>, <span class="st">"size"</span>),</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    missing_gdp_per_capita<span class="op">=</span>(<span class="st">"gdp-per-capita"</span>, <span class="kw">lambda</span> x: x.isna().<span class="bu">sum</span>()),</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    missing_same_sex_marriage<span class="op">=</span>(<span class="st">"same-sex-marriage"</span>, <span class="kw">lambda</span> x: x.isna().<span class="bu">sum</span>()),</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    missing_legal_gender<span class="op">=</span>(<span class="st">"legal-gender"</span>, <span class="kw">lambda</span> x: x.isna().<span class="bu">sum</span>()),</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    missing_lgbtq_censorship<span class="op">=</span>(<span class="st">"lgbtq-censorship"</span>, <span class="kw">lambda</span> x: x.isna().<span class="bu">sum</span>()),</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    missing_employment_discrimination<span class="op">=</span>(<span class="st">"employment-discrimination"</span>, <span class="kw">lambda</span> x: x.isna().<span class="bu">sum</span>()),</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    missing_gender_affirming_care<span class="op">=</span>(<span class="st">"gender-affirming-care"</span>, <span class="kw">lambda</span> x: x.isna().<span class="bu">sum</span>())</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">"missing_count"</span>] <span class="op">=</span> (</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>    summary[<span class="st">"missing_gdp_per_capita"</span>]</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> summary[<span class="st">"missing_same_sex_marriage"</span>]</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> summary[<span class="st">"missing_same_sex_marriage"</span>] </span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> summary[<span class="st">"missing_legal_gender"</span>]</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> summary[<span class="st">"missing_lgbtq_censorship"</span>]</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> summary[<span class="st">"missing_employment_discrimination"</span>]</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> summary[<span class="st">"missing_gender_affirming_care"</span>]</span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> summary[<span class="st">"missing_legal_gender"</span>] </span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>summary_sorted <span class="op">=</span> summary.sort_values(<span class="st">"missing_count"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>summary_sorted[summary_sorted[<span class="st">"missing_count"</span>] <span class="op">&gt;</span> <span class="dv">100</span>]   <span class="co">###</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">total_rows</th>
+<th data-quarto-table-cell-role="th">missing_gdp_per_capita</th>
+<th data-quarto-table-cell-role="th">missing_same_sex_marriage</th>
+<th data-quarto-table-cell-role="th">missing_legal_gender</th>
+<th data-quarto-table-cell-role="th">missing_lgbtq_censorship</th>
+<th data-quarto-table-cell-role="th">missing_employment_discrimination</th>
+<th data-quarto-table-cell-role="th">missing_gender_affirming_care</th>
+<th data-quarto-table-cell-role="th">missing_count</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Western and Central Africa (WB)</td>
+<td>22</td>
+<td>22</td>
+<td>22</td>
+<td>22</td>
+<td>22</td>
+<td>22</td>
+<td>22</td>
+<td>176</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Argentina (urban)</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>168</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">EU (27)</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>168</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Central Europe and the Baltics (WB)</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>168</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Bermuda</td>
+<td>23</td>
+<td>0</td>
+<td>23</td>
+<td>23</td>
+<td>23</td>
+<td>23</td>
+<td>23</td>
+<td>161</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Sint Maarten (Dutch part)</td>
+<td>15</td>
+<td>0</td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+<td>105</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Albania</td>
+<td>23</td>
+<td>0</td>
+<td>2</td>
+<td>23</td>
+<td>23</td>
+<td>9</td>
+<td>23</td>
+<td>105</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Georgia</td>
+<td>23</td>
+<td>0</td>
+<td>23</td>
+<td>0</td>
+<td>23</td>
+<td>13</td>
+<td>23</td>
+<td>105</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Malta</td>
+<td>23</td>
+<td>0</td>
+<td>13</td>
+<td>14</td>
+<td>23</td>
+<td>3</td>
+<td>23</td>
+<td>103</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Cameroon</td>
+<td>23</td>
+<td>0</td>
+<td>0</td>
+<td>23</td>
+<td>9</td>
+<td>23</td>
+<td>23</td>
+<td>101</td>
+</tr>
+</tbody>
+</table>
+
+<p>140 rows × 8 columns</p>
+</div>
+</div>
+</div>
+<div id="e148f810-c5a9-496d-9876-63a79c295a48" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Based on the top table, some countries have missing values for almost all columns, so we are going to delete them instead of deleting the columns</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>countries_to_exclude <span class="op">=</span> summary_sorted[summary_sorted[<span class="st">"missing_count"</span>] <span class="op">&gt;</span> <span class="dv">100</span>].index.tolist()</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>cleaned_long_df <span class="op">=</span> cleaned_long_df[<span class="op">~</span>cleaned_long_df[<span class="st">"country"</span>].isin(countries_to_exclude)]</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>cleaned_long_df <span class="op">=</span> cleaned_long_df.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>cleaned_long_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">country-code</th>
+<th data-quarto-table-cell-role="th">lgbtq-censorship</th>
+<th data-quarto-table-cell-role="th">employment-discrimination</th>
+<th data-quarto-table-cell-role="th">gini-index</th>
+<th data-quarto-table-cell-role="th">gdp-per-capita</th>
+<th data-quarto-table-cell-role="th">education-spending-gdp</th>
+<th data-quarto-table-cell-role="th">gender-affirming-care</th>
+<th data-quarto-table-cell-role="th">same-sex-marriage</th>
+<th data-quarto-table-cell-role="th">legal-gender</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2001</td>
+<td>Algeria</td>
+<td>DZA</td>
+<td>Imprisonment as punishment</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>11742.60</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Banned</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2001</td>
+<td>Andorra</td>
+<td>AND</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>59109.02</td>
+<td>NaN</td>
+<td>Restricted</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2001</td>
+<td>Argentina</td>
+<td>ARG</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>21066.46</td>
+<td>4.83</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2001</td>
+<td>Armenia</td>
+<td>ARM</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.35</td>
+<td>5044.12</td>
+<td>2.47</td>
+<td>Legal, but restricted for minors</td>
+<td>NaN</td>
+<td>Legal, surgery required</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2001</td>
+<td>Australia</td>
+<td>AUS</td>
+<td>Varies by region</td>
+<td>NaN</td>
+<td>0.33</td>
+<td>44667.93</td>
+<td>5.22</td>
+<td>Legal</td>
+<td>NaN</td>
+<td>Varies by region</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="b0fe67ac-c419-4d8a-ac35-4bb3995c1fcb" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a> <span class="co">## One more time checking the columns </span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>eda_summary <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Non-Null Count"</span>: cleaned_long_df.notnull().<span class="bu">sum</span>(),</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Total Rows"</span>: <span class="bu">len</span>(cleaned_long_df),</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Non-Null %"</span>: cleaned_long_df.notnull().mean() <span class="op">*</span> <span class="dv">100</span>,</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Data Type"</span>: cleaned_long_df.dtypes</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>eda_summary <span class="op">=</span> eda_summary.sort_values(by<span class="op">=</span><span class="st">"Non-Null Count"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>eda_summary[<span class="st">"Non-Null %"</span>] <span class="op">=</span> eda_summary[<span class="st">"Non-Null %"</span>].<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>eda_summary.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>eda_summary.rename(columns<span class="op">=</span>{<span class="st">"index"</span>: <span class="st">"Column"</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>eda_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Column</th>
+<th data-quarto-table-cell-role="th">Non-Null Count</th>
+<th data-quarto-table-cell-role="th">Total Rows</th>
+<th data-quarto-table-cell-role="th">Non-Null %</th>
+<th data-quarto-table-cell-role="th">Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>year</td>
+<td>2125</td>
+<td>2125</td>
+<td>100.0</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>country</td>
+<td>2125</td>
+<td>2125</td>
+<td>100.0</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>country-code</td>
+<td>2094</td>
+<td>2125</td>
+<td>98.5</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>gdp-per-capita</td>
+<td>2023</td>
+<td>2125</td>
+<td>95.2</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>same-sex-marriage</td>
+<td>1700</td>
+<td>2125</td>
+<td>80.0</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>education-spending-gdp</td>
+<td>1677</td>
+<td>2125</td>
+<td>78.9</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>legal-gender</td>
+<td>1419</td>
+<td>2125</td>
+<td>66.8</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>gini-index</td>
+<td>1173</td>
+<td>2125</td>
+<td>55.2</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>gender-affirming-care</td>
+<td>1152</td>
+<td>2125</td>
+<td>54.2</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>employment-discrimination</td>
+<td>988</td>
+<td>2125</td>
+<td>46.5</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>lgbtq-censorship</td>
+<td>521</td>
+<td>2125</td>
+<td>24.5</td>
+<td>object</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="a8f5173c-ba45-43ed-9ae5-653a0da4ab03" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Desired column order</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>column_order <span class="op">=</span> [</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"year"</span>, <span class="st">"country"</span>, <span class="st">"country-code"</span>,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"gdp-per-capita"</span>, <span class="st">"education-spending-gdp"</span>,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"same-sex-marriage"</span>, <span class="st">"lgbtq-censorship"</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"employment-discrimination"</span>, <span class="st">"gender-affirming-care"</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"legal-gender"</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>cleaned_long_df <span class="op">=</span> cleaned_long_df[column_order]</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>cleaned_long_df.to_csv(<span class="st">"../data/clean/globalrights.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

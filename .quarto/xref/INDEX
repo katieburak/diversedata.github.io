@@ -148,5 +148,11 @@
   },
   "website_files/license.qmd": {
     "license.html": "7e6f2852"
+  },
+  "scripts/gender_assessment_clean.ipynb": {
+    "gender_assessment_clean.html": "85ece5ee"
+  },
+  "website_files/how_to_publish_a_new_notebook.md": {
+    "how_to_publish_a_new_notebook.html": "ccdae5bd"
   }
 }
