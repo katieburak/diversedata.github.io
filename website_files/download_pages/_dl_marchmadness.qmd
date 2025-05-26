@@ -1,9 +1,0 @@
-#### Women's March Madness History
-
-<div class="button-container">
-  <a href="data/clean/womens-march-madness-clean.csv" download class="download-button">
-    Download CSV
-  </a>
-  </p>
-  <a href="" class="btn btn-outline-dark">More Details</a>
-</div>
