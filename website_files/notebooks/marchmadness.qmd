@@ -63,13 +63,19 @@ Understanding these dynamics can inform fan expectations and bracket predictions
 
 ### Methodology
 
+#### 0. Loading Libraries
+
+```{r}
+library(tidyverse)
+library(AER)
+library(broom)
+```
+
 #### 1. Data Cleaning & Processing
 
 First, let's load our data and remove all NA values for our variables of interest `seed` and `tourney_wins`.
 
 ```{r, warning=FALSE, message=FALSE}
-library(tidyverse) 
-
 # Reading Data
 marchmadness <- read_csv("../../data/clean/womensmarchmadness.csv") 
 
@@ -244,7 +250,6 @@ $H_a: 1 + \gamma > 1$
 When there is evidence of overdispersion in our data, we will reject $H_o$.
 
 ```{r, warning=FALSE, message=FALSE}
-library(AER)
 
 dispersiontest(poisson_model)
 ```
@@ -256,6 +261,7 @@ Since the P-value (0.8437) is much greater than 0.05, we fail to reject the null
 Note that throughout this analysis, we've made one big assumption: we have used `seed` as a numeric predictor. This assumes that the effect of `seed` is linear on the log scaled of the amount of `tourney_wins`.
 
 ```{r}
+
 class(marchmadness$seed)
 ```
 
@@ -294,8 +300,6 @@ ggplot(plot_data, aes(x = seed, y = predicted, color = model)) +
 However, is we wanted to formally evaluate which is the better approach we could use likelihood-based model selection tools.
 
 ```{r}
-library(broom)
-
 glance(poisson_model)
 
 glance(poisson_model_factor)
