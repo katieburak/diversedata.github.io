@@ -136,7 +136,7 @@ levels(hcmst$relationship_quality)
 head(hcmst)
 ```
 
-#### 2. Exploratory Data Analysis
+#### 3. Exploratory Data Analysis
 
 Let's visualize histograms and stacked bar charts for our different categorical variables to see how different groups were sampled in the survey and how different these samples are for same sex couples.
 
@@ -184,44 +184,37 @@ stacked_bar_plot <- function(data, x_var, stacked_var, plot_title = "Stacked Bar
       legend.text = element_text(size = 12, margin = margin(r = 1, unit = "cm")),
       legend.title = element_text(size = 12, face = "bold")
     ) +
-    guides(fill = guide_legend(title = "Characteristic")) +
+    guides(fill = guide_legend(title = NULL)) +
     scale_fill_brewer(palette = "Blues")
 }
 
-histogram_plot <- function(data, y_var, plot_title = "Counts by Category") {
-  data_long <- data |>
-    dplyr::select(all_of(y_var)) |>
-    pivot_longer(cols = everything(), names_to = "variable", values_to = "value") |>
-    count(variable, value)
+histogram_plot <- function(data, y_var, facet, plot_title = "Counts by Category") {
 
-  ggplot(data_long, aes(y = reorder(value, n))) +
-    geom_bar(aes(x = n), stat = "identity", fill = "skyblue2") +
+  data_long <- data |> 
+    dplyr::select(all_of(c(y_var, facet))) |> 
+    pivot_longer(cols = all_of(y_var), names_to = "var", values_to = "value") |> 
+    count(var, value, facet_value = .data[[facet]])
+
+  ggplot(data_long, aes(x = n, y = reorder(value, n), fill = facet_value)) +
+    geom_bar(stat = "identity", position = "dodge", color = "white") +
     labs(
       title = plot_title,
       x = "Count",
-      y = NULL
+      y = NULL,
+      fill = facet
     ) +
     theme_minimal()
 }
 ```
 
-We can note that a small minority of the sample are involved in same-sex couples.
+We can look at how often the sample are having sex with their partners.
 
-```{r fig.height=2, fig.width=8}
-
-hist_same_sex <- histogram_plot(hcmst, "same_sex_couple", plot_title = "Counts by Category")
-
-hist_same_sex
-```
-
-Now we can look at how often the sample are having sex with their partners.
-
-We can note that same-sex couples have very similar proportions in how often they have sex vs different-sex couples. We can also note that the sample is skewed towards having sex less frequently.
+We can note that same-sex couples have very similar proportions in how often they have sex vs different-sex couples. It is also noteworthy that the sample of same sex couples is significantly lower that that of different sex couples. We can also note that the sample is skewed towards having sex less frequently.
 
 ```{r fig.height=10, fig.width=8}
-prop_sex_freq <- stacked_bar_plot(hcmst, "same_sex_couple", "sex_frequency", plot_title = "Stacked Bar Charts")
+prop_sex_freq <- stacked_bar_plot(hcmst, "same_sex_couple", "sex_frequency", plot_title = "Sex Frequency Distribution by Couple Type")
 
-hist_sex_freq <- histogram_plot(hcmst, "sex_frequency", plot_title = "Counts by Category")
+hist_sex_freq <- histogram_plot(hcmst, "sex_frequency", "same_sex_couple", plot_title = "Sex Frequency Counts by Couple Type")
 
 plot_grid(prop_sex_freq, hist_sex_freq, ncol = 1)
 ```
@@ -230,18 +223,18 @@ We can also visualize how often couples flirt and fight with their partners. Aga
 
 ```{r fig.height=10, fig.width=8}
 
-prop_flirt_freq <- stacked_bar_plot(hcmst, "same_sex_couple", "flirts_with_partner", plot_title = "Stacked Bar Charts")
+prop_flirt_freq <- stacked_bar_plot(hcmst, "same_sex_couple", "flirts_with_partner", plot_title = "Flirting Frequency Distribution by Couple Type")
 
-hist_flirt_freq <- histogram_plot(hcmst, "flirts_with_partner", plot_title = "Counts by Category")
+hist_flirt_freq <- histogram_plot(hcmst, "flirts_with_partner", "same_sex_couple", plot_title = "Flirting Frequency Counts by Couple Type")
 
 plot_grid(prop_flirt_freq, hist_flirt_freq, ncol = 1)
 ```
 
 ```{r fig.height=10, fig.width=8}
 
-prop_fight_freq <- stacked_bar_plot(hcmst, "same_sex_couple", "fights_with_partner", plot_title = "Stacked Bar Charts")
+prop_fight_freq <- stacked_bar_plot(hcmst, "same_sex_couple", "fights_with_partner", plot_title = "Fighting Frequency Distribution by Couple Type")
 
-hist_fight_freq <- histogram_plot(hcmst, "fights_with_partner", plot_title = "Counts by Category")
+hist_fight_freq <- histogram_plot(hcmst, "fights_with_partner", "same_sex_couple", plot_title = "Fighting Frequency Counts by Couple Type")
 
 plot_grid(prop_fight_freq, hist_fight_freq, ncol = 1)
 ```
@@ -250,9 +243,9 @@ As for our target variable, it can be noted that most subjects perceived the qua
 
 ```{r fig.height=10, fig.width=8}
 
-prop_quality_freq <- stacked_bar_plot(hcmst, "same_sex_couple", "relationship_quality", plot_title = "Stacked Bar Charts")
+prop_quality_freq <- stacked_bar_plot(hcmst, "same_sex_couple", "relationship_quality", plot_title = "Relationship Quality Frequency Distribution by Couple Type")
 
-hist_quality_freq <- histogram_plot(hcmst, "relationship_quality", plot_title = "Counts by Category")
+hist_quality_freq <- histogram_plot(hcmst, "relationship_quality", "same_sex_couple", plot_title = "Relationship Quality Frequency Counts by Couple Type")
 
 plot_grid(prop_quality_freq, hist_quality_freq, ncol = 1)
 ```
@@ -261,7 +254,7 @@ plot_grid(prop_quality_freq, hist_quality_freq, ncol = 1)
 ggsave("../img/hcmst.png", plot = prop_quality_freq, width = 6, height = 4, dpi = 300)
 ```
 
-#### 3. Ordinal Logistic Regression
+#### 4. Ordinal Logistic Regression
 
 We will be assuming and fitting a proportional odds model, which assumes that the log-odds of being in a higher category of the response variable follows a linear relationship with the explanatory variables.
 
@@ -296,16 +289,10 @@ Positive estimates are associated with higher relationship quality, while negati
 
 We can interpret these estimates:
 
--   `same_sex_couple`: There is no statistical evidence that being part of a same-sex couple has an association with the perceived relationship quality
-
-<!-- -->
-
+-   `same_sex_couple`: There is no statistical evidence that being part of a same-sex couple has an association with the perceived relationship quality.
 -   `sex_frequency`: People who have sex 2-3 times a month have 1.8 higher odds of reporting better relationship quality that those who have sex once a month or less.
-
 -   `flirts_with_partner`: Flirting once per week vs 1-3 times per month is associated with a 49% lower odds of better relationship quality. This is a bit unexpected.
-
 -   `flirts_with_partner`: Flirting every day vs a few times per week is associated with 2.3 higher odds of better relationship quality.
-
 -   `fights_with_partner`: Fighting once vs none is associated with 47% lower odds of better relationship quality.
 
 With our fitted model, we are now able to make predictions on new examples. Based on demographic, behavioral, COVID-19 related variables, we can predict the probabilities of the different levels of perceived `relationship_quality` for a specific subject.
@@ -328,9 +315,9 @@ predict(ordinal_model, tibble(
   type = "probs")
 ```
 
-We can note that a subject who has sex once a month or less, that never flirt with their partner, and that fought with their partner 7 or more times in the last week, have a 41% probability of perceiving their relationship quality as `fair`. On the other hand, a subject who has sex once or more per day, that flirts with their partner on a daily basis and that has not fought with their partner in the last week, has an 81% probability of perceiving their relationship quality as `excellent`.
+We can note that a subject involved in a different-sex couple who has sex once a month or less, that never flirt with their partner, and that fought with their partner 7 or more times in the last week, have a 42% probability of perceiving their relationship quality as `fair`. On the other hand, a subject involved in a different-sex couple, who has sex once or more per day, that flirts with their partner on a daily basis and that has not fought with their partner in the last week, has an 89% probability of perceiving their relationship quality as `excellent`.
 
-#### 4. Proportional Odds Assumption
+#### 5. Proportional Odds Assumption
 
 To ensure the validity of our analysis, we are going to test the proportional odds assumption. To do so, we can use the Brant-Wald test, which assesses whether our model fulfills this assumption.
 
@@ -342,11 +329,11 @@ Note that with an $\alpha = 0.05$, we are completely fulfilling the proportional
 
 Also, note that throughout the analysis we got a few warnings. These are caused by having categories in our model that are quite sparse, where combinations of the response and the levels of the predictor have no observations. These gaps may affect Brant statistics. A solution for this matter would be to bin some of the levels of our categories to avoid having empty combinations of levels between our response and explanatory variables.
 
-#### 5. Discussion
+#### 6. Discussion
 
 This analysis explored how sex frequency, flirting and fighting relate to perceived relationship quality for different types of couples. Through the analysis, we could note that relationship behaviors play a key role in how individuals assess their relationships. More specifically, we could conclude the following from this exercise:
 
--   **Behaviors are important, being part of a same-sex couple not so much**: More frequent sex and flirting are associated with higher perceived relationship quality, while more frequent fighting affects that perception negatively. Being part of a same-sex couple did not have a statistically significant impact on the perceived relationship quality
+-   **Behaviors are important**: More frequent sex and flirting are associated with higher perceived relationship quality, while more frequent fighting affects that perception negatively. Being part of a same-sex couple did not have a statistically significant impact on the perceived relationship quality
 
 -   **Some effects might not be linear**: Not all statistically significant estimates led to better outcomes. Interestingly, flirting once a week was associated with a lower perceived relationship quality than flirting 1-3 times a month.
 
