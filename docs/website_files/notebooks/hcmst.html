@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../website_files/img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -536,7 +537,7 @@ dbl  (3): subject_age, relationship_duration, children
 </div>
 </section>
 <section id="exploratory-data-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="exploratory-data-analysis">2. Exploratory Data Analysis</h4>
+<h4 class="anchored" data-anchor-id="exploratory-data-analysis">3. Exploratory Data Analysis</h4>
 <p>Let’s visualize histograms and stacked bar charts for our different categorical variables to see how different groups were sampled in the survey and how different these samples are for same sex couples.</p>
 <p>First, we will create a couple of functions that will be used for visualization.</p>
 <div class="cell">
@@ -581,31 +582,40 @@ dbl  (3): subject_age, relationship_duration, children
 <span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">1</span>, <span class="at">unit =</span> <span class="st">"cm"</span>)),</span>
 <span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>)</span>
 <span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Characteristic"</span>)) <span class="sc">+</span></span>
+<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="cn">NULL</span>)) <span class="sc">+</span></span>
 <span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Blues"</span>)</span>
 <span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-46"><a href="#cb31-46" aria-hidden="true" tabindex="-1"></a>histogram_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(data, y_var, <span class="at">plot_title =</span> <span class="st">"Counts by Category"</span>) {</span>
-<span id="cb31-47"><a href="#cb31-47" aria-hidden="true" tabindex="-1"></a>  data_long <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb31-48"><a href="#cb31-48" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(y_var)) <span class="sc">|&gt;</span></span>
-<span id="cb31-49"><a href="#cb31-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"variable"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb31-50"><a href="#cb31-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(variable, value)</span>
-<span id="cb31-51"><a href="#cb31-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-52"><a href="#cb31-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(data_long, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">reorder</span>(value, n))) <span class="sc">+</span></span>
-<span id="cb31-53"><a href="#cb31-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> n), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"skyblue2"</span>) <span class="sc">+</span></span>
-<span id="cb31-54"><a href="#cb31-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb31-55"><a href="#cb31-55" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> plot_title,</span>
-<span id="cb31-56"><a href="#cb31-56" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Count"</span>,</span>
-<span id="cb31-57"><a href="#cb31-57" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="cn">NULL</span></span>
-<span id="cb31-58"><a href="#cb31-58" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb31-59"><a href="#cb31-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
-<span id="cb31-60"><a href="#cb31-60" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-46"><a href="#cb31-46" aria-hidden="true" tabindex="-1"></a>histogram_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(data, y_var, facet, <span class="at">plot_title =</span> <span class="st">"Counts by Category"</span>) {</span>
+<span id="cb31-47"><a href="#cb31-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-48"><a href="#cb31-48" aria-hidden="true" tabindex="-1"></a>  data_long <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb31-49"><a href="#cb31-49" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(y_var, facet))) <span class="sc">|&gt;</span> </span>
+<span id="cb31-50"><a href="#cb31-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">all_of</span>(y_var), <span class="at">names_to =</span> <span class="st">"var"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb31-51"><a href="#cb31-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(var, value, <span class="at">facet_value =</span> .data[[facet]])</span>
+<span id="cb31-52"><a href="#cb31-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-53"><a href="#cb31-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(data_long, <span class="fu">aes</span>(<span class="at">x =</span> n, <span class="at">y =</span> <span class="fu">reorder</span>(value, n), <span class="at">fill =</span> facet_value)) <span class="sc">+</span></span>
+<span id="cb31-54"><a href="#cb31-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb31-55"><a href="#cb31-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb31-56"><a href="#cb31-56" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> plot_title,</span>
+<span id="cb31-57"><a href="#cb31-57" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Count"</span>,</span>
+<span id="cb31-58"><a href="#cb31-58" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb31-59"><a href="#cb31-59" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> facet</span>
+<span id="cb31-60"><a href="#cb31-60" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb31-61"><a href="#cb31-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb31-62"><a href="#cb31-62" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can note that a small minority of the sample are involved in same-sex couples.</p>
+<p>We can look at how often the sample are having sex with their partners.</p>
+<p>We can note that same-sex couples have very similar proportions in how often they have sex vs different-sex couples. It is also noteworthy that the sample of same sex couples is significantly lower that that of different sex couples. We can also note that the sample is skewed towards having sex less frequently.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>hist_same_sex <span class="ot">&lt;-</span> <span class="fu">histogram_plot</span>(hcmst, <span class="st">"same_sex_couple"</span>, <span class="at">plot_title =</span> <span class="st">"Counts by Category"</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>hist_same_sex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>prop_sex_freq <span class="ot">&lt;-</span> <span class="fu">stacked_bar_plot</span>(hcmst, <span class="st">"same_sex_couple"</span>, <span class="st">"sex_frequency"</span>, <span class="at">plot_title =</span> <span class="st">"Sex Frequency Distribution by Couple Type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
+ℹ Please use tidy evaluation idioms with `aes()`.
+ℹ See also `vignette("ggplot2-in-packages")` for more information.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>hist_sex_freq <span class="ot">&lt;-</span> <span class="fu">histogram_plot</span>(hcmst, <span class="st">"sex_frequency"</span>, <span class="st">"same_sex_couple"</span>, <span class="at">plot_title =</span> <span class="st">"Sex Frequency Counts by Couple Type"</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(prop_sex_freq, hist_sex_freq, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -614,18 +624,13 @@ dbl  (3): subject_age, relationship_duration, children
 </div>
 </div>
 </div>
-<p>Now we can look at how often the sample are having sex with their partners.</p>
-<p>We can note that same-sex couples have very similar proportions in how often they have sex vs different-sex couples. We can also note that the sample is skewed towards having sex less frequently.</p>
+<p>We can also visualize how often couples flirt and fight with their partners. Again, visually there are minor differences in these frequencies between same-sex and different-sex couples. We can also note that the sample is skewed towards having a low frequency of both flirting and fighting.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>prop_sex_freq <span class="ot">&lt;-</span> <span class="fu">stacked_bar_plot</span>(hcmst, <span class="st">"same_sex_couple"</span>, <span class="st">"sex_frequency"</span>, <span class="at">plot_title =</span> <span class="st">"Stacked Bar Charts"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
-ℹ Please use tidy evaluation idioms with `aes()`.
-ℹ See also `vignette("ggplot2-in-packages")` for more information.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>hist_sex_freq <span class="ot">&lt;-</span> <span class="fu">histogram_plot</span>(hcmst, <span class="st">"sex_frequency"</span>, <span class="at">plot_title =</span> <span class="st">"Counts by Category"</span>)</span>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>prop_flirt_freq <span class="ot">&lt;-</span> <span class="fu">stacked_bar_plot</span>(hcmst, <span class="st">"same_sex_couple"</span>, <span class="st">"flirts_with_partner"</span>, <span class="at">plot_title =</span> <span class="st">"Flirting Frequency Distribution by Couple Type"</span>)</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(prop_sex_freq, hist_sex_freq, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>hist_flirt_freq <span class="ot">&lt;-</span> <span class="fu">histogram_plot</span>(hcmst, <span class="st">"flirts_with_partner"</span>, <span class="st">"same_sex_couple"</span>, <span class="at">plot_title =</span> <span class="st">"Flirting Frequency Counts by Couple Type"</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(prop_flirt_freq, hist_flirt_freq, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -634,13 +639,12 @@ dbl  (3): subject_age, relationship_duration, children
 </div>
 </div>
 </div>
-<p>We can also visualize how often couples flirt and fight with their partners. Again, visually there are minor differences in these frequencies between same-sex and different-sex couples. We can also note that the sample is skewed towards having a low frequency of both flirting and fighting.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>prop_flirt_freq <span class="ot">&lt;-</span> <span class="fu">stacked_bar_plot</span>(hcmst, <span class="st">"same_sex_couple"</span>, <span class="st">"flirts_with_partner"</span>, <span class="at">plot_title =</span> <span class="st">"Stacked Bar Charts"</span>)</span>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>prop_fight_freq <span class="ot">&lt;-</span> <span class="fu">stacked_bar_plot</span>(hcmst, <span class="st">"same_sex_couple"</span>, <span class="st">"fights_with_partner"</span>, <span class="at">plot_title =</span> <span class="st">"Fighting Frequency Distribution by Couple Type"</span>)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>hist_flirt_freq <span class="ot">&lt;-</span> <span class="fu">histogram_plot</span>(hcmst, <span class="st">"flirts_with_partner"</span>, <span class="at">plot_title =</span> <span class="st">"Counts by Category"</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>hist_fight_freq <span class="ot">&lt;-</span> <span class="fu">histogram_plot</span>(hcmst, <span class="st">"fights_with_partner"</span>, <span class="st">"same_sex_couple"</span>, <span class="at">plot_title =</span> <span class="st">"Fighting Frequency Counts by Couple Type"</span>)</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(prop_flirt_freq, hist_flirt_freq, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(prop_fight_freq, hist_fight_freq, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -649,12 +653,13 @@ dbl  (3): subject_age, relationship_duration, children
 </div>
 </div>
 </div>
+<p>As for our target variable, it can be noted that most subjects perceived the quality of their relationship to be <code>good</code> or <code>excellent</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>prop_fight_freq <span class="ot">&lt;-</span> <span class="fu">stacked_bar_plot</span>(hcmst, <span class="st">"same_sex_couple"</span>, <span class="st">"fights_with_partner"</span>, <span class="at">plot_title =</span> <span class="st">"Stacked Bar Charts"</span>)</span>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>prop_quality_freq <span class="ot">&lt;-</span> <span class="fu">stacked_bar_plot</span>(hcmst, <span class="st">"same_sex_couple"</span>, <span class="st">"relationship_quality"</span>, <span class="at">plot_title =</span> <span class="st">"Relationship Quality Frequency Distribution by Couple Type"</span>)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>hist_fight_freq <span class="ot">&lt;-</span> <span class="fu">histogram_plot</span>(hcmst, <span class="st">"fights_with_partner"</span>, <span class="at">plot_title =</span> <span class="st">"Counts by Category"</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>hist_quality_freq <span class="ot">&lt;-</span> <span class="fu">histogram_plot</span>(hcmst, <span class="st">"relationship_quality"</span>, <span class="st">"same_sex_couple"</span>, <span class="at">plot_title =</span> <span class="st">"Relationship Quality Frequency Counts by Couple Type"</span>)</span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(prop_fight_freq, hist_fight_freq, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(prop_quality_freq, hist_quality_freq, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -663,50 +668,35 @@ dbl  (3): subject_age, relationship_duration, children
 </div>
 </div>
 </div>
-<p>As for our target variable, it can be noted that most subjects perceived the quality of their relationship to be <code>good</code> or <code>excellent</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>prop_quality_freq <span class="ot">&lt;-</span> <span class="fu">stacked_bar_plot</span>(hcmst, <span class="st">"same_sex_couple"</span>, <span class="st">"relationship_quality"</span>, <span class="at">plot_title =</span> <span class="st">"Stacked Bar Charts"</span>)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>hist_quality_freq <span class="ot">&lt;-</span> <span class="fu">histogram_plot</span>(hcmst, <span class="st">"relationship_quality"</span>, <span class="at">plot_title =</span> <span class="st">"Counts by Category"</span>)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(prop_quality_freq, hist_quality_freq, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hcmst_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"../img/hcmst.png"</span>, <span class="at">plot =</span> prop_quality_freq, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"../img/hcmst.png"</span>, <span class="at">plot =</span> prop_quality_freq, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="ordinal-logistic-regression" class="level4">
-<h4 class="anchored" data-anchor-id="ordinal-logistic-regression">3. Ordinal Logistic Regression</h4>
+<h4 class="anchored" data-anchor-id="ordinal-logistic-regression">4. Ordinal Logistic Regression</h4>
 <p>We will be assuming and fitting a proportional odds model, which assumes that the log-odds of being in a higher category of the response variable follows a linear relationship with the explanatory variables.</p>
 <p>For our modeling purposes, we will use the <code>MASS</code> package, <code>polr()</code> function to obtain model estimates.</p>
 <p>Given that we are using ordinal categorical variables as explanatory variables, we will also set our model to use successive differences contrasts to facilitate the interpretation of the estimates.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">contrasts =</span> <span class="fu">c</span>(<span class="st">"contr.treatment"</span>, <span class="st">"contr.sdif"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">contrasts =</span> <span class="fu">c</span>(<span class="st">"contr.treatment"</span>, <span class="st">"contr.sdif"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, we can fit our model. Noting that <code>polr()</code> does not calculate p-values, we can compute them and bind them to our model estimates. We will also focus only on statistically significant estimates.</p>
 <p>For the purposes of this exercise, we will only use a subset of the variables in our modeling. We will be interested in how behavioral variables (<code>sex_frequency</code>, <code>flirts_with_partner</code> and <code>fights_with_partner</code>) affect the perception of relationship quality, additionally, we are interested in seeing if these effects are different for <code>same_sex_couple</code>s.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ordinal_model <span class="ot">&lt;-</span> <span class="fu">polr</span>(relationship_quality <span class="sc">~</span> same_sex_couple <span class="sc">+</span> sex_frequency <span class="sc">+</span> flirts_with_partner <span class="sc">+</span> fights_with_partner,</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> hcmst, <span class="at">Hess =</span> <span class="cn">TRUE</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ordinal_model <span class="ot">&lt;-</span> <span class="fu">polr</span>(relationship_quality <span class="sc">~</span> same_sex_couple <span class="sc">+</span> sex_frequency <span class="sc">+</span> flirts_with_partner <span class="sc">+</span> fights_with_partner,</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> hcmst, <span class="at">Hess =</span> <span class="cn">TRUE</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>summary_partial_ordinal_model <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">tidy</span>(ordinal_model),</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">p.value =</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(<span class="fu">tidy</span>(ordinal_model)<span class="sc">$</span>statistic), <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="dv">2</span>)</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>summary_partial_ordinal_model <span class="sc">|&gt;</span></span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">exp_estimate =</span> <span class="fu">exp</span>(estimate)) <span class="sc">|&gt;</span> </span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>, </span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>         coef.type <span class="sc">==</span> <span class="st">"coefficient"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>summary_partial_ordinal_model <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">tidy</span>(ordinal_model),</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">p.value =</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(<span class="fu">tidy</span>(ordinal_model)<span class="sc">$</span>statistic), <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="dv">2</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>summary_partial_ordinal_model <span class="sc">|&gt;</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">exp_estimate =</span> <span class="fu">exp</span>(estimate)) <span class="sc">|&gt;</span> </span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>, </span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>         coef.type <span class="sc">==</span> <span class="st">"coefficient"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                                    term estimate std.error
 1 sex_frequency2_to_3_times_a_month-once_a_month_or_less     0.61      0.15
@@ -723,46 +713,43 @@ dbl  (3): subject_age, relationship_duration, children
 <p>Positive estimates are associated with higher relationship quality, while negative estimates are associated with lower relationship quality. Additionally, the exponential of the estimate is the odds ratio, which represents how much the odds of having a higher <code>relationship_quality</code> level changes between levels.</p>
 <p>We can interpret these estimates:</p>
 <ul>
-<li><code>same_sex_couple</code>: There is no statistical evidence that being part of a same-sex couple has an association with the perceived relationship quality</li>
-</ul>
-<!-- -->
-<ul>
-<li><p><code>sex_frequency</code>: People who have sex 2-3 times a month have 1.8 higher odds of reporting better relationship quality that those who have sex once a month or less.</p></li>
-<li><p><code>flirts_with_partner</code>: Flirting once per week vs 1-3 times per month is associated with a 49% lower odds of better relationship quality. This is a bit unexpected.</p></li>
-<li><p><code>flirts_with_partner</code>: Flirting every day vs a few times per week is associated with 2.3 higher odds of better relationship quality.</p></li>
-<li><p><code>fights_with_partner</code>: Fighting once vs none is associated with 47% lower odds of better relationship quality.</p></li>
+<li><code>same_sex_couple</code>: There is no statistical evidence that being part of a same-sex couple has an association with the perceived relationship quality.</li>
+<li><code>sex_frequency</code>: People who have sex 2-3 times a month have 1.8 higher odds of reporting better relationship quality that those who have sex once a month or less.</li>
+<li><code>flirts_with_partner</code>: Flirting once per week vs 1-3 times per month is associated with a 49% lower odds of better relationship quality. This is a bit unexpected.</li>
+<li><code>flirts_with_partner</code>: Flirting every day vs a few times per week is associated with 2.3 higher odds of better relationship quality.</li>
+<li><code>fights_with_partner</code>: Fighting once vs none is associated with 47% lower odds of better relationship quality.</li>
 </ul>
 <p>With our fitted model, we are now able to make predictions on new examples. Based on demographic, behavioral, COVID-19 related variables, we can predict the probabilities of the different levels of perceived <code>relationship_quality</code> for a specific subject.</p>
 <p>Based on the calculated estimates, we would think that people who have more sex, flirt more and fight less would perceive a better <code>relationship_quality</code>. We can test this premise:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(ordinal_model, <span class="fu">tibble</span>(</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">same_sex_couple =</span> <span class="st">"no"</span>,</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex_frequency =</span> <span class="st">"once_a_month_or_less"</span>,</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">flirts_with_partner =</span> <span class="st">"never"</span>,</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">fights_with_partner =</span> <span class="st">"7_or_more_times"</span>), </span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"probs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(ordinal_model, <span class="fu">tibble</span>(</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">same_sex_couple =</span> <span class="st">"no"</span>,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex_frequency =</span> <span class="st">"once_a_month_or_less"</span>,</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">flirts_with_partner =</span> <span class="st">"never"</span>,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">fights_with_partner =</span> <span class="st">"7_or_more_times"</span>), </span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"probs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> very_poor       poor       fair       good  excellent 
 0.05086336 0.24537641 0.41765952 0.25193653 0.03416417 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(ordinal_model, <span class="fu">tibble</span>(</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">same_sex_couple =</span> <span class="st">"no"</span>,</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex_frequency =</span> <span class="st">"once_or_more_a_day"</span>,</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">flirts_with_partner =</span> <span class="st">"every_day"</span>,</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">fights_with_partner =</span> <span class="st">"0_times"</span>), </span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"probs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(ordinal_model, <span class="fu">tibble</span>(</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">same_sex_couple =</span> <span class="st">"no"</span>,</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex_frequency =</span> <span class="st">"once_or_more_a_day"</span>,</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">flirts_with_partner =</span> <span class="st">"every_day"</span>,</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">fights_with_partner =</span> <span class="st">"0_times"</span>), </span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"probs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   very_poor         poor         fair         good    excellent 
 0.0002267081 0.0015513052 0.0086702893 0.0963954372 0.8931562601 </code></pre>
 </div>
 </div>
-<p>We can note that a subject who has sex once a month or less, that never flirt with their partner, and that fought with their partner 7 or more times in the last week, have a 41% probability of perceiving their relationship quality as <code>fair</code>. On the other hand, a subject who has sex once or more per day, that flirts with their partner on a daily basis and that has not fought with their partner in the last week, has an 81% probability of perceiving their relationship quality as <code>excellent</code>.</p>
+<p>We can note that a subject involved in a different-sex couple who has sex once a month or less, that never flirt with their partner, and that fought with their partner 7 or more times in the last week, have a 42% probability of perceiving their relationship quality as <code>fair</code>. On the other hand, a subject involved in a different-sex couple, who has sex once or more per day, that flirts with their partner on a daily basis and that has not fought with their partner in the last week, has an 89% probability of perceiving their relationship quality as <code>excellent</code>.</p>
 </section>
 <section id="proportional-odds-assumption" class="level4">
-<h4 class="anchored" data-anchor-id="proportional-odds-assumption">4. Proportional Odds Assumption</h4>
+<h4 class="anchored" data-anchor-id="proportional-odds-assumption">5. Proportional Odds Assumption</h4>
 <p>To ensure the validity of our analysis, we are going to test the proportional odds assumption. To do so, we can use the Brant-Wald test, which assesses whether our model fulfills this assumption.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">brant</span>(ordinal_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">brant</span>(ordinal_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
@@ -802,10 +789,10 @@ occur. Because of that, the test results might be invalid.</code></pre>
 <p>Also, note that throughout the analysis we got a few warnings. These are caused by having categories in our model that are quite sparse, where combinations of the response and the levels of the predictor have no observations. These gaps may affect Brant statistics. A solution for this matter would be to bin some of the levels of our categories to avoid having empty combinations of levels between our response and explanatory variables.</p>
 </section>
 <section id="discussion" class="level4">
-<h4 class="anchored" data-anchor-id="discussion">5. Discussion</h4>
+<h4 class="anchored" data-anchor-id="discussion">6. Discussion</h4>
 <p>This analysis explored how sex frequency, flirting and fighting relate to perceived relationship quality for different types of couples. Through the analysis, we could note that relationship behaviors play a key role in how individuals assess their relationships. More specifically, we could conclude the following from this exercise:</p>
 <ul>
-<li><p><strong>Behaviors are important, being part of a same-sex couple not so much</strong>: More frequent sex and flirting are associated with higher perceived relationship quality, while more frequent fighting affects that perception negatively. Being part of a same-sex couple did not have a statistically significant impact on the perceived relationship quality</p></li>
+<li><p><strong>Behaviors are important</strong>: More frequent sex and flirting are associated with higher perceived relationship quality, while more frequent fighting affects that perception negatively. Being part of a same-sex couple did not have a statistically significant impact on the perceived relationship quality</p></li>
 <li><p><strong>Some effects might not be linear</strong>: Not all statistically significant estimates led to better outcomes. Interestingly, flirting once a week was associated with a lower perceived relationship quality than flirting 1-3 times a month.</p></li>
 <li><p><strong>Encoding and model choice are critical</strong>: Model selection is tied to the type of response variable. Ordinal categorical response variables are tied to ordinal logistic regression models.</p></li>
 <li><p><strong>Interpretation is key</strong>: Having ordinal explanatory variables poses a challenge in interpretation of model estimates. Using the right contrasts supports model interpretation.</p></li>
