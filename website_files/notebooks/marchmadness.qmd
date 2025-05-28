@@ -307,7 +307,7 @@ glance(poisson_model_factor)
 
 Based on lower residual deviance, higher log-likelihood, and a lower AIC, the model that treats `seed` as a factor fits the data better. This would suggest that the relationship between tournament seed and number of wins is **not linear**, and would support using an approach that does not assume a constant effect per unit change in seed.
 
-#### 6. Discussion
+### Discussion
 
 This analysis examined the relationship between a team’s tournament seed and its performance in the NCAA Division I Women’s Basketball Tournament. The results suggest that:
 

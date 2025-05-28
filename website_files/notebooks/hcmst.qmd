@@ -329,7 +329,7 @@ Note that with an $\alpha = 0.05$, we are completely fulfilling the proportional
 
 Also, note that throughout the analysis we got a few warnings. These are caused by having categories in our model that are quite sparse, where combinations of the response and the levels of the predictor have no observations. These gaps may affect Brant statistics. A solution for this matter would be to bin some of the levels of our categories to avoid having empty combinations of levels between our response and explanatory variables.
 
-#### 6. Discussion
+### Discussion
 
 This analysis explored how sex frequency, flirting and fighting relate to perceived relationship quality for different types of couples. Through the analysis, we could note that relationship behaviors play a key role in how individuals assess their relationships. More specifically, we could conclude the following from this exercise:
 
