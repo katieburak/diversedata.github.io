@@ -1,6 +1,6 @@
 # Diverse Data Hub
 
-![](website_files/img/favicon.png)
+![](website_files/img/logo.png)
 
 Welcome to the Diverse Data Hub repository! 👋 This project creates a user-friendly data repository featuring datasets centered on a wide range of diverse topics, including EDI-related data. By curating freely available and open-source data, the repository provides users with an accessible resource to explore diverse and meaningful topics in their work or studies. 
 
