@@ -69,3 +69,5 @@ This data set contains information from the "How Couples Meet and Stay Together"
 ## Attribution
 
 Data adapted from Rosenfeld, Michael J., Reuben J. Thomas, and Sonia Hausen. 2023. How Couples Meet and Stay Together 2017-2020-2022 Combined Dataset. [Computer files]. Stanford, CA: Stanford University Libraries. [Data](https://data.stanford.edu/hcmst2017).
+
+Derbyshire K, Thai S, Midgley C, Lockwood P. Love under lockdown: How changes in time with partner impacted stress and relationship outcomes during the COVID-19 pandemic. J Soc Pers Relat. 2023 Sep;40(9):2918-2945. doi: 10.1177/02654075231162599. Epub 2023 Mar 9. PMID: 37744688; PMCID: PMC10009005.

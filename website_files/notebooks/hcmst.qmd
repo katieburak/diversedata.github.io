@@ -9,7 +9,7 @@
 
 This data set is adapted from the original data set [How Couples Meet and Stay Together 2017, 2022](https://data.stanford.edu/hcmst2017) survey, collected by Stanford University researchers. The data set explores the dynamics of relationships among adults in the United States, with data points gathered from subjects in 2017, 2020 and 2022. This adapted data set focuses on variables that may affect the quality of the relationship, considering demographic characteristics of the subjects, as well as the effect of the COVID-19 pandemic.
 
-The extensive use of dating apps and the COVID-19 pandemic had a significant impact on how romantic relationships in the United States. This data set enables exploration of how external factors, like the health of the subjects and income changes, as well as personal behaviors, like conflict and intimate dynamics, relate to an individual's perception of the quality of the relationship.
+The COVID-19 pandemic had a [significant impact](https://pmc.ncbi.nlm.nih.gov/articles/PMC10009005/) on romantic relationships in the United States. This data set enables exploration of how external factors, like the health of the subjects and income changes, as well as personal behaviors, like conflict and intimate dynamics, relate to an individual's perception of the quality of the relationship.
 
 This analysis contributes to discussions around partnership resilience, healthy relationships, and how norms around sexuality and technology shape romantic relationships.
 
@@ -35,7 +35,7 @@ This data set supports investigations into:
 
 -   How the pandemic experience affected relationships.
 
--   Differences in relationship dynamics between different levels of income, gender and sexual orientation.
+-   Differences in relationship dynamics between different levels of income, sex and sexual orientation.
 
 ## Case Study
 
@@ -47,28 +47,27 @@ This case study examines the association between `relationship_quality` and a va
 
 By examining survey data, we aim to:
 
--   Explore the different factors that were collected through the survey.
--   Identify the behavioral factors that most strongly affect the perceived relationship quality. We will focus specifically on finding how `sex_frequency`, `flirts_with_partner` and `fights_with_partner` affect the perception of relationship quality.
--   Evaluate if these factors have a different impact on `same_sex_couple`s.
+-   Identify the behavioral factors that most strongly affect the perceived relationship quality. We will focus specifically on finding how `sex_frequency`, `flirts_with_partner` and `fights_with_partner` affect the perception of relationship quality and we are going to evaluate if these factors have a different impact on `same_sex_couples`.
 
 ### Methodology
 
 #### 0. Load Libraries
 
-```{r}
+```{r results = "hide", warning = FALSE, message = FALSE}
 library(tidyverse) 
 library(scales)
 library(cowplot)
 library(MASS)
 library(broom)
 library(brant)
+library(knitr)
 ```
 
 #### 1. Data Cleaning & Processing
 
-First, we can load our data and remove all NA values from the data set as we will be interested in using all the available variables as explanatory variables.
+First, we can load our data set, select our specific variables of intereset and remove NAs from our data set.
 
-```{r}
+```{r warning = FALSE, message = FALSE}
 # Reading Data
 hcmst <- read_csv("../../data/clean/hcmst.csv") 
 
@@ -77,7 +76,12 @@ nrow(hcmst)
 
 # Select features of interest and removing NA
 hcmst <- hcmst |> 
-  dplyr::select(same_sex_couple, sex_frequency, flirts_with_partner, fights_with_partner, relationship_quality) |> 
+  dplyr::select(
+    same_sex_couple, 
+    sex_frequency, 
+    flirts_with_partner, 
+    fights_with_partner, 
+    relationship_quality) |> 
   drop_na()
 
 # Remaining row count.
@@ -93,101 +97,94 @@ We can note that our categorical response follows a specific order. For this rea
 
 In order to do so, we need to make sure that our response variable is encoded as an ordered factor. We will also take this opportunity to encode all our explanatory variables as factors (and ordered factors) as needed, even if we will not use all of them in our exercise.
 
-```{r}
+```{r warning = FALSE, message = FALSE}
 # First, we can encode our nomical categorical explanatory variables:
 
-hcmst$same_sex_couple <- as.factor(hcmst$same_sex_couple)
+hcmst <- hcmst |> 
+  mutate(same_sex_couple = as_factor(same_sex_couple))
+
 levels(hcmst$same_sex_couple)
 ```
 
 ```{r}
 # Then, we can encode all our ordinal categorical explanatory variables:
 
-hcmst$sex_frequency <- as.ordered(hcmst$sex_frequency)
-hcmst$sex_frequency <- fct_relevel(
-  hcmst$sex_frequency,
-  c("once_a_month_or_less", "2_to_3_times_a_month", "once_or_twice_a_week", "3_to_6_times_a_week", "once_or_more_a_day")
-)
+hcmst <- hcmst |> 
+  mutate(sex_frequency = as.ordered(sex_frequency)) |> 
+  mutate(sex_frequency = fct_relevel(
+    sex_frequency, 
+    c(
+      "once_a_month_or_less", 
+      "2_to_3_times_a_month", 
+      "once_or_twice_a_week", 
+      "3_to_6_times_a_week", 
+      "once_or_more_a_day"
+      )
+    ))
+
 levels(hcmst$sex_frequency)
 
-hcmst$flirts_with_partner <- as.ordered(hcmst$flirts_with_partner)
-hcmst$flirts_with_partner <- fct_relevel(
-  hcmst$flirts_with_partner,
-  c("never", "less_than_once_a_month", "1_to_3_times_a_month", "once_a_week", "a_few_times_a_week", "every_day")
-)
+hcmst <- hcmst |> 
+  mutate(flirts_with_partner = as.ordered(flirts_with_partner)) |> 
+  mutate(flirts_with_partner = fct_relevel(
+    flirts_with_partner, 
+    c(
+      "never", 
+      "less_than_once_a_month", 
+      "1_to_3_times_a_month", 
+      "once_a_week", 
+      "a_few_times_a_week", 
+      "every_day"
+      )
+    ))
+
 levels(hcmst$flirts_with_partner)
 
-hcmst$fights_with_partner <- as.ordered(hcmst$fights_with_partner)
-hcmst$fights_with_partner <- fct_relevel(
-  hcmst$fights_with_partner,
-  c("0_times", "1_time", "2_times", "3_times", "4_times", "5_times", "6_times", "7_or_more_times")
-)
-levels(hcmst$fights_with_partner)
+hcmst <- hcmst |> 
+  mutate(fights_with_partner = as.ordered(fights_with_partner)) |> 
+  mutate(fights_with_partner = fct_relevel(
+    fights_with_partner, 
+    c(
+      "0_times", 
+      "1_time", 
+      "2_times", 
+      "3_times", 
+      "4_times", 
+      "5_times", 
+      "6_times", 
+      "7_or_more_times"
+      )
+    ))
+
+levels(hcmst$sex_frequency)
 ```
 
 ```{r}
-hcmst$relationship_quality <- as.ordered(hcmst$relationship_quality)
-hcmst$relationship_quality <- fct_relevel(
-  hcmst$relationship_quality,
-  c("very_poor", "poor", "fair", "good", "excellent")
-)
-levels(hcmst$relationship_quality)
+hcmst <- hcmst |> 
+  mutate(relationship_quality = as.ordered(relationship_quality)) |> 
+  mutate(relationship_quality = fct_relevel(
+    relationship_quality, 
+    c(
+      "very_poor", 
+      "poor", 
+      "fair", 
+      "good", 
+      "excellent"
+      )
+    ))
+
+levels(hcmst$sex_frequency)
 
 head(hcmst)
 ```
 
 #### 3. Exploratory Data Analysis
 
-Let's visualize histograms and stacked bar charts for our different categorical variables to see how different groups were sampled in the survey and how different these samples are for same sex couples.
+Let's visualize histograms charts for our different categorical variables to see how different groups were sampled in the survey and how different these samples are for same sex couples.
 
-First, we will create a couple of functions that will be used for visualization.
+First, we will create a function that will be used for visualization.
 
 ```{r}
-stacked_bar_plot <- function(data, x_var, stacked_var, plot_title = "Stacked Bar Charts") {
-
-  prop_summary <- as.data.frame(xtabs(
-    formula = as.formula(paste0("~", x_var, "+", stacked_var)),
-    data = data
-  ))
-
-  row_totals <- aggregate(Freq ~ get(x_var), data = prop_summary, sum)
-  names(row_totals) <- c(x_var, "Total")
-
-  prop_summary <- prop_summary |> 
-    left_join(row_totals, by = x_var) |> 
-    mutate(prop = Freq / Total)
-
-  ggplot(
-    prop_summary, aes_string(x = x_var, y = "prop", fill = stacked_var)) +
-    geom_bar(stat = "identity", linewidth = 0.7, colour = "black") +
-    geom_text(
-      aes(
-        label = ifelse(
-          prop >= 0.05, 
-          paste0(
-            sprintf("%.0f", prop * 100), 
-            "%"), 
-          "")
-        ),
-      position = position_stack(vjust = 0.5), 
-      colour = "firebrick3", 
-      fontface = "bold", 
-      size = 5) +
-    scale_y_continuous(labels = percent_format()) +
-    labs(y = "Percentage", x = "Same Sex Couple", fill = "") +
-    ggtitle(plot_title) +
-    theme(
-      plot.title = element_text(size = 12, face = "bold"),
-      axis.text.x = element_text(size = 9, angle = 0),
-      axis.text.y = element_text(size = 9, angle = 0),
-      axis.title = element_text(size = 12),
-      legend.text = element_text(size = 12, margin = margin(r = 1, unit = "cm")),
-      legend.title = element_text(size = 12, face = "bold")
-    ) +
-    guides(fill = guide_legend(title = NULL)) +
-    scale_fill_brewer(palette = "Blues")
-}
-
 histogram_plot <- function(data, y_var, facet, plot_title = "Counts by Category") {
 
   data_long <- data |> 
@@ -203,55 +200,59 @@ histogram_plot <- function(data, y_var, facet, plot_title = "Counts by Category"
       y = NULL,
       fill = facet
     ) +
-    theme_minimal()
+    theme_minimal() +
+    theme(legend.position = "none",)
 }
 ```
 
-We can look at how often the sample are having sex with their partners.
-
-We can note that same-sex couples have very similar proportions in how often they have sex vs different-sex couples. It is also noteworthy that the sample of same sex couples is significantly lower that that of different sex couples. We can also note that the sample is skewed towards having sex less frequently.
-
-```{r fig.height=10, fig.width=8}
-prop_sex_freq <- stacked_bar_plot(hcmst, "same_sex_couple", "sex_frequency", plot_title = "Sex Frequency Distribution by Couple Type")
-
-hist_sex_freq <- histogram_plot(hcmst, "sex_frequency", "same_sex_couple", plot_title = "Sex Frequency Counts by Couple Type")
-
-plot_grid(prop_sex_freq, hist_sex_freq, ncol = 1)
-```
-
-We can also visualize how often couples flirt and fight with their partners. Again, visually there are minor differences in these frequencies between same-sex and different-sex couples. We can also note that the sample is skewed towards having a low frequency of both flirting and fighting.
-
 ```{r fig.height=10, fig.width=8}
 
-prop_flirt_freq <- stacked_bar_plot(hcmst, "same_sex_couple", "flirts_with_partner", plot_title = "Flirting Frequency Distribution by Couple Type")
+hist_sex_freq <- histogram_plot(
+  hcmst, 
+  "sex_frequency", 
+  "same_sex_couple", 
+  plot_title = "Sex Frequency"
+)
 
-hist_flirt_freq <- histogram_plot(hcmst, "flirts_with_partner", "same_sex_couple", plot_title = "Flirting Frequency Counts by Couple Type")
+hist_flirt_freq <- histogram_plot(
+  hcmst, 
+  "flirts_with_partner", 
+  "same_sex_couple", 
+  plot_title = "Flirting Frequency"
+)
 
-plot_grid(prop_flirt_freq, hist_flirt_freq, ncol = 1)
+hist_fight_freq <- histogram_plot(
+  hcmst, 
+  "fights_with_partner", 
+  "same_sex_couple", 
+  plot_title = "Fighting Frequency"
+)
+
+hist_quality_freq <- histogram_plot(
+  hcmst, 
+  "relationship_quality", 
+  "same_sex_couple", 
+  plot_title = "Relationship Quality Frequency"
+)
+
+plot_grid(
+  hist_sex_freq, 
+  hist_flirt_freq, 
+  hist_fight_freq, 
+  hist_quality_freq, 
+  ncol = 1)
 ```
 
-```{r fig.height=10, fig.width=8}
+It can be noted that the sample of `same_sex_couples` is significantly smaller that that of different-sex couples..
 
-prop_fight_freq <- stacked_bar_plot(hcmst, "same_sex_couple", "fights_with_partner", plot_title = "Fighting Frequency Distribution by Couple Type")
+Same-sex and different-sex couples show similar patters in how frequently they engage in sexual activity. However, the overall sample is skewed towards reporting low sex frequency.
 
-hist_fight_freq <- histogram_plot(hcmst, "fights_with_partner", "same_sex_couple", plot_title = "Fighting Frequency Counts by Couple Type")
+We can also examine how ofter foucple flirt with or fight with their partners. The data indicates a skew towards lower frequencies for both flirting and fighting.
 
-plot_grid(prop_fight_freq, hist_fight_freq, ncol = 1)
-```
+As for our target variable, most participants perceived the quality of their relationship to be `good` or `excellent`.
 
-As for our target variable, it can be noted that most subjects perceived the quality of their relationship to be `good` or `excellent`.
-
-```{r fig.height=10, fig.width=8}
-
-prop_quality_freq <- stacked_bar_plot(hcmst, "same_sex_couple", "relationship_quality", plot_title = "Relationship Quality Frequency Distribution by Couple Type")
-
-hist_quality_freq <- histogram_plot(hcmst, "relationship_quality", "same_sex_couple", plot_title = "Relationship Quality Frequency Counts by Couple Type")
-
-plot_grid(prop_quality_freq, hist_quality_freq, ncol = 1)
-```
-
-```{r}
-ggsave("../img/hcmst.png", plot = prop_quality_freq, width = 6, height = 4, dpi = 300)
+```{r echo = FALSE}
+ggsave("../img/hcmst.png", plot = hist_quality_freq, width = 6, height = 4, dpi = 300)
 ```
 
 #### 4. Ordinal Logistic Regression
@@ -271,7 +272,8 @@ Now, we can fit our model. Noting that `polr()` does not calculate p-values, we 
 For the purposes of this exercise, we will only use a subset of the variables in our modeling. We will be interested in how behavioral variables (`sex_frequency`, `flirts_with_partner` and `fights_with_partner`) affect the perception of relationship quality, additionally, we are interested in seeing if these effects are different for `same_sex_couple`s.
 
 ```{r}
-ordinal_model <- polr(relationship_quality ~ same_sex_couple + sex_frequency + flirts_with_partner + fights_with_partner,
+ordinal_model <- polr(
+  relationship_quality ~ same_sex_couple + sex_frequency + flirts_with_partner + fights_with_partner,
   data = hcmst, Hess = TRUE
 )
 
@@ -284,6 +286,8 @@ summary_partial_ordinal_model |>
   filter(p.value < 0.05, 
          coef.type == "coefficient")
 ```
+
+Note that fitting our model triggered a warning. This is caused by having categories in our model that are quite sparse, where combinations of the response and the levels of the predictor have no observations.A solution for this matter would be to bin some of the levels of our categories to avoid having empty combinations of levels between our response and explanatory variables. For now, we will only acknowledge this issue.
 
 Positive estimates are associated with higher relationship quality, while negative estimates are associated with lower relationship quality. Additionally, the exponential of the estimate is the odds ratio, which represents how much the odds of having a higher `relationship_quality` level changes between levels.
 
@@ -300,19 +304,19 @@ With our fitted model, we are now able to make predictions on new examples. Base
 Based on the calculated estimates, we would think that people who have more sex, flirt more and fight less would perceive a better `relationship_quality`. We can test this premise:
 
 ```{r}
-predict(ordinal_model, tibble(
+round(predict(ordinal_model, tibble(
   same_sex_couple = "no",
   sex_frequency = "once_a_month_or_less",
   flirts_with_partner = "never",
   fights_with_partner = "7_or_more_times"), 
-  type = "probs")
+  type = "probs"),2)
 
-predict(ordinal_model, tibble(
+round(predict(ordinal_model, tibble(
   same_sex_couple = "no",
   sex_frequency = "once_or_more_a_day",
   flirts_with_partner = "every_day",
   fights_with_partner = "0_times"), 
-  type = "probs")
+  type = "probs"), 2)
 ```
 
 We can note that a subject involved in a different-sex couple who has sex once a month or less, that never flirt with their partner, and that fought with their partner 7 or more times in the last week, have a 42% probability of perceiving their relationship quality as `fair`. On the other hand, a subject involved in a different-sex couple, who has sex once or more per day, that flirts with their partner on a daily basis and that has not fought with their partner in the last week, has an 89% probability of perceiving their relationship quality as `excellent`.
@@ -321,9 +325,15 @@ We can note that a subject involved in a different-sex couple who has sex once a
 
 To ensure the validity of our analysis, we are going to test the proportional odds assumption. To do so, we can use the Brant-Wald test, which assesses whether our model fulfills this assumption.
 
-```{r}
-brant(ordinal_model)
+```{r results = "hide"}
+bt <- brant(ordinal_model)
 ```
+
+```{r}
+kable(bt, digits = 2)
+```
+
+Again, warnings are triggered caused by sparsity in combinations of the response and the levels of the predictor that have no observations. Approaching these Brant-Wald test results with caution is advised, or binning categories together may help solve the concern.
 
 Note that with an $\alpha = 0.05$, we are completely fulfilling the proportional odds assumption (the column `probability` delivers the corresponding p-values).
 
