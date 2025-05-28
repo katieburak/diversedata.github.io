@@ -40,25 +40,7 @@ These steps assume you already have a completed working **.qmd notebook file** t
 - Follow the template format.
 - Should include: `About the Data` (Key Features on Dataset, Purpose and Use Cases), `Case Study` (Objective, Methodology) 
 
-**4 - Add Link to Homepage Sidebar**
-
-*File*: `_quarto.yml`
-
-*Action:* 
-
-Add a newitem under the "Datasets" section:
-
-```yaml
-website:
-  sidebar:
-    contents:
-      - section: "Datasets"
-        contents:
-          - text: "<Data Set Title>"
-            href: "https://diverse-data-hub.github.io/website_files/description_pages/<datasetname>.html"
-```
-
-**5 - Feature the Dataset (Optional).**
+**4 - Feature the Dataset (Optional).**
 
 *File*: `website_files/grid_items/<file>.qmd`
 
@@ -70,7 +52,7 @@ If approved to be featured, update:
 class="grid-item" data-featured="true" data-tags="r"
 ```
 
-**6 - Create a Reproducible Featured Image**
+**5 - Create a Reproducible Featured Image**
 
 *File*: `website_files/img/<image>.png`
 
@@ -84,7 +66,7 @@ Generate and save the image directly from your notebook using a reproducible met
 ggsave("../img/<image>.png", plot = plot_object_name, width = 6, height = 4, dpi = 300)
 ```
 
-**7 - Preview and Render Changes**
+**6 - Preview and Render Changes**
 
 Before pushing:
 
