@@ -7,8 +7,6 @@ website:
   favicon: website_files/img/favicon.png
   navbar:
     left:
-      - href: index.qmd
-        text: Welcome
       - href: website_files/datasets.qmd
         text: Datasets
   page-footer:
