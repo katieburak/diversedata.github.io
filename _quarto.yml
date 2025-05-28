@@ -7,8 +7,6 @@ website:
   favicon: website_files/img/favicon.png
   navbar:
     left:
-      - href: index.qmd
-        text: Welcome
       - href: website_files/datasets.qmd
         text: Datasets
   page-footer:
@@ -24,14 +22,6 @@ website:
         href: https://github.com/diverse-data-hub
     collapse-level: 1
     contents:
-      - section: "Datasets"
-        contents:
-          - text: "Women's March Madness"
-            href: "https://diverse-data-hub.github.io/website_files/description_pages/marchmadness.html"
-          - text: "Wildfire"
-            href: "https://diverse-data-hub.github.io/website_files/description_pages/wildfire.html"
-          - text: "How Couples Meet and Stay Together"
-            href: "https://diverse-data-hub.github.io/website_files/description_pages/hcmst.html"
       - text: "CRAN Page (TBD)"
         href: ""
       - section: "Report an Issue"

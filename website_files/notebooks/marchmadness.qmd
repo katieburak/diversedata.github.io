@@ -65,17 +65,18 @@ Understanding these dynamics can inform fan expectations and bracket predictions
 
 #### 0. Loading Libraries
 
-```{r}
+```{r results = "hide", warning = FALSE, message = FALSE}
 library(tidyverse)
 library(AER)
 library(broom)
+library(knitr)
 ```
 
 #### 1. Data Cleaning & Processing
 
 First, let's load our data and remove all NA values for our variables of interest `seed` and `tourney_wins`.
 
-```{r, warning=FALSE, message=FALSE}
+```{r warning=FALSE, message=FALSE}
 # Reading Data
 marchmadness <- read_csv("../../data/clean/womensmarchmadness.csv") 
 
@@ -177,16 +178,23 @@ $H_0$(Null): Seed and tournament wins are not associated
 
 $H_a$(Alternative): Seed and tournament wins are associated
 
-```{r, warning=FALSE}
+```{r warning=FALSE}
+correlation_test <- tidy(
+  cor.test(
+      marchmadness$seed, 
+      marchmadness$tourney_wins, 
+      method = "spearman")
+  ) |> 
+  mutate_if(is.numeric, round, 3)
 
-cor.test(marchmadness$seed, marchmadness$tourney_wins, method = "spearman")
+kable(correlation_test, digits = 2)
 ```
 
 We can note that from this correlation test, with a P-value below 0.05, we can reject the null hypothesis, denoting that `seed` and `wins` are likely associated. The strong negative Spearman's `rho` suggests that lower seeds tend to win significantly more tournament games, as was confirmed from our exploratory analysis.
 
 This can be visualized with the following plot:
 
-```{r}
+```{r warning = FALSE, message = FALSE}
 ggplot(marchmadness, aes(x = seed, y = tourney_wins)) +
   geom_jitter(width = 0.2, height = 0.2, alpha = 0.5) +
   geom_smooth(method = "lm", se = FALSE, color = "skyblue2") +
@@ -200,7 +208,8 @@ However, we can note that given that we're setting `tourney_wins` as a response,
 
 ```{r}
 poisson_model <- glm(tourney_wins ~ seed, family = "poisson", data = marchmadness)
-summary(poisson_model)
+
+kable(tidy(poisson_model), digits = 2)
 ```
 
 ```{r}
@@ -250,8 +259,7 @@ $H_a: 1 + \gamma > 1$
 When there is evidence of overdispersion in our data, we will reject $H_o$.
 
 ```{r, warning=FALSE, message=FALSE}
-
-dispersiontest(poisson_model)
+kable(tidy(dispersiontest(poisson_model)), digits = 2)
 ```
 
 Since the P-value (0.8437) is much greater than 0.05, we fail to reject the null hypothesis. This suggests that there is no significant evidence of overdispersion in the Poisson model.
@@ -271,12 +279,13 @@ We can create an equivalent Poisson model, but now, we can treat `seed` as a fac
 
 ```{r}
 poisson_model_factor <- glm(tourney_wins ~ as.factor(as.character(seed)), family = "poisson", data = marchmadness)
-summary(poisson_model_factor)
+
+kable(tidy(poisson_model_factor), digits = 2)
 ```
 
 We can visualize how the two models fit the data to evaluate if treating `seed` as `numeric` or `factor` would have a significant impact on our modelling process.
 
-```{r}
+```{r warning = FALSE, message = FALSE}
 marchmadness <- marchmadness |> 
   mutate(
     Numeric_Seed = predict(poisson_model, type = "response"),
@@ -300,14 +309,14 @@ ggplot(plot_data, aes(x = seed, y = predicted, color = model)) +
 However, is we wanted to formally evaluate which is the better approach we could use likelihood-based model selection tools.
 
 ```{r}
-glance(poisson_model)
+kable(glance(poisson_model), digits = 2)
 
-glance(poisson_model_factor)
+kable(glance(poisson_model_factor), digits = 2)
 ```
 
 Based on lower residual deviance, higher log-likelihood, and a lower AIC, the model that treats `seed` as a factor fits the data better. This would suggest that the relationship between tournament seed and number of wins is **not linear**, and would support using an approach that does not assume a constant effect per unit change in seed.
 
-#### 6. Discussion
+### Discussion
 
 This analysis examined the relationship between a team’s tournament seed and its performance in the NCAA Division I Women’s Basketball Tournament. The results suggest that:
 

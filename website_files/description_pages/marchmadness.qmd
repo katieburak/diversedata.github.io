@@ -67,3 +67,6 @@ Dataset contains data for every team that has participated in the NCAA Division 
 ## Attribution
 
 Data sourced from FiveThirtyEight's NCAA Women's Basketball Tournament dataset, available under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). Original dataset: [FiveThirtyEight GitHub Repository](https://github.com/fivethirtyeight/data/tree/master/ncaa-womens-basketball-tournament). Story: [Louisiana Tech Was the UConn of the '80s](https://fivethirtyeight.com/features/louisiana-tech-was-the-uconn-of-the-80s/).
+
+
+Brooke-Marciniak, B. A. (2016, February 7). Here’s why women who play sports are more successful [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/heres-why-women-who-play-sports-more-successful-brooke-marciniak/
