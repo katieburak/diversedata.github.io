@@ -47,7 +47,7 @@ This case study examines the association between `relationship_quality` and a va
 
 By examining survey data, we aim to:
 
--   Identify the behavioral factors that most strongly affect the perceived relationship quality. We will focus specifically on finding how `sex_frequency`, `flirts_with_partner` and `fights_with_partner` affect the perception of relationship quality and we are going to evaluate if these factors have a different impact on `same_sex_couples`.
+-   Identify the behavioral factors that most strongly affect the perceived relationship quality. We will focus specifically on finding how `sex_frequency`, `flirts_with_partner` and `fights_with_partner` affect the perception of relationship quality and we are going to evaluate if these factors have a different impact on same sex couples.
 
 ### Methodology
 
@@ -101,7 +101,8 @@ In order to do so, we need to make sure that our response variable is encoded as
 # First, we can encode our nomical categorical explanatory variables:
 
 hcmst <- hcmst |> 
-  mutate(same_sex_couple = as_factor(same_sex_couple))
+  mutate(same_sex_couple = as_factor(same_sex_couple)|> 
+           fct_recode("No" = "no", "Yes" = "yes"))
 
 levels(hcmst$same_sex_couple)
 ```
@@ -111,50 +112,78 @@ levels(hcmst$same_sex_couple)
 
 hcmst <- hcmst |> 
   mutate(sex_frequency = as.ordered(sex_frequency)) |> 
-  mutate(sex_frequency = fct_relevel(
-    sex_frequency, 
-    c(
-      "once_a_month_or_less", 
-      "2_to_3_times_a_month", 
-      "once_or_twice_a_week", 
-      "3_to_6_times_a_week", 
-      "once_or_more_a_day"
-      )
-    ))
+  mutate(
+    sex_frequency = fct_relevel(
+      sex_frequency, 
+      c(
+        "once_a_month_or_less", 
+        "2_to_3_times_a_month", 
+        "once_or_twice_a_week", 
+        "3_to_6_times_a_week", 
+        "once_or_more_a_day"
+        )
+      ) |> 
+      fct_recode(
+        "Once a Month or Less"     = "once_a_month_or_less",
+        "Two or Three Times a Month" = "2_to_3_times_a_month",
+        "Once or Twice a Week"     = "once_or_twice_a_week",
+        "Three to Six Times a Week" = "3_to_6_times_a_week",
+        "Once or More a Day"       = "once_or_more_a_day"
+      ))
 
 levels(hcmst$sex_frequency)
 
 hcmst <- hcmst |> 
   mutate(flirts_with_partner = as.ordered(flirts_with_partner)) |> 
-  mutate(flirts_with_partner = fct_relevel(
-    flirts_with_partner, 
-    c(
-      "never", 
-      "less_than_once_a_month", 
-      "1_to_3_times_a_month", 
-      "once_a_week", 
-      "a_few_times_a_week", 
-      "every_day"
-      )
-    ))
+  mutate(
+    flirts_with_partner = fct_relevel(
+      flirts_with_partner, 
+      c(
+        "never", 
+        "less_than_once_a_month", 
+        "1_to_3_times_a_month", 
+        "once_a_week", 
+        "a_few_times_a_week", 
+        "every_day"
+        )
+      ) |> 
+      fct_recode(
+        "Never" = "never",
+        "Less Than Once a Month" = "less_than_once_a_month",
+        "One to Three Times a Month" = "1_to_3_times_a_month",
+        "Once a Week" = "once_a_week",
+        "A Few Times a Week" = "a_few_times_a_week",
+        "Every Day" = "every_day"
+        ))
 
 levels(hcmst$flirts_with_partner)
 
 hcmst <- hcmst |> 
   mutate(fights_with_partner = as.ordered(fights_with_partner)) |> 
-  mutate(fights_with_partner = fct_relevel(
-    fights_with_partner, 
-    c(
-      "0_times", 
-      "1_time", 
-      "2_times", 
-      "3_times", 
-      "4_times", 
-      "5_times", 
-      "6_times", 
-      "7_or_more_times"
-      )
-    ))
+  mutate(
+    fights_with_partner = fct_relevel(
+      fights_with_partner, 
+      c(
+        "0_times", 
+        "1_time", 
+        "2_times", 
+        "3_times", 
+        "4_times", 
+        "5_times", 
+        "6_times", 
+        "7_or_more_times"
+        )
+      ) |> 
+      fct_recode(
+        "Zero Times" = "0_times",
+        "One Time" = "1_time",
+        "Two Times" = "2_times",
+        "Three Times" = "3_times",
+        "Four Times" = "4_times",
+        "Five Times" = "5_times",
+        "Six Times" = "6_times",
+        "Seven or More Times" = "7_or_more_times"
+      ))
 
 levels(hcmst$sex_frequency)
 ```
@@ -162,16 +191,24 @@ levels(hcmst$sex_frequency)
 ```{r}
 hcmst <- hcmst |> 
   mutate(relationship_quality = as.ordered(relationship_quality)) |> 
-  mutate(relationship_quality = fct_relevel(
-    relationship_quality, 
-    c(
-      "very_poor", 
-      "poor", 
-      "fair", 
-      "good", 
-      "excellent"
-      )
-    ))
+  mutate(
+    relationship_quality = fct_relevel(
+      relationship_quality, 
+      c(
+        "very_poor", 
+        "poor", 
+        "fair", 
+        "good", 
+        "excellent"
+        )
+      ) |> 
+      fct_recode(
+        "Very Poor" = "very_poor",
+        "Poor" = "poor",
+        "Fair" = "fair",
+        "Good" = "good",
+        "Excellent" = "excellent"
+      ))
 
 levels(hcmst$sex_frequency)
 
@@ -198,10 +235,9 @@ histogram_plot <- function(data, y_var, facet, plot_title = "Counts by Category"
       title = plot_title,
       x = "Count",
       y = NULL,
-      fill = facet
+      fill = "Same Sex Couple"
     ) +
-    theme_minimal() +
-    theme(legend.position = "none",)
+    theme_minimal()
 }
 ```
 
@@ -269,7 +305,7 @@ options(contrasts = c("contr.treatment", "contr.sdif"))
 
 Now, we can fit our model. Noting that `polr()` does not calculate p-values, we can compute them and bind them to our model estimates. We will also focus only on statistically significant estimates.
 
-For the purposes of this exercise, we will only use a subset of the variables in our modeling. We will be interested in how behavioral variables (`sex_frequency`, `flirts_with_partner` and `fights_with_partner`) affect the perception of relationship quality, additionally, we are interested in seeing if these effects are different for `same_sex_couple`s.
+For the purposes of this exercise, we will only use a subset of the variables in our modeling. We will be interested in how behavioral variables (`sex_frequency`, `flirts_with_partner` and `fights_with_partner`) affect the perception of relationship quality, additionally, we are interested in seeing if these effects are different for same sex couples.
 
 ```{r}
 ordinal_model <- polr(
@@ -335,7 +371,7 @@ kable(bt, digits = 2)
 
 Again, warnings are triggered caused by sparsity in combinations of the response and the levels of the predictor that have no observations. Approaching these Brant-Wald test results with caution is advised, or binning categories together may help solve the concern.
 
-Note that with an $\alpha = 0.05$, we are completely fulfilling the proportional odds assumption (the column `probability` delivers the corresponding p-values).
+Note that with an $\alpha = 0.05$, we don't have evidence of violating the proportional odds assumption (the column `probability` delivers the corresponding p-values).
 
 Also, note that throughout the analysis we got a few warnings. These are caused by having categories in our model that are quite sparse, where combinations of the response and the levels of the predictor have no observations. These gaps may affect Brant statistics. A solution for this matter would be to bin some of the levels of our categories to avoid having empty combinations of levels between our response and explanatory variables.
 
