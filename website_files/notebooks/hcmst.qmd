@@ -341,17 +341,17 @@ Based on the calculated estimates, we would think that people who have more sex,
 
 ```{r}
 round(predict(ordinal_model, tibble(
-  same_sex_couple = "no",
-  sex_frequency = "once_a_month_or_less",
-  flirts_with_partner = "never",
-  fights_with_partner = "7_or_more_times"), 
+  same_sex_couple = "No",
+  sex_frequency = "Once a Month or Less",
+  flirts_with_partner = "Never",
+  fights_with_partner = "Seven or More Times"), 
   type = "probs"),2)
 
 round(predict(ordinal_model, tibble(
-  same_sex_couple = "no",
-  sex_frequency = "once_or_more_a_day",
-  flirts_with_partner = "every_day",
-  fights_with_partner = "0_times"), 
+  same_sex_couple = "No",
+  sex_frequency = "Once or More a Day",
+  flirts_with_partner = "Every Day",
+  fights_with_partner = "Zero Times"), 
   type = "probs"), 2)
 ```
 

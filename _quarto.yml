@@ -3,16 +3,22 @@ project:
   output-dir: docs
 
 website:
+
   title: "Diverse Data Hub"
+
   favicon: website_files/img/favicon.png
+
   navbar:
     left:
       - href: website_files/datasets.qmd
         text: Datasets
+
   page-footer:
     right: "This page is built with [Quarto](https://quarto.org/)."
     background: "rgb(97, 179, 230)"
+
   sidebar:
+
     logo: "website_files/img/logo.png"
     style: "floating"
     search: false
@@ -21,33 +27,18 @@ website:
       - icon: github
         href: https://github.com/diverse-data-hub
     collapse-level: 1
+
     contents:
-      - text: "CRAN Page (TBD)"
+      - text: "CRAN (TBD)"
         href: ""
-      - section: "Report an Issue"
+      - text: "Citation (TBD)"
+        href: "https://diverse-data-hub.github.io/website_files/citation.html"
+      - section: "Collaborate"
         contents:
           - text: "Website"
             href: "https://github.com/diverse-data-hub/diverse-data-hub.github.io/issues"
           - text: "R Package"
             href: "https://github.com/diverse-data-hub/diversedata/issues"
-      - text: "License"
-        href: "https://github.com/diverse-data-hub/diverse-data-hub.github.io?tab=License-1-ov-file"
-      - text: "Citation (TBD)"
-        href: "https://diverse-data-hub.github.io/website_files/citation.html"
-      - section: "Owners"
-        contents:
-          - text: "Katie Burak PhD"
-            href: "https://github.com/katieburak"
-          - text: "Elham E Khoda"
-            href: "https://github.com/elhamekhoda"
-      - section: "Collaborators"
-        contents:
-          - text: "Francisco Ramirez"
-            href: "https://github.com/fraramfra"
-          - text: "Azin Piran"
-            href: "https://github.com/AzinPiran"
-          - text: "Siddarth Subrahmanian"
-            href: "https://github.com/siddart-1"
 
 format:
   html:
@@ -56,6 +47,8 @@ format:
       - website_files/styles.scss
     css: website_files/styles.css
     page-layout: full
+    toc: true
+    toc-location: left
 
 
 
