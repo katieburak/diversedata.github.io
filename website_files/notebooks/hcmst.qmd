@@ -1,4 +1,4 @@
-```{r}
+```{r all_flags}
 #| echo: true
 #| warning: false
 #| message: false
@@ -46,7 +46,7 @@ By examining survey data, we aim to:
 
 First, we need to load the libraries that will be used through the exercise.
 
-```{r results = "hide", warning = FALSE, message = FALSE}
+```{r library_load, results = "hide", warning = FALSE, message = FALSE}
 library(tidyverse) 
 library(scales)
 library(cowplot)
@@ -60,7 +60,7 @@ library(knitr)
 
 First, we can load our data set, select our specific variables of intereset and remove NAs from our data set.
 
-```{r warning = FALSE, message = FALSE}
+```{r data_load, warning = FALSE, message = FALSE}
 # Reading Data
 hcmst <- read_csv("../../data/clean/hcmst.csv") 
 
@@ -95,7 +95,7 @@ In order to do so, we need to make sure that our response variable is encoded as
 
 First, we can encode our nomical categorical explanatory variables:
 
-```{r warning = FALSE, message = FALSE}
+```{r recode_a, warning = FALSE, message = FALSE}
 hcmst <- hcmst |> 
   mutate(same_sex_couple = as_factor(same_sex_couple)|> 
            fct_recode("No" = "no", "Yes" = "yes"))
@@ -105,7 +105,7 @@ levels(hcmst$same_sex_couple)
 
 Then, we can encode all our ordinal, categorical, explanatory, behavioral variables:
 
-```{r}
+```{r recode_b}
 hcmst <- hcmst |> 
   mutate(sex_frequency = as.ordered(sex_frequency)) |> 
   mutate(
@@ -186,7 +186,7 @@ levels(hcmst$sex_frequency)
 
 Then, we can encode all our ordinal, categorical, explanatory, COVID-19-related variables:
 
-```{r}
+```{r recode_c}
 hcmst <- hcmst |> 
   mutate(inc_change_during_pandemic = as.ordered(inc_change_during_pandemic)) |> 
   mutate(
@@ -288,7 +288,7 @@ levels(hcmst$agree_covid_approach)
 
 Finally, we can encode our target variable:
 
-```{r}
+```{r recode_d}
 hcmst <- hcmst |> 
   mutate(relationship_quality = as.ordered(relationship_quality)) |> 
   mutate(
@@ -319,7 +319,7 @@ Let's visualize histograms charts for our different categorical variables to see
 
 First, we will create a function that will be used for visualization.
 
-```{r}
+```{r hist_function}
 histogram_plot <- function(data, y_var, facet, plot_title = "Counts by Category") {
 
   data_long <- data |> 
@@ -339,7 +339,7 @@ histogram_plot <- function(data, y_var, facet, plot_title = "Counts by Category"
 }
 ```
 
-```{r fig.height=20, fig.width=8}
+```{r histograms, fig.height=20, fig.width=8}
 
 hist_sex_freq <- histogram_plot(
   hcmst, 
@@ -433,7 +433,7 @@ In the context of the COVID-19 pandemic, it can be noted that most subjects had 
 
 As for our target variable, most participants perceived the quality of their relationship to be `good` or `excellent`.
 
-```{r echo = FALSE}
+```{r img_save, echo = FALSE}
 ggsave("../img/hcmst.png", plot = hist_flirt_freq, width = 6, height = 4, dpi = 300)
 ```
 
@@ -445,7 +445,7 @@ For our modeling purposes, we will use the `MASS` package, `polr()` function to 
 
 Given that we are using ordinal categorical variables as explanatory variables, we will also set our model to use successive differences contrasts to facilitate the interpretation of the estimates.
 
-```{r}
+```{r contrasts}
 options(contrasts = c("contr.treatment", "contr.sdif"))
 ```
 
@@ -453,7 +453,7 @@ Now, we can fit our model. Noting that `polr()` does not calculate p-values, we 
 
 For the purposes of this exercise, we will only use a subset of the variables in our modeling. We will be interested in how behavioral variables, as well as COVID-19 related variables, affect the perception of relationship quality. Additionally, we are interested in seeing if these effects are different for same sex couples.
 
-```{r}
+```{r model_fit}
 ordinal_model <- polr(
   relationship_quality ~ same_sex_couple + 
     sex_frequency + 
@@ -471,11 +471,11 @@ ordinal_model <- polr(
 
 To ensure the validity of our analysis, we are going to test the proportional odds assumption. To do so, we can use the Brant-Wald test, which assesses whether our model fulfills this assumption.
 
-```{r results = "hide"}
+```{r brant_test, results = "hide"}
 bt <- brant(ordinal_model)
 ```
 
-```{r}
+```{r table_a}
 kable(bt, digits = 2)
 ```
 
@@ -487,7 +487,7 @@ Also, note that throughout the fitting process and the Brant-Wald test we got a 
 
 First, we will calculate the P-value (as `polr()`does not calculate it) and we are going to exponentiate the estimates for easier interpretation of the log-odds.
 
-```{r}
+```{r model_int}
 summary_partial_ordinal_model <- cbind(tidy(ordinal_model),
   p.value = pnorm(abs(tidy(ordinal_model)$statistic), lower.tail = FALSE) * 2) |>
   mutate_if(is.numeric, round, 2)
@@ -517,7 +517,7 @@ We can interpret these estimates:
 
 With our fitted model, we are now able to make predictions on new examples. Based on behavioral and COVID-19 related variables, we can predict the probabilities of the different levels of perceived `relationship_quality` for a specific subject. Focusing on the levels that were associated with statistically significant factors:
 
-```{r}
+```{r prediction}
 round(predict(ordinal_model, tibble(
   same_sex_couple = "Yes",
   sex_frequency = "Once a Month or Less",
