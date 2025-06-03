@@ -1,19 +1,9 @@
-```{r}
+```{r all_flags}
 #| echo: true
 #| warning: false
 #| message: false
 #| collapse: true
 ```
-
-## About the Data
-
-This adapted data set contains historical records of every NCAA Division I Women’s Basketball Tournament appearance since the tournament began in 1982 up until 2018. Sourced from official NCAA, the adapted data set captures tournament results across more than four decades of collegiate women’s basketball.
-
-The rise in popularity of the NCAA Women’s March Madness, fueled by athletes like Caitlin Clark and Paige Bueckers, reflects a broader cultural shift in the recognition of women’s sports. Beyond entertainment and athletic achievement, women’s participation in sport has social and professional benefits.
-
-As Beth A. Brooke notes in her article [Here’s Why Women Who Play Sports Are More Successful](https://www.linkedin.com/pulse/heres-why-women-who-play-sports-more-successful-brooke-marciniak/), research from EY shows that 94% of women in executive leadership roles played sports, and over half competed at the university level. Participation in sports hel develop skills such as resilience, teamwork, and competitiveness, traits that critical for career success.
-
-Analyzing NCAA Women's March Madness results and promoting visibility of women in sports, beyond exercising our data skills, supports advocation for equity, opportunity, and empowerment of women in leadership.
 
 ### Key Features of the Dataset
 
@@ -35,7 +25,7 @@ Each row represents a single team's appearance in a specific tournament year and
 
 ### Purpose and Use Cases
 
-This dataset is designed to support analysis of:
+This data set is designed to support analysis of:
 
 -   Team performance over time
 
@@ -61,22 +51,23 @@ Seeding is intended to reflect a team’s regular-season performance. In theory,
 
 Understanding these dynamics can inform fan expectations and bracket predictions.
 
-### Methodology
+### Analysis
 
-#### 0. Loading Libraries
+We should load the necessary libraries we will be using.
 
-```{r results = "hide", warning = FALSE, message = FALSE}
+```{r library_load, results = "hide", warning = FALSE, message = FALSE}
 library(tidyverse)
 library(AER)
 library(broom)
 library(knitr)
+library(MASS)
 ```
 
 #### 1. Data Cleaning & Processing
 
 First, let's load our data and remove all NA values for our variables of interest `seed` and `tourney_wins`.
 
-```{r warning=FALSE, message=FALSE}
+```{r data_load, warning=FALSE, message=FALSE}
 # Reading Data
 marchmadness <- read_csv("../../data/clean/womensmarchmadness.csv") 
 
@@ -88,14 +79,11 @@ marchmadness <- marchmadness |> drop_na(seed, tourney_wins)
 
 # Notice no rows were removed
 nrow(marchmadness)
-
-# Visualize the data set
-head(marchmadness)
 ```
 
 Note that, the `seed = 0` designation in 1983 notes the eight teams that played an opening-round game to become the No.8 seed in each region. For this exercise, we will not take them into consideration. Since `seed` is an ordinal categorical variable, we can set it as an ordered factor.
 
-```{r}
+```{r seed_filter}
 marchmadness <- marchmadness |> 
   filter(seed != 0)
 ```
@@ -104,7 +92,7 @@ marchmadness <- marchmadness |>
 
 We can see which seeds appear more often.
 
-```{r}
+```{r eda_a}
 seed_count <- marchmadness |> 
   count(seed) |> 
   arrange(desc(n)) |>
@@ -124,7 +112,7 @@ ggplot(
 
 We can also take a look at the average tournament wins for each seed:
 
-```{r}
+```{r eda_b}
 marchmadness |> 
   filter(!is.na(seed), seed != 0) |> 
   group_by(seed) |> 
@@ -149,7 +137,7 @@ marchmadness |>
 
 We can note that a teams with a higher seed tend to win more tournaments! We can also see the total amount of tourney wins for each seed.
 
-```{r}
+```{r eda_c}
 seed_order <- marchmadness |> 
   filter(!is.na(seed), seed != 0) |> 
   group_by(seed) |> 
@@ -172,71 +160,81 @@ marchmadness |>
   theme_minimal()
 ```
 
-#### 3. Hypothesis Testing: Are Seed and Wins Associated?
+#### 3. Seed Treatment: Numeric vs Factor
 
-$H_0$(Null): Seed and tournament wins are not associated
+An important decision on this analysis is whether to use `seed` as a numeric or an ordered categorical predictor. Treating `seed` as a numeric explanatory variable assumes that the effect of seed is linear on the log scaled of the amount of tourney_wins.
 
-$H_a$(Alternative): Seed and tournament wins are associated
+To test if this assumption is appropriate, we can compare models that make different assumptions about `seed`. We'll create models using `seed` as both a numeric variable and a factor.
 
-```{r warning=FALSE}
-correlation_test <- tidy(
-  cor.test(
-      marchmadness$seed, 
-      marchmadness$tourney_wins, 
-      method = "spearman")
-  ) |> 
-  mutate_if(is.numeric, round, 3)
+However, first, we need to encode `seed` as an ordered factor.
 
-kable(correlation_test, digits = 2)
+```{r recode_a}
+marchmadness_factor <- marchmadness |> 
+  mutate(seed = as.ordered(seed)) |> 
+  mutate(seed = fct_relevel
+         (seed, 
+           c("1", "2", "3", "4", "5", 
+             "6", "7", "8", "9", "10", 
+             "11", "12", "13", "14", "15", 
+             "16")))
 ```
 
-We can note that from this correlation test, with a P-value below 0.05, we can reject the null hypothesis, denoting that `seed` and `wins` are likely associated. The strong negative Spearman's `rho` suggests that lower seeds tend to win significantly more tournament games, as was confirmed from our exploratory analysis.
+Given that we're setting `tourney_wins` as a response, our linear regression model may output negative values at high seed values. Therefore, a Poisson Regression model is better suited, considering that tourney wins is a count variable and is always non-negative.
 
-This can be visualized with the following plot:
+```{r model_fit}
+options(contrasts = c("contr.treatment", "contr.sdif"))
 
-```{r warning = FALSE, message = FALSE}
-ggplot(marchmadness, aes(x = seed, y = tourney_wins)) +
-  geom_jitter(width = 0.2, height = 0.2, alpha = 0.5) +
-  geom_smooth(method = "lm", se = FALSE, color = "skyblue2") +
-  labs(title = "Seed vs Tournament Wins",
-       x = "Seed",
-       y = "Tournament Wins") +
-  theme_minimal()
-```
-
-However, we can note that given that we're setting `tourney_wins` as a response, our linear regression model may output negative values at high seed values. Therefore, a Poisson Regression model is better suited, considering that tourney wins is a count variable and is always non-negative.
-
-```{r}
 poisson_model <- glm(tourney_wins ~ seed, family = "poisson", data = marchmadness)
 
-kable(tidy(poisson_model), digits = 2)
+poisson_model_factor <- glm(tourney_wins ~ seed, family = "poisson", data = marchmadness_factor)
 ```
 
-```{r}
-marchmadness$predicted_wins <- predict(poisson_model, type = "response")
+We can visualize how the two models fit the data to evaluate if treating `seed` as `numeric` or `factor` would have a significant impact on our modelling process.
 
-model_plot <- ggplot(marchmadness, aes(x = seed, y = tourney_wins)) +
-  geom_jitter(width = 0.3, alpha = 0.5) +
-  geom_line(aes(y = predicted_wins), color = "skyblue2", linewidth = 1.2) +
-  labs(title = "Poisson Regression: Predicted Tournament Wins by Seed",
+```{r plot_data, warning = FALSE, message = FALSE}
+marchmadness <- marchmadness |> 
+  mutate(
+    Numeric_Seed = predict(poisson_model, type = "response"),
+    Factor_Seed = predict(poisson_model_factor, type = "response")
+  )
+
+plot_data <- marchmadness |> 
+  dplyr::select(seed, tourney_wins, Numeric_Seed, Factor_Seed) |> 
+  pivot_longer(cols = c("Numeric_Seed","Factor_Seed"), names_to = "model", values_to = "predicted")
+
+ggplot(plot_data, aes(x = seed, y = predicted, color = model)) +
+  geom_point(aes(y = tourney_wins), alpha = 0.3, color = "black") +
+  geom_line(stat = "smooth", method = "loess", se = FALSE, linewidth = 1.2) +
+  labs(title = "Predicted Tournament Wins by Seed",
        x = "Seed",
-       y = "Tournament Wins") +
+       y = "Predicted Wins",
+       color = "Model") +
   theme_minimal()
-
-model_plot
 ```
 
-```{r, include=FALSE}
-ggsave("../img/marchmadness.png", plot = model_plot, width = 6, height = 4, dpi = 300)
+Visually, both models don't appear to be significantly different from each other. Now, if we wanted to formally evaluate which is the better approach we could use likelihood-based model selection tools.
+
+```{r table_display}
+kable(glance(poisson_model), digits = 2)
+
+kable(glance(poisson_model_factor), digits = 2)
 ```
 
-The `seed` coefficient $\beta_1 = -0.2501$ represents the log change in the expected number of tournament wins for every 1 unit increase in seed.
+Based on lower residual deviance, higher log-likelihood, and a lower AIC, the model that treats `seed` as a factor fits the data better. This would suggest that the relationship between tournament seed and number of wins is **not linear**, and would support using an approach that does not assume a constant effect per unit change in seed.
 
-```{r}
-exp(poisson_model$coefficients["seed"])
+However, before deciding on using a more complex model, we can evaluate if this complexity offers a significantly better modeling approach. To do this, we can perform a likelihood ratio test.
+
+$H_0$: Model `poisson_model` fits the data better than model `poisson_model_factor`
+
+$H_a$: Model `poisson_model_factor` fits the data better than model `poisson_model`
+
+```{r anova_result}
+anova_result <- tidy(anova(poisson_model, poisson_model_factor, test = "Chisq"))
+
+kable(anova_result, digits = 2) 
 ```
 
-This means that for every increase in seed by 1, the expected tournament wins decreases by about 23% ( as 1-0.77 = 0.23)
+These results indicate strong evidence that the model with `seed` treated as a factor fits the data significantly better than treating it as a numeric predictor. Therefore, we will proceed by using `seed` as a factor.
 
 #### 4. Overdispersion Testing
 
@@ -256,76 +254,69 @@ $H_0:1 + \gamma = 1$
 
 $H_a: 1 + \gamma > 1$
 
-When there is evidence of overdispersion in our data, we will reject $H_o$.
+When there is evidence of overdispersion in our data, we will reject $H_0$.
 
-```{r, warning=FALSE, message=FALSE}
-kable(tidy(dispersiontest(poisson_model)), digits = 2)
+```{r overdispersion, warning=FALSE, message=FALSE}
+kable(tidy(dispersiontest(poisson_model_factor)), digits = 2)
 ```
 
-Since the P-value (0.8437) is much greater than 0.05, we fail to reject the null hypothesis. This suggests that there is no significant evidence of overdispersion in the Poisson model.
+Since the P-value (0.71) is much greater than 0.05, we fail to reject the null hypothesis. This suggests that there is no significant evidence of overdispersion in the Poisson model.
 
-#### 5. One Major Assumption...
+#### 5. Hypothesis Testing: Are Seed and Wins Associated?
 
-Note that throughout this analysis, we've made one big assumption: we have used `seed` as a numeric predictor. This assumes that the effect of `seed` is linear on the log scaled of the amount of `tourney_wins`.
-
-```{r}
-
-class(marchmadness$seed)
+```{r model_output}
+summary_model <- tidy(poisson_model_factor) |> 
+  mutate(exp_estimate = exp(estimate)) |> 
+  mutate_if(is.numeric, round, 3) |> 
+  filter(p.value <= 0.05)
+  
+kable(summary_model, digits = 2)
 ```
 
-To test if this assumption is appropraite, we can compare models that make different assumptions about `seed`.
+Based on these results, we can see that `seed` is significantly associated with `tourney_wins`, particularly in changes in levels between lower seeds. These results can be interpreted as:
 
-We can create an equivalent Poisson model, but now, we can treat `seed` as a factor.
+-   Seed 2 teams win 29% (1-0.71) fewer games than seed 1.
 
-```{r}
-poisson_model_factor <- glm(tourney_wins ~ as.factor(as.character(seed)), family = "poisson", data = marchmadness)
+-   Seed 3 teams win 28% fewer games than seed 2.
 
-kable(tidy(poisson_model_factor), digits = 2)
-```
+-   Seed 5 teams win 37% fewer games than seed 4.
 
-We can visualize how the two models fit the data to evaluate if treating `seed` as `numeric` or `factor` would have a significant impact on our modelling process.
+-   Seed 8 teams win 29% fewer games than seed 7.
 
-```{r warning = FALSE, message = FALSE}
-marchmadness <- marchmadness |> 
-  mutate(
-    Numeric_Seed = predict(poisson_model, type = "response"),
-    Factor_Seed = predict(poisson_model_factor, type = "response")
-  )
+-   Seed 12 teams win 48% fewer games than seed 11.
 
-plot_data <- marchmadness |> 
-  select(seed, tourney_wins, Numeric_Seed, Factor_Seed) |> 
-  pivot_longer(cols = c("Numeric_Seed","Factor_Seed"), names_to = "model", values_to = "predicted")
+-   Seed 13 teams win 60% fewer games than seed 12.
 
-ggplot(plot_data, aes(x = seed, y = predicted, color = model)) +
-  geom_point(aes(y = tourney_wins), alpha = 0.3, color = "black") +
-  geom_line(stat = "smooth", method = "loess", se = FALSE, linewidth = 1.2) +
-  labs(title = "Predicted Tournament Wins by Seed",
+This conclusion is easier to interpret visually, so, let's plot our Poisson regression model to view the impact of `seed` on `tourney_wins`:
+
+```{r model_plot}
+marchmadness$predicted_wins <- predict(poisson_model_factor, type = "response")
+
+model_plot <- ggplot(marchmadness, aes(x = seed, y = tourney_wins)) +
+  geom_jitter(width = 0.3, alpha = 0.5) +
+  geom_line(aes(y = predicted_wins), color = "skyblue2", linewidth = 1.2) +
+  labs(title = "Poisson Regression: Predicted Tournament Wins by Seed",
        x = "Seed",
-       y = "Predicted Wins",
-       color = "Model") +
+       y = "Tournament Wins") +
   theme_minimal()
+
+model_plot
 ```
 
-However, is we wanted to formally evaluate which is the better approach we could use likelihood-based model selection tools.
-
-```{r}
-kable(glance(poisson_model), digits = 2)
-
-kable(glance(poisson_model_factor), digits = 2)
+```{r plot_save, include=FALSE}
+ggsave("../img/marchmadness.png", plot = model_plot, width = 6, height = 4, dpi = 300)
 ```
-
-Based on lower residual deviance, higher log-likelihood, and a lower AIC, the model that treats `seed` as a factor fits the data better. This would suggest that the relationship between tournament seed and number of wins is **not linear**, and would support using an approach that does not assume a constant effect per unit change in seed.
 
 ### Discussion
 
 This analysis examined the relationship between a team’s tournament seed and its performance in the NCAA Division I Women’s Basketball Tournament. The results suggest that:
 
-1.  *Seed strongly predicts performance*: Lower-numbered seeds (higher-ranked teams) tend to win more games on average. The correlation between seed and wins was statistically significant, with higher seeds associated with fewer wins.
+1.  **Seed strongly predicts performance**: Lower-numbered seeds (higher-ranked teams) tend to win more games on average. The correlation between seed and wins was statistically significant, with higher seeds associated with fewer wins.
 
-2.  *Poisson regression supports seeding as a predictor*: The Poisson regression model confirmed that seed is a significant predictor of tournament wins, as expected for a count variable like wins.
+2.  **Poisson regression supports seeding as a predictor**: The Poisson regression model confirmed that seed is a significant predictor of tournament wins, particularly for selected levels, as expected for a count variable like wins.
 
-3.  *Model assumptions are key*: Treating seed as a numeric variable assumes a linear effect across all seed values, which oversimplifies the relationship with the outcome. Ensuring that explanatory variables are approapriately coded is key. In this case, the influence of seeds could be described as slightly non-linear, which opens the door to discussion over model selection.
+3.  **Model assumptions are key**: Treating seed as a numeric variable would have assumed a linear effect across all seed values, which would have oversimplified the relationship with the outcome. Ensuring that explanatory variables are appropriately coded is key. In this case, `seed` offered improved insight when encoded as an ordered factor.
 
-4.  *There is a lot of variation around the prediction*: While seeding generally reflects team strength, upsets and unexpected performances do occur, showing that other factors also influence tournament outcomes.
+4.  **There is a lot of variation around the prediction**: While seeding generally reflects team strength, upsets and unexpected performances do occur, showing that other factors also influence tournament outcomes.
 
 Seeding is an important predictor of success, but clearly other factors influence the results. It sets expectations, but unexpected performances still shape March Madness.
