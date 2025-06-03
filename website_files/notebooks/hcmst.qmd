@@ -5,14 +5,6 @@
 #| collapse: true
 ```
 
-## About the Data
-
-This data set is adapted from the original data set [How Couples Meet and Stay Together 2017, 2022](https://data.stanford.edu/hcmst2017) survey, collected by Stanford University researchers. The data set explores the dynamics of relationships among adults in the United States, with data points gathered from subjects in 2017, 2020 and 2022. This adapted data set focuses on variables that may affect the quality of the relationship, considering demographic characteristics of the subjects, as well as the effect of the COVID-19 pandemic.
-
-The COVID-19 pandemic had a [significant impact](https://pmc.ncbi.nlm.nih.gov/articles/PMC10009005/) on romantic relationships in the United States. This data set enables exploration of how external factors, like the health of the subjects and income changes, as well as personal behaviors, like conflict and intimate dynamics, relate to an individual's perception of the quality of the relationship.
-
-This analysis contributes to discussions around partnership resilience, healthy relationships, and how norms around sexuality and technology shape romantic relationships.
-
 ### Key Features of the Dataset
 
 Each row in the data set represents an individual subject and includes the following selected variables:
@@ -491,7 +483,7 @@ Note that with an $\alpha = 0.05$, we don't have evidence of violating the propo
 
 Also, note that throughout the fitting process and the Brant-Wald test we got a few warnings. These are caused by having categories in our model that are quite sparse, where combinations of the response and the levels of the predictor have no observations. These gaps may affect Brant statistics. A solution for this matter would be to bin some of the levels of our categories to avoid having empty combinations of levels between our response and explanatory variables. For now, we will only acknowledge this issue.
 
-#### 5. Results and Interpretation
+#### 5. Model Interpretation
 
 First, we will calculate the P-value (as `polr()`does not calculate it) and we are going to exponentiate the estimates for easier interpretation of the log-odds.
 
@@ -521,7 +513,7 @@ We can interpret these estimates:
 -   `agree_covid_approach`: Mostly agreeing with a partner's approach to COVID vs mostly disagreeing is associated with 3.3 times higher odds of better relationship quality.
 -   `agree_covid_approach`: Completely agreeing with a partner's approach to COVID vs mostly agreeing is associated with 1.8 times higher odds of better relationship quality.
 
-#### 5. Prediction
+#### 6. Prediction
 
 With our fitted model, we are now able to make predictions on new examples. Based on behavioral and COVID-19 related variables, we can predict the probabilities of the different levels of perceived `relationship_quality` for a specific subject. Focusing on the levels that were associated with statistically significant factors:
 
