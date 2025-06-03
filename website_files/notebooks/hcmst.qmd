@@ -50,7 +50,7 @@ By examining survey data, we aim to:
 -   Identify the behavioral factors that most strongly affect the perceived relationship quality. We will focus specifically on finding how `sex_frequency`, `flirts_with_partner` and `fights_with_partner` affect the perception of relationship quality and we are going to evaluate if these factors have a different impact on same sex couples (`same_sex_couple`).
 -   We will also evaluate whether COVID-19 related factors such vaccination status (`subject_vaccinated`, `partner_vaccinated`), COVID-19 illness (`subject_had_covid`, `partner_had_covid`), income changes during the pandemic (`inc_change_during_pandemic`), and agreement on pandemic-related approaches (`agree_covid_approach`) affected couples' perceived relationship quality.
 
-### Methodology
+### Analysis
 
 First, we need to load the libraries that will be used through the exercise.
 
@@ -93,9 +93,6 @@ hcmst <- hcmst |>
 
 # Remaining row count.
 nrow(hcmst)
-
-# Visualize the data set
-head(hcmst)
 ```
 
 #### 2. Variable Encoding
@@ -322,8 +319,6 @@ hcmst <- hcmst |>
       ))
 
 levels(hcmst$sex_frequency)
-
-head(hcmst)
 ```
 
 #### 3. Exploratory Data Analysis
@@ -468,7 +463,16 @@ For the purposes of this exercise, we will only use a subset of the variables in
 
 ```{r}
 ordinal_model <- polr(
-  relationship_quality ~ same_sex_couple + sex_frequency + flirts_with_partner + fights_with_partner + inc_change_during_pandemic + subject_had_covid + partner_had_covid + subject_vaccinated + partner_vaccinated + agree_covid_approach,
+  relationship_quality ~ same_sex_couple + 
+    sex_frequency + 
+    flirts_with_partner + 
+    fights_with_partner + 
+    inc_change_during_pandemic + 
+    subject_had_covid + 
+    partner_had_covid + 
+    subject_vaccinated + 
+    partner_vaccinated + 
+    agree_covid_approach,
   data = hcmst, Hess = TRUE
 )
 ```
@@ -496,10 +500,12 @@ summary_partial_ordinal_model <- cbind(tidy(ordinal_model),
   p.value = pnorm(abs(tidy(ordinal_model)$statistic), lower.tail = FALSE) * 2) |>
   mutate_if(is.numeric, round, 2)
 
-summary_partial_ordinal_model |>
+summary_partial_ordinal_model <- summary_partial_ordinal_model |>
   mutate(exp_estimate = exp(estimate)) |> 
   filter(p.value < 0.05, 
          coef.type == "coefficient")
+
+kable(summary_partial_ordinal_model, digits = 2)
 ```
 
 Positive estimates are associated with higher relationship quality, while negative estimates are associated with lower relationship quality. Additionally, the exponential of the estimate is the odds ratio, which represents how much the odds of having a higher `relationship_quality` level changes between levels.
