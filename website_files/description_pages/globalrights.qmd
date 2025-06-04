@@ -1,0 +1,82 @@
+---
+title: "Global Rights Data"
+toc: true
+toc-depth: 4
+toc-location: right
+sidebar: false
+---
+
+## About the Data
+
+This dataset provides yearly, country-level information on LGBTQ+ rights, economic indicators, and education spending. The data is compiled from Our World in Data, with primary sources including Equaldex, the World Bank, and other open-access datasets.
+
+
+
+### Download
+
+<div class="button-container">
+  <a href="../../data/clean/globalrights.csv" download class="download-button">
+    Download CSV
+  </a>
+</div>
+
+### Metadata
+
+<div class="description-grid">
+  <div class="field-label">DOI</div><div class="field-value">TBD</div>
+  <div class="field-label">CSV Name</div><div class="field-value">globalrights.csv</div>
+  <div class="field-label">Dataset Characteristics</div><div class="field-value">Multivariate, Panel (Country-Year)</div>
+  <div class="field-label">Subject Area</div><div class="field-value">Human Rights, Public Policy, International Development</div>
+  <div class="field-label">Associated Tasks</div><div class="field-value">Classification, Regression, Comparative Analysis</div>
+  <div class="field-label">Feature Type</div><div class="field-value">Categorical, Float, Integer</div>
+  <div class="field-label">Instances</div><div class="field-value">2,184 country-year observations (91 countries × 24 years)</div>
+  <div class="field-label">Features</div><div class="field-value">10</div>
+  <div class="field-label">Has Missing Values?</div><div class="field-value">Yes</div>
+</div>
+
+
+### Variables
+
+::: {.table-container}
+::: {.styled-table}
+
+
+| Variable Name              | Role     | Type        | Description                                                                                 | Units          | Missing Values |
+|---------------------------|----------|-------------|---------------------------------------------------------------------------------------------|----------------|----------------|
+| `year`                    | ID       | Integer     | Year the data was recorded                                                                  | Year           | No             |
+| `country`                 | ID       | String      | Country name                                                                                | -              | No             |
+| `country-code`            | ID       | String      | ISO 3-letter country code                                                                   | -              | No             |
+| `gdp-per-capita`          | Feature  | Float       | Gross Domestic Product per capita                                                           | International $| Yes            |
+| `education-spending-gdp` | Feature  | Float       | Government education spending as a percentage of GDP                                        | %              | Yes            |
+| `same-sex-marriage`       | Target   | Categorical | Legal status of same-sex marriage (e.g., Legal, Civil Union, Not Recognized)               | -              | No             |
+| `lgbtq-censorship`        | Feature  | Categorical | Whether LGBTQ+ content is censored or restricted                                            | -              | Yes            |
+| `employment-discrimination` | Feature | Categorical | Whether anti-discrimination protections exist for LGBTQ+ individuals in employment          | -              | Yes            |
+| `gender-affirming-care`   | Feature  | Categorical | Availability and legal access to gender-affirming healthcare                                | -              | Yes            |
+| `legal-gender`            | Feature  | Categorical | Whether legal gender can be changed and under what conditions (e.g., self-ID, medical req.) | -              | Yes            |
+
+
+:::
+:::
+
+{{< include ../notebooks/globalrights.qmd >}}
+
+## Attribution
+
+This analysis uses data compiled and curated from **Our World in Data**, an open-access initiative that aggregates global development indicators. The variables used in this analysis include economic and policy-related measures across 91 countries from 2000 to 2023.
+
+Data sources include:
+
+- **GDP per Capita**: [Our World in Data – Economic Growth](https://ourworldindata.org/economic-growth)  
+- **Education Spending (% of GDP)**: [Our World in Data – Education Expenditure](https://ourworldindata.org/financing-education)  
+- **LGBTQ+ Rights Indicators**:  
+  - [Same-Sex Marriage Laws](https://ourworldindata.org/lgbt-rights)  
+  - [LGBTQ+ Censorship](https://ourworldindata.org/lgbt-rights)  
+  - [Employment Discrimination Protections](https://ourworldindata.org/lgbt-rights)  
+  - [Gender-Affirming Care Access](https://ourworldindata.org/lgbt-rights)  
+  - [Legal Gender Recognition](https://ourworldindata.org/lgbt-rights)  
+
+All data is used under the terms of the **Creative Commons BY license**. Please refer to [Our World in Data – Licensing](https://ourworldindata.org/licensing) for more details.
+
+> **Citation**:  
+> Our World in Data. Various datasets compiled and maintained by the Global Change Data Lab.  
+> [https://ourworldindata.org](https://ourworldindata.org)
