@@ -157,5 +157,11 @@
   },
   "website_files/instructions/how_to_publish_a_new_notebook.md": {
     "how_to_publish_a_new_notebook.html": "16c6a1ae"
+  },
+  "website_files/description_pages/globalrights.qmd": {
+    "globalrights.html": "72846fcd"
+  },
+  "website_files/notebooks/globalrights.qmd": {
+    "globalrights.html": "34291252"
   }
 }
