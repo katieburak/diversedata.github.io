@@ -5,221 +5,363 @@
 #| collapse: true
 ```
 
-## About the Data
-
-This dataset contains information on wildfires in Canada, compiled from official government sources.
-
 ### Key Features of the Dataset
 
--   **Fire size (in hectares)**
--   **Cause of fire (e.g., lightning, human activity)**
--   **Detection method**
--   **Response team size**
--   **Latitude/longitude of the fire**
--   **Weather conditions at the time of fire**
+Each row represents a single wildfire incident and includes information such as:
+
+-   **temperature** – The recorded air temperature (°C) at or near the fire location; higher temperatures often increase fire intensity and spread.
+
+-   **wind_speed** – Speed of wind (km/h) during the fire; stronger winds can accelerate fire spread and complicate suppression.
+
+-   **relative_humidity** – The percentage of moisture in the air; lower humidity typically increases fire risk by drying out vegetation.
+
+-   **fire_spread_rate** – The rate at which the fire expanded (e.g., hectares/hour); reflects the fire’s growth dynamics.
+
+-   **fire_type** – Classification of fire behavior (e.g., surface, crown); influences how fires are managed and controlled.
+
+-   **fuel_type** – The dominant type of vegetation or material burned (e.g., grass, timber); determines fire intensity and burn characteristics.
+
+-   **ia_access** – Indicator of how easily suppression crews could access the fire location; limited access can delay response.
+
+-   **latitude** – Geographic latitude coordinate of the fire’s origin; used for spatial analysis and regional modeling.
+
+-   **longitude** – Geographic longitude coordinate of the fire’s origin; used alongside latitude for location-specific insights.
 
 ### Purpose and Use Cases
 
-The data was collected to monitor, assess, and respond to wildfire risks across regions. Wildfires have significant environmental, social, and economic impacts—especially for **remote, Indigenous, and underserved communities** that may lack the infrastructure to respond effectively.
+This dataset is designed to support analysis of:
 
-From an equity and inclusion perspective, studying wildfire data can help identify **geographic and resource disparities** in fire detection and containment efforts, as well as the disproportionate risks certain populations face due to **climate change** and **infrastructure gaps**.
+-   Factors contributing to the spread, intensity, and size of wildfires
+
+-   The impact of weather conditions and fuel types on fire behavior
+
+-   Geographic and seasonal patterns in wildfire occurrence
+
+-   The effectiveness and timeliness of initial suppression efforts
+
+-   Relationships between fire causes, detection methods, and responsible parties
 
 ## Case Study
 
 ### Objective
 
-**Can we identify the environmental and human factors most associated with large wildfires (\>10 hectares)?**\
+Large wildfires pose serious environmental, social, and economic challenges, especially as climate conditions become more extreme. Identifying the key environmental and human factors linked to these fires can help guide more effective prevention and response strategies.\
+So, our main question is:
+
+**Can we identify the environmental and human factors most associated with large wildfires?**
+
+According to [Natural Resources Canada](https://cwfis.cfs.nrcan.gc.ca/ha/nfdb), wildfires exceeding 200 hectares in final size are classified as "large fires." While these fires represent a small percentage of all wildfires, they account for the majority of the total area burned annually.\
 The goal is to explore potential predictors of fire size, such as weather, fire cause, and detection method, and provide insights that could inform early interventions and resource planning.
 
-### Methodology
+### Analysis
+
+#### **Loading Libraries**
+
+```{r results = "hide", warning = FALSE, message = FALSE}
+library(readr)
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(gt)
+library(ggmap)
+library(ggspatial)
+library(sf)
+library(terra)
+library(maptiles)
+library(viridis)
+library(marginaleffects)
+library(broom)
+library(kableExtra)
+```
 
 #### 1. Data Cleaning & Processing
 
 -   Converted fire size to numeric
--   Created a binary variable `large_fire` (TRUE if \>10 ha)
+-   Created a binary variable `large_fire` (TRUE if \>200 ha)
 -   Filtered out incomplete records
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
-library(readr) 
-library(dplyr)
-library(lubridate)
-library(gt)
 
-## Reading Data
-wildfire_data <- read_csv("../../data/raw/wildfire/wildfire.csv") 
+# Reading Data  
+wildfire_data <- read_csv("../../data/clean/wildfire.csv") 
 
-## Clean and prepare base data
-wildfire_clean <- wildfire_data %>%
-  filter(!is.na(ASSESSMENT_HECTARES), ASSESSMENT_HECTARES > 0) %>%
+# Clean and prepare base data
+wildfire_clean <- wildfire_data |>
+  filter(!is.na(assessment_hectares), assessment_hectares > 0) |>
   mutate(
-    large_fire = ASSESSMENT_HECTARES > 10,
-    TRUE_CAUSE = as.factor(TRUE_CAUSE),
-    DETECTION_AGENT_TYPE = as.factor(DETECTION_AGENT_TYPE),
-    TEMPERATURE = as.numeric(TEMPERATURE),
-    WIND_SPEED = as.numeric(WIND_SPEED)
+    large_fire = current_size > 200,
+    true_cause = as.factor(true_cause),
+    detection_agent_type = as.factor(detection_agent_type),
+    temperature = as.numeric(temperature),
+    wind_speed = as.numeric(wind_speed)
   )
 
-## Drop unused levels for modeling
-wildfire_clean <- wildfire_clean %>%
-  filter(!is.na(TRUE_CAUSE), !is.na(DETECTION_AGENT_TYPE)) %>%
+# Drop unused levels for modeling
+wildfire_clean <- wildfire_clean |>
+  filter(!is.na(true_cause), !is.na(detection_agent_type)) |>
   mutate(
-    TRUE_CAUSE = droplevels(TRUE_CAUSE),
-    DETECTION_AGENT_TYPE = droplevels(DETECTION_AGENT_TYPE)
+    true_cause = droplevels(true_cause),
+    detection_agent_type = droplevels(detection_agent_type)
   )
+
 ```
 
-#### 2. Exploratory Data Analysis (EDA)
+#### 2. Exploratory Data Analysis
 
-**Fire Size Distribution**
+**Heat map of Fire Size by Location**
 
-```{r}
-library(ggplot2)
+The heat map visualizes where wildfires are most concentrated geographically, using latitude and longitude data overlaid on Alberta’s administrative boundaries. The shapefile, retrieved from [Alberta Geospatial Data and Statistics](https://open.alberta.ca/opendata/legislative-boundaries), provides the geographic context needed to highlight wildfire hotspots and identify regions with higher frequency or severity of fire events.
 
-ggplot(wildfire_clean, aes(x = ASSESSMENT_HECTARES)) +
-  geom_histogram(bins = 40) +
-  scale_x_log10() +
+```{r warning=FALSE, message=FALSE}
+
+alberta_shape <- suppressMessages(st_read("../../data/raw/Alberta_shapefiles/EDS_ENACTED_BILL33_15DEC2017.shp"))
+st_crs(alberta_shape) <- 3401
+alberta_shape <- st_transform(alberta_shape, crs = 4326)
+
+wildfire_plot <- wildfire_clean |>
+  filter(!is.na(latitude), !is.na(longitude), !is.na(assessment_hectares), assessment_hectares > 0)
+
+wildfire_sf <- st_as_sf(wildfire_plot, coords = c("longitude", "latitude"), crs = 4326)
+
+basemap <- get_tiles(wildfire_sf, provider = "CartoDB.Positron", crop = TRUE, zoom = 6)
+```
+
+```{r wildfire-map,warning=FALSE, message=FALSE, fig.width=7, fig.height=9}
+# Plot heatmap
+ggplot() +
+  layer_spatial(basemap) +
+  stat_density_2d_filled(
+    data = wildfire_plot,
+    aes(x = longitude, y = latitude, weight = current_size),
+    alpha = 0.7,
+    contour = TRUE
+  ) +
+  scale_fill_viridis_d(option = "turbo") +  
   labs(
-    title = "Distribution of Fire Size (Assessment Hectares)",
-    x = "Fire Size (log scale)",
-    y = "Number of Fires"
-  )
+    title = "Fire Size-Weighted Heatmap of Wildfire Locations",
+    x = "Longitude", y = "Latitude"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") 
+```
 
-
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+heatmap_plot <- 
+ggplot() +
+  layer_spatial(basemap) +
+  stat_density_2d_filled(
+    data = wildfire_plot,
+    aes(x = longitude, y = latitude, weight = current_size),
+    alpha = 0.7,
+    contour = TRUE
+  ) +
+  scale_fill_viridis_d(option = "turbo") +  
+  labs(
+    title = "Alberta Fire Size Heatmap",
+    x = "Longitude", y = "Latitude"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") 
+ggsave("../img/wildfire.png", plot = heatmap_plot, dpi = 300)
 ```
 
 **Proportion of Large Fires by Cause**
 
 ```{r}
-wildfire_clean %>%
-  group_by(TRUE_CAUSE) %>%
-  summarize(prop_large = mean(large_fire, na.rm = TRUE)) %>%
-  ggplot(aes(x = reorder(TRUE_CAUSE, prop_large), y = prop_large)) +
+wildfire_clean |>
+  group_by(true_cause) |>
+  summarize(prop_large = mean(large_fire, na.rm = TRUE)) |>
+  filter(prop_large > 0) |>
+  ggplot(aes(x = reorder(true_cause, prop_large), y = prop_large, fill = prop_large)) +
   geom_col() +
   coord_flip() +
+  scale_fill_gradient(low = "skyblue1", high = "skyblue4") +  
   labs(
     title = "Proportion of Large Fires by True Cause",
     x = "True Cause",
-    y = "Proportion of Fires > 10 ha"
+    y = "Proportion of Fires > 200 ha",
+    fill = "Proportion"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    axis.text.y = element_text(size = 10),
+    axis.title = element_text(size = 12)
   )
 
 ```
 
 #### 3. Logistic Regression Model
 
-We build a logistic regression model to predict the likelihood of a fire becoming large based on **temperature**, **wind speed**, and **cause**.
+Governments and emergency planners often care about whether a fire becomes large, not necessarily exactly how large. This makes a binary classification more interpretable and actionable for planning responses. Logistic regression predicts probability of exceeding a threshold, such as "Will this fire exceed 200 hectares?" Modeling the probability of exceeding such a threshold is often more operationally useful than modeling exact hectares.
+
+In [Decision Making for Wildfires: A Guide for Applying a Risk Management Process at the Incident Level](https://wfmrda.nwcg.gov/sites/default/files/docs/WFMRDA/Publications/Decision_Making_Wildfires_rmrs_gtr298.pdf?utm_source=chatgpt.com), the authors outline a risk-based decision-making framework. A key concept is identifying risk thresholds to guide decisions. This aligns with the broader goals of wildfire risk management, which emphasize anticipating fire severity and planning appropriate responses. Logistic regression is well-suited to this context because it models the probability of crossing such thresholds, such as a fire becoming large, enabling a clear, interpretable basis for making timely, risk-informed decisions.
+
+We built a logistic regression model to predict the likelihood of a fire becoming large based on a set of environmental and operational factors that are consistently measurable, statistically significant, and operationally relevant.
+
+In our logistic regression model, we selected key environmental and contextual variables from the `wildfire_clean` dataset that are well-established drivers of wildfire behavior. These include:
+
+-   `temperature`: Higher temperatures increase evaporation, dry out vegetation, and promote ignition and fire spread.
+
+-   `wind_speed`: Strong winds feed oxygen to the fire and can carry embers over long distances, accelerating spread.
+
+-   `relative_humidity`: Low humidity conditions dry fuels, increasing the probability and intensity of fire ignition.
+
+-   `fire_spread_rate`: Reflects how quickly a fire expands; a dynamic indicator of fire behavior.
+
+-   `fire_type`: Indicates how the fire behaves (e.g., surface vs. crown fire), which affects controllability and risk.
+
+-   `fuel_type`: Different vegetation types burn at different intensities and rates; fuels like grass or timber respond differently under the same conditions.
+
+-   `ia_access`: Stands for Initial Attack Access. Limited access can delay suppression efforts, allowing fires to grow larger.
+
+These variables were chosen because they each represent core determinants of ignition likelihood, fire intensity, and suppression difficulty. As explained in ***Introduction to Wildland Fire*** by **Pyne, Andrews, and Laven**, this theoretical foundation supports our inclusion of both meteorological and environmental variables in the model.
+
+**Mathematical Definition of the Logistic Regression Model**
+
+We aim to estimate the probability that a wildfire becomes large (i.e., burns more than 200 hectares), using logistic regression.
+
+Let:
+
+$$
+Y_i = 
+\begin{cases}
+1, & \text{if fire } i \text{ is large (area > 200 ha)} \\
+0, & \text{otherwise}
+\end{cases}
+$$
+
+$$
+\mathbf{x}_i = 
+\left( 
+\text{temperature}_i, 
+\text{wind\_speed}_i, 
+\text{relative\_humidity}_i, 
+\text{fire\_spread\_rate}_i, 
+\text{fire\_type}_i, 
+\text{fuel\_type}_i, 
+\text{ia\_access}_i 
+\right)
+$$
+
+Then the model is defined as:
+
+$$
+\Pr(Y_i = 1 \mid \mathbf{x}_i) = \frac{1}{1 + \exp(-\eta_i)}
+$$
+
+where the linear predictor is:
+
+$$
+\eta_i = \beta_0 
++ \beta_1 \cdot \text{temperature}_i 
++ \beta_2 \cdot \text{wind\_speed}_i 
++ \beta_3 \cdot \text{relative\_humidity}_i 
++ \beta_4 \cdot \text{fire\_spread\_rate}_i 
++ \boldsymbol{\beta}_{\text{cat}}^\top \mathbf{x}_{i,\text{cat}}
+$$
+
+Here:
+
+$$
+\begin{aligned}
+\beta_0 & \text{ is the intercept} \\
+\boldsymbol{\beta}_{\text{cat}} & \text{ is the vector of coefficients for the categorical predictors} \\
+\mathbf{x}_{i,\text{cat}} & \text{ is the vector of dummy variables representing those categorical predictors}
+\end{aligned}
+$$
 
 ```{r, warning=FALSE}
 
-library(broom)
-
 model <- glm(
-  large_fire ~ TEMPERATURE + WIND_SPEED + TRUE_CAUSE + DETECTION_AGENT_TYPE,
+  large_fire ~ temperature + wind_speed + relative_humidity +
+    fire_spread_rate + fire_type + fuel_type + ia_access,
   data = wildfire_clean,
   family = "binomial"
 )
 
-
-# Tidy and clean model output
-tidy_model <- broom::tidy(model) %>%
-  dplyr::mutate(
+tidy_model <- tidy(model) |>
+  mutate(
     estimate = round(estimate, 3),
     std.error = round(std.error, 3),
     statistic = round(statistic, 2),
     p.value = round(p.value, 4)
   )
 
-# Create a nice table
-gt_table <- tidy_model %>%
-  gt::gt() %>%
-  gt::tab_header(
-    title = "Logistic Regression Results",
-    subtitle = "Predicting Large Fires (> 10 ha)"
-  ) %>%
-  gt::cols_label(
-    term = "Variable",
-    estimate = "Estimate (Log-Odds)",
-    std.error = "Std. Error",
-    statistic = "z value",
-    p.value = "p-value"
-  ) %>%
-  gt::fmt_missing(everything(), missing_text = "-") %>%
-  gt::tab_options(
-    table.font.size = "small",
-    data_row.padding = gt::px(4),
-    heading.title.font.size = 16,
-    heading.subtitle.font.size = 12
-  )
-
-gt_table
+kable(tidy_model
+      , caption = "Logistic Regression Results: Predicting Large Fires (> 200 ha)") |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = FALSE)
 ```
 
-#### 4. Discussion
+Higher wind speed (0.050, *p* \< 0.001), temperature (0.048, *p* \< 0.001), and fire spread rate (0.104, *p* \< 0.001) significantly increase the odds of a large wildfire, while relative humidity (-0.031, *p* \< 0.001) decreases it. Compared to crown fires, ground fires (-1.354, *p* \< 0.001) and surface fires (-1.093, *p* \< 0.001) are much less likely to result in large fires.
 
-The logistic regression model revealed that **higher wind speeds** are strongly associated with an increased likelihood of a fire becoming large (over 10 hectares), consistent with our expectations about fire spread dynamics.
+This logistic regression model estimates the factors influencing the likelihood of a large wildfire. Higher temperature, wind speed, and fire spread rate significantly increase the odds of a large fire, while higher relative humidity decreases it. Certain fire types (e.g., Ground, Surface) and fuel types (e.g., M1, M2, O1a, O1b) are associated with significantly lower odds compared to their respective reference categories. The model shows that higher wind speed, lower humidity, and faster fire spread significantly increase the risk of large wildfires.
 
-Surprisingly, **temperature showed a small negative association** with fire size, though this may be influenced by interactions with other environmental factors like humidity or fuel type.
+Let’s dig into our model further by examining how different environmental and operational factors interact to influence fire outcomes.
 
-Among causes, **"Insufficient Resources"** and **"Line Impact"** were associated with significantly higher odds of large fires. This suggests that both human-related limitations and infrastructure vulnerability (like power lines) play a role in fire escalation.
+#### 4. Interpretation of our Model **using `marginaleffects`**
 
-The detection agent type showed weak evidence that **fires detected by UNP agents** may be less likely to become large, compared to FPD Staff, but the effect was not statistically strong (p = 0.09). Further exploration is needed here, especially considering the early intervention ability of different detection teams.
+**The Role of Wind Across Fire Causes**
 
-These findings provide insights into key environmental and operational factors influencing wildfire severity. Importantly, they point to the **need for targeted mitigation strategies** in areas with poor detection access or high infrastructure risks.
+As you've likely noticed, we did not include `true_cause` as a predictor in our logistic regression model because it contains many categories, some of which have very few observations. This can lead to large standard errors, unstable coefficient estimates, and a higher risk of overfitting.
 
-In the broader context of equity, this analysis reinforces that **resource constraints and delayed detection**—often more common in remote or underfunded regions—can amplify wildfire impacts. Data-informed strategies can help ensure **more equitable protection** against climate-driven disasters.
+However, `true_cause` remains an important variable for exploratory analysis. Certain ignition causes may be more sensitive to wind. For example, sparks from power lines can spread quickly in high winds, embers from debris burning can travel farther, and unattended fires can escalate rapidly under windy conditions. We chose wind speed for this analysis because it is a well-documented environmental amplifier of fire behavior particularly when interacting with certain ignition causes.
 
-#### 5. Interpretation Boost using `marginaleffects`
+Given these interactions, it's valuable to visualize and investigate how the effect of wind speed on large wild fire development varies across different causes. Let's explore this further through faceted marginal effect plots.
 
-**Wind Speed**
+This plot shows how wind speed affects the probability of a large wildfire, and how that effect varies across different true causes of fire.
 
-As wind speed increases, the model estimates a higher probability of a fire becoming large (\>10 hectares). However, the variability in the predicted probabilities also increases at higher wind speeds, as indicated by the wider confidence intervals. This suggests that while there is a general upward trend, the model's certainty about the exact magnitude of the effect decreases in this range—likely due to fewer observations or greater variability in fire outcomes at high wind speeds.
+-   The x-axis shows the different values of `true_cause` (fire ignition source categories).
+
+-   The y-axis shows the marginal effect of wind speed on the predicted probability (i.e., on the response scale) of a fire becoming large.
+
+The plot helps us compare the sensitivity of different fire causes to wind speed. For example, if one cause shows a higher marginal effect, it means that increasing wind speed has a stronger impact on the likelihood of large fires for that cause.
 
 ```{r}
-library(marginaleffects)
-## continuous variable
-plot_predictions(
+p <- plot_comparisons(
   model,
-  by = "WIND_SPEED"
+  variables = "wind_speed",
+  by = "true_cause",
+  type = "response"
 )
-```
 
-**Temperature**
-
-As temperature increases, the model predicts a relatively stable probability of a fire becoming large. The trend line flattens and the confidence intervals narrow, indicating that the model is more confident and consistent in its estimates across higher temperature ranges. This suggests that the relationship between temperature and fire size is more stable and predictable at higher temperatures, possibly due to a larger number of observations or less variability in outcomes.
-
-```{r}
-## continuous variable "TEMPERATURE"
-
-plot_predictions(
-  model,
-  by = "TEMPERATURE"
-)
-```
-
-**True Cause**
-
-The predicted probability of a large fire is near zero for most `TRUE_CAUSE` categories, indicating that these causes (e.g., natural ignition, campfires, equipment use) are generally not associated with large-scale fires. However, the category **"Insufficient Resources"** stands out with a significantly higher predicted probability and a wide confidence interval. This suggests that fires classified under this cause are much more likely to become large, though the wide interval reflects substantial uncertainty — likely due to a small number of observations in that category.
-
-```{r}
-## categorical variable "TRUE_CAUSE"
-plot_predictions(model, by = "TRUE_CAUSE") +
-  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1)) +
-  ggplot2::labs(
-    title = "Predicted Probability of Large Fire by True Cause",
+p +
+  scale_color_manual(values = rep("darkgreen", length(unique(p$data$by)))) +
+  scale_fill_manual(values = rep("darkgreen", length(unique(p$data$by)))) +
+  labs(
+    title = "Effect of Wind Speed on Large Fire Probability by True Cause",
     x = "True Cause",
-    y = "Predicted Probability"
-  )
-
+    y = "Marginal Effect of Wind Speed"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-**Detection Agent Type**
+The marginal effects analysis suggests that wind speed may have a relatively stronger impact on the probability of a fire becoming large when the ignition cause is related to Unknown, Insufficient Buffer, Incendiary Device, Hot Exhaust, or Line Impact. However, the overall changes in predicted probabilities are quite small, and the error bars across causes show substantial overlap. This indicates a high degree of uncertainty and suggests that these differences should be interpreted with caution. While the findings may not yet be strong enough to inform operational decisions, they do highlight areas for further exploration. In particular, when wind is forecasted in regions with a history of certain ignition causes, fire managers could use this exploratory insight to guide risk monitoring strategies, while recognizing that more robust evidence is needed before drawing firm conclusions.
 
-Although fires detected by AIR agents appear more likely to become large, the model is relatively uncertain about this pattern. The wide confidence interval indicates that this result should be interpreted cautiously, and may reflect **data sparsity** or **high variability** in fire outcomes for AIR-detected cases.
+**Interaction Effects via Marginal Effects**
+
+We can also use marginal effects to explore interactions without explicitly adding them to the model, by conditioning on another variable.
+
+This plot shows the marginal effect of `relative_humidity` on the predicted probability of large fire, calculated separately for each level of `fire_type`, based on your fitted model.
 
 ```{r}
-## categorical variable "DETECTION_AGENT_TYPE"
-plot_predictions(
-  model,
-  by = "DETECTION_AGENT_TYPE"
-)
+
+plot_comparisons(model, variables = "relative_humidity", by = "fire_type")
 ```
 
+When comparing the marginal effect of relative humidity across fire types, we found that three fire types showed almost no change in large fire probability as humidity increased. However, one fire type exhibited a noticeably stronger negative effect. This suggests that humidity plays a more meaningful role in suppressing fire growth for certain fire types likely those that are more sensitive to moisture availability, such as crown fires—while having minimal effect on others.
+
+### Discussion
+
+This analysis aimed to uncover the key environmental and operational factors associated with the development of large wildfires in Alberta. Using logistic regression and marginal effects, we modeled the probability of a wildfire exceeding 200 hectares, which is a meaningful operational threshold for fire managers.
+
+We found that higher temperature, stronger wind speed, and faster spread rates significantly increase the likelihood of a large wildfire. Conversely, higher relative humidity consistently reduced fire size probability, highlighting its protective role in fire suppression.
+
+In addition to main effects, we explored interaction patterns using marginal effects. While we did not include `true_cause` directly in the model due to its high cardinality and sparse categories, we used it in conjunction with `wind_speed` to explore how ignition causes might modulate wind's influence on fire growth. The marginal effect plots suggest that certain causes—such as incendiary devices, line impacts, or insufficient buffer zones are more sensitive to wind speed, potentially due to the nature of how these fires spread under wind-driven conditions.
+
+Similarly, by plotting the effect of `relative_humidity` across different `fire_type` categories, we observed that humidity suppresses large fire development more strongly in certain fire types, particularly crown fires. This implies that moisture-based mitigation strategies may be more effective in forests prone to crown fire behavior, while having less impact on surface or ground fires.
+
+While some observed differences in marginal effects were small in magnitude and had overlapping confidence intervals, these nuanced insights still provide value. They highlight where future research or localized fire management protocols could focus, especially under climate scenarios with increasing temperature and wind extremes.
+
+Overall, this case study illustrates how statistical modeling paired with domain-informed exploratory tools like marginal effects can support risk-informed, data-driven wildfire management.

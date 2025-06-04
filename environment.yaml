@@ -23,3 +23,10 @@ dependencies:
   - jupyterlab=4.4.1
   - python=3.13.3
   - matplotlib=3.10.1
+  - r-base
+  - r-brant
+  - r-tidyverse
+  - r-knitr
+  - r-readr
+  - r-dplyr
+  - r-ggplot2

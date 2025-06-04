@@ -1,14 +1,18 @@
 ---
-title: "Historical Canadian Wildfire Data"
+title: "Historical Alberta Wildfire Data"
 toc: true
 toc-depth: 4
 toc-location: right
 sidebar: false
 ---
 
-## Data Set Information
+## About the Data
 
-Dataset including information on wildfires in the province of Alberta from 2006 to 2024, inclusive. Information tracked for each fire includes: cause, size, location (latitude and longitude, legal land description, and forest area), time and duration, weather conditions, staffing and physical resources used to suppress the fire, and area burned.
+This dataset contains information on wildfires in Canada, compiled from official government sources under the Open Government Licence – Alberta.
+
+The data was gathered to monitor, assess, and respond to wildfire risks across different regions. Wildfires have far-reaching environmental, social, and economic consequences. From an equity and inclusion perspective, analyzing wildfire data can reveal geographic and resource-based disparities in detection and containment efforts, and highlight how certain populations face greater risks due to climate change and limited infrastructure.
+
+In particular, Alberta experiences some of the most severe and frequent wildfires in Canada due to its vast forested areas, dry climate, and increasing temperatures linked to climate change. Wildfires in Alberta can lead to widespread evacuations, destroy homes and livelihoods, and disproportionately affect rural and Indigenous communities, who may lack access to adequate emergency services and infrastructure. Understanding the patterns of wildfire occurrence and spread helps policymakers, environmental planners, and emergency services allocate resources more equitably and implement effective mitigation strategies. This dataset enables data-driven approaches to reduce the impact of wildfires and support more resilient and inclusive disaster management practices across Alberta and beyond.
 
 ### Download
 
@@ -37,10 +41,44 @@ Dataset including information on wildfires in the province of Alberta from 2006 
 ::: {.table-container}
 ::: {.styled-table}
 
-| Variable Name | Role | Type | Description | Units | Missing Values |
-|-----|-----|-----|-----|-----|-----|
-| ASSESSMENT_HECTARES | Feature | Float | Fire Size | Hectares | No |
-| TRUE_CAUSE | Feature | Categorical | Insufficient Resources, Insufficient Buffer, Winter Burning, Incendiary Device, Permit Related, Friction Spark, Hot Exhaust, Unclassified, Burning Substance, Arson Suspected, Unattended Fire, Unpredictable Event, Mechanical Failure, Abandoned Fire, Vehicle Fire, Unsafe Fire, Line Impact, High Hazard, Flammable Fluids, Arson Known, Animals | - | No |
+| Variable Name                     | Role     | Type        | Description                                                                                       | Units         | Missing Values |
+|----------------------------------|----------|-------------|---------------------------------------------------------------------------------------------------|---------------|----------------|
+| `year`                           | ID       | Integer     | Year of the wildfire incident                                                                     | Year          | No             |
+| `fire_number`                    | ID       | String      | Unique identifier for each wildfire                                                               | -             | No             |
+| `current_size`                   | Feature  | Float       | Final estimated size of the wildfire                                                              | Hectares      | No             |
+| `size_class`                     | Feature  | Categorical | Size classification based on fire area                                                            | -             | No             |
+| `latitude`                       | Feature  | Float       | Latitude coordinate of fire origin                                                                | Degrees       | No             |
+| `longitude`                      | Feature  | Float       | Longitude coordinate of fire origin                                                               | Degrees       | No             |
+| `fire_origin`                    | Metadata | Categorical | General location or region where fire started                                                     | -             | No             |
+| `general_cause`                 | Feature  | Categorical | Broad cause classification of the fire                                                            | -             | Yes            |
+| `responsible_group`             | Metadata | Categorical | Agency or group responsible for managing the fire                                                 | -             | Yes            |
+| `activity_class`                | Feature  | Categorical | Activity classification at the time of ignition                                                   | -             | Yes            |
+| `true_cause`                    | Feature  | Categorical | Detailed fire cause (e.g., Arson Known, Hot Exhaust, Line Impact, Unattended Fire, etc.)         | -             | No             |
+| `fire_start_date`               | Time     | Date        | Date the fire started                                                                             | YYYY-MM-DD    | No             |
+| `detection_agent_type`          | Feature  | Categorical | Type of detection method used (e.g., lookout, patrol, aircraft)                                   | -             | No             |
+| `detection_agent`               | Feature  | Categorical | Specific agent who detected the fire                                                              | -             | Yes            |
+| `assessment_hectares`           | Feature  | Float       | Officially assessed size of the fire                                                              | Hectares      | No             |
+| `fire_spread_rate`              | Feature  | Float       | Rate at which the fire spread                                                                     | Hectares/hour | Yes            |
+| `fire_type`                     | Feature  | Categorical | Fire behavior classification (e.g., surface, crown, ground)                                       | -             | No             |
+| `fire_position_on_slope`        | Feature  | Categorical | Position of the fire on slope (e.g., bottom, mid-slope, ridge)                                    | -             | Yes            |
+| `weather_conditions_over_fire`  | Feature  | Text        | Description of weather at the fire location                                                       | -             | Yes            |
+| `temperature`                   | Feature  | Float       | Temperature at the fire location                                                                  | °C            | Yes            |
+| `relative_humidity`             | Feature  | Float       | Relative humidity at the fire location                                                            | %             | Yes            |
+| `wind_direction`                | Feature  | Categorical | Wind direction during the fire                                                                    | -             | Yes            |
+| `wind_speed`                    | Feature  | Float       | Wind speed during the fire                                                                        | km/h          | Yes            |
+| `fuel_type`                     | Feature  | Categorical | Dominant vegetation or material burned (e.g., grass, timber)                                      | -             | Yes            |
+| `initial_action_by`             | Metadata | Categorical | Group that initiated suppression efforts                                                          | -             | Yes            |
+| `ia_arrival_at_fire_date`       | Time     | DateTime    | Time when initial action crews arrived                                                            | YYYY-MM-DD    | Yes            |
+| `ia_access`                     | Feature  | Categorical | Level of access for initial attack teams (e.g., road, helicopter only)                            | -             | Yes            |
+| `fire_fighting_start_date`      | Time     | DateTime    | Time when firefighting activities officially started                                              | YYYY-MM-DD    | Yes            |
+| `fire_fighting_start_size`      | Feature  | Float       | Fire size at the time firefighting began                                                          | Hectares      | Yes            |
+| `bucketing_on_fire`             | Feature  | Binary      | Whether aerial bucketing was used on the fire                                                     | Yes/No        | Yes            |
+| `first_bh_date`                 | Time     | DateTime    | Date of first blackline containment                                                               | YYYY-MM-DD    | Yes            |
+| `first_bh_size`                 | Feature  | Float       | Fire size at time of first blacklining                                                            | Hectares      | Yes            |
+| `first_uc_date`                 | Time     | DateTime    | Date when fire was first declared under control                                                   | YYYY-MM-DD    | Yes            |
+| `first_uc_size`                 | Feature  | Float       | Fire size when first declared under control                                                       | Hectares      | Yes            |
+| `first_ex_size_perimeter`       | Feature  | Float       | Estimated fire perimeter at the time of first extinguishment                                      | Kilometers    | Yes            |
+
 
 :::
 :::
