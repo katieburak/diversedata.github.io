@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -65,15 +66,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../website_files/img/favicon.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d5a90c299ec33309096b483073dacf50.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -101,12 +103,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../website_files/styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -196,15 +231,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link active" data-scroll-target="#about-the-data">About the Data</a>
-  <ul class="collapse">
-  <li><a href="#key-features-of-the-dataset" id="toc-key-features-of-the-dataset" class="nav-link" data-scroll-target="#key-features-of-the-dataset">Key Features of the Dataset</a></li>
+  <li><a href="#key-features-of-the-dataset" id="toc-key-features-of-the-dataset" class="nav-link active" data-scroll-target="#key-features-of-the-dataset">Key Features of the Dataset</a></li>
   <li><a href="#purpose-and-use-cases" id="toc-purpose-and-use-cases" class="nav-link" data-scroll-target="#purpose-and-use-cases">Purpose and Use Cases</a></li>
-  </ul></li>
   <li><a href="#case-study" id="toc-case-study" class="nav-link" data-scroll-target="#case-study">Case Study</a>
   <ul class="collapse">
   <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective">Objective</a></li>
-  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -214,817 +247,155 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
-<section id="about-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="about-the-data">About the Data</h2>
-<p>This dataset contains information on wildfires in Canada, compiled from official government sources.</p>
 <section id="key-features-of-the-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="key-features-of-the-dataset">Key Features of the Dataset</h3>
+<p>Each row represents a single wildfire incident and includes information such as:</p>
 <ul>
-<li><strong>Fire size (in hectares)</strong></li>
-<li><strong>Cause of fire (e.g., lightning, human activity)</strong></li>
-<li><strong>Detection method</strong></li>
-<li><strong>Response team size</strong></li>
-<li><strong>Latitude/longitude of the fire</strong></li>
-<li><strong>Weather conditions at the time of fire</strong></li>
+<li><p><strong>temperature</strong> – The recorded air temperature (°C) at or near the fire location; higher temperatures often increase fire intensity and spread.</p></li>
+<li><p><strong>wind_speed</strong> – Speed of wind (km/h) during the fire; stronger winds can accelerate fire spread and complicate suppression.</p></li>
+<li><p><strong>relative_humidity</strong> – The percentage of moisture in the air; lower humidity typically increases fire risk by drying out vegetation.</p></li>
+<li><p><strong>fire_spread_rate</strong> – The rate at which the fire expanded (e.g., hectares/hour); reflects the fire’s growth dynamics.</p></li>
+<li><p><strong>fire_type</strong> – Classification of fire behavior (e.g., surface, crown); influences how fires are managed and controlled.</p></li>
+<li><p><strong>fuel_type</strong> – The dominant type of vegetation or material burned (e.g., grass, timber); determines fire intensity and burn characteristics.</p></li>
+<li><p><strong>ia_access</strong> – Indicator of how easily suppression crews could access the fire location; limited access can delay response.</p></li>
+<li><p><strong>latitude</strong> – Geographic latitude coordinate of the fire’s origin; used for spatial analysis and regional modeling.</p></li>
+<li><p><strong>longitude</strong> – Geographic longitude coordinate of the fire’s origin; used alongside latitude for location-specific insights.</p></li>
 </ul>
 </section>
 <section id="purpose-and-use-cases" class="level3">
 <h3 class="anchored" data-anchor-id="purpose-and-use-cases">Purpose and Use Cases</h3>
-<p>The data was collected to monitor, assess, and respond to wildfire risks across regions. Wildfires have significant environmental, social, and economic impacts—especially for <strong>remote, Indigenous, and underserved communities</strong> that may lack the infrastructure to respond effectively.</p>
-<p>From an equity and inclusion perspective, studying wildfire data can help identify <strong>geographic and resource disparities</strong> in fire detection and containment efforts, as well as the disproportionate risks certain populations face due to <strong>climate change</strong> and <strong>infrastructure gaps</strong>.</p>
-</section>
+<p>This dataset is designed to support analysis of:</p>
+<ul>
+<li><p>Factors contributing to the spread, intensity, and size of wildfires</p></li>
+<li><p>The impact of weather conditions and fuel types on fire behavior</p></li>
+<li><p>Geographic and seasonal patterns in wildfire occurrence</p></li>
+<li><p>The effectiveness and timeliness of initial suppression efforts</p></li>
+<li><p>Relationships between fire causes, detection methods, and responsible parties</p></li>
+</ul>
 </section>
 <section id="case-study" class="level2">
 <h2 class="anchored" data-anchor-id="case-study">Case Study</h2>
 <section id="objective" class="level3">
 <h3 class="anchored" data-anchor-id="objective">Objective</h3>
-<p><strong>Can we identify the environmental and human factors most associated with large wildfires (&gt;10 hectares)?</strong><br>
+<p>Large wildfires pose serious environmental, social, and economic challenges, especially as climate conditions become more extreme. Identifying the key environmental and human factors linked to these fires can help guide more effective prevention and response strategies.<br>
+So, our main question is:</p>
+<p><strong>Can we identify the environmental and human factors most associated with large wildfires?</strong></p>
+<p>According to <a href="https://cwfis.cfs.nrcan.gc.ca/ha/nfdb">Natural Resources Canada</a>, wildfires exceeding 200 hectares in final size are classified as “large fires.” While these fires represent a small percentage of all wildfires, they account for the majority of the total area burned annually.<br>
 The goal is to explore potential predictors of fire size, such as weather, fire cause, and detection method, and provide insights that could inform early interventions and resource planning.</p>
 </section>
-<section id="methodology" class="level3">
-<h3 class="anchored" data-anchor-id="methodology">Methodology</h3>
+<section id="analysis" class="level3">
+<h3 class="anchored" data-anchor-id="analysis">Analysis</h3>
+<section id="loading-libraries" class="level4">
+<h4 class="anchored" data-anchor-id="loading-libraries"><strong>Loading Libraries</strong></h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmap)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maptiles)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(marginaleffects)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="data-cleaning-processing" class="level4">
 <h4 class="anchored" data-anchor-id="data-cleaning-processing">1. Data Cleaning &amp; Processing</h4>
 <ul>
 <li>Converted fire size to numeric</li>
-<li>Created a binary variable <code>large_fire</code> (TRUE if &gt;10 ha)</li>
+<li>Created a binary variable <code>large_fire</code> (TRUE if &gt;200 ha)</li>
 <li>Filtered out incomplete records</li>
 </ul>
 </section>
-<section id="exploratory-data-analysis-eda" class="level4">
-<h4 class="anchored" data-anchor-id="exploratory-data-analysis-eda">2. Exploratory Data Analysis (EDA)</h4>
-<p><strong>Fire Size Distribution</strong></p>
+<section id="exploratory-data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="exploratory-data-analysis">2. Exploratory Data Analysis</h4>
+<p><strong>Heat map of Fire Size by Location</strong></p>
+<p>The heat map visualizes where wildfires are most concentrated geographically, using latitude and longitude data overlaid on Alberta’s administrative boundaries. The shapefile, retrieved from <a href="https://open.alberta.ca/opendata/legislative-boundaries">Alberta Geospatial Data and Statistics</a>, provides the geographic context needed to highlight wildfire hotspots and identify regions with higher frequency or severity of fire events.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wildfire_clean, <span class="fu">aes</span>(<span class="at">x =</span> ASSESSMENT_HECTARES)) <span class="sc">+</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>) <span class="sc">+</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Fire Size (Assessment Hectares)"</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Fire Size (log scale)"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Fires"</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>alberta_shape <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">st_read</span>(<span class="st">"../../data/raw/Alberta_shapefiles/EDS_ENACTED_BILL33_15DEC2017.shp"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `EDS_ENACTED_BILL33_15DEC2017' from data source 
+  `C:\Users\Azin\Desktop\Azin files\Azin's Document\UBC\capstone project\diverse-data-hub.github.io\data\raw\Alberta_shapefiles\EDS_ENACTED_BILL33_15DEC2017.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 87 features and 8 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: -329155.7 ymin: 5425575 xmax: 365133.5 ymax: 6659344
+CRS:           NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(alberta_shape) <span class="ot">&lt;-</span> <span class="dv">3401</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>alberta_shape <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(alberta_shape, <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>wildfire_plot <span class="ot">&lt;-</span> wildfire_clean <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(latitude), <span class="sc">!</span><span class="fu">is.na</span>(longitude), <span class="sc">!</span><span class="fu">is.na</span>(assessment_hectares), assessment_hectares <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>wildfire_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(wildfire_plot, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>basemap <span class="ot">&lt;-</span> <span class="fu">get_tiles</span>(wildfire_sf, <span class="at">provider =</span> <span class="st">"CartoDB.Positron"</span>, <span class="at">crop =</span> <span class="cn">TRUE</span>, <span class="at">zoom =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+|---------|---------|---------|---------|
+=========================================
+                                          </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot heatmap</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(basemap) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_2d_filled</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> wildfire_plot,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> longitude, <span class="at">y =</span> latitude, <span class="at">weight =</span> current_size),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.7</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">contour =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">option =</span> <span class="st">"turbo"</span>) <span class="sc">+</span>  </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Fire Size-Weighted Heatmap of Wildfire Locations"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Longitude"</span>, <span class="at">y =</span> <span class="st">"Latitude"</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wildfire_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="wildfire_files/figure-html/wildfire-map-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p><strong>Proportion of Large Fires by Cause</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>wildfire_clean <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TRUE_CAUSE) <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prop_large =</span> <span class="fu">mean</span>(large_fire, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(TRUE_CAUSE, prop_large), <span class="at">y =</span> prop_large)) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Proportion of Large Fires by True Cause"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"True Cause"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Proportion of Fires &gt; 10 ha"</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="wildfire_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="logistic-regression-model" class="level4">
-<h4 class="anchored" data-anchor-id="logistic-regression-model">3. Logistic Regression Model</h4>
-<p>We build a logistic regression model to predict the likelihood of a fire becoming large based on <strong>temperature</strong>, <strong>wind speed</strong>, and <strong>cause</strong>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  large_fire <span class="sc">~</span> TEMPERATURE <span class="sc">+</span> WIND_SPEED <span class="sc">+</span> TRUE_CAUSE <span class="sc">+</span> DETECTION_AGENT_TYPE,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> wildfire_clean,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="st">"binomial"</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy and clean model output</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>tidy_model <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">tidy</span>(model) <span class="sc">%&gt;%</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">estimate =</span> <span class="fu">round</span>(estimate, <span class="dv">3</span>),</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">std.error =</span> <span class="fu">round</span>(std.error, <span class="dv">3</span>),</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">statistic =</span> <span class="fu">round</span>(statistic, <span class="dv">2</span>),</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value =</span> <span class="fu">round</span>(p.value, <span class="dv">4</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a nice table</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>gt_table <span class="ot">&lt;-</span> tidy_model <span class="sc">%&gt;%</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_header</span>(</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Logistic Regression Results"</span>,</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Predicting Large Fires (&gt; 10 ha)"</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">term =</span> <span class="st">"Variable"</span>,</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">estimate =</span> <span class="st">"Estimate (Log-Odds)"</span>,</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">std.error =</span> <span class="st">"Std. Error"</span>,</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">statistic =</span> <span class="st">"z value"</span>,</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value =</span> <span class="st">"p-value"</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_missing</span>(<span class="fu">everything</span>(), <span class="at">missing_text =</span> <span class="st">"-"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.font.size =</span> <span class="st">"small"</span>,</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">data_row.padding =</span> gt<span class="sc">::</span><span class="fu">px</span>(<span class="dv">4</span>),</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">heading.title.font.size =</span> <span class="dv">16</span>,</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">heading.subtitle.font.size =</span> <span class="dv">12</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>gt_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div id="mnkwhdfryz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mnkwhdfryz table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#mnkwhdfryz thead, #mnkwhdfryz tbody, #mnkwhdfryz tfoot, #mnkwhdfryz tr, #mnkwhdfryz td, #mnkwhdfryz th {
-  border-style: none;
-}
-
-#mnkwhdfryz p {
-  margin: 0;
-  padding: 0;
-}
-
-#mnkwhdfryz .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: small;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#mnkwhdfryz .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#mnkwhdfryz .gt_title {
-  color: #333333;
-  font-size: 16px;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#mnkwhdfryz .gt_subtitle {
-  color: #333333;
-  font-size: 12px;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#mnkwhdfryz .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#mnkwhdfryz .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#mnkwhdfryz .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#mnkwhdfryz .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#mnkwhdfryz .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#mnkwhdfryz .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#mnkwhdfryz .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#mnkwhdfryz .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#mnkwhdfryz .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#mnkwhdfryz .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#mnkwhdfryz .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#mnkwhdfryz .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#mnkwhdfryz .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#mnkwhdfryz .gt_row {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#mnkwhdfryz .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#mnkwhdfryz .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#mnkwhdfryz .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#mnkwhdfryz .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#mnkwhdfryz .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#mnkwhdfryz .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#mnkwhdfryz .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#mnkwhdfryz .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#mnkwhdfryz .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#mnkwhdfryz .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#mnkwhdfryz .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#mnkwhdfryz .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#mnkwhdfryz .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#mnkwhdfryz .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#mnkwhdfryz .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#mnkwhdfryz .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#mnkwhdfryz .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#mnkwhdfryz .gt_left {
-  text-align: left;
-}
-
-#mnkwhdfryz .gt_center {
-  text-align: center;
-}
-
-#mnkwhdfryz .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#mnkwhdfryz .gt_font_normal {
-  font-weight: normal;
-}
-
-#mnkwhdfryz .gt_font_bold {
-  font-weight: bold;
-}
-
-#mnkwhdfryz .gt_font_italic {
-  font-style: italic;
-}
-
-#mnkwhdfryz .gt_super {
-  font-size: 65%;
-}
-
-#mnkwhdfryz .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#mnkwhdfryz .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#mnkwhdfryz .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#mnkwhdfryz .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#mnkwhdfryz .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#mnkwhdfryz .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#mnkwhdfryz .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#mnkwhdfryz .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#mnkwhdfryz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="header gt_heading">
-<th colspan="5" class="gt_heading gt_title gt_font_normal">Logistic Regression Results</th>
-</tr>
-<tr class="odd gt_heading">
-<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Predicting Large Fires (&gt; 10 ha)</th>
-</tr>
-<tr class="header gt_col_headings">
-<th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Variable</th>
-<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Estimate (Log-Odds)</th>
-<th id="std.error" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Std. Error</th>
-<th id="statistic" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">z value</th>
-<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">p-value</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">(Intercept)</td>
-<td class="gt_row gt_right" headers="estimate">-4.262</td>
-<td class="gt_row gt_right" headers="std.error">0.512</td>
-<td class="gt_row gt_right" headers="statistic">-8.32</td>
-<td class="gt_row gt_right" headers="p.value">0.0000</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">TEMPERATURE</td>
-<td class="gt_row gt_right" headers="estimate">-0.040</td>
-<td class="gt_row gt_right" headers="std.error">0.012</td>
-<td class="gt_row gt_right" headers="statistic">-3.22</td>
-<td class="gt_row gt_right" headers="p.value">0.0013</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">WIND_SPEED</td>
-<td class="gt_row gt_right" headers="estimate">0.051</td>
-<td class="gt_row gt_right" headers="std.error">0.007</td>
-<td class="gt_row gt_right" headers="statistic">7.01</td>
-<td class="gt_row gt_right" headers="p.value">0.0000</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEAnimals</td>
-<td class="gt_row gt_right" headers="estimate">-15.465</td>
-<td class="gt_row gt_right" headers="std.error">2121.042</td>
-<td class="gt_row gt_right" headers="statistic">-0.01</td>
-<td class="gt_row gt_right" headers="p.value">0.9942</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEArson Known</td>
-<td class="gt_row gt_right" headers="estimate">-16.045</td>
-<td class="gt_row gt_right" headers="std.error">2200.700</td>
-<td class="gt_row gt_right" headers="statistic">-0.01</td>
-<td class="gt_row gt_right" headers="p.value">0.9942</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEArson Suspected</td>
-<td class="gt_row gt_right" headers="estimate">-0.219</td>
-<td class="gt_row gt_right" headers="std.error">0.671</td>
-<td class="gt_row gt_right" headers="statistic">-0.33</td>
-<td class="gt_row gt_right" headers="p.value">0.7443</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEBurning Substance</td>
-<td class="gt_row gt_right" headers="estimate">-0.016</td>
-<td class="gt_row gt_right" headers="std.error">0.450</td>
-<td class="gt_row gt_right" headers="statistic">-0.04</td>
-<td class="gt_row gt_right" headers="p.value">0.9716</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEFlammable Fluids</td>
-<td class="gt_row gt_right" headers="estimate">-16.016</td>
-<td class="gt_row gt_right" headers="std.error">4207.738</td>
-<td class="gt_row gt_right" headers="statistic">0.00</td>
-<td class="gt_row gt_right" headers="p.value">0.9970</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEFriction Spark</td>
-<td class="gt_row gt_right" headers="estimate">0.401</td>
-<td class="gt_row gt_right" headers="std.error">0.678</td>
-<td class="gt_row gt_right" headers="statistic">0.59</td>
-<td class="gt_row gt_right" headers="p.value">0.5541</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEHigh Hazard</td>
-<td class="gt_row gt_right" headers="estimate">-16.284</td>
-<td class="gt_row gt_right" headers="std.error">1926.733</td>
-<td class="gt_row gt_right" headers="statistic">-0.01</td>
-<td class="gt_row gt_right" headers="p.value">0.9933</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEHot Exhaust</td>
-<td class="gt_row gt_right" headers="estimate">0.346</td>
-<td class="gt_row gt_right" headers="std.error">0.793</td>
-<td class="gt_row gt_right" headers="statistic">0.44</td>
-<td class="gt_row gt_right" headers="p.value">0.6628</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEIncendiary Device</td>
-<td class="gt_row gt_right" headers="estimate">0.489</td>
-<td class="gt_row gt_right" headers="std.error">1.075</td>
-<td class="gt_row gt_right" headers="statistic">0.45</td>
-<td class="gt_row gt_right" headers="p.value">0.6492</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEInsufficient Buffer</td>
-<td class="gt_row gt_right" headers="estimate">0.231</td>
-<td class="gt_row gt_right" headers="std.error">0.514</td>
-<td class="gt_row gt_right" headers="statistic">0.45</td>
-<td class="gt_row gt_right" headers="p.value">0.6531</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEInsufficient Resources</td>
-<td class="gt_row gt_right" headers="estimate">3.811</td>
-<td class="gt_row gt_right" headers="std.error">1.241</td>
-<td class="gt_row gt_right" headers="statistic">3.07</td>
-<td class="gt_row gt_right" headers="p.value">0.0021</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSELine Impact</td>
-<td class="gt_row gt_right" headers="estimate">-2.123</td>
-<td class="gt_row gt_right" headers="std.error">1.069</td>
-<td class="gt_row gt_right" headers="statistic">-1.99</td>
-<td class="gt_row gt_right" headers="p.value">0.0470</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEMechanical Failure</td>
-<td class="gt_row gt_right" headers="estimate">-0.532</td>
-<td class="gt_row gt_right" headers="std.error">0.790</td>
-<td class="gt_row gt_right" headers="statistic">-0.67</td>
-<td class="gt_row gt_right" headers="p.value">0.5011</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEPermit Related</td>
-<td class="gt_row gt_right" headers="estimate">0.326</td>
-<td class="gt_row gt_right" headers="std.error">0.425</td>
-<td class="gt_row gt_right" headers="statistic">0.77</td>
-<td class="gt_row gt_right" headers="p.value">0.4439</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEUnattended Fire</td>
-<td class="gt_row gt_right" headers="estimate">0.041</td>
-<td class="gt_row gt_right" headers="std.error">1.064</td>
-<td class="gt_row gt_right" headers="statistic">0.04</td>
-<td class="gt_row gt_right" headers="p.value">0.9696</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEUnclassified</td>
-<td class="gt_row gt_right" headers="estimate">0.375</td>
-<td class="gt_row gt_right" headers="std.error">0.791</td>
-<td class="gt_row gt_right" headers="statistic">0.47</td>
-<td class="gt_row gt_right" headers="p.value">0.6355</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEUnpredictable Event</td>
-<td class="gt_row gt_right" headers="estimate">-0.738</td>
-<td class="gt_row gt_right" headers="std.error">0.800</td>
-<td class="gt_row gt_right" headers="statistic">-0.92</td>
-<td class="gt_row gt_right" headers="p.value">0.3562</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEUnsafe Fire</td>
-<td class="gt_row gt_right" headers="estimate">-0.146</td>
-<td class="gt_row gt_right" headers="std.error">0.401</td>
-<td class="gt_row gt_right" headers="statistic">-0.36</td>
-<td class="gt_row gt_right" headers="p.value">0.7161</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEVehicle Fire</td>
-<td class="gt_row gt_right" headers="estimate">-0.631</td>
-<td class="gt_row gt_right" headers="std.error">1.060</td>
-<td class="gt_row gt_right" headers="statistic">-0.60</td>
-<td class="gt_row gt_right" headers="p.value">0.5516</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">TRUE_CAUSEWinter Burning</td>
-<td class="gt_row gt_right" headers="estimate">0.433</td>
-<td class="gt_row gt_right" headers="std.error">0.454</td>
-<td class="gt_row gt_right" headers="statistic">0.95</td>
-<td class="gt_row gt_right" headers="p.value">0.3409</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">DETECTION_AGENT_TYPEGRP</td>
-<td class="gt_row gt_right" headers="estimate">-16.143</td>
-<td class="gt_row gt_right" headers="std.error">438.705</td>
-<td class="gt_row gt_right" headers="statistic">-0.04</td>
-<td class="gt_row gt_right" headers="p.value">0.9706</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">DETECTION_AGENT_TYPELKT</td>
-<td class="gt_row gt_right" headers="estimate">0.023</td>
-<td class="gt_row gt_right" headers="std.error">0.371</td>
-<td class="gt_row gt_right" headers="statistic">0.06</td>
-<td class="gt_row gt_right" headers="p.value">0.9502</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">DETECTION_AGENT_TYPEUNP</td>
-<td class="gt_row gt_right" headers="estimate">-0.613</td>
-<td class="gt_row gt_right" headers="std.error">0.363</td>
-<td class="gt_row gt_right" headers="statistic">-1.69</td>
-<td class="gt_row gt_right" headers="p.value">0.0907</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
-<section id="discussion" class="level4">
-<h4 class="anchored" data-anchor-id="discussion">4. Discussion</h4>
-<p>The logistic regression model revealed that <strong>higher wind speeds</strong> are strongly associated with an increased likelihood of a fire becoming large (over 10 hectares), consistent with our expectations about fire spread dynamics.</p>
-<p>Surprisingly, <strong>temperature showed a small negative association</strong> with fire size, though this may be influenced by interactions with other environmental factors like humidity or fuel type.</p>
-<p>Among causes, <strong>“Insufficient Resources”</strong> and <strong>“Line Impact”</strong> were associated with significantly higher odds of large fires. This suggests that both human-related limitations and infrastructure vulnerability (like power lines) play a role in fire escalation.</p>
-<p>The detection agent type showed weak evidence that <strong>fires detected by UNP agents</strong> may be less likely to become large, compared to FPD Staff, but the effect was not statistically strong (p = 0.09). Further exploration is needed here, especially considering the early intervention ability of different detection teams.</p>
-<p>These findings provide insights into key environmental and operational factors influencing wildfire severity. Importantly, they point to the <strong>need for targeted mitigation strategies</strong> in areas with poor detection access or high infrastructure risks.</p>
-<p>In the broader context of equity, this analysis reinforces that <strong>resource constraints and delayed detection</strong>—often more common in remote or underfunded regions—can amplify wildfire impacts. Data-informed strategies can help ensure <strong>more equitable protection</strong> against climate-driven disasters.</p>
-</section>
-<section id="interpretation-boost-using-marginaleffects" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-boost-using-marginaleffects">5. Interpretation Boost using <code>marginaleffects</code></h4>
-<p><strong>Wind Speed</strong></p>
-<p>As wind speed increases, the model estimates a higher probability of a fire becoming large (&gt;10 hectares). However, the variability in the predicted probabilities also increases at higher wind speeds, as indicated by the wider confidence intervals. This suggests that while there is a general upward trend, the model’s certainty about the exact magnitude of the effect decreases in this range—likely due to fewer observations or greater variability in fire outcomes at high wind speeds.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(marginaleffects)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'marginaleffects' was built under R version 4.4.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## continuous variable</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_predictions</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  model,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="st">"WIND_SPEED"</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>wildfire_clean <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(true_cause) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prop_large =</span> <span class="fu">mean</span>(large_fire, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(prop_large <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(true_cause, prop_large), <span class="at">y =</span> prop_large, <span class="at">fill =</span> prop_large)) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"skyblue1"</span>, <span class="at">high =</span> <span class="st">"skyblue4"</span>) <span class="sc">+</span>  </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Proportion of Large Fires by True Cause"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"True Cause"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Proportion of Fires &gt; 200 ha"</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Proportion"</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1033,34 +404,327 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 </div>
 </div>
 </div>
-<p><strong>Temperature</strong></p>
-<p>As temperature increases, the model predicts a relatively stable probability of a fire becoming large. The trend line flattens and the confidence intervals narrow, indicating that the model is more confident and consistent in its estimates across higher temperature ranges. This suggests that the relationship between temperature and fire size is more stable and predictable at higher temperatures, possibly due to a larger number of observations or less variability in outcomes.</p>
+</section>
+<section id="logistic-regression-model" class="level4">
+<h4 class="anchored" data-anchor-id="logistic-regression-model">3. Logistic Regression Model</h4>
+<p>Governments and emergency planners often care about whether a fire becomes large, not necessarily exactly how large. This makes a binary classification more interpretable and actionable for planning responses. Logistic regression predicts probability of exceeding a threshold, such as “Will this fire exceed 200 hectares?” Modeling the probability of exceeding such a threshold is often more operationally useful than modeling exact hectares.</p>
+<p>In <a href="https://wfmrda.nwcg.gov/sites/default/files/docs/WFMRDA/Publications/Decision_Making_Wildfires_rmrs_gtr298.pdf?utm_source=chatgpt.com">Decision Making for Wildfires: A Guide for Applying a Risk Management Process at the Incident Level</a>, the authors outline a risk-based decision-making framework. A key concept is identifying risk thresholds to guide decisions. This aligns with the broader goals of wildfire risk management, which emphasize anticipating fire severity and planning appropriate responses. Logistic regression is well-suited to this context because it models the probability of crossing such thresholds, such as a fire becoming large, enabling a clear, interpretable basis for making timely, risk-informed decisions.</p>
+<p>We built a logistic regression model to predict the likelihood of a fire becoming large based on a set of environmental and operational factors that are consistently measurable, statistically significant, and operationally relevant.</p>
+<p>In our logistic regression model, we selected key environmental and contextual variables from the <code>wildfire_clean</code> dataset that are well-established drivers of wildfire behavior. These include:</p>
+<ul>
+<li><p><code>temperature</code>: Higher temperatures increase evaporation, dry out vegetation, and promote ignition and fire spread.</p></li>
+<li><p><code>wind_speed</code>: Strong winds feed oxygen to the fire and can carry embers over long distances, accelerating spread.</p></li>
+<li><p><code>relative_humidity</code>: Low humidity conditions dry fuels, increasing the probability and intensity of fire ignition.</p></li>
+<li><p><code>fire_spread_rate</code>: Reflects how quickly a fire expands; a dynamic indicator of fire behavior.</p></li>
+<li><p><code>fire_type</code>: Indicates how the fire behaves (e.g., surface vs.&nbsp;crown fire), which affects controllability and risk.</p></li>
+<li><p><code>fuel_type</code>: Different vegetation types burn at different intensities and rates; fuels like grass or timber respond differently under the same conditions.</p></li>
+<li><p><code>ia_access</code>: Stands for Initial Attack Access. Limited access can delay suppression efforts, allowing fires to grow larger.</p></li>
+</ul>
+<p>These variables were chosen because they each represent core determinants of ignition likelihood, fire intensity, and suppression difficulty. As explained in <strong><em>Introduction to Wildland Fire</em></strong> by <strong>Pyne, Andrews, and Laven</strong>, this theoretical foundation supports our inclusion of both meteorological and environmental variables in the model.</p>
+<p><strong>Mathematical Definition of the Logistic Regression Model</strong></p>
+<p>We aim to estimate the probability that a wildfire becomes large (i.e., burns more than 200 hectares), using logistic regression.</p>
+<p>Let:</p>
+<p><span class="math display">\[
+Y_i =
+\begin{cases}
+1, &amp; \text{if fire } i \text{ is large (area &gt; 200 ha)} \\
+0, &amp; \text{otherwise}
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{x}_i =
+\left(
+\text{temperature}_i,
+\text{wind\_speed}_i,
+\text{relative\_humidity}_i,
+\text{fire\_spread\_rate}_i,
+\text{fire\_type}_i,
+\text{fuel\_type}_i,
+\text{ia\_access}_i
+\right)
+\]</span></p>
+<p>Then the model is defined as:</p>
+<p><span class="math display">\[
+\Pr(Y_i = 1 \mid \mathbf{x}_i) = \frac{1}{1 + \exp(-\eta_i)}
+\]</span></p>
+<p>where the linear predictor is:</p>
+<p><span class="math display">\[
+\eta_i = \beta_0
++ \beta_1 \cdot \text{temperature}_i
++ \beta_2 \cdot \text{wind\_speed}_i
++ \beta_3 \cdot \text{relative\_humidity}_i
++ \beta_4 \cdot \text{fire\_spread\_rate}_i
++ \boldsymbol{\beta}_{\text{cat}}^\top \mathbf{x}_{i,\text{cat}}
+\]</span></p>
+<p>Here:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\beta_0 &amp; \text{ is the intercept} \\
+\boldsymbol{\beta}_{\text{cat}} &amp; \text{ is the vector of coefficients for the categorical predictors} \\
+\mathbf{x}_{i,\text{cat}} &amp; \text{ is the vector of dummy variables representing those categorical predictors}
+\end{aligned}
+\]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## continuous variable "TEMPERATURE"</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_predictions</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  model,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="st">"TEMPERATURE"</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  large_fire <span class="sc">~</span> temperature <span class="sc">+</span> wind_speed <span class="sc">+</span> relative_humidity <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    fire_spread_rate <span class="sc">+</span> fire_type <span class="sc">+</span> fuel_type <span class="sc">+</span> ia_access,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> wildfire_clean,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="st">"binomial"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>tidy_model <span class="ot">&lt;-</span> <span class="fu">tidy</span>(model) <span class="sc">|&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">estimate =</span> <span class="fu">round</span>(estimate, <span class="dv">3</span>),</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">std.error =</span> <span class="fu">round</span>(std.error, <span class="dv">3</span>),</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">statistic =</span> <span class="fu">round</span>(statistic, <span class="dv">2</span>),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value =</span> <span class="fu">round</span>(p.value, <span class="dv">4</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tidy_model</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      , <span class="at">caption =</span> <span class="st">"Logistic Regression Results: Predicting Large Fires (&gt; 200 ha)"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="wildfire_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Logistic Regression Results: Predicting Large Fires (&gt; 200 ha)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-2.016</td>
+<td style="text-align: right;">0.401</td>
+<td style="text-align: right;">-5.03</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">temperature</td>
+<td style="text-align: right;">0.048</td>
+<td style="text-align: right;">0.010</td>
+<td style="text-align: right;">4.66</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wind_speed</td>
+<td style="text-align: right;">0.050</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">11.03</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">relative_humidity</td>
+<td style="text-align: right;">-0.031</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">-7.64</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fire_spread_rate</td>
+<td style="text-align: right;">0.104</td>
+<td style="text-align: right;">0.010</td>
+<td style="text-align: right;">10.30</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fire_typeGround</td>
+<td style="text-align: right;">-1.354</td>
+<td style="text-align: right;">0.184</td>
+<td style="text-align: right;">-7.37</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fire_typeSurface</td>
+<td style="text-align: right;">-1.093</td>
+<td style="text-align: right;">0.129</td>
+<td style="text-align: right;">-8.48</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fire_typeUnknown</td>
+<td style="text-align: right;">-13.012</td>
+<td style="text-align: right;">3683.753</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.9972</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fuel_typeC2</td>
+<td style="text-align: right;">-0.945</td>
+<td style="text-align: right;">0.175</td>
+<td style="text-align: right;">-5.40</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fuel_typeC3</td>
+<td style="text-align: right;">-1.024</td>
+<td style="text-align: right;">0.276</td>
+<td style="text-align: right;">-3.71</td>
+<td style="text-align: right;">0.0002</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fuel_typeC4</td>
+<td style="text-align: right;">0.454</td>
+<td style="text-align: right;">0.337</td>
+<td style="text-align: right;">1.35</td>
+<td style="text-align: right;">0.1775</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fuel_typeC6</td>
+<td style="text-align: right;">-16.192</td>
+<td style="text-align: right;">4492.954</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.9971</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fuel_typeC7</td>
+<td style="text-align: right;">-16.211</td>
+<td style="text-align: right;">1258.218</td>
+<td style="text-align: right;">-0.01</td>
+<td style="text-align: right;">0.9897</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fuel_typeD1</td>
+<td style="text-align: right;">-16.322</td>
+<td style="text-align: right;">274.554</td>
+<td style="text-align: right;">-0.06</td>
+<td style="text-align: right;">0.9526</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fuel_typeM1</td>
+<td style="text-align: right;">-1.798</td>
+<td style="text-align: right;">0.362</td>
+<td style="text-align: right;">-4.97</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fuel_typeM2</td>
+<td style="text-align: right;">-2.272</td>
+<td style="text-align: right;">0.279</td>
+<td style="text-align: right;">-8.13</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fuel_typeM3</td>
+<td style="text-align: right;">-15.610</td>
+<td style="text-align: right;">3734.948</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.9967</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fuel_typeM4</td>
+<td style="text-align: right;">-15.179</td>
+<td style="text-align: right;">6522.639</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.9981</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fuel_typeO1a</td>
+<td style="text-align: right;">-2.912</td>
+<td style="text-align: right;">0.289</td>
+<td style="text-align: right;">-10.08</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fuel_typeO1b</td>
+<td style="text-align: right;">-3.514</td>
+<td style="text-align: right;">0.456</td>
+<td style="text-align: right;">-7.70</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fuel_typeS1</td>
+<td style="text-align: right;">-2.189</td>
+<td style="text-align: right;">0.486</td>
+<td style="text-align: right;">-4.51</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fuel_typeS2</td>
+<td style="text-align: right;">-2.242</td>
+<td style="text-align: right;">0.546</td>
+<td style="text-align: right;">-4.11</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fuel_typeUnknown</td>
+<td style="text-align: right;">-4.148</td>
+<td style="text-align: right;">0.481</td>
+<td style="text-align: right;">-8.62</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ia_accessGround</td>
+<td style="text-align: right;">-0.861</td>
+<td style="text-align: right;">0.410</td>
+<td style="text-align: right;">-2.10</td>
+<td style="text-align: right;">0.0356</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ia_accessHover Exit</td>
+<td style="text-align: right;">-0.083</td>
+<td style="text-align: right;">0.412</td>
+<td style="text-align: right;">-0.20</td>
+<td style="text-align: right;">0.8407</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ia_accessRappel</td>
+<td style="text-align: right;">-14.797</td>
+<td style="text-align: right;">554.243</td>
+<td style="text-align: right;">-0.03</td>
+<td style="text-align: right;">0.9787</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ia_accessUnknown</td>
+<td style="text-align: right;">0.428</td>
+<td style="text-align: right;">0.107</td>
+<td style="text-align: right;">3.99</td>
+<td style="text-align: right;">0.0001</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
-<p><strong>True Cause</strong></p>
-<p>The predicted probability of a large fire is near zero for most <code>TRUE_CAUSE</code> categories, indicating that these causes (e.g., natural ignition, campfires, equipment use) are generally not associated with large-scale fires. However, the category <strong>“Insufficient Resources”</strong> stands out with a significantly higher predicted probability and a wide confidence interval. This suggests that fires classified under this cause are much more likely to become large, though the wide interval reflects substantial uncertainty — likely due to a small number of observations in that category.</p>
+<p>Higher wind speed (0.050, <em>p</em> &lt; 0.001), temperature (0.048, <em>p</em> &lt; 0.001), and fire spread rate (0.104, <em>p</em> &lt; 0.001) significantly increase the odds of a large wildfire, while relative humidity (-0.031, <em>p</em> &lt; 0.001) decreases it. Compared to crown fires, ground fires (-1.354, <em>p</em> &lt; 0.001) and surface fires (-1.093, <em>p</em> &lt; 0.001) are much less likely to result in large fires.</p>
+<p>This logistic regression model estimates the factors influencing the likelihood of a large wildfire. Higher temperature, wind speed, and fire spread rate significantly increase the odds of a large fire, while higher relative humidity decreases it. Certain fire types (e.g., Ground, Surface) and fuel types (e.g., M1, M2, O1a, O1b) are associated with significantly lower odds compared to their respective reference categories. The model shows that higher wind speed, lower humidity, and faster fire spread significantly increase the risk of large wildfires.</p>
+<p>Let’s dig into our model further by examining how different environmental and operational factors interact to influence fire outcomes.</p>
+</section>
+<section id="interpretation-of-our-model-using-marginaleffects" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-our-model-using-marginaleffects">4. Interpretation of our Model <strong>using <code>marginaleffects</code></strong></h4>
+<p><strong>The Role of Wind Across Fire Causes</strong></p>
+<p>As you’ve likely noticed, we did not include <code>true_cause</code> as a predictor in our logistic regression model because it contains many categories, some of which have very few observations. This can lead to large standard errors, unstable coefficient estimates, and a higher risk of overfitting.</p>
+<p>However, <code>true_cause</code> remains an important variable for exploratory analysis. Certain ignition causes may be more sensitive to wind. For example, sparks from power lines can spread quickly in high winds, embers from debris burning can travel farther, and unattended fires can escalate rapidly under windy conditions. We chose wind speed for this analysis because it is a well-documented environmental amplifier of fire behavior particularly when interacting with certain ignition causes.</p>
+<p>Given these interactions, it’s valuable to visualize and investigate how the effect of wind speed on large wild fire development varies across different causes. Let’s explore this further through faceted marginal effect plots.</p>
+<p>This plot shows how wind speed affects the probability of a large wildfire, and how that effect varies across different true causes of fire.</p>
+<ul>
+<li><p>The x-axis shows the different values of <code>true_cause</code> (fire ignition source categories).</p></li>
+<li><p>The y-axis shows the marginal effect of wind speed on the predicted probability (i.e., on the response scale) of a fire becoming large.</p></li>
+</ul>
+<p>The plot helps us compare the sensitivity of different fire causes to wind speed. For example, if one cause shows a higher marginal effect, it means that increasing wind speed has a stronger impact on the likelihood of large fires for that cause.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## categorical variable "TRUE_CAUSE"</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_predictions</span>(model, <span class="at">by =</span> <span class="st">"TRUE_CAUSE"</span>) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">axis.text.x =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Predicted Probability of Large Fire by True Cause"</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"True Cause"</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Predicted Probability"</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">plot_comparisons</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  model,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="st">"wind_speed"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="st">"true_cause"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"response"</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="st">"darkgreen"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(p<span class="sc">$</span>data<span class="sc">$</span>by)))) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="st">"darkgreen"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(p<span class="sc">$</span>data<span class="sc">$</span>by)))) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Effect of Wind Speed on Large Fire Probability by True Cause"</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"True Cause"</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Marginal Effect of Wind Speed"</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1069,14 +733,12 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 </div>
 </div>
 </div>
-<p><strong>Detection Agent Type</strong></p>
-<p>Although fires detected by AIR agents appear more likely to become large, the model is relatively uncertain about this pattern. The wide confidence interval indicates that this result should be interpreted cautiously, and may reflect <strong>data sparsity</strong> or <strong>high variability</strong> in fire outcomes for AIR-detected cases.</p>
+<p>The marginal effects analysis suggests that wind speed may have a relatively stronger impact on the probability of a fire becoming large when the ignition cause is related to Unknown, Insufficient Buffer, Incendiary Device, Hot Exhaust, or Line Impact. However, the overall changes in predicted probabilities are quite small, and the error bars across causes show substantial overlap. This indicates a high degree of uncertainty and suggests that these differences should be interpreted with caution. While the findings may not yet be strong enough to inform operational decisions, they do highlight areas for further exploration. In particular, when wind is forecasted in regions with a history of certain ignition causes, fire managers could use this exploratory insight to guide risk monitoring strategies, while recognizing that more robust evidence is needed before drawing firm conclusions.</p>
+<p><strong>Interaction Effects via Marginal Effects</strong></p>
+<p>We can also use marginal effects to explore interactions without explicitly adding them to the model, by conditioning on another variable.</p>
+<p>This plot shows the marginal effect of <code>relative_humidity</code> on the predicted probability of large fire, calculated separately for each level of <code>fire_type</code>, based on your fitted model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## categorical variable "DETECTION_AGENT_TYPE"</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_predictions</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  model,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="st">"DETECTION_AGENT_TYPE"</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_comparisons</span>(model, <span class="at">variables =</span> <span class="st">"relative_humidity"</span>, <span class="at">by =</span> <span class="st">"fire_type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1085,247 +747,260 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 </div>
 </div>
 </div>
-
-
+<p>When comparing the marginal effect of relative humidity across fire types, we found that three fire types showed almost no change in large fire probability as humidity increased. However, one fire type exhibited a noticeably stronger negative effect. This suggests that humidity plays a more meaningful role in suppressing fire growth for certain fire types likely those that are more sensitive to moisture availability, such as crown fires—while having minimal effect on others.</p>
 </section>
+</section>
+<section id="discussion" class="level3">
+<h3 class="anchored" data-anchor-id="discussion">Discussion</h3>
+<p>This analysis aimed to uncover the key environmental and operational factors associated with the development of large wildfires in Alberta. Using logistic regression and marginal effects, we modeled the probability of a wildfire exceeding 200 hectares, which is a meaningful operational threshold for fire managers.</p>
+<p>We found that higher temperature, stronger wind speed, and faster spread rates significantly increase the likelihood of a large wildfire. Conversely, higher relative humidity consistently reduced fire size probability, highlighting its protective role in fire suppression.</p>
+<p>In addition to main effects, we explored interaction patterns using marginal effects. While we did not include <code>true_cause</code> directly in the model due to its high cardinality and sparse categories, we used it in conjunction with <code>wind_speed</code> to explore how ignition causes might modulate wind’s influence on fire growth. The marginal effect plots suggest that certain causes—such as incendiary devices, line impacts, or insufficient buffer zones are more sensitive to wind speed, potentially due to the nature of how these fires spread under wind-driven conditions.</p>
+<p>Similarly, by plotting the effect of <code>relative_humidity</code> across different <code>fire_type</code> categories, we observed that humidity suppresses large fire development more strongly in certain fire types, particularly crown fires. This implies that moisture-based mitigation strategies may be more effective in forests prone to crown fire behavior, while having less impact on surface or ground fires.</p>
+<p>While some observed differences in marginal effects were small in magnitude and had overlapping confidence intervals, these nuanced insights still provide value. They highlight where future research or localized fire management protocols could focus, especially under climate scenarios with increasing temperature and wind extremes.</p>
+<p>Overall, this case study illustrates how statistical modeling paired with domain-informed exploratory tools like marginal effects can support risk-informed, data-driven wildfire management.</p>
+
+
 </section>
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1333,185 +1008,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
