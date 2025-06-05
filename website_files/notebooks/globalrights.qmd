@@ -66,9 +66,9 @@ To do this, we apply one one-way ANOVA test (or an appropriate alternative test)
 
 ### **Analysis**
 
-#### **Loading Libraries**
+**Loading Libraries**
 
-```{r, message=FALSE, warning=FALSE}
+```{r load_libraries, message=FALSE, warning=FALSE}
 library(tidyverse)  
 library(patchwork)
 library(knitr)
@@ -87,7 +87,7 @@ library(PMCMRplus)
 
 -   Filtered the dataset to include only one year per country to ensure independent observations across time
 
-```{r, message=FALSE, warning=FALSE}
+```{r data_cleaning_processing, message=FALSE, warning=FALSE}
 
 global_rights <- read_csv("../../data/clean/globalrights.csv")
 # Get the last year overall in the dataset
@@ -125,7 +125,7 @@ message("The dataset is filtered to the last year overall: ", last_year)
 
 #### **2. Exploratory Data Analysis (EDA)**
 
-```{r}
+```{r eda_jitter_plot}
 ggplot(cleaned_df, aes(x = marriage_group, y = `gdp-per-capita`, color = marriage_group)) +
   geom_jitter(width = 0.2, alpha = 0.7) +
   labs(
@@ -142,7 +142,7 @@ ggplot(cleaned_df, aes(x = marriage_group, y = `gdp-per-capita`, color = marriag
 
 This shows the distribution of GDP per capita/Education Spending for each group of countries based on how they recognize same-sex marriage. It helps identify differences in economic and education spending status across the three groups.
 
-```{r, fig.height=5, fig.width=8, warning=FALSE}
+```{r boxplot_gdp_by_group, fig.height=5, fig.width=8, warning=FALSE}
 # GDP per capita
 gdp_plot <- ggplot(cleaned_df, aes(x = marriage_group, y = `gdp-per-capita`)) +
   geom_boxplot() +
@@ -156,7 +156,7 @@ gdp_plot <- ggplot(cleaned_df, aes(x = marriage_group, y = `gdp-per-capita`)) +
 (gdp_plot)
 ```
 
-```{r, message = FALSE, warning = FALSE, echo = FALSE}
+```{r save_gdp_plot, message = FALSE, warning = FALSE, echo = FALSE}
 ggsave("../img/globalrights.png", plot = gdp_plot, width = 6, height = 4, dpi = 300)
 ```
 The exploratory data analysis reveals that countries recognizing same-sex marriage (either fully or through civil unions) tend to have similar GDP per capita distributions, with overlapping interquartile ranges. In contrast, countries that do not recognize same-sex marriage show noticeably lower GDP per capita and exhibit no overlap with the other two groups, along with a higher number of outliers, indicating greater variability. For education spending, the distributions across all three groups are much closer, with less pronounced differences. While the Not Recognized group again shows some outliers, they are fewer compared to the GDP per capita distribution. This suggests that while economic wealth varies more strongly with legal recognition status, education investment appears relatively stable across groups.
@@ -165,7 +165,7 @@ The exploratory data analysis reveals that countries recognizing same-sex marria
 
 These plots show the overall distributions of GDP per capita and education spending (% of GDP) across countries in the dataset. They allow us to assess the shape of each variable’s distribution
 
-```{r, fig.height=5, fig.width=8, warning=FALSE}
+```{r hist_gdp, fig.height=5, fig.width=8, warning=FALSE}
 # Histogram for GDP per Capita
 hist_gdp <- ggplot(cleaned_df, aes(x = `gdp-per-capita`)) +
   geom_histogram(bins = 30, fill = "skyblue", color = "white") +
@@ -181,7 +181,7 @@ hist_gdp
 
 From the histograms, we observe that GDP per capita is right-skewed, indicating that most countries have relatively low to moderate GDP levels, with a smaller number of countries exhibiting much higher GDP per capita. This suggests economic wealth is concentrated in a few high-income countries.\
 
-#### 3. Aim and hypotheses of ANOVA
+#### **3. Aim and hypotheses of ANOVA**
 
 To examine whether economic indicators differ across countries based on their legal recognition of same-sex marriage, we conduct two one-way ANOVA tests. Each test evaluates whether the mean value of a numeric variable varies significantly across the three legal categories: Legal, Civil Union, and Not Recognized.
 
@@ -210,7 +210,7 @@ These tests help determine whether economic wealth or public investment in educa
 -   This assumption is typically satisfied by the design of the dataset if no country appears more than once per year and data points are not clustered.
 -   Please note that dataset includes only one year per country to ensure independent observations across time
 
-```{r}
+```{r check_independence_duplicates}
 duplicates <- cleaned_df |>
   count(country, year, name = "count") |>
   filter(count > 1) |>
@@ -240,7 +240,7 @@ if (nrow(duplicates) == 0) {
     -   Histogram or Q-Q plots of the residuals
     -   Shapiro-Wilk test for normality within each group
 
-```{r}
+```{r calculate_gdp_residuals_by_group}
 # GDP per capita - residuals within groups
 gdp_residuals <- cleaned_df |>
   group_by(marriage_group) |>
@@ -252,7 +252,7 @@ gdp_residuals <- cleaned_df |>
 
 **Q-Q Plots for GDP Residuals**
 
-```{r}
+```{r qq_plot_gdp_residuals_by_group}
 ggplot(gdp_residuals, aes(sample = gdp_resid)) +
   stat_qq(color = "skyblue") +         
   stat_qq_line(color = "black") +      
@@ -267,7 +267,7 @@ ggplot(gdp_residuals, aes(sample = gdp_resid)) +
 
 **Shapiro-Wilk Test for Normality (All Groups)**
 
-```{r}
+```{r shapiro_test_gdp_residuals_by_group}
 # GDP residuals by group
 gdp_shapiro <- gdp_residuals |>
   group_by(marriage_group) |>
@@ -294,7 +294,7 @@ For GDP per capita, the Q-Q plot shows a clear deviation from the 45-degree line
 
 **Levene's and Bartlett's Test for GDP per Capita**
 
-```{r,warning = FALSE}
+```{r variance_tests_gdp_per_capita, warning = FALSE}
 # GDP per capita
 gdp_levene <- leveneTest(`gdp-per-capita` ~ marriage_group, data = cleaned_df)
 gdp_bartlett <- bartlett.test(`gdp-per-capita` ~ marriage_group, data = cleaned_df)
@@ -302,7 +302,7 @@ gdp_bartlett <- bartlett.test(`gdp-per-capita` ~ marriage_group, data = cleaned_
 
 **The Results**
 
-```{r}
+```{r display_variance_test_results_gdp}
 homogeneity_results <- tibble::tibble(
   Variable = c("GDP per Capita", "GDP per Capita"),
   Test = c("Levene's Test", "Bartlett's Test"),
@@ -329,7 +329,7 @@ For GDP per capita, Levene’s test suggests that the assumption of equal varian
 
 We applied a log transformation to GDP per capita and education spending to address violations of ANOVA assumptions. This transformation helps reduce right skewness and stabilize variance across groups, making the data more suitable for parametric tests like Welch’s ANOVA.
 
-```{r}
+```{r log_transform_gdp_edu}
 
 cleaned_df <- cleaned_df |>
   mutate(
@@ -339,7 +339,7 @@ cleaned_df <- cleaned_df |>
 
 ```
 
-```{r}
+```{r qq_plot_log_gdp_by_group}
 ggplot(cleaned_df, aes(sample = log_gdp)) +
  stat_qq(color = "skyblue") +         
   stat_qq_line(color = "black") + 
@@ -355,7 +355,7 @@ ggplot(cleaned_df, aes(sample = log_gdp)) +
 
 **Shapiro-Wilk Test for Normality (All Groups) after Log Scale**
 
-```{r}
+```{r shapiro_test_log_gdp_by_group}
 gdp_shapiro_log <- cleaned_df |>
   group_by(marriage_group) |>
   summarise(
@@ -371,7 +371,7 @@ knitr::kable(
 
 ```
 
-```{r,warning = FALSE}
+```{r variance_tests_log_gdp_by_group, warning = FALSE}
 levene_log_gdp <- leveneTest(log_gdp ~ marriage_group, data = cleaned_df)
 bartlett_log_gdp <- bartlett.test(log_gdp ~ marriage_group, data = cleaned_df)
 
@@ -409,15 +409,14 @@ This test compares the distributions of the response variable across groups, rat
 
 We chose this test because it is robust and appropriate when ANOVA assumptions are not met, particularly in the presence of skewed data and unequal variances.
 
-```{r}
+```{r kruskal_test_gdp_per_capita}
 
 gdp_kw <- kruskal.test(`gdp-per-capita` ~ marriage_group, data = cleaned_df)
 ```
 
 And this is our final result :
 
-```{r}
-
+```{r display_kruskal_test_results_gdp}
 final_gdp_test_result <- tibble::tibble(
   Variable = "GDP per Capita",
   Test = "Kruskal–Wallis",
@@ -445,7 +444,7 @@ While our main tests (Kruskal–Wallis for GDP per capita and Welch’s ANOVA fo
 
 Since we used the Kruskal–Wallis test (a non-parametric method) for GDP per capita, we followed it with Dunn’s test for post-hoc comparisons. The Kruskal–Wallis test tells us whether there's a difference in distributions among the groups, but it does not tell us which pairs of groups differ. Dunn’s test fills that gap. What is Dunn’s Test? Dunn’s test performs pairwise comparisons between all levels of the grouping variable (in this case, marriage_group) using ranked data.
 
-```{r, message=FALSE, warning=FALSE}
+```{r posthoc_dunn_test_gdp_per_capita, message=FALSE, warning=FALSE}
 gdp_posthoc <- dunnTest(`gdp-per-capita` ~ marriage_group, data = cleaned_df, method = "bonferroni")
 
 gdp_posthoc$res |>
