@@ -103,6 +103,8 @@ TBD
 
 ### 2 - Use the `renv` environment included in this repository
 
+*NOTE:* Some of these steps might take a couple of minutes. 
+
 1. Clone the repository
 
 ```bash
