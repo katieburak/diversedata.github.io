@@ -15,7 +15,7 @@ website:
 
   page-footer:
     right: "This page is built with [Quarto](https://quarto.org/)."
-    background: "rgb(97, 179, 230)"
+    background: "rgb(146, 191, 218)"
 
   sidebar:
 
