@@ -1,4 +1,4 @@
-```{r}
+```{r all_flags}
 #| echo: true
 #| warning: false
 #| message: false
@@ -55,13 +55,10 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 
 ### Analysis
 
-#### **Loading Libraries**
+**Loading Libraries**
 
-```{r results = "hide", warning = FALSE, message = FALSE}
-library(readr)
-library(dplyr)
-library(lubridate)
-library(ggplot2)
+```{r load_libraries_geospatial_analysis, results = "hide", warning = FALSE, message = FALSE}
+library(tidyverse)         
 library(gt)
 library(ggmap)
 library(ggspatial)
@@ -80,7 +77,7 @@ library(kableExtra)
 -   Created a binary variable `large_fire` (TRUE if \>200 ha)
 -   Filtered out incomplete records
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
+```{r prepare_wildfire_data_for_modeling, warning=FALSE, message=FALSE, echo=FALSE}
 
 # Reading Data  
 wildfire_data <- read_csv("../../data/clean/wildfire.csv") 
@@ -112,7 +109,7 @@ wildfire_clean <- wildfire_clean |>
 
 The heat map visualizes where wildfires are most concentrated geographically, using latitude and longitude data overlaid on Alberta’s administrative boundaries. The shapefile, retrieved from [Alberta Geospatial Data and Statistics](https://open.alberta.ca/opendata/legislative-boundaries), provides the geographic context needed to highlight wildfire hotspots and identify regions with higher frequency or severity of fire events.
 
-```{r warning=FALSE, message=FALSE}
+```{r prepare_wildfire_map_data, warning=FALSE, message=FALSE}
 
 alberta_shape <- suppressMessages(st_read("../../data/raw/Alberta_shapefiles/EDS_ENACTED_BILL33_15DEC2017.shp"))
 st_crs(alberta_shape) <- 3401
@@ -126,7 +123,7 @@ wildfire_sf <- st_as_sf(wildfire_plot, coords = c("longitude", "latitude"), crs 
 basemap <- get_tiles(wildfire_sf, provider = "CartoDB.Positron", crop = TRUE, zoom = 6)
 ```
 
-```{r wildfire-map,warning=FALSE, message=FALSE, fig.width=7, fig.height=9}
+```{r plot_wildfire_size_weighted_heatmap, warning=FALSE, message=FALSE, fig.width=7, fig.height=9}
 # Plot heatmap
 ggplot() +
   layer_spatial(basemap) +
@@ -145,7 +142,7 @@ ggplot() +
   theme(legend.position = "none") 
 ```
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
+```{r save_wildfire_heatmap_plot, warning=FALSE, message=FALSE, echo=FALSE}
 heatmap_plot <- 
 ggplot() +
   layer_spatial(basemap) +
@@ -167,7 +164,7 @@ ggsave("../img/wildfire.png", plot = heatmap_plot, dpi = 300)
 
 **Proportion of Large Fires by Cause**
 
-```{r}
+```{r plot_proportion_large_fires_by_cause}
 wildfire_clean |>
   group_by(true_cause) |>
   summarize(prop_large = mean(large_fire, na.rm = TRUE)) |>
@@ -271,7 +268,7 @@ $$
 \end{aligned}
 $$
 
-```{r, warning=FALSE}
+```{r logistic_model_large_fires_summary, warning=FALSE}
 
 model <- glm(
   large_fire ~ temperature + wind_speed + relative_humidity +
@@ -317,7 +314,7 @@ This plot shows how wind speed affects the probability of a large wildfire, and 
 
 The plot helps us compare the sensitivity of different fire causes to wind speed. For example, if one cause shows a higher marginal effect, it means that increasing wind speed has a stronger impact on the likelihood of large fires for that cause.
 
-```{r}
+```{r plot_marginal_effects_wind_by_cause}
 p <- plot_comparisons(
   model,
   variables = "wind_speed",
@@ -345,8 +342,7 @@ We can also use marginal effects to explore interactions without explicitly addi
 
 This plot shows the marginal effect of `relative_humidity` on the predicted probability of large fire, calculated separately for each level of `fire_type`, based on your fitted model.
 
-```{r}
-
+```{r plot_marginal_effects_humidity_by_fire_type}
 plot_comparisons(model, variables = "relative_humidity", by = "fire_type")
 ```
 

@@ -296,8 +296,7 @@ Tested using GDP per capita as the response variable.</li>
 </section>
 <section id="analysis" class="level3">
 <h3 class="anchored" data-anchor-id="analysis"><strong>Analysis</strong></h3>
-<section id="loading-libraries" class="level4">
-<h4 class="anchored" data-anchor-id="loading-libraries"><strong>Loading Libraries</strong></h4>
+<p><strong>Loading Libraries</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
@@ -306,7 +305,6 @@ Tested using GDP per capita as the response variable.</li>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PMCMRplus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
 <section id="data-cleaning-processing" class="level4">
 <h4 class="anchored" data-anchor-id="data-cleaning-processing"><strong>1. Data Cleaning &amp; Processing</strong></h4>
 <ul>
@@ -365,7 +363,7 @@ Tested using GDP per capita as the response variable.</li>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="globalrights_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="globalrights_files/figure-html/eda_jitter_plot-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -387,7 +385,7 @@ Tested using GDP per capita as the response variable.</li>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="globalrights_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="globalrights_files/figure-html/boxplot_gdp_by_group-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -410,7 +408,7 @@ Tested using GDP per capita as the response variable.</li>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="globalrights_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="globalrights_files/figure-html/hist_gdp-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -419,7 +417,7 @@ Tested using GDP per capita as the response variable.</li>
 </p>
 </section>
 <section id="aim-and-hypotheses-of-anova" class="level4">
-<h4 class="anchored" data-anchor-id="aim-and-hypotheses-of-anova">3. Aim and hypotheses of ANOVA</h4>
+<h4 class="anchored" data-anchor-id="aim-and-hypotheses-of-anova"><strong>3. Aim and hypotheses of ANOVA</strong></h4>
 <p>To examine whether economic indicators differ across countries based on their legal recognition of same-sex marriage, we conduct two one-way ANOVA tests. Each test evaluates whether the mean value of a numeric variable varies significantly across the three legal categories: Legal, Civil Union, and Not Recognized.</p>
 <p><strong>1. ANOVA for GDP per Capita</strong></p>
 <p>We test whether countries with different legal recognition statuses have significantly different mean GDP per capita.</p>
@@ -503,7 +501,7 @@ Tested using GDP per capita as the response variable.</li>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="globalrights_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="globalrights_files/figure-html/qq_plot_gdp_residuals_by_group-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -641,7 +639,7 @@ Tested using GDP per capita as the response variable.</li>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="globalrights_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="globalrights_files/figure-html/qq_plot_log_gdp_by_group-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

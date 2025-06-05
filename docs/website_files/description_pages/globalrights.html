@@ -187,7 +187,6 @@ window.Quarto = {
   <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective"><strong>Objective</strong></a></li>
   <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><strong>Analysis</strong></a>
   <ul class="collapse">
-  <li><a href="#loading-libraries" id="toc-loading-libraries" class="nav-link" data-scroll-target="#loading-libraries"><strong>Loading Libraries</strong></a></li>
   <li><a href="#data-cleaning-processing" id="toc-data-cleaning-processing" class="nav-link" data-scroll-target="#data-cleaning-processing"><strong>1. Data Cleaning &amp; Processing</strong></a></li>
   <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda"><strong>2. Exploratory Data Analysis (EDA)</strong></a></li>
   <li><a href="#aim-and-hypotheses-of-anova" id="toc-aim-and-hypotheses-of-anova" class="nav-link" data-scroll-target="#aim-and-hypotheses-of-anova">3. Aim and hypotheses of ANOVA</a></li>
@@ -450,8 +449,7 @@ Tested using GDP per capita as the response variable.</li>
 </section>
 <section id="analysis" class="level3">
 <h3 class="anchored" data-anchor-id="analysis"><strong>Analysis</strong></h3>
-<section id="loading-libraries" class="level4">
-<h4 class="anchored" data-anchor-id="loading-libraries"><strong>Loading Libraries</strong></h4>
+<p><strong>Loading Libraries</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
@@ -460,7 +458,6 @@ Tested using GDP per capita as the response variable.</li>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PMCMRplus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
 <section id="data-cleaning-processing" class="level4">
 <h4 class="anchored" data-anchor-id="data-cleaning-processing"><strong>1. Data Cleaning &amp; Processing</strong></h4>
 <ul>
@@ -519,7 +516,7 @@ Tested using GDP per capita as the response variable.</li>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="globalrights_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="globalrights_files/figure-html/eda_jitter_plot-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -541,7 +538,7 @@ Tested using GDP per capita as the response variable.</li>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="globalrights_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="globalrights_files/figure-html/boxplot_gdp_by_group-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -564,7 +561,7 @@ Tested using GDP per capita as the response variable.</li>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="globalrights_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="globalrights_files/figure-html/hist_gdp-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -657,7 +654,7 @@ Tested using GDP per capita as the response variable.</li>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="globalrights_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="globalrights_files/figure-html/qq_plot_gdp_residuals_by_group-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -795,7 +792,7 @@ Tested using GDP per capita as the response variable.</li>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="globalrights_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="globalrights_files/figure-html/qq_plot_log_gdp_by_group-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
