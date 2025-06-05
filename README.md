@@ -124,7 +124,7 @@ If the library `renv` is not installed:
 install.packages("renv")  
 ```
 
-Otherwise, proceed to run in the R console:
+Otherwise, proceed to restore the environment (already created with `rev::init()`) in the R console:
 
 ```R
 renv::restore()
@@ -134,7 +134,7 @@ This installs the correct package versions from renv.lock.
 
 4. Confirm renv status
 
-Check that your environment matches the lockfile and everything is synced:
+Close up the R project and reopen it. Check that your environment matches the lockfile and everything is synced running:
 
 ```R
 renv::status()
@@ -152,7 +152,7 @@ quarto preview
 quarto render
 ```
 
-Now you are ready to render your updates and they will be visible on the website when merged to the `main` branch.
+Now you are able to render your updates and they will be visible on the website when merged to the `main` branch.
 
 *Optional* - To Update Dependencies
 
