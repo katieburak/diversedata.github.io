@@ -93,7 +93,7 @@ We can note that our categorical response follows a specific order. For this rea
 
 In order to do so, we need to make sure that our response variable is encoded as an ordered factor. We will also take this opportunity to encode our explanatory variables as factors (and ordered factors) as needed.
 
-First, we can encode our nomical categorical explanatory variables:
+First, we can encode our nominal categorical explanatory variables:
 
 ```{r recode_a, warning = FALSE, message = FALSE}
 hcmst <- hcmst |> 
@@ -108,78 +108,27 @@ Then, we can encode all our ordinal, categorical, explanatory, behavioral variab
 ```{r recode_b}
 hcmst <- hcmst |> 
   mutate(sex_frequency = as.ordered(sex_frequency)) |> 
-  mutate(
-    sex_frequency = fct_relevel(
-      sex_frequency, 
-      c(
-        "once_a_month_or_less", 
-        "2_to_3_times_a_month", 
-        "once_or_twice_a_week", 
-        "3_to_6_times_a_week", 
-        "once_or_more_a_day"
-        )
-      ) |> 
-      fct_recode(
-        "Once a Month or Less"     = "once_a_month_or_less",
-        "Two or Three Times a Month" = "2_to_3_times_a_month",
-        "Once or Twice a Week"     = "once_or_twice_a_week",
-        "Three to Six Times a Week" = "3_to_6_times_a_week",
-        "Once or More a Day"       = "once_or_more_a_day"
-      ))
+  mutate(sex_frequency = fct_relevel(sex_frequency, 
+      c("once_a_month_or_less", "2_to_3_times_a_month", 
+        "once_or_twice_a_week", "3_to_6_times_a_week", 
+        "once_or_more_a_day")))
 
 levels(hcmst$sex_frequency)
 
 hcmst <- hcmst |> 
   mutate(flirts_with_partner = as.ordered(flirts_with_partner)) |> 
-  mutate(
-    flirts_with_partner = fct_relevel(
-      flirts_with_partner, 
-      c(
-        "never", 
-        "less_than_once_a_month", 
-        "1_to_3_times_a_month", 
-        "once_a_week", 
-        "a_few_times_a_week", 
-        "every_day"
-        )
-      ) |> 
-      fct_recode(
-        "Never" = "never",
-        "Less Than Once a Month" = "less_than_once_a_month",
-        "One to Three Times a Month" = "1_to_3_times_a_month",
-        "Once a Week" = "once_a_week",
-        "A Few Times a Week" = "a_few_times_a_week",
-        "Every Day" = "every_day"
-        ))
+  mutate(flirts_with_partner = fct_relevel(flirts_with_partner, 
+      c("never", "less_than_once_a_month", 
+        "1_to_3_times_a_month", "once_a_week", 
+        "a_few_times_a_week", "every_day")))
 
 levels(hcmst$flirts_with_partner)
 
 hcmst <- hcmst |> 
   mutate(fights_with_partner = as.ordered(fights_with_partner)) |> 
-  mutate(
-    fights_with_partner = fct_relevel(
-      fights_with_partner, 
-      c(
-        "0_times", 
-        "1_time", 
-        "2_times", 
-        "3_times", 
-        "4_times", 
-        "5_times", 
-        "6_times", 
-        "7_or_more_times"
-        )
-      ) |> 
-      fct_recode(
-        "Zero Times" = "0_times",
-        "One Time" = "1_time",
-        "Two Times" = "2_times",
-        "Three Times" = "3_times",
-        "Four Times" = "4_times",
-        "Five Times" = "5_times",
-        "Six Times" = "6_times",
-        "Seven or More Times" = "7_or_more_times"
-      ))
+  mutate(fights_with_partner = fct_relevel(fights_with_partner, 
+      c("0_times", "1_time", "2_times", "3_times", "4_times", 
+        "5_times", "6_times", "7_or_more_times")))
 
 levels(hcmst$sex_frequency)
 ```
@@ -189,99 +138,42 @@ Then, we can encode all our ordinal, categorical, explanatory, COVID-19-related 
 ```{r recode_c}
 hcmst <- hcmst |> 
   mutate(inc_change_during_pandemic = as.ordered(inc_change_during_pandemic)) |> 
-  mutate(
-    inc_change_during_pandemic = fct_relevel(
-      inc_change_during_pandemic, 
-      c(
-        "much_worse", 
-        "worse", 
-        "no_change", 
-        "better", 
-        "much_better"
-        )
-      ) |> 
-      fct_recode(
-        "Much Worse" = "much_worse",
-        "Worse" = "worse",
-        "No Change" = "no_change",
-        "Better" = "better",
-        "Much Better" = "much_better"
-      ))
+  mutate(inc_change_during_pandemic = fct_relevel(inc_change_during_pandemic, 
+      c("much_worse", "worse", "no_change", "better", "much_better")))
 
 levels(hcmst$inc_change_during_pandemic)
 
 hcmst <- hcmst |> 
-  mutate(subject_had_covid = as_factor(subject_had_covid)|> 
-           fct_recode("No" = "no", "Yes" = "yes"))
+  mutate(subject_had_covid = as_factor(subject_had_covid))
 
 levels(hcmst$subject_had_covid)
 
 hcmst <- hcmst |> 
-  mutate(partner_had_covid = as_factor(partner_had_covid)|> 
-           fct_recode("No" = "no", "Yes" = "yes"))
+  mutate(partner_had_covid = as_factor(partner_had_covid))
 
 levels(hcmst$partner_had_covid)
 
 hcmst <- hcmst |> 
   mutate(subject_vaccinated = as.ordered(subject_vaccinated)) |> 
-  mutate(
-    subject_vaccinated = fct_relevel(
-      subject_vaccinated, 
-      c(
-        "not_vaccinated", 
-        "partially_vaccinated", 
-        "fully_vaccinated_no_booster", 
-        "fully_vaccinated_and_booster"
-        )
-      ) |> 
-      fct_recode(
-        "Not Vaccinated" = "not_vaccinated",
-        "Partially Vaccinated" = "partially_vaccinated",
-        "Fully Vaccinated No Booster" = "fully_vaccinated_no_booster",
-        "Fully Vaccinated and Booster" = "fully_vaccinated_and_booster"
-      ))
+  mutate(subject_vaccinated = fct_relevel(subject_vaccinated, 
+      c("not_vaccinated", "partially_vaccinated", 
+        "fully_vaccinated_no_booster", "fully_vaccinated_and_booster")))
 
 levels(hcmst$subject_vaccinated)
 
 hcmst <- hcmst |> 
   mutate(partner_vaccinated = as.ordered(partner_vaccinated)) |> 
-  mutate(
-    partner_vaccinated = fct_relevel(
-      partner_vaccinated, 
-      c(
-        "not_vaccinated", 
-        "partially_vaccinated", 
-        "fully_vaccinated_no_booster", 
-        "fully_vaccinated_and_booster"
-        )
-      ) |> 
-      fct_recode(
-        "Not Vaccinated" = "not_vaccinated",
-        "Partially Vaccinated" = "partially_vaccinated",
-        "Fully Vaccinated No Booster" = "fully_vaccinated_no_booster",
-        "Fully Vaccinated and Booster" = "fully_vaccinated_and_booster"
-      ))
+  mutate(partner_vaccinated = fct_relevel(partner_vaccinated, 
+      c("not_vaccinated", "partially_vaccinated", 
+        "fully_vaccinated_no_booster", "fully_vaccinated_and_booster")))
 
 levels(hcmst$partner_vaccinated)
 
 hcmst <- hcmst |> 
   mutate(agree_covid_approach = as.ordered(agree_covid_approach)) |> 
-  mutate(
-    agree_covid_approach = fct_relevel(
-      agree_covid_approach, 
-      c(
-        "completely_disagree", 
-        "mostly_disagree", 
-        "mostly_agree", 
-        "completely_agree"
-        )
-      ) |> 
-      fct_recode(
-        "Completely Disagree" = "completely_disagree",
-        "Mostly Disagree" = "mostly_disagree",
-        "Mostly Agree" = "mostly_agree",
-        "Completely Agree" = "completely_agree"
-      ))
+  mutate(agree_covid_approach = fct_relevel(agree_covid_approach, 
+      c("completely_disagree", "mostly_disagree", 
+        "mostly_agree", "completely_agree")))
 
 levels(hcmst$agree_covid_approach)
 ```
@@ -291,128 +183,165 @@ Finally, we can encode our target variable:
 ```{r recode_d}
 hcmst <- hcmst |> 
   mutate(relationship_quality = as.ordered(relationship_quality)) |> 
-  mutate(
-    relationship_quality = fct_relevel(
-      relationship_quality, 
-      c(
-        "very_poor", 
-        "poor", 
-        "fair", 
-        "good", 
-        "excellent"
-        )
-      ) |> 
-      fct_recode(
-        "Very Poor" = "very_poor",
-        "Poor" = "poor",
-        "Fair" = "fair",
-        "Good" = "good",
-        "Excellent" = "excellent"
-      ))
+  mutate(relationship_quality = fct_relevel(relationship_quality, 
+      c("very_poor", "poor", "fair", "good", "excellent")))
 
 levels(hcmst$sex_frequency)
 ```
 
 #### 3. Exploratory Data Analysis
 
-Let's visualize histograms charts for our different categorical variables to see how different groups were sampled in the survey and how different these samples are for same sex couples.
+We will visualize histograms charts for our different categorical variables. But first, we will see how different groups were sampled in the survey and how different these samples are for same sex couples.
 
-First, we will create a function that will be used for visualization.
+```{r simple_bar, fig.height=4, fig.width=8}
+# We'll use a color blind friendly pallete:
+cbPalette <- c("#0072B2", "#56B4E9", "#999999", "#E69F00", "#009E73", "#F0E442", "#D55E00", "#CC79A7")
+
+ggplot(hcmst, aes(x = same_sex_couple, fill = same_sex_couple)) +
+  geom_bar(position = "dodge", color = "white") +
+  labs(
+    title = "Couple Type Distribution",
+    x = "Same Sex Couple",
+    y = "Count",
+    fill = "Same Sex Couple"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = cbPalette) +
+  scale_y_continuous(breaks = seq(0, 1200, by = 100))
+```
+
+It can be noted that the sample of `same_sex_couples` is smaller that that of different-sex couples. In the original study, same sex couples were oversampled. For more information on how the survey data was collected, refer to the [original data set](https://data.stanford.edu/hcmst2017).
+
+To explore our other variables, we will create a function that will be used for visualization. Since we know that the samples for different types of couples are different, we will use relative frequency in our visualizations.
 
 ```{r hist_function}
-histogram_plot <- function(data, y_var, facet, plot_title = "Counts by Category") {
 
+histogram_plot <- function(data, y_var, facet, plot_title = "Relative Frequency by Category", label_map) {
   data_long <- data |> 
     dplyr::select(all_of(c(y_var, facet))) |> 
     pivot_longer(cols = all_of(y_var), names_to = "var", values_to = "value") |> 
-    count(var, value, facet_value = .data[[facet]])
+    mutate(value = recode(value, !!!label_map)) |> 
+    count(var, value, facet_value = .data[[facet]]) |> 
+    group_by(facet_value) |> 
+    mutate(prop = n / sum(n)) |> 
+    ungroup()
 
-  ggplot(data_long, aes(x = n, y = reorder(value, n), fill = facet_value)) +
+  ggplot(data_long, aes(x = prop, y = reorder(value, prop), fill = facet_value)) +
     geom_bar(stat = "identity", position = "dodge", color = "white") +
     labs(
       title = plot_title,
-      x = "Count",
+      x = "Relative Frequency",
       y = NULL,
       fill = "Same Sex Couple"
     ) +
-    theme_minimal()
+    theme_minimal() +
+    scale_fill_manual(values = cbPalette)
 }
 ```
 
 ```{r histograms, fig.height=20, fig.width=8}
 
-hist_sex_freq <- histogram_plot(
-  hcmst, 
-  "sex_frequency", 
-  "same_sex_couple", 
-  plot_title = "Sex Frequency"
+sex_freq_labels <- c(
+  "once_a_month_or_less" = "Once a Month or Less",
+  "2_to_3_times_a_month" = "Two or Three Times a Month",
+  "once_or_twice_a_week" = "Once or Twice a Week",
+  "3_to_6_times_a_week" = "Three to Six Times a Week",
+  "once_or_more_a_day" = "Once or More a Day"
 )
 
-hist_flirt_freq <- histogram_plot(
-  hcmst, 
-  "flirts_with_partner", 
-  "same_sex_couple", 
-  plot_title = "Flirting Frequency"
+hist_sex_freq <- histogram_plot(hcmst, "sex_frequency", "same_sex_couple", 
+  plot_title = "Sex Frequency", label_map = sex_freq_labels)
+
+flirt_freq_labels <- c(
+  "never" = "Never",
+  "less_than_once_a_month" = "Less Than Once a Month",
+  "1_to_3_times_a_month" = "One to Three Times a Month",
+  "once_a_week" = "Once a Week",
+  "a_few_times_a_week" = "A Few Times a Week",
+  "every_day" = "Every Day" 
 )
 
-hist_fight_freq <- histogram_plot(
-  hcmst, 
-  "fights_with_partner", 
-  "same_sex_couple", 
-  plot_title = "Fighting Frequency"
-)
-    
-hist_inc_change_freq <- histogram_plot(
-  hcmst, 
-  "inc_change_during_pandemic", 
-  "same_sex_couple", 
-  plot_title = "Income Change During the Pandemic Frequency"
-)
-    
-hist_sub_covid_freq <- histogram_plot(
-  hcmst, 
-  "subject_had_covid", 
-  "same_sex_couple", 
-  plot_title = "Subject had COVID-19 Frequency"
+hist_flirt_freq <- histogram_plot(hcmst, "flirts_with_partner", 
+  "same_sex_couple", plot_title = "Flirting Frequency",
+  label_map = flirt_freq_labels)
+
+fight_freq_labels <- c(
+  "0_times" = "Zero Times",
+  "1_time" = "One Time",
+  "2_times" = "Two Times",
+  "3_times" = "Three Times",
+  "4_times" = "Four Times",
+  "5_times" = "Five Times",
+  "6_times" = "Six Times",
+  "7_or_more_times" = "Seven or More Times"
 )
 
-hist_par_covid_freq <- histogram_plot(
-  hcmst, 
-  "partner_had_covid", 
-  "same_sex_couple", 
-  plot_title = "Subject's Partner had COVID-19 Frequency"
+hist_fight_freq <- histogram_plot(hcmst, "fights_with_partner", 
+  "same_sex_couple", plot_title = "Fighting Frequency",
+  label_map = fight_freq_labels)
+
+inc_labels <- c(
+  "much_worse" = "Much Worse",
+  "worse" = "Worse",
+  "no_change" = "No Change",
+  "better" = "Better",
+  "much_better" = "Much Better"
 )
 
-hist_sub_vax_freq <- histogram_plot(
-  hcmst, 
-  "subject_vaccinated", 
-  "same_sex_couple", 
-  plot_title = "Subject Vaccination Status Frequency"
+hist_inc_change_freq <- histogram_plot(hcmst, "inc_change_during_pandemic",
+  "same_sex_couple", plot_title = "Income Change During Pandemic Frequency",
+  label_map = inc_labels)
+
+yes_no_label <- c("no" = "No", "yes" = "Yes")
+
+hist_sub_covid_freq <- histogram_plot(hcmst, "subject_had_covid", 
+  "same_sex_couple", plot_title = "Subject had COVID-19 Frequency",
+  label_map = yes_no_label)
+
+hist_par_covid_freq <- histogram_plot(hcmst, "partner_had_covid", 
+  "same_sex_couple", plot_title = "Partner had COVID-19 Frequency",
+  label_map = yes_no_label)
+
+vax_label <- c(
+  "not_vaccinated" = "Not Vaccinated",
+  "partially_vaccinated" = "Partially Vaccinated",
+  "fully_vaccinated_no_booster" = "Fully Vaccinated No Booster",
+  "fully_vaccinated_and_booster" = "Fully Vaccinated and Booster"
 )
 
-hist_par_vax_freq <- histogram_plot(
-  hcmst, 
-  "partner_vaccinated", 
-  "same_sex_couple", 
-  plot_title = "Subject's Partner Vaccination Status Frequency"
+hist_sub_vax_freq <- histogram_plot(hcmst, "subject_vaccinated", 
+  "same_sex_couple", plot_title = "Subject Vaccination Status Frequency",
+  label_map = vax_label)
+
+hist_par_vax_freq <- histogram_plot(hcmst, "partner_vaccinated", 
+  "same_sex_couple", plot_title = "Partner Vaccination Status Frequency",
+  label_map = vax_label)
+
+approach_label <- c(
+  "completely_disagree" = "Completely Disagree",
+  "mostly_disagree" = "Mostly Disagree",
+  "mostly_agree" = "Mostly Agree",
+  "completely_agree" = "Completely Agree"
 )
 
-hist_cov_approach_freq <- histogram_plot(
-  hcmst, 
-  "agree_covid_approach", 
-  "same_sex_couple", 
-  plot_title = "Couple's Agreement on Pandemic Approach Frequency"
+hist_cov_approach_freq <- histogram_plot(hcmst, "agree_covid_approach", 
+  "same_sex_couple", plot_title = "Agreement on Pandemic Approach Frequency",
+  label_map = approach_label)
+
+quality_label <- c(
+  "very_poor" ="Very Poor",
+  "poor" = "Poor",
+  "fair" = "Fair",
+  "good" = "Good",
+  "excellent" = "Excellent"
 )
 
-hist_quality_freq <- histogram_plot(
-  hcmst, 
-  "relationship_quality", 
-  "same_sex_couple", 
-  plot_title = "Relationship Quality Frequency"
-)
+hist_quality_freq <- histogram_plot(hcmst, "relationship_quality", 
+  "same_sex_couple", plot_title = "Relationship Quality Frequency",
+  label_map = quality_label)
 
 plot_grid(
-  hist_sex_freq, 
+  hist_sex_freq,
   hist_flirt_freq, 
   hist_fight_freq, 
   hist_inc_change_freq,
@@ -422,12 +351,10 @@ plot_grid(
   hist_par_vax_freq,
   hist_cov_approach_freq,
   hist_quality_freq,
-  ncol = 1)
+  ncol = 1, align = "v", axis = "lr")
 ```
 
-It can be noted that the sample of `same_sex_couples` is significantly smaller that that of different-sex couples..
-
-Same-sex and different-sex couples show similar patters in how frequently they engage in sexual activity. However, the overall sample is skewed towards reporting low sex frequency. We can also visualize how often couples flirt with or fight with their partners. The data indicates a skew towards lower frequencies for both flirting and fighting.
+Same-sex and different-sex couples show similar patters in how frequently they engage in sexual activity. However, the overall sample is skewed towards reporting low sex frequency. We can also visualize how often couples flirt with or fight with their partners. The distribution of responses shows a tendency toward lower frequencies of both flirting and fighting.
 
 In the context of the COVID-19 pandemic, it can be noted that most subjects had no change in income during the pandemic, did not have COVID, were fully vaccinated including the booster shot, and completely agreed with their partners in terms of their approach to the pandemic.
 
@@ -449,7 +376,7 @@ Given that we are using ordinal categorical variables as explanatory variables, 
 options(contrasts = c("contr.treatment", "contr.sdif"))
 ```
 
-Now, we can fit our model. Noting that `polr()` does not calculate p-values, we can compute them and bind them to our model estimates. We will also focus only on statistically significant estimates.
+Now, we can fit our model. Noting that `polr()` does not calculate p-values, we can compute them and bind them to our model estimates.
 
 For the purposes of this exercise, we will only use a subset of the variables in our modeling. We will be interested in how behavioral variables, as well as COVID-19 related variables, affect the perception of relationship quality. Additionally, we are interested in seeing if these effects are different for same sex couples.
 
@@ -481,7 +408,123 @@ kable(bt, digits = 2)
 
 Note that with an $\alpha = 0.05$, we don't have evidence of violating the proportional odds assumption (the column `probability` delivers the corresponding p-values).
 
-Also, note that throughout the fitting process and the Brant-Wald test we got a few warnings. These are caused by having categories in our model that are quite sparse, where combinations of the response and the levels of the predictor have no observations. These gaps may affect Brant statistics. A solution for this matter would be to bin some of the levels of our categories to avoid having empty combinations of levels between our response and explanatory variables. For now, we will only acknowledge this issue.
+Also, note that throughout the fitting process and the Brant-Wald test we got a few warnings. These are caused by having categories in our model that are quite sparse, where combinations of the response and the levels of the predictor have no observations. These gaps may affect Brant statistics. In the warning triggered in the Brant test can see that more than 3,000,000 combinations of `dv` (dependent variable, or our response) and `idv` (independent variables, or explanatory variables) do not occur in the data set.
+
+A solution for this matter would be to bin some of the levels of our categories with low response values to avoid having empty combinations of levels between our response and explanatory variables. We will create a new data frame to store this binned versions of our variables.
+
+```{r binning}
+hcmst_bin <- hcmst |> 
+  mutate(
+    sex_frequency = case_when(
+      sex_frequency %in% c("3_to_6_times_a_week", "once_or_more_a_day", "once_or_twice_a_week", "2_to_3_times_a_month") ~ "once_or_more_times_per_month",
+      TRUE ~ sex_frequency),
+    flirts_with_partner = case_when(
+      flirts_with_partner %in% c("never", "less_than_once_a_month") ~ "less_than_once_a_month",
+      flirts_with_partner %in% c("1_to_3_times_a_month", "once_a_week", "a_few_times_a_week", "every_day") ~ "more_than_once_a_month",
+      TRUE ~ flirts_with_partner),
+    fights_with_partner = case_when(
+      fights_with_partner %in% c("1_time", "2_times", "3_times", "4_times", "5_times", "6_times", "7_or_more_times") ~ "1_or_more_times",
+      TRUE ~ fights_with_partner),
+    inc_change_during_pandemic = case_when(
+      inc_change_during_pandemic %in% c("much_worse", "worse") ~ "worse",
+      inc_change_during_pandemic %in% c("much_better", "better") ~ "better",
+      TRUE ~ inc_change_during_pandemic),
+    subject_vaccinated = case_when(
+      subject_vaccinated %in% c("partially_vaccinated", "not_vaccinated") ~ "partially_or_not_vaccinated",
+      subject_vaccinated %in% c("fully_vaccinated_no_booster", "fully_vaccinated_and_booster") ~ "fully_vaccinated",
+      TRUE ~ subject_vaccinated),
+    partner_vaccinated = case_when(
+      partner_vaccinated %in% c("partially_vaccinated", "not_vaccinated") ~ "partially_or_not_vaccinated",
+      partner_vaccinated %in% c("fully_vaccinated_no_booster", "fully_vaccinated_and_booster") ~ "fully_vaccinated",
+      TRUE ~ partner_vaccinated),
+    agree_covid_approach = case_when(
+      agree_covid_approach %in% c("completely_disagree", "mostly_disagree", "mostly_agree") ~ "not_fully_agree",
+      TRUE ~ agree_covid_approach),
+    relationship_quality = case_when(
+      relationship_quality %in% c("very_poor", "poor", "fair") ~ "fair_or_lower",
+      TRUE ~ relationship_quality)
+  )
+
+hcmst_bin <- hcmst_bin |> 
+  mutate(sex_frequency = as.ordered(sex_frequency)) |> 
+  mutate(sex_frequency = fct_relevel(sex_frequency, 
+      c("once_a_month_or_less", "once_or_more_times_per_month")))
+
+hcmst_bin <- hcmst_bin |> 
+  mutate(flirts_with_partner = as.ordered(flirts_with_partner)) |> 
+  mutate(flirts_with_partner = fct_relevel(flirts_with_partner, 
+      c("less_than_once_a_month", "more_than_once_a_month")))
+
+hcmst_bin <- hcmst_bin |> 
+  mutate(fights_with_partner = as.ordered(fights_with_partner)) |> 
+  mutate(fights_with_partner = fct_relevel(fights_with_partner, 
+      c("0_times", "1_or_more_times")))
+
+hcmst_bin <- hcmst_bin |> 
+  mutate(inc_change_during_pandemic = as.ordered(inc_change_during_pandemic)) |> 
+  mutate(inc_change_during_pandemic = fct_relevel(inc_change_during_pandemic, 
+      c("worse", "no_change", "better")))
+
+hcmst_bin <- hcmst_bin |> 
+  mutate(subject_vaccinated = as.ordered(subject_vaccinated)) |> 
+  mutate(subject_vaccinated = fct_relevel(subject_vaccinated, 
+      c("partially_or_not_vaccinated", 
+        "fully_vaccinated")))
+
+hcmst_bin <- hcmst_bin |> 
+  mutate(partner_vaccinated = as.ordered(partner_vaccinated)) |> 
+  mutate(partner_vaccinated = fct_relevel(partner_vaccinated, 
+      c("partially_or_not_vaccinated", 
+        "fully_vaccinated")))
+
+hcmst_bin <- hcmst_bin |> 
+  mutate(agree_covid_approach = as.ordered(agree_covid_approach)) |> 
+  mutate(agree_covid_approach = fct_relevel(agree_covid_approach, 
+      c("not_fully_agree", "completely_agree")))
+
+hcmst_bin <- hcmst_bin |> 
+  mutate(relationship_quality = as.ordered(relationship_quality)) |> 
+  mutate(relationship_quality = fct_relevel(relationship_quality, 
+      c("fair_or_lower", "good", "excellent")))
+
+head(hcmst_bin)
+```
+
+With this new set of levels in our different categorical variables, we can fit our model and perform the Brant test once more.
+
+```{r model_fit_bin}
+ordinal_model_bin <- polr(
+  relationship_quality ~ same_sex_couple + 
+    sex_frequency + 
+    flirts_with_partner + 
+    fights_with_partner + 
+    inc_change_during_pandemic + 
+    subject_had_covid + 
+    partner_had_covid + 
+    subject_vaccinated + 
+    partner_vaccinated + 
+    agree_covid_approach,
+  data = hcmst_bin, Hess = TRUE
+)
+```
+
+```{r brant_test_bin, results = "hide"}
+bt_bin <- brant(ordinal_model_bin)
+```
+
+```{r table_bin}
+kable(bt_bin, digits = 2)
+```
+
+Once again, with an $\alpha = 0.05$, we don't have evidence of violating the proportional odds assumption.
+
+However, we can note that even through drastic binning in our categorical variables, we still have over 4,000 combinations of dependent variables and independent variables that do not occur in the data set.
+
+When models include multiple categorical variables with several levels, the number of possible combinations of predictor levels and outcome categories increases exponentially. In real-world survey data, especially with large sample sizes, many of these combinations are either extremely rare or entirely absent. This sparsity can lead to unreliable Brant test results, as the test relies on sufficient observations in each combination to estimate model parameters.
+
+This limitation is common in multivariable models, and is indicative of constraints in data collection and sparsity in patterns. As such, we should interpret the model with caution.
+
+Given that binning was not successful in removing sparsity warnings and that we lost significant granularity in the levels or the explanatory variables, we will perform our model interpretation using our original model.
 
 #### 5. Model Interpretation
 
@@ -502,16 +545,21 @@ kable(summary_partial_ordinal_model, digits = 2)
 
 Positive estimates are associated with higher relationship quality, while negative estimates are associated with lower relationship quality. Additionally, the exponential of the estimate is the odds ratio, which represents how much the odds of having a higher `relationship_quality` level changes between levels.
 
+Considering
+
+-   If $OR > 1: (OR - 1) \times 100%$ = % Higher odds
+-   If $OR < 1: (1 - OR) \times 100%$ = % Lower odds
+
 We can interpret these estimates:
 
 -   `same_sex_couple`: Being in a same-sex couple is associated with 41% lower odds of reporting better relationship quality compared to different-sex couples.
--   `sex_frequency`: People who have sex 2-3 times a month have 1.9 higher odds of reporting better relationship quality that those who have sex once a month or less.
--   `flirts_with_partner`: Flirting every day vs a few times per week is associated with 2.4 higher odds of better relationship quality.
+-   `sex_frequency`: People who have sex 2-3 times a month have 90% higher odds of reporting better relationship quality that those who have sex once a month or less.
+-   `flirts_with_partner`: Flirting every day vs a few times per week is associated with 140% higher odds of better relationship quality.
 -   `fights_with_partner`: Fighting once vs none is associated with 48% lower odds of better relationship quality.
--   `inc_change_during_pandemic`: Individuals whose income did not change during the pandemic had 1.7 times higher odds of reporting better relationship quality vs those whose income was worse.
--   `partner_vaccinated`: Having a partner who is partially vaccinated is associated with 2.4 times higher odds of having a better relationship quality.
--   `agree_covid_approach`: Mostly agreeing with a partner's approach to COVID vs mostly disagreeing is associated with 3.3 times higher odds of better relationship quality.
--   `agree_covid_approach`: Completely agreeing with a partner's approach to COVID vs mostly agreeing is associated with 1.8 times higher odds of better relationship quality.
+-   `inc_change_during_pandemic`: Individuals whose income did not change during the pandemic had 70% higher odds of reporting better relationship quality vs those whose income was worse.
+-   `partner_vaccinated`: Having a partner who is partially vaccinated is associated with 140% higher odds of having a better relationship quality.
+-   `agree_covid_approach`: Mostly agreeing with a partner's approach to COVID vs mostly disagreeing is associated with 230% higher odds of better relationship quality.
+-   `agree_covid_approach`: Completely agreeing with a partner's approach to COVID vs mostly agreeing is associated with 80% higher odds of better relationship quality.
 
 #### 6. Prediction
 
@@ -520,36 +568,36 @@ With our fitted model, we are now able to make predictions on new examples. Base
 ```{r prediction}
 round(predict(ordinal_model, tibble(
   same_sex_couple = "Yes",
-  sex_frequency = "Once a Month or Less",
-  flirts_with_partner = "A Few Times a Week",
-  fights_with_partner = "One Time",
-  inc_change_during_pandemic = "Worse",
-  subject_had_covid = "No",
-  partner_had_covid = "No", 
-  subject_vaccinated = "Not Vaccinated", 
-  partner_vaccinated = "Not Vaccinated",
-  agree_covid_approach = "Mostly Disagree"
+  sex_frequency = "once_a_month_or_less",
+  flirts_with_partner = "a_few_times_a_week",
+  fights_with_partner = "1_time",
+  inc_change_during_pandemic = "worse",
+  subject_had_covid = "no",
+  partner_had_covid = "no", 
+  subject_vaccinated = "not_vaccinated", 
+  partner_vaccinated = "not_vaccinated",
+  agree_covid_approach = "mostly_disagree"
   ), 
   type = "probs"),2)
 
 round(predict(ordinal_model, tibble(
   same_sex_couple = "No",
-  sex_frequency = "Two or Three Times a Month",
-  flirts_with_partner = "Every Day",
-  fights_with_partner = "Zero Times",
-  inc_change_during_pandemic = "No Change",
-  subject_had_covid = "No",
-  partner_had_covid = "No", 
-  subject_vaccinated = "Not Vaccinated", 
-  partner_vaccinated = "Partially Vaccinated",
-  agree_covid_approach = "Mostly Agree"
+  sex_frequency = "2_to_3_times_a_month",
+  flirts_with_partner = "every_day",
+  fights_with_partner = "0_times",
+  inc_change_during_pandemic = "no_change",
+  subject_had_covid = "no",
+  partner_had_covid = "no", 
+  subject_vaccinated = "not_vaccinated", 
+  partner_vaccinated = "partially_vaccinated",
+  agree_covid_approach = "mostly_agree"
   ), 
   type = "probs"), 2)
 ```
 
-We can note that a subject involved in a same-sex couple, who has sex once a month or less, flirts with their partner a few times a week, fought with their partner once in the last week, experienced worsened income during the pandemic, is not vaccinated (nor is their partner), and mostly disagrees with their partner's approach to COVID, has a 41% probability of perceiving their relationship quality as `fair` and a combined probability of 40% of categorizing it as `poor` or `very poor`.
+We can note that a subject involved in a same-sex couple, who has sex once a month or less, flirts with their partner a few times a week, fought with their partner once in the last week, experienced worsened income during the pandemic, is not vaccinated (nor is their partner), and mostly disagrees with their partner's approach to COVID, has a 41% probability of perceiving their relationship quality as `fair`.
 
-On the other hand, a subject involved in a different-sex couple, who has sex two or three times a month, flirts with their partner on a daily basis, has not fought with their partner in the last week, experienced no change in income during the pandemic, has a partially vaccinated partner, and mostly agrees with their partner's approach to COVID, has a 78% probability of perceiving their relationship quality as `excellent`, and a 98% probability of rating it as `good` or `excellent`.
+On the other hand, a subject involved in a different-sex couple, who has sex two or three times a month, flirts with their partner on a daily basis, has not fought with their partner in the last week, experienced no change in income during the pandemic, has a partially vaccinated partner, and mostly agrees with their partner's approach to COVID, has a 78% probability of perceiving their relationship quality as `excellent`.
 
 ### Discussion
 
@@ -565,4 +613,4 @@ This analysis explored how relationship habits, particularly in the context of t
 
 -   **Encoding and model choice are critical**: Model selection is tied to the type of response variable. Ordinal categorical response variables are tied to ordinal logistic regression models. Also, encoding categorical predictors must be done with care to ensure meaningful and interpretable contrasts.
 
--   **Sparsity may affect results**: When categorical variables have many levels, certain combinations of predictors may be underrepresented. This sparsity may impact the model, so caution is advised when drawing conclusions from underpopulated subgroups.
+-   **Sparsity may affect results**: When categorical variables have many levels, certain combinations of predictors may be underrepresented. This sparsity may impact the model and its assumptions, so caution is advised when drawing conclusions from underpopulated subgroups.
