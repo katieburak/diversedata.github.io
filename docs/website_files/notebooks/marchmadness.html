@@ -391,13 +391,14 @@ window.Quarto = {
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> seed, <span class="at">y =</span> tourney_wins)</span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"skyblue2"</span>) <span class="sc">+</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Tournament Wins by Seed"</span>,</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Seed"</span>,</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Tournament Wins"</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>, <span class="at">color =</span> <span class="st">"skyblue2"</span>) <span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"skyblue2"</span>) <span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Tournament Wins by Seed"</span>,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Seed"</span>,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Tournament Wins"</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -596,7 +597,7 @@ window.Quarto = {
 <p>Letting <span class="math inline">\(Y_i\)</span> be the <span class="math inline">\(ith\)</span> Poisson response in the count regression model, in the presence of equidispersion, <span class="math inline">\(Y_i\)</span> has the following parameters:</p>
 <p><span class="math inline">\(E(Y_i)=\lambda_i, Var(Y_i)=\lambda_i\)</span></p>
 <p>The test uses the following mathematical expression (using a <span class="math inline">\(1+\gamma\)</span> dispersion factor):</p>
-<p><span class="math inline">\(Var(Y_i)=(1+\gamma)*\lambda_i\)</span></p>
+<p><span class="math inline">\(Var(Y_i)=(1+\gamma)\times\lambda_i\)</span></p>
 <p>with the hypotheses:</p>
 <p><span class="math inline">\(H_0:1 + \gamma = 1\)</span></p>
 <p><span class="math inline">\(H_a: 1 + \gamma &gt; 1\)</span></p>
@@ -703,13 +704,14 @@ window.Quarto = {
 </div>
 </div>
 <p>Based on these results, we can see that <code>seed</code> is significantly associated with <code>tourney_wins</code>, particularly in changes in levels between lower seeds. These results can be interpreted as:</p>
+<p>Seed 2 teams are expected to win 29% fewer games than Seed 1 teams</p>
 <ul>
-<li><p>Seed 2 teams win 29% (1-0.71) fewer games than seed 1.</p></li>
-<li><p>Seed 3 teams win 28% fewer games than seed 2.</p></li>
-<li><p>Seed 5 teams win 37% fewer games than seed 4.</p></li>
-<li><p>Seed 8 teams win 29% fewer games than seed 7.</p></li>
-<li><p>Seed 12 teams win 48% fewer games than seed 11.</p></li>
-<li><p>Seed 13 teams win 60% fewer games than seed 12.</p></li>
+<li><p>Seed 2 teams are expected to win 29% (1-0.71) fewer games than Seed 1 teams.</p></li>
+<li><p>Seed 3 teams are expected to win 28% fewer games than Seed 2 teams.</p></li>
+<li><p>Seed 5 teams are expected to win 37% fewer games than Seed 4 teams.</p></li>
+<li><p>Seed 8 teams are expected to win 29% fewer games than Seed 7 teams.</p></li>
+<li><p>Seed 12 teams are expected to win 48% fewer games than Seed 11 teams.</p></li>
+<li><p>Seed 13 teams are expected to win 60% fewer games than Seed 12 teams.</p></li>
 </ul>
 <p>This conclusion is easier to interpret visually, so, let’s plot our Poisson regression model to view the impact of <code>seed</code> on <code>tourney_wins</code>:</p>
 <div class="cell">
@@ -736,14 +738,13 @@ window.Quarto = {
 </section>
 <section id="discussion" class="level3">
 <h3 class="anchored" data-anchor-id="discussion">Discussion</h3>
-<p>This analysis examined the relationship between a team’s tournament seed and its performance in the NCAA Division I Women’s Basketball Tournament. The results suggest that:</p>
+<p>This analysis examined the relationship between a team’s tournament seed and its performance in the NCAA Division 1 Women’s Basketball Tournament. The results suggest that:</p>
 <ol type="1">
-<li><p><strong>Seed strongly predicts performance</strong>: Lower-numbered seeds (higher-ranked teams) tend to win more games on average. The correlation between seed and wins was statistically significant, with higher seeds associated with fewer wins.</p></li>
-<li><p><strong>Poisson regression supports seeding as a predictor</strong>: The Poisson regression model confirmed that seed is a significant predictor of tournament wins, particularly for selected levels, as expected for a count variable like wins.</p></li>
-<li><p><strong>Model assumptions are key</strong>: Treating seed as a numeric variable would have assumed a linear effect across all seed values, which would have oversimplified the relationship with the outcome. Ensuring that explanatory variables are appropriately coded is key. In this case, <code>seed</code> offered improved insight when encoded as an ordered factor.</p></li>
+<li><p><strong>Poisson regression supports seeding as a predictor</strong>: The Poisson regression model indicates that seed is a significant predictor of tournament wins, suggesting that higher-ranked teams tend to win more, even between closely ranked seeds.</p></li>
+<li><p><strong>Proper variable coding is essential</strong>: Treating seed as a numeric variable would assume a linear relationship on the log scale of expected tournament wins, meaning each one-unit increase in seed (e.g., from 1 to 2, or 10 to 11) would be associated with the same proportional decrease in wins. This oversimplifies the real pattern. By encoding seed as an ordered factor, the model can estimate distinct effects for each seed level, allowing for more accurate and nuanced interpretation.</p></li>
 <li><p><strong>There is a lot of variation around the prediction</strong>: While seeding generally reflects team strength, upsets and unexpected performances do occur, showing that other factors also influence tournament outcomes.</p></li>
 </ol>
-<p>Seeding is an important predictor of success, but clearly other factors influence the results. It sets expectations, but unexpected performances still shape March Madness.</p>
+<p>Seeding is an important predictor of success, but clearly other factors influence the results. Unexpected performances are common in March Madness, so investigating additional variables could provide a fuller picture of what drives tournament outcomes.</p>
 
 
 </section>
