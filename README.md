@@ -41,15 +41,13 @@ jupyter lab
 
 All data cleaning notebooks and associated narratives (`.ipynb`) are available through the `scripts/` folder to run in `jupyter lab`.
 
-# Instructions to Render Website
+## Instructions to Render Website
 
 The [Quarto website](https://diverse-data-hub.github.io/) is deployed through GitHub Pages upon every push to `main` branch. However, for updates to be visible on the website, developers must run `quarto render` before merging updates to the `main` branch.
 
 Rendering the website requires `Quarto` to be installed. While Quarto is usually installed with RStudio, Quarto CLI can be downloaded [here](https://quarto.org/docs/get-started/).
 
 To preview or render the website using `quarto preview` or `quarto render` you must have all used R packages installed. For this reason, we've provided a `renv` environment for easy installation:
-
-### 1 - Install all necessary packages in your computer
 
 The following R packages are used in various analyses and must be installed to render the Quarto website:
 
