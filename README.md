@@ -47,49 +47,49 @@ The [Quarto website](https://diverse-data-hub.github.io/) is deployed through Gi
 
 Rendering the website requires `Quarto` to be installed. While Quarto is usually installed with RStudio, Quarto CLI can be downloaded [here](https://quarto.org/docs/get-started/).
 
-To preview or render the website using `quarto preview` or `quarto render` there are two avenues:
+To preview or render the website using `quarto preview` or `quarto render` you must have all used R packages installed. For this reason, we've provided a `renv` environment for easy installation:
 
 ### 1 - Install all necessary packages in your computer
 
-As a first option, you can ensure that all the required packages are installed in your computer. The following R packages are used in various analyses and must be installed to render the Quarto website:
+The following R packages are used in various analyses and must be installed to render the Quarto website:
 
 ```r
 
 # For `Women's March Madness`:
 
-install.packages("tidyverse")
-install.packages("AER")
-install.packages("broom")
-install.packages("knitr")
-install.packages("MASS")
+library("tidyverse")
+library("AER")
+library("broom")
+library("knitr")
+library("MASS")
 
 # For `Wildfire` (Additional to what's listed above)
 
-install.packages("lubridate")
-install.packages("gt")
-install.packages("ggmap")
-install.packages("ggspatial")
-install.packages("sf")
-install.packages("terra")
-install.packages("maptiles")
-install.packages("viridis")
-install.packages("marginaleffects")
-install.packages("broom")
-install.packages("kableExtra")
+library("lubridate")
+library("gt")
+library("ggmap")
+library("ggspatial")
+library("sf")
+library("terra")
+library("maptiles")
+library("viridis")
+library("marginaleffects")
+library("broom")
+library("kableExtra")
 
 # For `How Couples Meet and Stay Together` (Additional to what's listed above)
 
-install.packages("scales")
-install.packages("cowplot")
-install.packages("brant")
-install.packages("knitr")
+library("scales")
+library("cowplot")
+library("brant")
+library("knitr")
 
 # For `Global Rights` (Additional to what's listed above)
 
-install.packages("patchwork")
-install.packages("car")
-install.packages("FSA")
-install.packages("PMCMRplus")
+library("patchwork")
+library("car")
+library("FSA")
+library("PMCMRplus")
 
 # For `Indigenous Business` (Additional to what's listed above)
 
@@ -101,7 +101,7 @@ TBD
 
 ```
 
-### 2 - Use the `renv` environment included in this repository
+### To use the `renv` environment included in this repository
 
 *NOTE:* Some of these steps might take a couple of minutes. 
 
