@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>readme – Diverse Data Hub</title>
+<title>how_to_rerun_independent_analysis – Diverse Data Hub</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../../">
-<link href="../../../../website_files/img/favicon.png" rel="icon" type="image/png">
-<script src="../../../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../website_files/img/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../../../../website_files/styles.css">
+<link rel="stylesheet" href="../../website_files/styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -79,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Diverse Data Hub</span>
     </a>
   </div>
@@ -90,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../website_files/datasets.html"> 
+    <a class="nav-link" href="../../website_files/datasets.html"> 
 <span class="menu-text">Datasets</span></a>
   </li>  
 </ul>
@@ -115,8 +149,8 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="../../../../index.html" class="sidebar-logo-link">
-      <img src="../../../../website_files/img/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../website_files/img/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main">
     <a href="https://github.com/diverse-data-hub" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
@@ -159,19 +193,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#censorship-of-lgbt-issues---data-package" id="toc-censorship-of-lgbt-issues---data-package" class="nav-link active" data-scroll-target="#censorship-of-lgbt-issues---data-package">Censorship of LGBT issues - Data package</a>
-  <ul class="collapse">
-  <li><a href="#active-filters" id="toc-active-filters" class="nav-link" data-scroll-target="#active-filters">Active Filters</a></li>
-  <li><a href="#csv-structure" id="toc-csv-structure" class="nav-link" data-scroll-target="#csv-structure">CSV Structure</a></li>
-  <li><a href="#metadata.json-structure" id="toc-metadata.json-structure" class="nav-link" data-scroll-target="#metadata.json-structure">Metadata.json structure</a></li>
-  <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link" data-scroll-target="#about-the-data">About the data</a></li>
-  <li><a href="#detailed-information-about-the-data" id="toc-detailed-information-about-the-data" class="nav-link" data-scroll-target="#detailed-information-about-the-data">Detailed information about the data</a></li>
-  <li><a href="#censorship-of-lgbt-issues" id="toc-censorship-of-lgbt-issues" class="nav-link" data-scroll-target="#censorship-of-lgbt-issues">Censorship of LGBT+ issues</a>
-  <ul class="collapse">
-  <li><a href="#how-to-cite-this-data" id="toc-how-to-cite-this-data" class="nav-link" data-scroll-target="#how-to-cite-this-data">How to cite this data</a></li>
-  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source">Source</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#instructions-to-re-run-independent-analysis" id="toc-instructions-to-re-run-independent-analysis" class="nav-link active" data-scroll-target="#instructions-to-re-run-independent-analysis">Instructions to Re-Run Independent Analysis</a></li>
   </ul>
 </nav>
 </nav>
@@ -185,69 +207,33 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="censorship-of-lgbt-issues---data-package" class="level1">
-<h1>Censorship of LGBT issues - Data package</h1>
-<p>This data package contains the data that powers the chart <a href="https://ourworldindata.org/grapher/censorship-of-lgbt-issues?v=1&amp;csvType=full&amp;useColumnShortNames=false">“Censorship of LGBT issues”</a> on the Our World in Data website. It was downloaded on April 16, 2025.</p>
-<section id="active-filters" class="level3">
-<h3 class="anchored" data-anchor-id="active-filters">Active Filters</h3>
-<p>A filtered subset of the full data was downloaded. The following filters were applied:</p>
-</section>
-<section id="csv-structure" class="level2">
-<h2 class="anchored" data-anchor-id="csv-structure">CSV Structure</h2>
-<p>The high level structure of the CSV file is that each row is an observation for an entity (usually a country or region) and a timepoint (usually a year).</p>
-<p>The first two columns in the CSV file are “Entity” and “Code”. “Entity” is the name of the entity (e.g.&nbsp;“United States”). “Code” is the OWID internal entity code that we use if the entity is a country or region. For normal countries, this is the same as the <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">iso alpha-3</a> code of the entity (e.g.&nbsp;“USA”) - for non-standard countries like historical countries these are custom codes.</p>
-<p>The third column is either “Year” or “Day”. If the data is annual, this is “Year” and contains only the year as an integer. If the column is “Day”, the column contains a date string in the form “YYYY-MM-DD”.</p>
-<p>The final column is the data column, which is the time series that powers the chart. If the CSV data is downloaded using the “full data” option, then the column corresponds to the time series below. If the CSV data is downloaded using the “only selected data visible in the chart” option then the data column is transformed depending on the chart type and thus the association with the time series might not be as straightforward.</p>
-</section>
-<section id="metadata.json-structure" class="level2">
-<h2 class="anchored" data-anchor-id="metadata.json-structure">Metadata.json structure</h2>
-<p>The .metadata.json file contains metadata about the data package. The “charts” key contains information to recreate the chart, like the title, subtitle etc.. The “columns” key contains information about each of the columns in the csv, like the unit, timespan covered, citation for the data etc..</p>
-</section>
-<section id="about-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="about-the-data">About the data</h2>
-<p>Our World in Data is almost never the original producer of the data - almost all of the data we use has been compiled by others. If you want to re-use data, it is your responsibility to ensure that you adhere to the sources’ license and to credit them correctly. Please note that a single time series may have more than one source - e.g.&nbsp;when we stich together data from different time periods by different producers or when we calculate per capita metrics using population data from a second source.</p>
-</section>
-<section id="detailed-information-about-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="detailed-information-about-the-data">Detailed information about the data</h2>
-</section>
-<section id="censorship-of-lgbt-issues" class="level2">
-<h2 class="anchored" data-anchor-id="censorship-of-lgbt-issues">Censorship of LGBT+ issues</h2>
-<p>Describes censorship or prohibition of discussing, promoting, or teaching LGBT+ topics in media, schools, and in the general public. Last updated: April 7, 2025<br>
-Next update: April 2026<br>
-Date range: 1950–2025</p>
-<section id="how-to-cite-this-data" class="level3">
-<h3 class="anchored" data-anchor-id="how-to-cite-this-data">How to cite this data</h3>
-<section id="in-line-citation" class="level4">
-<h4 class="anchored" data-anchor-id="in-line-citation">In-line citation</h4>
-<p>If you have limited space (e.g.&nbsp;in data visualizations), you can use this abbreviated in-line citation:<br>
-Equaldex (2025) – with major processing by Our World in Data</p>
-</section>
-<section id="full-citation" class="level4">
-<h4 class="anchored" data-anchor-id="full-citation">Full citation</h4>
-<p>Equaldex (2025) – with major processing by Our World in Data. “Censorship of LGBT+ issues” [dataset]. Equaldex, “Equaldex” [original data]. Source: Equaldex (2025) – with major processing by Our World In Data</p>
-</section>
-</section>
-<section id="source" class="level3">
-<h3 class="anchored" data-anchor-id="source">Source</h3>
-<section id="equaldex" class="level4">
-<h4 class="anchored" data-anchor-id="equaldex">Equaldex</h4>
-<p>Retrieved on: 2025-04-07<br>
-Retrieved from: https://www.equaldex.com/</p>
-</section>
-<section id="notes-on-our-processing-step-for-this-indicator" class="level4">
-<h4 class="anchored" data-anchor-id="notes-on-our-processing-step-for-this-indicator">Notes on our processing step for this indicator</h4>
-<ul>
-<li>We have extracted the data from the official <a href="https://equaldex.stoplight.io/docs/equaldex/d033e28a5cf0c-equaldex-json-api">Equaldex JSON API</a>.</li>
-<li>We combine the historical and current data extracted from the API to create a time series.</li>
-<li>Whenever policy implementation dates for a status are not provided in the data, and this status is the only available for the country, we consider that this status has not changed during the entire period of the dataset.</li>
-<li>We group some of the categories the source has defined for each issue, for further clarity in our visualizations.</li>
-<li>We present this data only for sovereign states, defined by <a href="https://ourworldindata.org/grapher/sovereign-state-butcher-griffiths">Butcher and Griffiths (2020)</a>. We use the definitions of the latest year available.</li>
-</ul>
+<section id="instructions-to-re-run-independent-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="instructions-to-re-run-independent-analysis">Instructions to Re-Run Independent Analysis</h2>
+<p>Any <code>.qmd</code> can be opened and ran in RStudio and as long as the used R packages are installed.</p>
+<p>However, to run it in a reproducible way, it’s recommended to use the provided <code>renv</code> environment.</p>
+<p><strong>1. Clone the repository</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:diverse-data-hub/diverse-data-hub.github.io.git</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> diverse-data-hub.github.io</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>2. Open the R project</strong></p>
+<p>Open the <code>.Rproj</code> file in RStudio</p>
+<p>Make sure your working directory is set to the project root.</p>
+<p><strong>3. Restore the project environment</strong></p>
+<p>If the library <code>renv</code> is not installed:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Otherwise, proceed to restore the environment (already created with <code>rev::init()</code>) in the R console:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This installs the correct package versions from renv.lock.</p>
+<p>In case this step throws an error like <code>Error: This project does not contain a lockfile.</code>, try the following command to restore the environment:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>4. Confirm renv status</strong></p>
+<p>Close up the R project and reopen it. Check that your environment matches the lockfile and everything is synced running:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You should see a message like: <em>No issues found - the project is in a consistent state.</em></p>
+<p><strong>5. Open and Interact with Analysis</strong></p>
+<p>All analysis notebooks are stored in <code>website_files/notebooks/</code>.</p>
+<p>Open the <code>.qmd</code> file of interest in RStudio and interact with it as needed.</p>
 
 
-</section>
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->

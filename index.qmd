@@ -11,21 +11,66 @@ Datasets are available through the `diversedata` R package, allowing for straigh
 
 :::{.grid-container-3}
 
-<!-- To change featured data set, go into file and change value of data-featured="true" -->
+<!-- To change featured data set, go into file and change value of data-featured="true". -->
 
 <!-- These are the featured datasets -->
 
 {{< include website_files/grid_items/marchmadness.qmd >}}
-{{< include website_files/grid_items/wildfire.qmd >}}
+{{< include website_files/grid_items/hcmst.qmd >}}
 
 <!-- These are NOT featured datasets -->
 
-{{< include website_files/grid_items/hcmst.qmd >}}
+{{< include website_files/grid_items/wildfire.qmd >}}
 {{< include website_files/grid_items/indigenousbusiness.qmd >}}
 {{< include website_files/grid_items/genderassessment.qmd >}}
 {{< include website_files/grid_items/globalrights.qmd >}}
 
 :::
+
+## Install `diversedata`
+
+To install the `diversedata` R package from GitHub, follow these steps:
+
+### Prerequisites
+
+- Ensure you have R installed (download from [CRAN](https://cran.r-project.org/))
+
+- Install `devtools` package, if needed:
+
+```r
+install.packages("devtools")
+```
+
+### Installation
+
+Install `diversedata` directly from GitHub using:
+
+``` r
+devtools::install_github("diverse-data-hub/diversedata")
+```
+
+### Loading the Package
+
+After installation, load the package into your R session:
+
+``` r
+library(diversedata)
+```
+
+### Usage
+
+Once installed, you can explore the available data sets and their documentation:
+
+``` r
+# List available datasets
+data(package = "diversedata")
+
+# View documentation for a specific dataset
+?wildfire
+
+# To load a dataset into the environment:
+data("wildfire")
+```
 
 ## License
 

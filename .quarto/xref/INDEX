@@ -163,5 +163,14 @@
   },
   "website_files/notebooks/globalrights.qmd": {
     "globalrights.html": "34291252"
+  },
+  "website_files/instructions/how_to_render_website.md": {
+    "how_to_render_website.html": "1a26f955"
+  },
+  "website_files/instructions/how_to_rerun_data_cleaning.md": {
+    "how_to_rerun_data_cleaning.html": "65dcc74b"
+  },
+  "website_files/instructions/how_to_rerun_independent_analysis.md": {
+    "how_to_rerun_independent_analysis.html": "dd551747"
   }
 }

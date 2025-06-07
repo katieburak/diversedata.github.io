@@ -231,6 +231,7 @@ window.Quarto = {
 <div class="button-container">
 <p><a href="../../data/clean/hcmst.csv" download="" class="download-button"> Download CSV </a></p>
 </div>
+<p><strong>Data Use Agreement</strong>: The data I download will not be used to identify individuals.</p>
 </section>
 <section id="metadata" class="level3">
 <h3 class="anchored" data-anchor-id="metadata">Metadata</h3>
@@ -1130,239 +1131,26 @@ occur. Because of that, the test results might be invalid.</code></pre>
 </table>
 </div>
 </div>
-<p>Note that with an <span class="math inline">\(\alpha = 0.05\)</span>, we don’t have evidence of violating the proportional odds assumption (the column <code>probability</code> delivers the corresponding p-values).</p>
-<p>Also, note that throughout the fitting process and the Brant-Wald test we got a few warnings. These are caused by having categories in our model that are quite sparse, where combinations of the response and the levels of the predictor have no observations. These gaps may affect Brant statistics. In the warning triggered in the Brant test can see that more than 3,000,000 combinations of <code>dv</code> (dependent variable, or our response) and <code>idv</code> (independent variables, or explanatory variables) do not occur in the data set.</p>
-<p>A solution for this matter would be to bin some of the levels of our categories with low response values to avoid having empty combinations of levels between our response and explanatory variables. We will create a new data frame to store this binned versions of our variables.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>hcmst_bin <span class="ot">&lt;-</span> hcmst <span class="sc">|&gt;</span> </span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sex_frequency =</span> <span class="fu">case_when</span>(</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>      sex_frequency <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"3_to_6_times_a_week"</span>, <span class="st">"once_or_more_a_day"</span>, <span class="st">"once_or_twice_a_week"</span>, <span class="st">"2_to_3_times_a_month"</span>) <span class="sc">~</span> <span class="st">"once_or_more_times_per_month"</span>,</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> sex_frequency),</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">flirts_with_partner =</span> <span class="fu">case_when</span>(</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>      flirts_with_partner <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"never"</span>, <span class="st">"less_than_once_a_month"</span>) <span class="sc">~</span> <span class="st">"less_than_once_a_month"</span>,</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>      flirts_with_partner <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1_to_3_times_a_month"</span>, <span class="st">"once_a_week"</span>, <span class="st">"a_few_times_a_week"</span>, <span class="st">"every_day"</span>) <span class="sc">~</span> <span class="st">"more_than_once_a_month"</span>,</span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> flirts_with_partner),</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fights_with_partner =</span> <span class="fu">case_when</span>(</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>      fights_with_partner <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1_time"</span>, <span class="st">"2_times"</span>, <span class="st">"3_times"</span>, <span class="st">"4_times"</span>, <span class="st">"5_times"</span>, <span class="st">"6_times"</span>, <span class="st">"7_or_more_times"</span>) <span class="sc">~</span> <span class="st">"1_or_more_times"</span>,</span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> fights_with_partner),</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">inc_change_during_pandemic =</span> <span class="fu">case_when</span>(</span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>      inc_change_during_pandemic <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"much_worse"</span>, <span class="st">"worse"</span>) <span class="sc">~</span> <span class="st">"worse"</span>,</span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>      inc_change_during_pandemic <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"much_better"</span>, <span class="st">"better"</span>) <span class="sc">~</span> <span class="st">"better"</span>,</span>
-<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> inc_change_during_pandemic),</span>
-<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">subject_vaccinated =</span> <span class="fu">case_when</span>(</span>
-<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>      subject_vaccinated <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"partially_vaccinated"</span>, <span class="st">"not_vaccinated"</span>) <span class="sc">~</span> <span class="st">"partially_or_not_vaccinated"</span>,</span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>      subject_vaccinated <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"fully_vaccinated_no_booster"</span>, <span class="st">"fully_vaccinated_and_booster"</span>) <span class="sc">~</span> <span class="st">"fully_vaccinated"</span>,</span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> subject_vaccinated),</span>
-<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">partner_vaccinated =</span> <span class="fu">case_when</span>(</span>
-<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>      partner_vaccinated <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"partially_vaccinated"</span>, <span class="st">"not_vaccinated"</span>) <span class="sc">~</span> <span class="st">"partially_or_not_vaccinated"</span>,</span>
-<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>      partner_vaccinated <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"fully_vaccinated_no_booster"</span>, <span class="st">"fully_vaccinated_and_booster"</span>) <span class="sc">~</span> <span class="st">"fully_vaccinated"</span>,</span>
-<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> partner_vaccinated),</span>
-<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">agree_covid_approach =</span> <span class="fu">case_when</span>(</span>
-<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>      agree_covid_approach <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"completely_disagree"</span>, <span class="st">"mostly_disagree"</span>, <span class="st">"mostly_agree"</span>) <span class="sc">~</span> <span class="st">"not_fully_agree"</span>,</span>
-<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> agree_covid_approach),</span>
-<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">relationship_quality =</span> <span class="fu">case_when</span>(</span>
-<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>      relationship_quality <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"very_poor"</span>, <span class="st">"poor"</span>, <span class="st">"fair"</span>) <span class="sc">~</span> <span class="st">"fair_or_lower"</span>,</span>
-<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> relationship_quality)</span>
-<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>hcmst_bin <span class="ot">&lt;-</span> hcmst_bin <span class="sc">|&gt;</span> </span>
-<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex_frequency =</span> <span class="fu">as.ordered</span>(sex_frequency)) <span class="sc">|&gt;</span> </span>
-<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex_frequency =</span> <span class="fu">fct_relevel</span>(sex_frequency, </span>
-<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="st">"once_a_month_or_less"</span>, <span class="st">"once_or_more_times_per_month"</span>)))</span>
-<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a>hcmst_bin <span class="ot">&lt;-</span> hcmst_bin <span class="sc">|&gt;</span> </span>
-<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">flirts_with_partner =</span> <span class="fu">as.ordered</span>(flirts_with_partner)) <span class="sc">|&gt;</span> </span>
-<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">flirts_with_partner =</span> <span class="fu">fct_relevel</span>(flirts_with_partner, </span>
-<span id="cb38-41"><a href="#cb38-41" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="st">"less_than_once_a_month"</span>, <span class="st">"more_than_once_a_month"</span>)))</span>
-<span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a>hcmst_bin <span class="ot">&lt;-</span> hcmst_bin <span class="sc">|&gt;</span> </span>
-<span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fights_with_partner =</span> <span class="fu">as.ordered</span>(fights_with_partner)) <span class="sc">|&gt;</span> </span>
-<span id="cb38-45"><a href="#cb38-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fights_with_partner =</span> <span class="fu">fct_relevel</span>(fights_with_partner, </span>
-<span id="cb38-46"><a href="#cb38-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="st">"0_times"</span>, <span class="st">"1_or_more_times"</span>)))</span>
-<span id="cb38-47"><a href="#cb38-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-48"><a href="#cb38-48" aria-hidden="true" tabindex="-1"></a>hcmst_bin <span class="ot">&lt;-</span> hcmst_bin <span class="sc">|&gt;</span> </span>
-<span id="cb38-49"><a href="#cb38-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">inc_change_during_pandemic =</span> <span class="fu">as.ordered</span>(inc_change_during_pandemic)) <span class="sc">|&gt;</span> </span>
-<span id="cb38-50"><a href="#cb38-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">inc_change_during_pandemic =</span> <span class="fu">fct_relevel</span>(inc_change_during_pandemic, </span>
-<span id="cb38-51"><a href="#cb38-51" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="st">"worse"</span>, <span class="st">"no_change"</span>, <span class="st">"better"</span>)))</span>
-<span id="cb38-52"><a href="#cb38-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-53"><a href="#cb38-53" aria-hidden="true" tabindex="-1"></a>hcmst_bin <span class="ot">&lt;-</span> hcmst_bin <span class="sc">|&gt;</span> </span>
-<span id="cb38-54"><a href="#cb38-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">subject_vaccinated =</span> <span class="fu">as.ordered</span>(subject_vaccinated)) <span class="sc">|&gt;</span> </span>
-<span id="cb38-55"><a href="#cb38-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">subject_vaccinated =</span> <span class="fu">fct_relevel</span>(subject_vaccinated, </span>
-<span id="cb38-56"><a href="#cb38-56" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="st">"partially_or_not_vaccinated"</span>, </span>
-<span id="cb38-57"><a href="#cb38-57" aria-hidden="true" tabindex="-1"></a>        <span class="st">"fully_vaccinated"</span>)))</span>
-<span id="cb38-58"><a href="#cb38-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-59"><a href="#cb38-59" aria-hidden="true" tabindex="-1"></a>hcmst_bin <span class="ot">&lt;-</span> hcmst_bin <span class="sc">|&gt;</span> </span>
-<span id="cb38-60"><a href="#cb38-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">partner_vaccinated =</span> <span class="fu">as.ordered</span>(partner_vaccinated)) <span class="sc">|&gt;</span> </span>
-<span id="cb38-61"><a href="#cb38-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">partner_vaccinated =</span> <span class="fu">fct_relevel</span>(partner_vaccinated, </span>
-<span id="cb38-62"><a href="#cb38-62" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="st">"partially_or_not_vaccinated"</span>, </span>
-<span id="cb38-63"><a href="#cb38-63" aria-hidden="true" tabindex="-1"></a>        <span class="st">"fully_vaccinated"</span>)))</span>
-<span id="cb38-64"><a href="#cb38-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-65"><a href="#cb38-65" aria-hidden="true" tabindex="-1"></a>hcmst_bin <span class="ot">&lt;-</span> hcmst_bin <span class="sc">|&gt;</span> </span>
-<span id="cb38-66"><a href="#cb38-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agree_covid_approach =</span> <span class="fu">as.ordered</span>(agree_covid_approach)) <span class="sc">|&gt;</span> </span>
-<span id="cb38-67"><a href="#cb38-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agree_covid_approach =</span> <span class="fu">fct_relevel</span>(agree_covid_approach, </span>
-<span id="cb38-68"><a href="#cb38-68" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="st">"not_fully_agree"</span>, <span class="st">"completely_agree"</span>)))</span>
-<span id="cb38-69"><a href="#cb38-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-70"><a href="#cb38-70" aria-hidden="true" tabindex="-1"></a>hcmst_bin <span class="ot">&lt;-</span> hcmst_bin <span class="sc">|&gt;</span> </span>
-<span id="cb38-71"><a href="#cb38-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relationship_quality =</span> <span class="fu">as.ordered</span>(relationship_quality)) <span class="sc">|&gt;</span> </span>
-<span id="cb38-72"><a href="#cb38-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relationship_quality =</span> <span class="fu">fct_relevel</span>(relationship_quality, </span>
-<span id="cb38-73"><a href="#cb38-73" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="st">"fair_or_lower"</span>, <span class="st">"good"</span>, <span class="st">"excellent"</span>)))</span>
-<span id="cb38-74"><a href="#cb38-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-75"><a href="#cb38-75" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hcmst_bin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 11
-  same_sex_couple sex_frequency          flirts_with_partner fights_with_partner
-  &lt;fct&gt;           &lt;ord&gt;                  &lt;ord&gt;               &lt;ord&gt;              
-1 No              once_or_more_times_pe… more_than_once_a_m… 0_times            
-2 No              once_a_month_or_less   less_than_once_a_m… 1_or_more_times    
-3 No              once_or_more_times_pe… more_than_once_a_m… 1_or_more_times    
-4 No              once_or_more_times_pe… more_than_once_a_m… 0_times            
-5 No              once_or_more_times_pe… more_than_once_a_m… 0_times            
-6 No              once_a_month_or_less   less_than_once_a_m… 1_or_more_times    
-# ℹ 7 more variables: inc_change_during_pandemic &lt;ord&gt;,
-#   subject_had_covid &lt;fct&gt;, partner_had_covid &lt;fct&gt;, subject_vaccinated &lt;ord&gt;,
-#   partner_vaccinated &lt;ord&gt;, agree_covid_approach &lt;ord&gt;,
-#   relationship_quality &lt;ord&gt;</code></pre>
-</div>
-</div>
-<p>With this new set of levels in our different categorical variables, we can fit our model and perform the Brant test once more.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ordinal_model_bin <span class="ot">&lt;-</span> <span class="fu">polr</span>(</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  relationship_quality <span class="sc">~</span> same_sex_couple <span class="sc">+</span> </span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    sex_frequency <span class="sc">+</span> </span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    flirts_with_partner <span class="sc">+</span> </span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    fights_with_partner <span class="sc">+</span> </span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    inc_change_during_pandemic <span class="sc">+</span> </span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    subject_had_covid <span class="sc">+</span> </span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    partner_had_covid <span class="sc">+</span> </span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    subject_vaccinated <span class="sc">+</span> </span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    partner_vaccinated <span class="sc">+</span> </span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    agree_covid_approach,</span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> hcmst_bin, <span class="at">Hess =</span> <span class="cn">TRUE</span></span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>bt_bin <span class="ot">&lt;-</span> <span class="fu">brant</span>(ordinal_model_bin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in brant(ordinal_model_bin): 4119 combinations in table(dv,ivs) do not
-occur. Because of that, the test results might be invalid.</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(bt_bin, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 76%">
-<col style="width: 5%">
-<col style="width: 3%">
-<col style="width: 14%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">X2</th>
-<th style="text-align: right;">df</th>
-<th style="text-align: right;">probability</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Omnibus</td>
-<td style="text-align: right;">6.81</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">0.81</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">same_sex_coupleYes</td>
-<td style="text-align: right;">1.75</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.19</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">sex_frequencyonce_or_more_times_per_month-once_a_month_or_less</td>
-<td style="text-align: right;">1.39</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.24</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">flirts_with_partnermore_than_once_a_month-less_than_once_a_month</td>
-<td style="text-align: right;">0.21</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.65</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">fights_with_partner1_or_more_times-0_times</td>
-<td style="text-align: right;">0.32</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.57</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">inc_change_during_pandemicno_change-worse</td>
-<td style="text-align: right;">0.70</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.40</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">inc_change_during_pandemicbetter-no_change</td>
-<td style="text-align: right;">0.11</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.74</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">subject_had_covidyes</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.97</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">partner_had_covidno</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.58</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">subject_vaccinatedfully_vaccinated-partially_or_not_vaccinated</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.90</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">partner_vaccinatedfully_vaccinated-partially_or_not_vaccinated</td>
-<td style="text-align: right;">1.31</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.25</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">agree_covid_approachcompletely_agree-not_fully_agree</td>
-<td style="text-align: right;">0.20</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.66</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>Once again, with an <span class="math inline">\(\alpha = 0.05\)</span>, we don’t have evidence of violating the proportional odds assumption.</p>
-<p>However, we can note that even through drastic binning in our categorical variables, we still have over 4,000 combinations of dependent variables and independent variables that do not occur in the data set.</p>
-<p>When models include multiple categorical variables with several levels, the number of possible combinations of predictor levels and outcome categories increases exponentially. In real-world survey data, especially with large sample sizes, many of these combinations are either extremely rare or entirely absent. This sparsity can lead to unreliable Brant test results, as the test relies on sufficient observations in each combination to estimate model parameters.</p>
-<p>This limitation is common in multivariable models, and is indicative of constraints in data collection and sparsity in patterns. As such, we should interpret the model with caution.</p>
-<p>Given that binning was not successful in removing sparsity warnings and that we lost significant granularity in the levels or the explanatory variables, we will perform our model interpretation using our original model.</p>
+<p>Note that with an <span class="math inline">\(\alpha = 0.05\)</span>, we do not have evidence of a violation of the proportional odds assumption, as indicated by the p-values in the <code>probability</code> column.</p>
+<p>However, during both the model fitting process and the Brant-Wald test, several warnings were issued. These are due to instances where combinations of the response variable and predictor levels have no observations. One warning from the Brant test indicates that over 3,000,000 combinations of the dependent variable (<code>dv</code>) and independent variables (<code>ivs</code>) are not present in the dataset.</p>
+<p>When models include multiple categorical predictors with many levels, the number of possible combinations of predictors and outcomes grows exponentially. In real-world survey data, especially from large data sets, many of these combinations are either extremely rare or entirely missing. This sparsity can compromise the reliability of the Brant test, which assumes sufficient data within each combination to estimate parameters.</p>
+<p>One potential solution is to bin levels of categorical variables that have low counts, reducing the number of empty combinations. However, when there are many predictors with multiple levels, even binning may not fully resolve the issue.</p>
+<p>This limitation is common in multivariable modeling and reflects constraints in data collection and the inherent sparsity of data. As such, the results from diagnostics like the Brant test should be interpreted with caution.</p>
 </section>
 <section id="model-interpretation" class="level4">
 <h4 class="anchored" data-anchor-id="model-interpretation">5. Model Interpretation</h4>
 <p>First, we will calculate the P-value (as <code>polr()</code>does not calculate it) and we are going to exponentiate the estimates for easier interpretation of the log-odds.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>summary_partial_ordinal_model <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">tidy</span>(ordinal_model),</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">p.value =</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(<span class="fu">tidy</span>(ordinal_model)<span class="sc">$</span>statistic), <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="dv">2</span>)</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>summary_partial_ordinal_model <span class="ot">&lt;-</span> summary_partial_ordinal_model <span class="sc">|&gt;</span></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">exp_estimate =</span> <span class="fu">exp</span>(estimate)) <span class="sc">|&gt;</span> </span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>, </span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>         coef.type <span class="sc">==</span> <span class="st">"coefficient"</span>)</span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(summary_partial_ordinal_model, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>summary_partial_ordinal_model <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">tidy</span>(ordinal_model),</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">p.value =</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(<span class="fu">tidy</span>(ordinal_model)<span class="sc">$</span>statistic), <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="dv">2</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>summary_partial_ordinal_model <span class="ot">&lt;-</span> summary_partial_ordinal_model <span class="sc">|&gt;</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">exp_estimate =</span> <span class="fu">exp</span>(estimate)) <span class="sc">|&gt;</span> </span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>, </span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>         coef.type <span class="sc">==</span> <span class="st">"coefficient"</span>)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(summary_partial_ordinal_model, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -1484,36 +1272,36 @@ occur. Because of that, the test results might be invalid.</code></pre>
 <h4 class="anchored" data-anchor-id="prediction">6. Prediction</h4>
 <p>With our fitted model, we are now able to make predictions on new examples. Based on behavioral and COVID-19 related variables, we can predict the probabilities of the different levels of perceived <code>relationship_quality</code> for a specific subject. Focusing on the levels that were associated with statistically significant factors:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">predict</span>(ordinal_model, <span class="fu">tibble</span>(</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">same_sex_couple =</span> <span class="st">"Yes"</span>,</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex_frequency =</span> <span class="st">"once_a_month_or_less"</span>,</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">flirts_with_partner =</span> <span class="st">"a_few_times_a_week"</span>,</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">fights_with_partner =</span> <span class="st">"1_time"</span>,</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">inc_change_during_pandemic =</span> <span class="st">"worse"</span>,</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject_had_covid =</span> <span class="st">"no"</span>,</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">partner_had_covid =</span> <span class="st">"no"</span>, </span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject_vaccinated =</span> <span class="st">"not_vaccinated"</span>, </span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">partner_vaccinated =</span> <span class="st">"not_vaccinated"</span>,</span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">agree_covid_approach =</span> <span class="st">"mostly_disagree"</span></span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>  ), </span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"probs"</span>),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">predict</span>(ordinal_model, <span class="fu">tibble</span>(</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">same_sex_couple =</span> <span class="st">"Yes"</span>,</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex_frequency =</span> <span class="st">"once_a_month_or_less"</span>,</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">flirts_with_partner =</span> <span class="st">"a_few_times_a_week"</span>,</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">fights_with_partner =</span> <span class="st">"1_time"</span>,</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">inc_change_during_pandemic =</span> <span class="st">"worse"</span>,</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject_had_covid =</span> <span class="st">"no"</span>,</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">partner_had_covid =</span> <span class="st">"no"</span>, </span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject_vaccinated =</span> <span class="st">"not_vaccinated"</span>, </span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">partner_vaccinated =</span> <span class="st">"not_vaccinated"</span>,</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">agree_covid_approach =</span> <span class="st">"mostly_disagree"</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  ), </span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"probs"</span>),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>very_poor      poor      fair      good excellent 
      0.08      0.32      0.41      0.17      0.02 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">predict</span>(ordinal_model, <span class="fu">tibble</span>(</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">same_sex_couple =</span> <span class="st">"No"</span>,</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex_frequency =</span> <span class="st">"2_to_3_times_a_month"</span>,</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">flirts_with_partner =</span> <span class="st">"every_day"</span>,</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">fights_with_partner =</span> <span class="st">"0_times"</span>,</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">inc_change_during_pandemic =</span> <span class="st">"no_change"</span>,</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject_had_covid =</span> <span class="st">"no"</span>,</span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">partner_had_covid =</span> <span class="st">"no"</span>, </span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject_vaccinated =</span> <span class="st">"not_vaccinated"</span>, </span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">partner_vaccinated =</span> <span class="st">"partially_vaccinated"</span>,</span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">agree_covid_approach =</span> <span class="st">"mostly_agree"</span></span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>  ), </span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"probs"</span>), <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">predict</span>(ordinal_model, <span class="fu">tibble</span>(</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">same_sex_couple =</span> <span class="st">"No"</span>,</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex_frequency =</span> <span class="st">"2_to_3_times_a_month"</span>,</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">flirts_with_partner =</span> <span class="st">"every_day"</span>,</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">fights_with_partner =</span> <span class="st">"0_times"</span>,</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">inc_change_during_pandemic =</span> <span class="st">"no_change"</span>,</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject_had_covid =</span> <span class="st">"no"</span>,</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">partner_had_covid =</span> <span class="st">"no"</span>, </span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">subject_vaccinated =</span> <span class="st">"not_vaccinated"</span>, </span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">partner_vaccinated =</span> <span class="st">"partially_vaccinated"</span>,</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">agree_covid_approach =</span> <span class="st">"mostly_agree"</span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>  ), </span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"probs"</span>), <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>very_poor      poor      fair      good excellent 
      0.00      0.00      0.02      0.20      0.78 </code></pre>
@@ -1530,7 +1318,7 @@ occur. Because of that, the test results might be invalid.</code></pre>
 <li><p><strong>Behaviors are important</strong>: More frequent sex and flirting are associated with higher perceived relationship quality, while more frequent fighting affects that perception negatively.</p></li>
 <li><p><strong>Shared beliefs are beneficial</strong>: Agreement with a partner’s approach to COVID-19 was a very strong predictor of relationship quality. Moving in a direction of agreement had a significant positive association.</p></li>
 <li><p><strong>External factors play a role as well</strong>: Financial stability during the pandemic, as well as the partner’s vaccination status were also linked to better relationship quality, suggesting that alignment on external factors, such as health and financial concerns, could cause stress in couple dynamics contribute to positive perceptions.</p></li>
-<li><p><strong>Same-sex couples appear to have lower quality in their relationships</strong>: Contrary to expectations, being in a same-sex couple was significantly associated with lower perceived relationship quality. While the effect was not as strong as other factors, it was still significant and may warrant further exploration into factors contributing to this difference.</p></li>
+<li><p><strong>Perceived relationship quality varied by couple type</strong>: Individuals in same-sex couples, on average, reported slightly lower relationship quality compared to those in different-sex couples. Although this difference was modest, it was statistically significant, which may warrant a need for further exploration into the factors that may influence these perceptions.</p></li>
 <li><p><strong>Encoding and model choice are critical</strong>: Model selection is tied to the type of response variable. Ordinal categorical response variables are tied to ordinal logistic regression models. Also, encoding categorical predictors must be done with care to ensure meaningful and interpretable contrasts.</p></li>
 <li><p><strong>Sparsity may affect results</strong>: When categorical variables have many levels, certain combinations of predictors may be underrepresented. This sparsity may impact the model and its assumptions, so caution is advised when drawing conclusions from underpopulated subgroups.</p></li>
 </ul>
