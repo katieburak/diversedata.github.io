@@ -406,125 +406,15 @@ bt <- brant(ordinal_model)
 kable(bt, digits = 2)
 ```
 
-Note that with an $\alpha = 0.05$, we don't have evidence of violating the proportional odds assumption (the column `probability` delivers the corresponding p-values).
+Note that with an $\alpha = 0.05$, we do not have evidence of a violation of the proportional odds assumption, as indicated by the p-values in the `probability` column.
 
-Also, note that throughout the fitting process and the Brant-Wald test we got a few warnings. These are caused by having categories in our model that are quite sparse, where combinations of the response and the levels of the predictor have no observations. These gaps may affect Brant statistics. In the warning triggered in the Brant test can see that more than 3,000,000 combinations of `dv` (dependent variable, or our response) and `idv` (independent variables, or explanatory variables) do not occur in the data set.
+However, during both the model fitting process and the Brant-Wald test, several warnings were issued. These are due to instances where combinations of the response variable and predictor levels have no observations. One warning from the Brant test indicates that over 3,000,000 combinations of the dependent variable (`dv`) and independent variables (`ivs`) are not present in the dataset.
 
-A solution for this matter would be to bin some of the levels of our categories with low response values to avoid having empty combinations of levels between our response and explanatory variables. We will create a new data frame to store this binned versions of our variables.
+When models include multiple categorical predictors with many levels, the number of possible combinations of predictors and outcomes grows exponentially. In real-world survey data, especially from large data sets, many of these combinations are either extremely rare or entirely missing. This sparsity can compromise the reliability of the Brant test, which assumes sufficient data within each combination to estimate parameters.
 
-```{r binning}
-hcmst_bin <- hcmst |> 
-  mutate(
-    sex_frequency = case_when(
-      sex_frequency %in% c("3_to_6_times_a_week", "once_or_more_a_day", "once_or_twice_a_week", "2_to_3_times_a_month") ~ "once_or_more_times_per_month",
-      TRUE ~ sex_frequency),
-    flirts_with_partner = case_when(
-      flirts_with_partner %in% c("never", "less_than_once_a_month") ~ "less_than_once_a_month",
-      flirts_with_partner %in% c("1_to_3_times_a_month", "once_a_week", "a_few_times_a_week", "every_day") ~ "more_than_once_a_month",
-      TRUE ~ flirts_with_partner),
-    fights_with_partner = case_when(
-      fights_with_partner %in% c("1_time", "2_times", "3_times", "4_times", "5_times", "6_times", "7_or_more_times") ~ "1_or_more_times",
-      TRUE ~ fights_with_partner),
-    inc_change_during_pandemic = case_when(
-      inc_change_during_pandemic %in% c("much_worse", "worse") ~ "worse",
-      inc_change_during_pandemic %in% c("much_better", "better") ~ "better",
-      TRUE ~ inc_change_during_pandemic),
-    subject_vaccinated = case_when(
-      subject_vaccinated %in% c("partially_vaccinated", "not_vaccinated") ~ "partially_or_not_vaccinated",
-      subject_vaccinated %in% c("fully_vaccinated_no_booster", "fully_vaccinated_and_booster") ~ "fully_vaccinated",
-      TRUE ~ subject_vaccinated),
-    partner_vaccinated = case_when(
-      partner_vaccinated %in% c("partially_vaccinated", "not_vaccinated") ~ "partially_or_not_vaccinated",
-      partner_vaccinated %in% c("fully_vaccinated_no_booster", "fully_vaccinated_and_booster") ~ "fully_vaccinated",
-      TRUE ~ partner_vaccinated),
-    agree_covid_approach = case_when(
-      agree_covid_approach %in% c("completely_disagree", "mostly_disagree", "mostly_agree") ~ "not_fully_agree",
-      TRUE ~ agree_covid_approach),
-    relationship_quality = case_when(
-      relationship_quality %in% c("very_poor", "poor", "fair") ~ "fair_or_lower",
-      TRUE ~ relationship_quality)
-  )
+One potential solution is to bin levels of categorical variables that have low counts, reducing the number of empty combinations. However, when there are many predictors with multiple levels, even binning may not fully resolve the issue.
 
-hcmst_bin <- hcmst_bin |> 
-  mutate(sex_frequency = as.ordered(sex_frequency)) |> 
-  mutate(sex_frequency = fct_relevel(sex_frequency, 
-      c("once_a_month_or_less", "once_or_more_times_per_month")))
-
-hcmst_bin <- hcmst_bin |> 
-  mutate(flirts_with_partner = as.ordered(flirts_with_partner)) |> 
-  mutate(flirts_with_partner = fct_relevel(flirts_with_partner, 
-      c("less_than_once_a_month", "more_than_once_a_month")))
-
-hcmst_bin <- hcmst_bin |> 
-  mutate(fights_with_partner = as.ordered(fights_with_partner)) |> 
-  mutate(fights_with_partner = fct_relevel(fights_with_partner, 
-      c("0_times", "1_or_more_times")))
-
-hcmst_bin <- hcmst_bin |> 
-  mutate(inc_change_during_pandemic = as.ordered(inc_change_during_pandemic)) |> 
-  mutate(inc_change_during_pandemic = fct_relevel(inc_change_during_pandemic, 
-      c("worse", "no_change", "better")))
-
-hcmst_bin <- hcmst_bin |> 
-  mutate(subject_vaccinated = as.ordered(subject_vaccinated)) |> 
-  mutate(subject_vaccinated = fct_relevel(subject_vaccinated, 
-      c("partially_or_not_vaccinated", 
-        "fully_vaccinated")))
-
-hcmst_bin <- hcmst_bin |> 
-  mutate(partner_vaccinated = as.ordered(partner_vaccinated)) |> 
-  mutate(partner_vaccinated = fct_relevel(partner_vaccinated, 
-      c("partially_or_not_vaccinated", 
-        "fully_vaccinated")))
-
-hcmst_bin <- hcmst_bin |> 
-  mutate(agree_covid_approach = as.ordered(agree_covid_approach)) |> 
-  mutate(agree_covid_approach = fct_relevel(agree_covid_approach, 
-      c("not_fully_agree", "completely_agree")))
-
-hcmst_bin <- hcmst_bin |> 
-  mutate(relationship_quality = as.ordered(relationship_quality)) |> 
-  mutate(relationship_quality = fct_relevel(relationship_quality, 
-      c("fair_or_lower", "good", "excellent")))
-
-head(hcmst_bin)
-```
-
-With this new set of levels in our different categorical variables, we can fit our model and perform the Brant test once more.
-
-```{r model_fit_bin}
-ordinal_model_bin <- polr(
-  relationship_quality ~ same_sex_couple + 
-    sex_frequency + 
-    flirts_with_partner + 
-    fights_with_partner + 
-    inc_change_during_pandemic + 
-    subject_had_covid + 
-    partner_had_covid + 
-    subject_vaccinated + 
-    partner_vaccinated + 
-    agree_covid_approach,
-  data = hcmst_bin, Hess = TRUE
-)
-```
-
-```{r brant_test_bin, results = "hide"}
-bt_bin <- brant(ordinal_model_bin)
-```
-
-```{r table_bin}
-kable(bt_bin, digits = 2)
-```
-
-Once again, with an $\alpha = 0.05$, we don't have evidence of violating the proportional odds assumption.
-
-However, we can note that even through drastic binning in our categorical variables, we still have over 4,000 combinations of dependent variables and independent variables that do not occur in the data set.
-
-When models include multiple categorical variables with several levels, the number of possible combinations of predictor levels and outcome categories increases exponentially. In real-world survey data, especially with large sample sizes, many of these combinations are either extremely rare or entirely absent. This sparsity can lead to unreliable Brant test results, as the test relies on sufficient observations in each combination to estimate model parameters.
-
-This limitation is common in multivariable models, and is indicative of constraints in data collection and sparsity in patterns. As such, we should interpret the model with caution.
-
-Given that binning was not successful in removing sparsity warnings and that we lost significant granularity in the levels or the explanatory variables, we will perform our model interpretation using our original model.
+This limitation is common in multivariable modeling and reflects constraints in data collection and the inherent sparsity of data. As such, the results from diagnostics like the Brant test should be interpreted with caution.
 
 #### 5. Model Interpretation
 
