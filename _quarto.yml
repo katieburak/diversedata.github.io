@@ -29,9 +29,7 @@ website:
     collapse-level: 1
 
     contents:
-      - text: "CRAN (TBD)"
-        href: ""
-      - text: "Citation (TBD)"
+      - text: "Citation"
         href: "https://diverse-data-hub.github.io/website_files/citation.html"
       - section: "Collaborate"
         contents:
