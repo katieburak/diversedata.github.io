@@ -4,20 +4,16 @@ title: "Citation"
 
 Burak K (2025). diversedata: Diverse Dataset Hub. R package version TBD, [https://github.com/diverse-data-hub/diversedata](https://github.com/diverse-data-hub/diversedata)
 
-## [TBD Another Reference](https://nycflights13.tidyverse.org/authors.html#citation)
+```bash
+@Manual{diversedata,
+  title  = {diversedata: Diverse Dataset Hub},
+  author = {Burak K},
+  year   = {2025},
+  note   = {R package version TBD},
+  url    = {https://github.com/diverse-data-hub/diversedata},
+}
+```
 
-### Owners
-
-[Katie Burak PhD](https://github.com/katieburak)
-
-[Copyright Holder]()
-
-#### Collaborators
-[Francisco Ramirez](https://github.com/fraramfra)
-
-[Azin Piran](https://github.com/AzinPiran)
-
-[Siddarth Subrahmanian](https://github.com/siddart-1)
 
 
 
