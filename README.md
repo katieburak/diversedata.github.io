@@ -8,25 +8,25 @@ The datasets will be easily accessible through an open-access website and as R a
 
 ## How to Render Website
 
-Go [here](https://github.com/diverse-data-hub/diverse-data-hub.github.io/blob/main/website_files/instructions/how_to_render_website.md) for step by step instructions on how to re-render website while using the provided `renv` environment.
+Go [here](https://github.com/diverse-data-hub/diverse-data-hub.github.io/blob/main/website_files/instructions/how_to_render_website.md) for instructions on how to render website using the provided `renv` environment.
 
 ## How to Add a New Notebook to the Website
 
-Go [here](https://github.com/diverse-data-hub/diverse-data-hub.github.io/blob/main/website_files/instructions/how_to_publish_a_new_notebook.md) for step by step instructions on how to add a new `.qmd` analysis to the website.
+Go [here](https://github.com/diverse-data-hub/diverse-data-hub.github.io/blob/main/website_files/instructions/how_to_publish_a_new_notebook.md) for instructions on how to add a new `.qmd` analysis to the website.
 
 ## How to Re-Run Data Cleaning Process
 
-Go [here](https://github.com/diverse-data-hub/diverse-data-hub.github.io/blob/main/website_files/instructions/how_to_rerun_data_cleaning.md) for step by step instructions on how to re-run the `.ipynb` notebooks that describe the data cleaning processes while using the provided `environment.yaml` conda environment provided.
+Go [here](https://github.com/diverse-data-hub/diverse-data-hub.github.io/blob/main/website_files/instructions/how_to_rerun_data_cleaning.md) for instructions on how to re-run the `.ipynb` notebooks that describe the data cleaning processes while using the provided conda environment.
 
 ## How to Re-Run Independent Analysis
 
-Go [here](https://github.com/diverse-data-hub/diverse-data-hub.github.io/blob/main/website_files/instructions/how_to_rerun_independent_analysis.md) for step by step instructions on how to re-run any analysis `.qmd` isolated from the website.
+Go [here](https://github.com/diverse-data-hub/diverse-data-hub.github.io/blob/main/website_files/instructions/how_to_rerun_independent_analysis.md) for instructions on how to run any analysis `.qmd` notebook isolated from the website.
 
 ## How to Install the `diversedata` R Package
 
 Please, refer to the R Package [repository's README](https://github.com/diverse-data-hub/diversedata/blob/main/README.md) for detailed instructions.
 
-# Repository Structure
+# Repository Structure Description
 
 diverse-data-hub/
 │
@@ -39,6 +39,7 @@ diverse-data-hub/
 ├── .Rprofile                           # R Profile
 ├── diverse-data-hub.github.io.Rproj    # R Project
 ├── renv.lock                           # R Environment
+├── _metadata.yml                       # Website search bar control
 │
 ├── website_files/                      # Website pages and assets
 │   ├── notebooks/                      # QMD files with data set analysis

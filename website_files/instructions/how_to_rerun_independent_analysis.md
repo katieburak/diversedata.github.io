@@ -1,5 +1,9 @@
 ## Instructions to Re-Run Independent Analysis
 
+Any `.qmd` can be opened and ran in RStudio and as long as the used R packages are installed.
+
+However, to run it in a reproducible way, it's recommended to use the provided `renv` environment.
+
 **1. Clone the repository**
 
 ```bash
@@ -49,4 +53,4 @@ You should see a message like: *No issues found - the project is in a consistent
 
 All analysis notebooks are stored in `website_files/notebooks/`.
 
-Open the `.qmd` file of interest in RStudio and interact with it as needed. 
+Open the `.qmd` file of interest in RStudio and interact with it as needed.
