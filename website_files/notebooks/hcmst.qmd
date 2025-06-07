@@ -499,7 +499,7 @@ This analysis explored how relationship habits, particularly in the context of t
 
 -   **External factors play a role as well**: Financial stability during the pandemic, as well as the partner's vaccination status were also linked to better relationship quality, suggesting that alignment on external factors, such as health and financial concerns, could cause stress in couple dynamics contribute to positive perceptions.
 
--   **Same-sex couples appear to have lower quality in their relationships**: Contrary to expectations, being in a same-sex couple was significantly associated with lower perceived relationship quality. While the effect was not as strong as other factors, it was still significant and may warrant further exploration into factors contributing to this difference.
+-   **Perceived relationship quality varied by couple type**: Individuals in same-sex couples, on average, reported slightly lower relationship quality compared to those in different-sex couples. Although this difference was modest, it was statistically significant, which may warrant a need for further exploration into the factors that may influence these perceptions.
 
 -   **Encoding and model choice are critical**: Model selection is tied to the type of response variable. Ordinal categorical response variables are tied to ordinal logistic regression models. Also, encoding categorical predictors must be done with care to ensure meaningful and interpretable contrasts.
 
