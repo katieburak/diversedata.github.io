@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -125,12 +159,9 @@ ul.task-list li input[type="checkbox"] {
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
- <span class="menu-text">CRAN (TBD)</span>
-  </li>
-        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="https://diverse-data-hub.github.io/website_files/citation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Citation (TBD)</span></a>
+ <span class="menu-text">Citation</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -158,16 +189,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
     </ul>
     </div>
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#tbd-another-reference" id="toc-tbd-another-reference" class="nav-link active" data-scroll-target="#tbd-another-reference">TBD Another Reference</a>
-  <ul class="collapse">
-  <li><a href="#owners" id="toc-owners" class="nav-link" data-scroll-target="#owners">Owners</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -196,22 +218,15 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Burak K (2025). diversedata: Diverse Dataset Hub. R package version TBD, <a href="https://github.com/diverse-data-hub/diversedata">https://github.com/diverse-data-hub/diversedata</a></p>
-<section id="tbd-another-reference" class="level2">
-<h2 class="anchored" data-anchor-id="tbd-another-reference"><a href="https://nycflights13.tidyverse.org/authors.html#citation">TBD Another Reference</a></h2>
-<section id="owners" class="level3">
-<h3 class="anchored" data-anchor-id="owners">Owners</h3>
-<p><a href="https://github.com/katieburak">Katie Burak PhD</a></p>
-<p><a href="">Copyright Holder</a></p>
-<section id="collaborators" class="level4">
-<h4 class="anchored" data-anchor-id="collaborators">Collaborators</h4>
-<p><a href="https://github.com/fraramfra">Francisco Ramirez</a></p>
-<p><a href="https://github.com/AzinPiran">Azin Piran</a></p>
-<p><a href="https://github.com/siddart-1">Siddarth Subrahmanian</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@Manual{diversedata,</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">title</span>  = {diversedata: Diverse Dataset Hub},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">author</span> = {Burak K},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">year</span>   = {2025},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">note</span>   = {R package version TBD},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">url</span>    = {https://github.com/diverse-data-hub/diversedata},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-</section>
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
