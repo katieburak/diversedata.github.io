@@ -95,6 +95,8 @@ In case this step throws an error like `Error: This project does not contain a l
 renv::snapshot()
 ```
 
+Following the command, restart your R session and retry the `renv::restore()` command-
+
 **4. Confirm renv status**
 
 Close up the R project and reopen it. Check that your environment matches the lockfile and everything is synced running:

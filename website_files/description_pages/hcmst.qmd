@@ -24,9 +24,7 @@ This analysis contributes to discussions around partnership resilience, healthy 
   </a>
 </div>
 
-#### Data Use Agreement
-
-The data I download will not be used to identify individuals.
+**Data Use Agreement**: The data I download will not be used to identify individuals.
 
 ### Metadata
 
