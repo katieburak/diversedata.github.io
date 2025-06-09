@@ -487,7 +487,7 @@ window.Quarto = {
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span> </span>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>()</span>
 <span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(data_long, <span class="fu">aes</span>(<span class="at">x =</span> prop, <span class="at">y =</span> <span class="fu">reorder</span>(value, prop), <span class="at">fill =</span> facet_value)) <span class="sc">+</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(data_long, <span class="fu">aes</span>(<span class="at">x =</span> prop, <span class="at">y =</span> value, <span class="at">fill =</span> facet_value)) <span class="sc">+</span></span>
 <span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
 <span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
 <span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> plot_title,</span>

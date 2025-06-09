@@ -194,7 +194,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#instructions-to-re-run-data-cleaning-process" id="toc-instructions-to-re-run-data-cleaning-process" class="nav-link active" data-scroll-target="#instructions-to-re-run-data-cleaning-process">Instructions to Re-Run Data Cleaning Process</a></li>
-  <li><a href="#how-to-re" id="toc-how-to-re" class="nav-link" data-scroll-target="#how-to-re">How to re:</a></li>
   </ul>
 </nav>
 </nav>
@@ -221,59 +220,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>4. Launch Jupyter Lab</strong></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>All data cleaning notebooks and associated narratives (<code>.ipynb</code>) are available through the <code>scripts/</code> folder to run in <code>jupyter lab</code>.</p>
-</section>
-<section id="how-to-re" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-re">How to re:</h2>
-<p>These steps assume you already have a completed working <strong>.qmd notebook file</strong> that you want to publish to the website.</p>
-<p><strong>Strong recommendation</strong>: Use equivalent “hcmst” or “marchmadness” files for reference.</p>
-<p><strong>1 - Fill Out the Data Set Card</strong></p>
-<p><em>File</em>: <code>website_files/grid_items/&lt;datasetfile&gt;.qmd</code></p>
-<p><em>Fields to Complete:</em></p>
-<ul>
-<li><code>data-featured</code> - <code>true</code> or <code>false</code> (should be <code>false</code> by default - K. Burak approves featured status)</li>
-<li><code>data-tags</code> - <code>python</code> or <code>r</code> (programming language used)</li>
-<li><code>img src</code> - Path to image to display in card</li>
-<li><code>&lt;h3&gt;</code> - dataset title</li>
-<li>Data set description</li>
-<li><code>href</code> - link to full notebook (e.g., <code>https://diverse-data-hub.github.io/website_files/description_pages/&lt;datasetname&gt;.html</code>)</li>
-</ul>
-<p><strong>2 - Add the Data Set Description Page:</strong></p>
-<p><em>File</em>: <code>website_files/description_pages/&lt;datasetfile&gt;.qmd</code></p>
-<p><em>What to include:</em></p>
-<ul>
-<li>Page title (<code>title:</code>)</li>
-<li>Data Set Information section</li>
-<li>Download button (<code>href</code>) path</li>
-<li>Complete metadata table (<code>field-value</code>)</li>
-<li>Variable table (respect header structures)</li>
-<li>Ensure correct paths to notebooks</li>
-<li>Attribution</li>
-</ul>
-<p><strong>3 - Add the Notebook File:</strong></p>
-<p><em>File</em>: <code>website_files/notebooks/&lt;datasetfile&gt;.qmd</code></p>
-<p><em>Structure:</em></p>
-<ul>
-<li>Follow the template format.</li>
-<li>Should include: <code>About the Data</code> (Key Features on Dataset, Purpose and Use Cases), <code>Case Study</code> (Objective, Methodology)</li>
-</ul>
-<p><strong>4 - Feature the Dataset (Optional).</strong></p>
-<p><em>File</em>: <code>website_files/grid_items/&lt;file&gt;.qmd</code></p>
-<p><em>Action:</em></p>
-<p>If approved to be featured, update:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">class="grid-item" data-featured="true" data-tags="r"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>5 - Create a Reproducible Featured Image</strong></p>
-<p><em>File</em>: <code>website_files/img/&lt;image&gt;.png</code></p>
-<p><em>Action:</em></p>
-<p>Generate and save the image directly from your notebook using a reproducible method. Make sure the filename matches what’s referenced in Step 1.</p>
-<p><em>Example (in R)</em>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="at">ggsave("../img/&lt;image&gt;.png", plot = plot_object_name, width = 6, height = 4, dpi = 300)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>6 - Preview and Render Changes</strong></p>
-<p>Before pushing:</p>
-<ul>
-<li>Run quarto preview to check your edits.</li>
-<li>Run quarto render to build the site.</li>
-</ul>
-<p><strong>Important Note</strong>: Givent that the website counts on hard-coded links, use the host URL and the folder structure to inspect the preview/rendered local version of the website.</p>
 
 
 </section>

@@ -62,6 +62,8 @@ TBD
 
 **1. Clone the repository**
 
+Using your shell terminal:
+
 ```bash
 git clone git@github.com:diverse-data-hub/diverse-data-hub.github.io.git
 cd diverse-data-hub.github.io
@@ -73,15 +75,17 @@ Open the `.Rproj` file in RStudio
 
 Make sure your working directory is set to the project root.
 
-**3. Restore the project environment**
+**3. Ensure installation of `renv` package**
 
-If the library `renv` is not installed:
+If the library `renv` is not installed run the following line in the R console. If already installed, skip to the next step:
 
 ```R
 install.packages("renv")  
 ```
 
-Otherwise, proceed to restore the environment (already created with `rev::init()`) in the R console:
+**3. Restore the project environment**
+
+Restore the environment (already created with `rev::init()`) in the R console:
 
 ```R
 renv::restore()
@@ -99,7 +103,7 @@ Following the command, restart your R session and retry the `renv::restore()` co
 
 **4. Confirm renv status**
 
-Close up the R project and reopen it. Check that your environment matches the lockfile and everything is synced running:
+Close up the R project and reopen it. Check that your environment matches the lockfile and everything is synced running the following in your R console:
 
 ```R
 renv::status()
@@ -108,6 +112,8 @@ renv::status()
 You should see a message like: *No issues found - the project is in a consistent state.*
 
 **5. Preview or Render the Quarto site**
+
+Now in your shell console, you can run:
 
 ```bash
 quarto preview
@@ -121,7 +127,7 @@ Now you are able to render your updates and they will be visible on the website 
 
 **Optional** - To Update Dependencies
 
-If you add new R packages to a new notebook, run:
+If you add new R packages to a new notebook, run in the R console with the R project opened and the environment restored:
 
 ```r
 renv::snapshot()
@@ -129,7 +135,7 @@ renv::snapshot()
 
 **Optional** - To Clean Dependencies
 
-To see which packages are installed but are not used, run:
+To see which packages are installed but are not used, run in the R console with the R project opened and the environment restored:
 
 ```r
 renv::clean()
