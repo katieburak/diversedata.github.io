@@ -226,7 +226,7 @@ histogram_plot <- function(data, y_var, facet, plot_title = "Relative Frequency 
     mutate(prop = n / sum(n)) |> 
     ungroup()
 
-  ggplot(data_long, aes(x = prop, y = reorder(value, prop), fill = facet_value)) +
+  ggplot(data_long, aes(x = prop, y = value, fill = facet_value)) +
     geom_bar(stat = "identity", position = "dodge", color = "white") +
     labs(
       title = plot_title,
