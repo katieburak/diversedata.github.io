@@ -23,3 +23,4 @@ dependencies:
   - jupyterlab=4.4.1
   - python=3.13.3
   - matplotlib=3.10.1
+  - seaborn=0.13.2
