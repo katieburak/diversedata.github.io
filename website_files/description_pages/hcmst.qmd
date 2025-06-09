@@ -72,7 +72,7 @@ This analysis contributes to discussions around partnership resilience, healthy 
 :::
 :::
 
-{{< include ../notebooks/hcmst.qmd >}}
+{{< include ../notebooks/_hcmst.qmd >}}
 
 ## Attribution
 
