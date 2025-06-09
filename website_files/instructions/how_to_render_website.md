@@ -73,15 +73,17 @@ Open the `.Rproj` file in RStudio
 
 Make sure your working directory is set to the project root.
 
-**3. Restore the project environment**
+**3. Ensure installation of `renv` package**
 
-If the library `renv` is not installed:
+If the library `renv` is not installed run the following line. If already installed, skip to the next step:
 
 ```R
 install.packages("renv")  
 ```
 
-Otherwise, proceed to restore the environment (already created with `rev::init()`) in the R console:
+**3. Restore the project environment**
+
+Restore the environment (already created with `rev::init()`) in the R console:
 
 ```R
 renv::restore()
