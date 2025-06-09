@@ -269,10 +269,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>2. Open the R project</strong></p>
 <p>Open the <code>.Rproj</code> file in RStudio</p>
 <p>Make sure your working directory is set to the project root.</p>
-<p><strong>3. Restore the project environment</strong></p>
-<p>If the library <code>renv</code> is not installed:</p>
+<p><strong>3. Ensure installation of <code>renv</code> package</strong></p>
+<p>If the library <code>renv</code> is not installed run the following line. If already installed, skip to the next step:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Otherwise, proceed to restore the environment (already created with <code>rev::init()</code>) in the R console:</p>
+<p><strong>3. Restore the project environment</strong></p>
+<p>Restore the environment (already created with <code>rev::init()</code>) in the R console:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This installs the correct package versions from renv.lock.</p>
 <p>In case this step throws an error like <code>Error: This project does not contain a lockfile.</code>, try the following command to restore the environment:</p>
