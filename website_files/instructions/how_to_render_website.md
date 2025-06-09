@@ -56,9 +56,7 @@ TBD
 
 ```
 
-### To use the `renv` environment included in this repository
-
-*NOTE:* Some of these steps might take a few minutes. 
+### To use the `renv` environment included in this repository 
 
 **1. Clone the repository**
 
@@ -83,7 +81,7 @@ If the library `renv` is not installed run the following line in the R console. 
 install.packages("renv")  
 ```
 
-**3. Restore the project environment**
+**4. Restore the project environment**
 
 Restore the environment (already created with `rev::init()`) in the R console:
 
@@ -101,7 +99,7 @@ renv::snapshot()
 
 Following the command, restart your R session and retry the `renv::restore()` command-
 
-**4. Confirm renv status**
+**5. Confirm renv status**
 
 Close up the R project and reopen it. Check that your environment matches the lockfile and everything is synced running the following in your R console:
 
@@ -111,7 +109,9 @@ renv::status()
 
 You should see a message like: *No issues found - the project is in a consistent state.*
 
-**5. Preview or Render the Quarto site**
+**6. Preview or Render the Quarto site**
+
+*NOTE:* Rendering time may vary depending on the number of updates applied across multiple files.
 
 Now in your shell console, you can run:
 
