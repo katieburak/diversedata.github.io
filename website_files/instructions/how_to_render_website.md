@@ -56,9 +56,7 @@ TBD
 
 ```
 
-### To use the `renv` environment included in this repository
-
-*NOTE:* Some of these steps might take a few minutes. 
+### To use the `renv` environment included in this repository 
 
 **1. Clone the repository**
 
@@ -112,6 +110,8 @@ renv::status()
 You should see a message like: *No issues found - the project is in a consistent state.*
 
 **6. Preview or Render the Quarto site**
+
+*NOTE:* Rendering time may vary depending on the number of updates applied across multiple files.
 
 Now in your shell console, you can run:
 
