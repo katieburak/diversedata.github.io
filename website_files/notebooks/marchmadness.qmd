@@ -53,7 +53,7 @@ Understanding these dynamics can inform fan expectations and bracket predictions
 
 ### Analysis
 
-We should load the necessary libraries we will be using.
+We should load the necessary libraries we will be using, including the `diversedata` package.
 
 ```{r library_load, results = "hide", warning = FALSE, message = FALSE}
 library(diversedata)

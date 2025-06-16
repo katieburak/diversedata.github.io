@@ -44,9 +44,10 @@ By examining survey data, we aim to:
 
 ### Analysis
 
-First, we need to load the libraries that will be used through the exercise.
+First, we need to load the libraries that will be used through the exercise, including the `diversedata` package.
 
 ```{r library_load, results = "hide", warning = FALSE, message = FALSE}
+library(diversedata)
 library(tidyverse) 
 library(scales)
 library(cowplot)
@@ -58,11 +59,11 @@ library(knitr)
 
 #### 1. Data Cleaning & Processing
 
-First, we can load our data set, select our specific variables of intereset and remove NAs from our data set.
+First, we can load our data set (`hcmst` from `diversedata` package), select our specific variables of intereset and remove NAs from our data set.
 
 ```{r data_load, warning = FALSE, message = FALSE}
 # Reading Data
-hcmst <- read_csv("../../data/clean/hcmst.csv") 
+hcmst <- hcmst
 
 # Review total rows
 nrow(hcmst)
