@@ -2,14 +2,14 @@
 title: "Citation"
 ---
 
-Burak K (2025). diversedata: Diverse Dataset Hub. R package version TBD, [https://github.com/diverse-data-hub/diversedata](https://github.com/diverse-data-hub/diversedata)
+Burak K, Khoda E (2025). diversedata: Diverse Dataset Hub. R Package Version 1.0.0, [https://github.com/diverse-data-hub/diversedata](https://github.com/diverse-data-hub/diversedata)
 
 ```bash
 @Manual{diversedata,
   title  = {diversedata: Diverse Dataset Hub},
-  author = {Burak K},
+  author = {Burak K, Khoda E},
   year   = {2025},
-  note   = {R package version TBD},
+  note   = {R Package Version 1.0.0},
   url    = {https://github.com/diverse-data-hub/diversedata},
 }
 ```

@@ -10,8 +10,6 @@ sidebar: false
 
 This dataset provides yearly, country-level information on LGBTQ+ rights, economic indicators, and education spending. The data is compiled from Our World in Data, with primary sources including Equaldex, the World Bank, and other open-access datasets.
 
-
-
 ### Download
 
 <div class="button-container">
@@ -23,7 +21,6 @@ This dataset provides yearly, country-level information on LGBTQ+ rights, econom
 ### Metadata
 
 <div class="description-grid">
-  <div class="field-label">DOI</div><div class="field-value">TBD</div>
   <div class="field-label">CSV Name</div><div class="field-value">globalrights.csv</div>
   <div class="field-label">Dataset Characteristics</div><div class="field-value">Multivariate, Panel (Country-Year)</div>
   <div class="field-label">Subject Area</div><div class="field-value">Human Rights, Public Policy, International Development</div>

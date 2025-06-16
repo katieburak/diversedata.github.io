@@ -172,5 +172,14 @@
   },
   "website_files/instructions/how_to_rerun_independent_analysis.md": {
     "how_to_rerun_independent_analysis.html": "dd551747"
+  },
+  "scripts/bcindigenousbiz_clean.ipynb": {
+    "bcindigenousbiz_clean.html": "a7d98e4a"
+  },
+  "scripts/genderassessment_clean.ipynb": {
+    "genderassessment_clean.html": "5a3783b4"
+  },
+  "website_files/instructions/how_to_activate_environment.md": {
+    "how_to_activate_environment.html": "49f61252"
   }
 }

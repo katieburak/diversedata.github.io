@@ -1,14 +1,14 @@
-## How to render the website:
+## How to activate environment:
 
-The [Quarto website](https://diverse-data-hub.github.io/) is deployed through GitHub Pages upon every push to `main` branch. However, for updates to be visible on the website, developers must run `quarto render` before merging updates to the `main` branch.
-
-Rendering the website requires `Quarto` to be installed. While Quarto is usually installed with RStudio, Quarto CLI can be downloaded [here](https://quarto.org/docs/get-started/).
-
-To preview or render the website using `quarto preview` or `quarto render` you must have all used R packages installed. For this reason, we've provided a `renv` environment for easy installation:
+Multiple processes associated with the Diverse Data Hub require the use of a common environment for reproduciblity. For this reason, we've provided a `renv` environment:
 
 The following R packages are used in various analyses and must be installed to render the Quarto website:
 
 ```r
+
+# For All Analysis:
+
+library("diversedata")
 
 # For `Women's March Madness`:
 
@@ -109,29 +109,32 @@ renv::status()
 
 You should see a message like: *No issues found - the project is in a consistent state.*
 
-**6. Preview or Render the Quarto site**
-
-*NOTE:* Rendering time may vary depending on the number of updates applied across multiple files.
-
-Now in your shell console, you can run:
-
-```bash
-quarto preview
-```
-
-```bash
-quarto render
-```
-
-Now you are able to render your updates and they will be visible on the website when merged to the `main` branch.
-
-**Optional** - To Update Dependencies
+**Optional** - To Add New Dependencies
 
 If you add new R packages to a new notebook, run in the R console with the R project opened and the environment restored:
 
 ```r
 renv::snapshot()
 ```
+
+**Optional** - To Update Dependencies
+
+1. Open your R project (with renv already initialized)
+
+2. Update the package using either renv::update() or install.packages():
+
+```r
+renv::update("packageName")
+```
+
+3. Regenerate the lockfile
+After the package is updated, regenerate the lockfile:
+
+```r
+renv::snapshot()
+```
+
+This writes the new package version and source into the renv.lock file, so others can install the exact same version.
 
 **Optional** - To Clean Dependencies
 

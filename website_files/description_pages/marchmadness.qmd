@@ -27,7 +27,6 @@ Analyzing NCAA Women's March Madness results and promoting visibility of women i
 ### Metadata
 
 <div class="description-grid">
-  <div class="field-label">DOI</div><div class="field-value">TBD</div>
   <div class="field-label">CSV Name</div><div class="field-value">womensmarchmadness.csv</div>
   <div class="field-label">Dataset Characteristics</div><div class="field-value">Multivariate</div>
   <div class="field-label">Subject Area</div><div class="field-value">Women In Sports</div>
