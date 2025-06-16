@@ -25,7 +25,6 @@ In particular, Alberta experiences some of the most severe and frequent wildfire
 ### Metadata
 
 <div class="description-grid">
-  <div class="field-label">DOI</div><div class="field-value">TBD</div>
   <div class="field-label">CSV Name</div><div class="field-value">wildfire.csv</div>
   <div class="field-label">Dataset Characteristics</div><div class="field-value">Multivariate</div>
   <div class="field-label">Subject Area</div><div class="field-value">Climate Change</div>
