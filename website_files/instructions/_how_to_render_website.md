@@ -17,7 +17,7 @@ cd diverse-data-hub.github.io
 
 **2. Activate Environment**
 
-See instructions [here](https://github.com/diverse-data-hub/diverse-data-hub.github.io/blob/main/website_files/instructions/how_to_activate_environment.md). 
+See instructions [here](https://github.com/diverse-data-hub/diverse-data-hub.github.io/blob/main/website_files/instructions/_how_to_activate_environment.md). 
 
 **3. Preview or Render the Quarto site**
 

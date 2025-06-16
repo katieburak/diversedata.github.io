@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Citation – Diverse Data Hub</title>
+<title>bcindigenousbiz_clean – Diverse Data Hub</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -101,6 +101,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../website_files/styles.css">
@@ -138,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Citation</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -198,33 +201,278 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Citation</h1>
+
+
+
+<div id="c791eb50-1acf-4ccb-8ae0-cb92f92273f8" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Load the raw data</p>
+<div id="027272ea-38d4-4877-9dc2-9687174f6bd7" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"../data/raw/indigenous-business/bcindigenousbusinesslistings.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Inspecting the data</p>
+<div id="4a433da2-f13b-48c4-8384-18b35985d493" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.info())</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Initial number of rows: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss">"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 1259 entries, 0 to 1258
+Data columns (total 12 columns):
+ #   Column               Non-Null Count  Dtype  
+---  ------               --------------  -----  
+ 0   Business Name        1259 non-null   object 
+ 1   Description          1135 non-null   object 
+ 2   Web Site             699 non-null    object 
+ 3   City                 1258 non-null   object 
+ 4   Latitude             1258 non-null   float64
+ 5   Longitude            1258 non-null   float64
+ 6   Keywords             1257 non-null   object 
+ 7   Region               1259 non-null   object 
+ 8   Type                 1123 non-null   object 
+ 9   Industry Sector      1222 non-null   object 
+ 10  Year Formed          648 non-null    float64
+ 11  Number of Employees  572 non-null    object 
+dtypes: float64(3), object(9)
+memory usage: 118.2+ KB
+None
+                                       Business Name  \
+0                                Ellipsis Energy Inc   
+1  Indigenous Community Development &amp; Prosperity ...   
+2                         Formline Construction Ltd.   
+3                          Quilakwa Investments Ltd.   
+4                                      Quilakwa Esso   
+
+                                         Description  \
+0  Ellipsis Energy Inc is an Aboriginal owned com...   
+1  ICDPRO works together with Indigenous communit...   
+2  With over combined 30 years of experience in t...   
+3  Quilakwa Investments Ltd. oversees several Ind...   
+4  Quilakwa Esso is owned by the Splatsin Indian ...   
+
+                                      Web Site           City   Latitude  \
+0                 http://www.ellipsisenergy.ca  Moberly Lake   55.819370   
+1  https://indigenouscommunitydevelopment.com/        Enderby  50.551498   
+2                        https://www.flcon.ca/        Burnaby  49.266050   
+3                    http://www.splatsindc.com        Enderby  50.537507   
+4                                          NaN        Enderby  50.537507   
+
+    Longitude                                           Keywords  \
+0 -121.834602  Ellipsis Energy Inc 21 – Mining, quarrying, an...   
+1 -119.133546  Indigenous Community Development &amp; Prosperity ...   
+2  123.005840       Formline Construction Ltd. 23 – Construction   
+3 -119.141955                          Quilakwa Investments Ltd.   
+4 -119.141955                 Quilakwa Esso 44-45 - Retail trade   
+
+                       Region                     Type  \
+0                   Northeast          Private Company   
+1         Thompson / Okanagan          Private Company   
+2  Lower Mainland / Southwest          Private Company   
+3         Thompson / Okanagan  Community Owned Company   
+4         Thompson / Okanagan  Community Owned Company   
+
+                                     Industry Sector  Year Formed  \
+0  21 – Mining, quarrying, and oil and gas extrac...       2012.0   
+1  81 – Other services (except public administrat...       2020.0   
+2                                  23 – Construction       2021.0   
+3               72 – Accommodation and food services       1984.0   
+4                               44-45 - Retail trade       1984.0   
+
+  Number of Employees  
+0              5 to 9  
+1              1 to 4  
+2              1 to 4  
+3            20 to 49  
+4            10 to 19  
+Initial number of rows: 1259</code></pre>
+</div>
+</div>
+<p>Column Name Standardization</p>
+<div id="fd6eef16-28c2-4b3e-aed3-a577b48785cf" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Clean column names (convert to lowercase and replace spaces with underscores)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">=</span> df.columns.<span class="bu">str</span>.strip().<span class="bu">str</span>.lower().<span class="bu">str</span>.replace(<span class="st">' '</span>, <span class="st">'_'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Remove Unnecessary Columns</p>
+<div id="e45d8a1d-76c5-4122-9995-17bc8cd67a70" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove unnecessary columns</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>columns_to_drop <span class="op">=</span> [<span class="st">'description'</span>, <span class="st">'web_site'</span>, <span class="st">'keywords'</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>columns_to_drop, errors<span class="op">=</span><span class="st">'ignore'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Removal of Duplicates</p>
+<div id="fcfabc7b-455e-47a7-a020-3cb640006b4a" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove duplicate rows</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop_duplicates()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5eb7bb63-b0ff-46ff-915c-f5cdd2267ed2" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check no of rows after removing duplicates</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"No of rows after removing duplicates: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss">"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>No of rows after removing duplicates: 1259</code></pre>
+</div>
+</div>
+<p>Critical Data Validation</p>
+<div id="3aca369c-2158-40f0-9b74-983a5c212bb8" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows missing critical information</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#business_name is a mandatory field here</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'business_name'</span> <span class="kw">in</span> df.columns:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[df[<span class="st">'business_name'</span>].notna() <span class="op">&amp;</span> (df[<span class="st">'business_name'</span>] <span class="op">!=</span> <span class="st">''</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="bdaeee1d-878a-470b-be58-d37b2a88e3b3" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check no of rows after removing rows missing critical information</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"No of rows: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss">"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>No of rows: 1259</code></pre>
+</div>
+</div>
+<p>Ensure Year is an integer</p>
+<div id="99dc27ee-c950-484d-87a7-8f3b00bbbe70" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure year_formed is a nullable integer</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'year_formed'</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">'year_formed'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>).astype(<span class="st">'Int64'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Cleanup industry_sector</p>
+<div id="53232530-138b-43f7-b1d4-6bbb93dbddb6" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># custom function to standardize industry_sector data</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_industry_sector(sector):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isna(sector):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.nan</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert to string</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    sector <span class="op">=</span> <span class="bu">str</span>(sector).strip()</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Handle cases starting with colon</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sector.startswith(<span class="st">':'</span>):</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        sector <span class="op">=</span> sector[<span class="dv">1</span>:].strip()</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove ALL number patterns including:</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># "23 - ", "44-45 - ", "1.5 - ", "54 – " (with en dash)</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    sector <span class="op">=</span> re.sub(<span class="vs">r'^[\d\.]+\s*[-–—]?\s*[\d\.]*\s*[-–—]\s*'</span>, <span class="st">''</span>, sector).strip()</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return np.nan if empty, otherwise capitalize first letter</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.nan <span class="cf">if</span> <span class="kw">not</span> sector <span class="cf">else</span> sector[<span class="dv">0</span>].upper() <span class="op">+</span> sector[<span class="dv">1</span>:]</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"test cleaning:"</span>)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>test_case <span class="op">=</span> <span class="st">":54 – Professional, scientific and technical services"</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"'</span><span class="sc">{</span>test_case<span class="sc">}</span><span class="ss">' → '</span><span class="sc">{</span>clean_industry_sector(test_case)<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'industry_sector'</span>] <span class="op">=</span> df[<span class="st">'industry_sector'</span>].<span class="bu">apply</span>(clean_industry_sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>test cleaning:
+':54 – Professional, scientific and technical services' → 'Professional, scientific and technical services'</code></pre>
+</div>
+</div>
+<p>Data Formatting</p>
+<div id="b4a87247-bba2-4304-8fa5-f1f4d0cd88fc" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Trim whitespace in string fields</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>text_cols <span class="op">=</span> [<span class="st">'business_name'</span>, <span class="st">'city'</span>, <span class="st">'industry_sector'</span>,<span class="st">'region'</span>,<span class="st">'type'</span>]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>df[text_cols] <span class="op">=</span> df[text_cols].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.<span class="bu">str</span>.strip())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Save the Cleaned data</p>
+<div id="35df9bcd-c0d8-4336-8c2c-cd5482680528" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save cleaned data</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">"cleaned_indigenous_businesses.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Validation of Cleaned Data</p>
+<div id="591a7af2-5eff-4bbd-b80b-5b702e96b1fe" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Validate cleaned data</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>clean_data<span class="op">=</span> pd.read_csv(<span class="st">"bcindigenousbiz_clean.csv"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final cleaned dataset rows: </span><span class="sc">{</span><span class="bu">len</span>(clean_data)<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># Final row count</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>clean_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Final cleaned dataset rows: 1259</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
 
 
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">business_name</th>
+<th data-quarto-table-cell-role="th">city</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">industry_sector</th>
+<th data-quarto-table-cell-role="th">year_formed</th>
+<th data-quarto-table-cell-role="th">number_of_employees</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Ellipsis Energy Inc</td>
+<td>Moberly Lake</td>
+<td>55.819370</td>
+<td>-121.834602</td>
+<td>Northeast</td>
+<td>Private Company</td>
+<td>Mining, quarrying, and oil and gas extraction</td>
+<td>2012.0</td>
+<td>5 to 9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Indigenous Community Development &amp; Prosperity ...</td>
+<td>Enderby</td>
+<td>50.551498</td>
+<td>-119.133546</td>
+<td>Thompson / Okanagan</td>
+<td>Private Company</td>
+<td>Other services (except public administration)</td>
+<td>2020.0</td>
+<td>1 to 4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Formline Construction Ltd.</td>
+<td>Burnaby</td>
+<td>49.266050</td>
+<td>123.005840</td>
+<td>Lower Mainland / Southwest</td>
+<td>Private Company</td>
+<td>Construction</td>
+<td>2021.0</td>
+<td>1 to 4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Quilakwa Investments Ltd.</td>
+<td>Enderby</td>
+<td>50.537507</td>
+<td>-119.141955</td>
+<td>Thompson / Okanagan</td>
+<td>Community Owned Company</td>
+<td>Accommodation and food services</td>
+<td>1984.0</td>
+<td>20 to 49</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Quilakwa Esso</td>
+<td>Enderby</td>
+<td>50.537507</td>
+<td>-119.141955</td>
+<td>Thompson / Okanagan</td>
+<td>Community Owned Company</td>
+<td>Retail trade</td>
+<td>1984.0</td>
+<td>10 to 19</td>
+</tr>
+</tbody>
+</table>
 
-<div class="quarto-title-meta column-page-right">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>Burak K, Khoda E (2025). diversedata: Diverse Dataset Hub. R Package Version 1.0.0, <a href="https://github.com/diverse-data-hub/diversedata">https://github.com/diverse-data-hub/diversedata</a></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@Manual{diversedata,</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">title</span>  = {diversedata: Diverse Dataset Hub},</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">author</span> = {Burak K, Khoda E},</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">year</span>   = {2025},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">note</span>   = {R Package Version 1.0.0},</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">url</span>    = {https://github.com/diverse-data-hub/diversedata},</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 
 
 
