@@ -56,6 +56,7 @@ Understanding these dynamics can inform fan expectations and bracket predictions
 We should load the necessary libraries we will be using.
 
 ```{r library_load, results = "hide", warning = FALSE, message = FALSE}
+library(diversedata)
 library(tidyverse)
 library(AER)
 library(broom)
@@ -65,11 +66,11 @@ library(MASS)
 
 #### 1. Data Cleaning & Processing
 
-First, let's load our data and remove all NA values for our variables of interest `seed` and `tourney_wins`.
+First, let's load our data (`womensmarchmadness` from `diversedata` package) and remove all NA values for our variables of interest `seed` and `tourney_wins`.
 
 ```{r data_load, warning=FALSE, message=FALSE}
 # Reading Data
-marchmadness <- read_csv("../../data/clean/womensmarchmadness.csv") 
+marchmadness <- womensmarchmadness
 
 # Review total rows
 nrow(marchmadness)
