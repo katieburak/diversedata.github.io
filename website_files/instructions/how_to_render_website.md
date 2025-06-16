@@ -1,6 +1,5 @@
 ## How to render the website:
 
-
 The [Quarto website](https://diverse-data-hub.github.io/) is deployed through GitHub Pages upon every push to `main` branch. However, for updates to be visible on the website, developers must run `quarto render` before merging updates to the `main` branch.
 
 Rendering the website requires `Quarto` to be installed. While Quarto is usually installed with RStudio, Quarto CLI can be downloaded [here](https://quarto.org/docs/get-started/).
@@ -35,3 +34,17 @@ quarto render
 ```
 
 Now you are able to render your updates and they will be visible on the website when merged to the `main` branch.
+
+**Note: Your notebook is not rendering your latest updates?**
+
+Quarto uses the `freeze: auto` setting to optimize rendering by only updating files that have changed since the last render.
+
+However, if a child `.qmd` file (e.g., a “notebook”) is included in a parent `.qmd` file (e.g., a “description page”), and only the child is updated, Quarto will not re-render the parent file—because the parent file itself hasn't changed.
+
+To address this, you can manually update the timestamp of the parent file by using the touch command to mark the parent file as modified:
+
+```bash
+touch website_files/description_pages/wildfire.qmd
+```
+
+This tricks Quarto into thinking the parent file has changed, so it will be re-rendered.
