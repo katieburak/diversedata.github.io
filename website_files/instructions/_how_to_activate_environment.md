@@ -109,13 +109,32 @@ renv::status()
 
 You should see a message like: *No issues found - the project is in a consistent state.*
 
-**Optional** - To Update Dependencies
+**Optional** - To Add New Dependencies
 
 If you add new R packages to a new notebook, run in the R console with the R project opened and the environment restored:
 
 ```r
 renv::snapshot()
 ```
+
+**Optional** - To Update Dependencies
+
+1. Open your R project (with renv already initialized)
+
+2. Update the package using either renv::update() or install.packages():
+
+```r
+renv::update("packageName")
+```
+
+3. Regenerate the lockfile
+After the package is updated, regenerate the lockfile:
+
+```r
+renv::snapshot()
+```
+
+This writes the new package version and source into the renv.lock file, so others can install the exact same version.
 
 **Optional** - To Clean Dependencies
 
