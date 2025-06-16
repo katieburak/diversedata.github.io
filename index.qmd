@@ -83,7 +83,7 @@ CC BY 4.0
 ### Owners
 
 - [Katie Burak PhD](https://github.com/katieburak)
-- [Elham E Khoda](https://github.com/elhamekhoda)
+- [Elham E Khoda PhD](https://github.com/elhamekhoda)
 
 ### Collaborators
 
