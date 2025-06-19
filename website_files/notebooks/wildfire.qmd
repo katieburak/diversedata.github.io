@@ -55,23 +55,35 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 
 ### Analysis
 
-#### **Loading Libraries**
+**Loading Libraries**
 
-```{r results = "hide", warning = FALSE, message = FALSE}
-library(readr)
-library(dplyr)
-library(lubridate)
-library(ggplot2)
-library(gt)
-library(ggmap)
-library(ggspatial)
-library(sf)
-library(terra)
-library(maptiles)
-library(viridis)
-library(marginaleffects)
-library(broom)
-library(kableExtra)
+```{r load-libraries, results = "hide", warning = FALSE, message = FALSE}
+# Data
+library(diversedata)      # Diverse Data Hub datasets
+
+# Core libraries
+library(tidyverse)        
+library(lubridate)      
+
+# Spatial & mapping
+library(sf)               
+library(terra)            
+library(ggmap)            
+library(ggspatial)        
+library(maptiles)         
+library(leaflet)          
+library(leaflet.extras)   
+
+# Visualization & color
+library(viridis)          
+
+# Tables & reporting
+library(gt)               
+library(kableExtra)       
+
+# Modeling & interpretation
+library(marginaleffects)  
+library(broom)           
 ```
 
 #### 1. Data Cleaning & Processing
@@ -80,10 +92,10 @@ library(kableExtra)
 -   Created a binary variable `large_fire` (TRUE if \>200 ha)
 -   Filtered out incomplete records
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
+```{r prepare-wildfire-data, warning=FALSE, message=FALSE, echo=FALSE}
 
 # Reading Data  
-wildfire_data <- read_csv("../../data/clean/wildfire.csv") 
+wildfire_data <- wildfire
 
 # Clean and prepare base data
 wildfire_clean <- wildfire_data |>
@@ -108,66 +120,94 @@ wildfire_clean <- wildfire_clean |>
 
 #### 2. Exploratory Data Analysis
 
-**Heat map of Fire Size by Location**
+**Map of Wildfire Size and Location in Alberta**
 
-The heat map visualizes where wildfires are most concentrated geographically, using latitude and longitude data overlaid on Alberta’s administrative boundaries. The shapefile, retrieved from [Alberta Geospatial Data and Statistics](https://open.alberta.ca/opendata/legislative-boundaries), provides the geographic context needed to highlight wildfire hotspots and identify regions with higher frequency or severity of fire events.
+This interactive map displays the geographic distribution and relative size of wildfires across Alberta, using red circles sized by fire area. Each point represents a wildfire event, with larger circles indicating more extensive burns. The map reveals regions with concentrated wildfire activity and visually emphasizes differences in fire magnitude across the province.
 
-```{r warning=FALSE, message=FALSE}
+> **Note**  
+> To provide geographic context for our wildfire data, we added a shapefile representing Alberta's boundaries.  
+> This shapefile was sourced from the [Alberta Government Open Data Portal](https://open.alberta.ca/opendata) and specifically corresponds to the *Electoral Division Shapefile (Bill 33, 2017)*.  
+> The data was processed and transformed to the appropriate geographic coordinate system to enable mapping alongside our wildfire dataset.
 
-alberta_shape <- suppressMessages(st_read("../../data/raw/Alberta_shapefiles/EDS_ENACTED_BILL33_15DEC2017.shp"))
-st_crs(alberta_shape) <- 3401
-alberta_shape <- st_transform(alberta_shape, crs = 4326)
+```{r load-and-transform-shapefiles, warning=FALSE, message=FALSE, echo=FALSE, results='hide'}
+invisible({
+  alberta_shape <- suppressMessages(st_read("../../data/raw/Alberta_shapefiles/EDS_ENACTED_BILL33_15DEC2017.shp"))
+  st_crs(alberta_shape) <- 3401
+  alberta_shape <- st_transform(alberta_shape, crs = 4326)
 
-wildfire_plot <- wildfire_clean |>
-  filter(!is.na(latitude), !is.na(longitude), !is.na(assessment_hectares), assessment_hectares > 0)
+  wildfire_plot <- wildfire_clean |>
+    filter(!is.na(latitude), !is.na(longitude), !is.na(assessment_hectares), assessment_hectares > 0)
 
-wildfire_sf <- st_as_sf(wildfire_plot, coords = c("longitude", "latitude"), crs = 4326)
+  wildfire_sf <- st_as_sf(wildfire_plot, coords = c("longitude", "latitude"), crs = 4326)
 
-basemap <- get_tiles(wildfire_sf, provider = "CartoDB.Positron", crop = TRUE, zoom = 6)
+  basemap <- get_tiles(wildfire_sf, provider = "CartoDB.Positron", crop = TRUE, zoom = 6)
+})
 ```
 
 ```{r wildfire-map,warning=FALSE, message=FALSE, fig.width=7, fig.height=9}
-# Plot heatmap
-ggplot() +
-  layer_spatial(basemap) +
-  stat_density_2d_filled(
-    data = wildfire_plot,
-    aes(x = longitude, y = latitude, weight = current_size),
-    alpha = 0.7,
-    contour = TRUE
-  ) +
-  scale_fill_viridis_d(option = "turbo") +  
-  labs(
-    title = "Fire Size-Weighted Heatmap of Wildfire Locations",
-    x = "Longitude", y = "Latitude"
-  ) +
-  theme_minimal() +
-  theme(legend.position = "none") 
-```
+# map
+leaflet() |>
+  addProviderTiles("CartoDB.Positron") |> 
+  setView(lng = -115, lat = 55, zoom = 5.5) |> 
+  addPolygons(data = alberta_shape, 
+              color = "#CCCCCC",     
+              weight = 0.5,         
+              fillOpacity = 0.02,   
+              group = "Alberta Boundaries") |>
+  addCircles(data = wildfire_sf,
+             radius = ~sqrt(current_size) * 30,  
+             fillOpacity = 0.6,
+             color = "red",
+             stroke = FALSE,
+             group = "Wildfires") |>
+  addLayersControl(overlayGroups = c("Alberta Boundaries", "Wildfires"),
+                   options = layersControlOptions(collapsed = FALSE)) |>
+  addLegend(position = "bottomright", 
+            title = "Wildfire Size (approx.)",
+            colors = "red", 
+            labels = "Larger = Bigger fire")
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
-heatmap_plot <- 
-ggplot() +
-  layer_spatial(basemap) +
-  stat_density_2d_filled(
-    data = wildfire_plot,
-    aes(x = longitude, y = latitude, weight = current_size),
-    alpha = 0.7,
-    contour = TRUE
-  ) +
-  scale_fill_viridis_d(option = "turbo") +  
-  labs(
-    title = "Alberta Fire Size Heatmap",
-    x = "Longitude", y = "Latitude"
-  ) +
-  theme_minimal() +
-  theme(legend.position = "none") 
-ggsave("../img/wildfire.png", plot = heatmap_plot, dpi = 300)
+ 
+```
+```{r export-wildfire-map, warning=FALSE, message=FALSE, echo=FALSE, results='hide'}
+# Widget & export
+## User on the website will not see these pictures,that  is why I added these libraries here    
+library(htmlwidgets)      
+library(webshot2)
+
+map_plot <- 
+leaflet() |>
+  addProviderTiles("CartoDB.Positron") |> 
+  setView(lng = -115, lat = 55, zoom = 5.5) |> 
+  addPolygons(data = alberta_shape, 
+              color = "#CCCCCC",     
+              weight = 0.5,         
+              fillOpacity = 0.02,   
+              group = "Alberta Boundaries") |>
+  addCircles(data = wildfire_sf,
+             radius = ~sqrt(current_size) * 30,  
+             fillOpacity = 0.6,
+             color = "red",
+             stroke = FALSE,
+             group = "Wildfires") |>
+  addLayersControl(overlayGroups = c("Alberta Boundaries", "Wildfires"),
+                   options = layersControlOptions(collapsed = FALSE)) |>
+  addLegend(position = "bottomright", 
+            title = "Wildfire Size (approx.)",
+            colors = "red", 
+            labels = "Larger = Bigger fire")
+
+invisible({
+  htmlwidgets::saveWidget(map_plot, "temp_map.html", selfcontained = TRUE)
+  webshot2::webshot("temp_map.html", file = "../img/wildfire.png", vwidth = 1000, vheight = 800)
+  file.remove("temp_map.html")
+})
+
 ```
 
 **Proportion of Large Fires by Cause**
 
-```{r}
+```{r plot-large-fire-proportion-by-cause}
 wildfire_clean |>
   group_by(true_cause) |>
   summarize(prop_large = mean(large_fire, na.rm = TRUE)) |>
@@ -271,7 +311,7 @@ $$
 \end{aligned}
 $$
 
-```{r, warning=FALSE}
+```{r logistic-regression-large-fires, warning=FALSE}
 
 model <- glm(
   large_fire ~ temperature + wind_speed + relative_humidity +
@@ -317,7 +357,7 @@ This plot shows how wind speed affects the probability of a large wildfire, and 
 
 The plot helps us compare the sensitivity of different fire causes to wind speed. For example, if one cause shows a higher marginal effect, it means that increasing wind speed has a stronger impact on the likelihood of large fires for that cause.
 
-```{r}
+```{r marginal-effect-wind-by-cause}
 p <- plot_comparisons(
   model,
   variables = "wind_speed",
@@ -345,8 +385,7 @@ We can also use marginal effects to explore interactions without explicitly addi
 
 This plot shows the marginal effect of `relative_humidity` on the predicted probability of large fire, calculated separately for each level of `fire_type`, based on your fitted model.
 
-```{r}
-
+```{r marginal-effect-humidity-by-firetype}
 plot_comparisons(model, variables = "relative_humidity", by = "fire_type")
 ```
 
