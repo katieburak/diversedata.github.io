@@ -40,10 +40,10 @@ This dataset provides yearly, country-level information on LGBTQ+ rights, econom
 
 | Variable Name              | Role     | Type        | Description                                                                                 | Units          | Missing Values |
 |---------------------------|----------|-------------|---------------------------------------------------------------------------------------------|----------------|----------------|
-| `year`                    | ID       | Integer     | Year the data was recorded                                                                  | Year           | No             |
+| `year`                    | ID       | Integer     | Year the data was recorded.                                                                  | Year           | No             |
 | `country`                 | ID       | String      | Country name                                                                                | -              | No             |
 | `country-code`            | ID       | String      | ISO 3-letter country code                                                                   | -              | No             |
-| `gdp-per-capita`          | Feature  | Float       | Gross Domestic Product per capita                                                           | International $| Yes            |
+| `gdp-per-capita`          | Feature  | Float       | Gross Domestic Product per capita.                                                           | International $| Yes            |
 | `education-spending-gdp` | Feature  | Float       | Government education spending as a percentage of GDP                                        | %              | Yes            |
 | `same-sex-marriage`       | Target   | Categorical | Legal status of same-sex marriage (e.g., Legal, Civil Union, Not Recognized)               | -              | No             |
 | `lgbtq-censorship`        | Feature  | Categorical | Whether LGBTQ+ content is censored or restricted                                            | -              | Yes            |

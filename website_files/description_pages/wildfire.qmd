@@ -42,13 +42,13 @@ In particular, Alberta experiences some of the most severe and frequent wildfire
 
 | Variable Name                     | Role     | Type        | Description                                                                                       | Units         | Missing Values |
 |----------------------------------|----------|-------------|---------------------------------------------------------------------------------------------------|---------------|----------------|
-| `year`                           | ID       | Integer     | Year of the wildfire incident                                                                     | Year          | No             |
+| `year`                           | ID       | Integer     | Year of the wildfire. incident                                                                     | Year          | No             |
 | `fire_number`                    | ID       | String      | Unique identifier for each wildfire                                                               | -             | No             |
 | `current_size`                   | Feature  | Float       | Final estimated size of the wildfire                                                              | Hectares      | No             |
 | `size_class`                     | Feature  | Categorical | Size classification based on fire area                                                            | -             | No             |
 | `latitude`                       | Feature  | Float       | Latitude coordinate of fire origin                                                                | Degrees       | No             |
 | `longitude`                      | Feature  | Float       | Longitude coordinate of fire origin                                                               | Degrees       | No             |
-| `fire_origin`                    | Metadata | Categorical | General location or region where fire started                                                     | -             | No             |
+| `fire_origin`                    | Metadata | Categorical | General location or region where fire started.                                                     | -             | No             |
 | `general_cause`                 | Feature  | Categorical | Broad cause classification of the fire                                                            | -             | Yes            |
 | `responsible_group`             | Metadata | Categorical | Agency or group responsible for managing the fire                                                 | -             | Yes            |
 | `activity_class`                | Feature  | Categorical | Activity classification at the time of ignition                                                   | -             | Yes            |
@@ -87,3 +87,4 @@ In particular, Alberta experiences some of the most severe and frequent wildfire
 ## Attribution
 
 Data sourced from the Government of Alberta via the Government of Canada's Open Government Portal, available under an [Open Government Licence - Alberta](https://open.alberta.ca/licence). Original dataset: [Historical wildfire data: 2006-2024](https://open.canada.ca/data/en/dataset/a221e7a0-4f46-4be7-9c5a-e29de9a3447e).
+

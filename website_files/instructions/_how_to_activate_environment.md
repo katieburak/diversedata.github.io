@@ -6,7 +6,7 @@ The following R packages are used in various analyses and must be installed to r
 
 ```r
 
-# For All Analysis:
+# Adding Data Sets form Diverse data hub For All Analysis:
 
 library("diversedata")
 
@@ -31,6 +31,7 @@ library("viridis")
 library("marginaleffects")
 library("broom")
 library("kableExtra")
+library(leaflet.extras)
 
 # For `How Couples Meet and Stay Together` (Additional to what's listed above)
 
@@ -41,10 +42,10 @@ library("knitr")
 
 # For `Global Rights` (Additional to what's listed above)
 
-library("patchwork")
-library("car")
-library("FSA")
-library("PMCMRplus")
+library(tidyverse)
+library(VIM)
+library(gridExtra)
+library(mice)
 
 # For `Indigenous Business` (Additional to what's listed above)
 
