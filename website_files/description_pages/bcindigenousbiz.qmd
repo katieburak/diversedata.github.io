@@ -8,7 +8,7 @@ sidebar: false
 
 ## About the Data
 
-The BC Indigenous Business Listings data set provides a detailed look at Indigenous-owned businesses operating throughout British Columbia. Put together by the Province of British Columbia and shared under the [Open Government Licence - British Columbia](https://www2.gov.bc.ca/gov/content/data/policy-standards/data-policies/open-data/open-government-licence-bc), this data set is a vital resource for understanding Indigenous entrepreneurship in the area.
+The BC Indigenous Business Listings data set provides a detailed look at Indigenous-owned businesses operating throughout British Columbia. Compiled in 2025 by the Province of British Columbia and shared under the [Open Government Licence - British Columbia](https://www2.gov.bc.ca/gov/content/data/policy-standards/data-policies/open-data/open-government-licence-bc), this static data set reflects the state of Indigenous businesses at the time it was created and serves as a vital resource for understanding Indigenous entrepreneurship in the area.
 
 It includes information such as business names, industries, ownership types, and geographic locations, which offers important insights into economic activities within Indigenous communities. This data set showcases the wide-ranging participation of Indigenous peoples in the economy, bringing attention to communities that have often been overlooked or underrepresented in traditional business directories and economic plans.
 
@@ -96,12 +96,12 @@ Yes
 |------------|------------|------------|------------|------------|------------|
 | business_name       | Feature | String      | Name of the Indigenous business                                                 | –               | Yes            |
 | city                | Feature | String      | City or town where the business is located                                      | –               | Yes            |
-| latitude            | Feature | Float       | Latitude coordinate of the business location                                    | Decimal Degrees | Yes            |
-| longitude           | Feature | Float       | Longitude coordinate of the business location                                   | Decimal Degrees | Yes            |
+| latitude            | Feature | numeric     | Latitude coordinate of the business location                                    | Decimal Degrees | Yes            |
+| longitude           | Feature | numeric     | Longitude coordinate of the business location                                   | Decimal Degrees | Yes            |
 | region              | Feature | Categorical | Geographical region of British Columbia where the business operates             | –               | No             |
 | type                | Feature | Categorical | Ownership type of the business (e.g., Private, Community Owned, Partnership)    | –               | Yes            |
 | industry_sector     | Feature | Categorical | Industry classification based on NAICS or a similar standard                    | –               | Yes            |
-| year_formed         | Feature | Numeric     | Year in which the business was established                                      | Year            | Yes            |
+| year_formed         | Feature | numeric     | Year in which the business was established                                      | Year            | Yes            |
 | number_of_employees | Feature | Categorical | Size category representing the number of employees (e.g., "1 to 4", "10 to 19") | –               | Yes            |
 :::
 :::
