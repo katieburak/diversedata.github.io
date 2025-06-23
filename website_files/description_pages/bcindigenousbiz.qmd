@@ -1,5 +1,5 @@
 ---
-title: "Historical Alberta Wildfire Data"
+title: "BC Indigenous Business Listings"
 toc: true
 toc-depth: 4
 toc-location: right
@@ -8,7 +8,7 @@ sidebar: false
 
 ## About the Data
 
-The BC Indigenous Business Listings data set provides a detailed look at Indigenous-owned businesses operating throughout British Columbia. Compiled in 2025 by the Province of British Columbia and shared under the [Open Government Licence - British Columbia](https://www2.gov.bc.ca/gov/content/data/policy-standards/data-policies/open-data/open-government-licence-bc), this static data set reflects the state of Indigenous businesses at the time it was created and serves as a vital resource for understanding Indigenous entrepreneurship in the area.
+The BC Indigenous Business Listings data set provides a detailed look at Indigenous-owned businesses operating throughout British Columbia. Compiled in 2025 by the Government of British Columbia and shared under the [Open Government Licence - British Columbia](https://www2.gov.bc.ca/gov/content/data/policy-standards/data-policies/open-data/open-government-licence-bc), this static data set reflects the state of Indigenous businesses at the time it was created and serves as a vital resource for understanding Indigenous entrepreneurship in the area.
 
 It includes information such as business names, industries, ownership types, and geographic locations, which offers important insights into economic activities within Indigenous communities. This data set showcases the wide-ranging participation of Indigenous peoples in the economy, bringing attention to communities that have often been overlooked or underrepresented in traditional business directories and economic plans.
 
@@ -60,7 +60,7 @@ Feature Type
 :::
 
 ::: field-value
-Categorical, Float, Integer
+Factor, Integer, Numeric
 :::
 
 ::: field-label
@@ -92,17 +92,17 @@ Yes
 
 ::: table-container
 ::: styled-table
-| Variable Name       | Role    | Type        | Description                                                                     | Units           | Missing Values |
+| Variable Name       | Role    | Type      | Description                                                                     | Units           | Missing Values |
 |------------|------------|------------|------------|------------|------------|
-| business_name       | Feature | String      | Name of the Indigenous business                                                 | –               | Yes            |
-| city                | Feature | String      | City or town where the business is located                                      | –               | Yes            |
-| latitude            | Feature | numeric     | Latitude coordinate of the business location                                    | Decimal Degrees | Yes            |
-| longitude           | Feature | numeric     | Longitude coordinate of the business location                                   | Decimal Degrees | Yes            |
-| region              | Feature | Categorical | Geographical region of British Columbia where the business operates             | –               | No             |
-| type                | Feature | Categorical | Ownership type of the business (e.g., Private, Community Owned, Partnership)    | –               | Yes            |
-| industry_sector     | Feature | Categorical | Industry classification based on NAICS or a similar standard                    | –               | Yes            |
-| year_formed         | Feature | numeric     | Year in which the business was established                                      | Year            | Yes            |
-| number_of_employees | Feature | Categorical | Size category representing the number of employees (e.g., "1 to 4", "10 to 19") | –               | Yes            |
+| business_name       | Feature | Character | Name of the Indigenous business                                                 | –               | Yes            |
+| city                | Feature | Character | City or town where the business is located                                      | –               | Yes            |
+| latitude            | Feature | Numeric   | Latitude coordinate of the business location                                    | Decimal Degrees | Yes            |
+| longitude           | Feature | Numeric   | Longitude coordinate of the business location                                   | Decimal Degrees | Yes            |
+| region              | Feature | Factor    | Geographical region of British Columbia where the business operates             | –               | No             |
+| type                | Feature | Factor    | Ownership type of the business (e.g., Private, Community Owned, Partnership)    | –               | Yes            |
+| industry_sector     | Feature | Factor    | Industry classification based on NAICS or a similar standard                    | –               | Yes            |
+| year_formed         | Feature | Numeric   | Year in which the business was established                                      | Year            | Yes            |
+| number_of_employees | Feature | Factor    | Size category representing the number of employees (e.g., "1 to 4", "10 to 19") | –               | Yes            |
 :::
 :::
 
@@ -110,4 +110,4 @@ Yes
 
 ## Attribution
 
-Data sourced from the British Columbia Ministry of Jobs, Economic Development and Innovation, available via the Government of British Columbia’s Open Data Catalogue under the [Open Government Licence – British Columbia](https://www2.gov.bc.ca/gov/content/data/policy-standards/data-policies/open-data/open-government-licence-bc). Original data set: [BC IndigenousBusinessListings](https://open.canada.ca/data/en/dataset/bdc81d33-1ab5-4882-9764-8701e8971bb7)
+Data sourced from the Government of British Columbia via the Government of Canada's Open Government Portal, available under an [Open Government Licence – British Columbia](https://www2.gov.bc.ca/gov/content/data/policy-standards/data-policies/open-data/open-government-licence-bc). Original data set: [BC IndigenousBusinessListings](https://open.canada.ca/data/en/dataset/bdc81d33-1ab5-4882-9764-8701e8971bb7).
