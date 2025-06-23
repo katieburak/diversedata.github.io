@@ -46,21 +46,21 @@
     "href": "website_files/grid_items/marchmadness.html",
     "title": "Diverse Data Hub",
     "section": "",
-    "text": "Women’s March Madness\n\n\nDescription: This data set tracks every NCAA Division I Women’s Basketball Tournament appearance since 1982 up until 2018. It includes team seeds, results, bid types, season and conference records, and regional placements. Useful for analyzing team success, seeding impact, conference strength, and historical trends in women’s college basketball over four decades.\n\nMore Details"
+    "text": "Women’s March Madness\n\n\nThis data set tracks every NCAA Division I Women’s Basketball Tournament appearance since 1982 up until 2018. It includes team seeds, results, bid types, season and conference records, and regional placements. Useful for analyzing team success, seeding impact, conference strength, and historical trends in women’s college basketball over four decades.\n\nMore Details"
   },
   {
     "objectID": "website_files/grid_items/globalrights.html",
     "href": "website_files/grid_items/globalrights.html",
     "title": "Diverse Data Hub",
     "section": "",
-    "text": "Global Rights\n\n\nDescription: This dataset provides yearly, country-level information on LGBTQ+ rights, economic indicators, and education spending. The data is compiled from Our World in Data, with primary sources including Equaldex, the World Bank, and other open-access datasets.\n\nMore Details"
+    "text": "Global Rights\n\n\nThis dataset provides yearly, country-level information on LGBTQ+ rights, economic indicators, and education spending. The data is compiled from Our World in Data, with primary sources including Equaldex, the World Bank, and other open-access datasets.\n\nMore Details"
   },
   {
     "objectID": "website_files/grid_items/bcindigenousbiz.html",
     "href": "website_files/grid_items/bcindigenousbiz.html",
     "title": "Diverse Data Hub",
     "section": "",
-    "text": "BC Indigenous Businesses\n\n\nDescription: Test\n\nMore Details"
+    "text": "BC Indigenous Businesses\n\n\nTest\n\nMore Details"
   },
   {
     "objectID": "website_files/description_pages/marchmadness.html",
@@ -123,7 +123,7 @@
     "href": "website_files/datasets.html",
     "title": "Diverse Data Hub",
     "section": "",
-    "text": "Women’s March Madness\n\n\nDescription: This data set tracks every NCAA Division I Women’s Basketball Tournament appearance since 1982 up until 2018. It includes team seeds, results, bid types, season and conference records, and regional placements. Useful for analyzing team success, seeding impact, conference strength, and historical trends in women’s college basketball over four decades.\n\nMore Details\n\n\n\n\nWildfire\n\n\nDescription: This data set on Canadian wildfires includes data on fire size, cause, location, detection method, response, and weather. Collected from official sources, it supports wildfire risk assessment and response. It also highlights social and geographic disparities, emphasizing impacts on remote and underserved communities facing climate-related and infrastructure challenges.\n\nMore Details\n\n\n\n\nHow Couples Meet and Stay Together\n\n\nDescription: This data set contains information from a 2022 survey of people across the U.S. to understand how couples meet and stay together. It focuses on how relationships were influenced by the COVID-19 pandemic and offers insight at modern relationships, including changes in dating habits and how couples adapted during a challenging time.\n\nMore Details\n\n\n\n\nBC Indigenous Businesses\n\n\nDescription: Test\n\nMore Details\n\n\n\n\nGender Assessment\n\n\nDescription: XXX\n\nMore Details\n\n\n\n\nGlobal Rights\n\n\nDescription: This dataset provides yearly, country-level information on LGBTQ+ rights, economic indicators, and education spending. The data is compiled from Our World in Data, with primary sources including Equaldex, the World Bank, and other open-access datasets.\n\nMore Details"
+    "text": "Women’s March Madness\n\n\nThis data set tracks every NCAA Division I Women’s Basketball Tournament appearance since 1982 up until 2018. It includes team seeds, results, bid types, season and conference records, and regional placements. Useful for analyzing team success, seeding impact, conference strength, and historical trends in women’s college basketball over four decades.\n\nMore Details\n\n\n\n\nWildfire\n\n\nThis data set on Canadian wildfires includes data on fire size, cause, location, detection method, response, and weather. Collected from official sources, it supports wildfire risk assessment and response. It also highlights social and geographic disparities, emphasizing impacts on remote and underserved communities facing climate-related and infrastructure challenges.\n\nMore Details\n\n\n\n\nHow Couples Meet and Stay Together\n\n\nThis data set contains information from a 2022 survey of people across the U.S. to understand how couples meet and stay together. It focuses on how relationships were influenced by the COVID-19 pandemic and offers insight at modern relationships, including changes in dating habits and how couples adapted during a challenging time.\n\nMore Details\n\n\n\n\nBC Indigenous Businesses\n\n\nTest\n\nMore Details\n\n\n\n\nGender Assessment\n\n\nXXX\n\nMore Details\n\n\n\n\nGlobal Rights\n\n\nThis dataset provides yearly, country-level information on LGBTQ+ rights, economic indicators, and education spending. The data is compiled from Our World in Data, with primary sources including Equaldex, the World Bank, and other open-access datasets.\n\nMore Details"
   },
   {
     "objectID": "website_files/citation.html",
@@ -221,21 +221,21 @@
     "href": "website_files/grid_items/genderassessment.html",
     "title": "Diverse Data Hub",
     "section": "",
-    "text": "Gender Assessment\n\n\nDescription: XXX\n\nMore Details"
+    "text": "Gender Assessment\n\n\nXXX\n\nMore Details"
   },
   {
     "objectID": "website_files/grid_items/hcmst.html",
     "href": "website_files/grid_items/hcmst.html",
     "title": "Diverse Data Hub",
     "section": "",
-    "text": "How Couples Meet and Stay Together\n\n\nDescription: This data set contains information from a 2022 survey of people across the U.S. to understand how couples meet and stay together. It focuses on how relationships were influenced by the COVID-19 pandemic and offers insight at modern relationships, including changes in dating habits and how couples adapted during a challenging time.\n\nMore Details"
+    "text": "How Couples Meet and Stay Together\n\n\nThis data set contains information from a 2022 survey of people across the U.S. to understand how couples meet and stay together. It focuses on how relationships were influenced by the COVID-19 pandemic and offers insight at modern relationships, including changes in dating habits and how couples adapted during a challenging time.\n\nMore Details"
   },
   {
     "objectID": "website_files/grid_items/wildfire.html",
     "href": "website_files/grid_items/wildfire.html",
     "title": "Diverse Data Hub",
     "section": "",
-    "text": "Wildfire\n\n\nDescription: This data set on Canadian wildfires includes data on fire size, cause, location, detection method, response, and weather. Collected from official sources, it supports wildfire risk assessment and response. It also highlights social and geographic disparities, emphasizing impacts on remote and underserved communities facing climate-related and infrastructure challenges.\n\nMore Details"
+    "text": "Wildfire\n\n\nThis data set on Canadian wildfires includes data on fire size, cause, location, detection method, response, and weather. Collected from official sources, it supports wildfire risk assessment and response. It also highlights social and geographic disparities, emphasizing impacts on remote and underserved communities facing climate-related and infrastructure challenges.\n\nMore Details"
   },
   {
     "objectID": "website_files/notebooks/globalrights.html",
