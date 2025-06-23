@@ -10,7 +10,7 @@ sidebar: false
 {{< include grid_items/marchmadness.qmd >}}
 {{< include grid_items/wildfire.qmd >}}
 {{< include grid_items/hcmst.qmd >}}
-{{< include grid_items/indigenousbusiness.qmd >}}
+{{< include grid_items/bcindigenousbiz.qmd >}}
 {{< include grid_items/genderassessment.qmd >}}
 {{< include grid_items/globalrights.qmd >}}
 
