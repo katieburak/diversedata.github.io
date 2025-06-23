@@ -254,7 +254,7 @@ indigenousbiz_data <- indigenousbiz_data |>
 
 pal <- colorFactor(palette = "Set1", domain = indigenousbiz_data$cluster)
 
-leaflet(data = indigenousbiz_data) |>
+cluster_map <- leaflet(data = indigenousbiz_data) |>
   addTiles() |>
   setView(lng = -125, lat = 54, zoom = 4.6) |>
   addCircleMarkers(
@@ -271,6 +271,14 @@ leaflet(data = indigenousbiz_data) |>
     title = "Cluster",
     opacity = 1
   )
+
+cluster_map
+
+```
+
+```{r img_save, echo = FALSE}
+
+ggsave("../img/bcindigenousbiz.png", plot = cluster_map, width = 6, height = 4, dpi = 300)
 
 ```
 
