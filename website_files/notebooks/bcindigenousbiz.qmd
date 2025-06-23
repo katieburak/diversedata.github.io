@@ -254,7 +254,7 @@ indigenousbiz_data <- indigenousbiz_data |>
 
 pal <- colorFactor(palette = "Set1", domain = indigenousbiz_data$cluster)
 
-leaflet(data = indigenousbiz_data) |>
+cluster_map <- leaflet(data = indigenousbiz_data) |>
   addTiles() |>
   setView(lng = -125, lat = 54, zoom = 4.6) |>
   addCircleMarkers(
@@ -272,6 +272,15 @@ leaflet(data = indigenousbiz_data) |>
     opacity = 1
   )
 
+cluster_map
+```
+
+```{r img_save, echo = FALSE, include = FALSE, warning = FALSE, message = FALSE}
+library(htmlwidgets)
+library(webshot2)
+
+saveWidget(cluster_map, "../img/cluster_map.html", selfcontained = TRUE)
+webshot("../img/cluster_map.html", file = "../img/bcindigenousbiz.png", vwidth = 800, vheight = 600)
 ```
 
 #### 5. Treemap of Industry sectors within cluster

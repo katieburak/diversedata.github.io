@@ -21,7 +21,7 @@ Datasets are available through the `diversedata` R package, allowing for straigh
 <!-- These are NOT featured datasets -->
 
 {{< include website_files/grid_items/wildfire.qmd >}}
-{{< include website_files/grid_items/indigenousbusiness.qmd >}}
+{{< include website_files/grid_items/bcindigenousbiz.qmd >}}
 {{< include website_files/grid_items/genderassessment.qmd >}}
 {{< include website_files/grid_items/globalrights.qmd >}}
 

@@ -181,5 +181,14 @@
   },
   "website_files/instructions/how_to_activate_environment.md": {
     "how_to_activate_environment.html": "49f61252"
+  },
+  "website_files/description_pages/bcindigenousbiz.qmd": {
+    "bcindigenousbiz.html": "7dadfa53"
+  },
+  "website_files/grid_items/bcindigenousbiz.qmd": {
+    "bcindigenousbiz.html": "2b8229a0"
+  },
+  "website_files/notebooks/bcindigenousbiz.qmd": {
+    "bcindigenousbiz.html": "b66c48fd"
   }
 }

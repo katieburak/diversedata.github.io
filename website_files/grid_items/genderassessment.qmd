@@ -2,7 +2,7 @@
   <img src="/website_files/img/dataset.png" width="20px" height="20px">
   <h3>Gender Assessment</h3>
   <p>
-<strong>Description</strong>: XXX
+<strong></strong>XXX
 </p>
   <a href="" class="btn btn-outline-dark">More Details</a>
 </div>

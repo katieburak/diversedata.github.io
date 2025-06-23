@@ -24,7 +24,7 @@ These steps assume you already have a completed working **.qmd notebook file** t
 *What to include:*
 
 - Page title (`title:`)
-- Data Set Information section
+- `About the Data` section
 - Download button (`href`) path
 - Complete metadata table (`field-value`)
 - Variable table (respect header structures)
@@ -38,7 +38,7 @@ These steps assume you already have a completed working **.qmd notebook file** t
 *Structure:*
 
 - Follow the template format.
-- Should include: `About the Data` (Key Features on Dataset, Purpose and Use Cases), `Case Study` (Objective, Methodology) 
+- Should include: `Key Features on Dataset`, `Purpose and Use Cases`, `Case Study` (Objective, Methodology) 
 
 **4 - Feature the Dataset (Optional).**
 
@@ -58,13 +58,15 @@ class="grid-item" data-featured="true" data-tags="r"
 
 *Action:*
 
-Generate and save the image directly from your notebook using a reproducible method. Make sure the filename matches what’s referenced in Step 1.
+Generate and save a `ggplot` image directly from your notebook using a reproducible method. Make sure the filename matches what’s referenced in Step 1.
 
 *Example (in R)*:
 
 ```yaml
 ggsave("../img/<image>.png", plot = plot_object_name, width = 6, height = 4, dpi = 300)
 ```
+
+In case you are interested in saving an html-based image, you can use the `htmlwidgets` and `webshot2` libraries. A usage example is available on the `bcindigenousbiz` notebook.
 
 **6 - Preview and Render Changes**
 
