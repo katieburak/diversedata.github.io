@@ -1,0 +1,310 @@
+### Key Features of the Data set
+
+Each row represents a single company's gender assessment in a given year and includes organizational details, overall scores, and performance on various gender-related indicators:
+
+-   **company** – The name of the company assessed for gender equity practices.
+
+-   **country** – The headquarters location of the company, used for geographical grouping.
+
+-   **region** – Broader geographical area of the company's location (e.g., North America, Europe), used for regional comparisons.
+
+-   **industry** – Sector to which the company belongs (e.g., Chemicals,Electronics), used to evaluate industry-wise performance.
+
+-   **ownership** – Type of ownership structure (e.g., Public, Private), used to study differences in scores by governance type.
+
+-   **year** – The year in which the assessment was conducted, allowing for temporal comparisons.
+
+-   **score** – The overall gender assessment score reflecting the company’s total performance.
+
+-   **percent_score** – The overall gender assessment score expressed as a percentage for easier comparison.
+
+### Purpose and Use Cases
+
+This data set supports analysis of:
+
+-   Gender equity performance across industries, regions, and ownership types.
+
+-   Temporal trends in corporate gender assessment scores with a focus on changes over time to track progress or setbacks.
+
+-   The influence of gender-related policies and corporate governance structures by examining how internal practices and ownership models affect outcomes.
+
+-   The relationship between regulatory environments and gender equity outcomes exploring how regional or national policy contexts align with performance.
+
+## Case Study
+
+### Objective
+
+Gender equality in the workplace is a critical goal for sustainable and inclusive development. Companies are increasingly being evaluated not only on financial metrics but also on their social and governance performance, including how they support gender equity. This data set offers a standardized assessment of a company's gender-related policies and practices across the world.
+
+To explore these dynamics, we focus on the following key questions:
+
+**What is the average Overall Gender Assessment Score by industry, and which industries have the highest and lowest average scores?**
+
+**Does ownership type affect gender assessment performance?**
+
+By analyzing the `score` variable across industry and ownership categories, and exploring key gender-related indicators, we aim to identify structural patterns and gaps in corporate gender performance.
+
+### Analysis
+
+**Loading Libraries**
+
+```{r setup}
+library(diversedata)
+library(tidyverse)  # includes ggplot2, readr, dplyr
+library(janitor)    # for data cleaning
+library(knitr)  # For kable() function
+library(car)    # For leveneTest()
+library(ggthemes)   # extra ggplot themes
+library(ggalt)  # For geom_dumbbell
+library(FSA) # For Dunn's test
+```
+
+#### 1. Data Cleaning & Processing
+
+```{r}
+gender_data <- genderassessment |> 
+  clean_names() |> 
+  drop_na(score) |> 
+  mutate(
+    industry = as.factor(industry),
+    ownership_type = as.factor(ownership)
+  )
+head(gender_data)
+
+```
+
+#### 2. Exploratory Data Analysis
+
+**Average Overall Assessment Score by Industry**
+
+```{r}
+industry_stats <- gender_data |> 
+  group_by(industry) |> 
+  summarise(
+    avg_score = mean(score, na.rm = TRUE),
+    median_score = median(score, na.rm = TRUE),
+    sd_score = sd(score, na.rm = TRUE),
+    n = n()
+  ) |> 
+  arrange(desc(avg_score))
+
+kable(industry_stats, digits = 2, caption = "Average Score by Industry")
+
+```
+
+**Visualization: Average Overall Gender Assessment by Industry Group**
+
+```{r}
+
+gender_data_grouped <- gender_data |> 
+  mutate(industry_group = case_when(
+    industry %in% c("Apparel & Footwear", "Food Production", "Food Retailers", 
+                    "Retail", "Personal & Household Products", "Agricultural Products") ~ "Consumer Goods",
+    
+    industry %in% c("Banks", "Insurance", "Pension Funds", "Sovereign Wealth Funds", 
+                    "Alternative Asset Managers", "Traditional Asset Managers", 
+                    "Investment Consultants", "Payments") ~ "Finance",
+    
+    industry %in% c("Pharmaceuticals & Biotechnology") ~ "Healthcare",
+    
+    industry %in% c("IT Software & Services", "Telecommunications", "Electronics") ~ "Technology",
+    
+    industry %in% c("Oil & Gas", "Utilities") ~ "Energy & Utilities",
+    
+    industry %in% c("Chemicals", "Capital Goods", "Freight & logistics", 
+                    "Passenger Transport", "Metals & Mining", "Containers & Packaging", 
+                    "Motor Vehicles & Parts", "Postal & Courier Activities", 
+                    "Waste Management", "Paper & Forest Products") ~ "Industrials",
+    
+    industry %in% c("Construction & Engineering", "Construction Materials & Supplies", "Real Estate") ~ "Real Estate",
+    
+    industry %in% c("Development Finance Institutions") ~ "Public Sector Finance",
+    
+    industry %in% c("Entertainment") ~ "Entertainment",
+    
+    TRUE ~ "Other"
+  ))
+
+ggplot(gender_data_grouped, aes(x = reorder(industry_group, score, FUN = median), y = score)) +
+  geom_boxplot(width = 0.5, fill = "skyblue", outlier.alpha = 0.4) +  # width < 1 reduces box width
+  coord_flip() +
+  labs(
+    title = "Overall Average Gender Assessment Score by Industry Group",
+    x = "Industry Group", y = "Score"
+  ) +
+  theme_minimal(base_size = 12)
+
+
+```
+
+**Comparison of Average Overall Gender Assessment Scores Between 2023 vs 2024 by Region**
+
+```{r}
+
+# Add this code before the dumbbell plot
+region_wide <- gender_data |> 
+  filter(year %in% c(2023, 2024)) |>  # Ensure only these years are included
+  group_by(region, year) |> 
+  summarise(avg_score = mean(score, na.rm = TRUE)) |> 
+  pivot_wider(
+    names_from = year, 
+    values_from = avg_score,
+    names_prefix = ""  # Removes automatic "year" prefix
+  ) |> 
+  ungroup()
+
+ggplot(region_wide, aes(x = `2023`, xend = `2024`, y = reorder(region, `2024`))) +
+  geom_dumbbell(
+    size = 1.2,  # thinner connecting line
+    colour = "#a3c4dc",       # light blue line
+    colour_x = "#87CEEB",     # skyblue for 2023
+    colour_xend = "#00008B"   # dark blue for 2024
+  ) +
+  # Dummy points to create legend
+  geom_point(aes(x = `2023`, color = "2023"), size = 2) +
+  geom_point(aes(x = `2024`, color = "2024"), size = 2) +
+  scale_color_manual(
+    name = "Year",
+    values = c("2023" = "#87CEEB", "2024" = "#00008B")
+  ) +
+  labs(
+    title = "Change in Average Score by Region (2023 to 2024)",
+    x = "Average Score", y = "Region"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    axis.title.y = element_blank(),
+    legend.position = "bottom"
+  )
+
+
+```
+
+#### 3. Gender Assessment Score by Ownership Type
+
+In addition to industry-based analysis, we examine whether ownership structure affects the overall gender performance scores. The following box plot illustrates how scores vary by ownership category
+
+```{r}
+filtered_data <- gender_data |>
+  subset(!is.na(score) & !is.na(ownership))
+
+ggplot(filtered_data, aes(x = ownership, y = score, fill = ownership)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c(
+    "Public" = "#1f77b4",     # blue
+    "Private" = "#6baed6",    # lighter blue
+    "Government" = "#08306b"  # dark blue
+  )) +
+  labs(title = "Score by Ownership Type", x = "Ownership", y = "Score") +
+  theme_minimal()
+
+```
+
+**Hypothesis Testing: Gender Assessment Scores by Ownership Type**
+
+We aim to test whether companies with different ownership types have significantly different mean gender assessment scores.
+
+Hypotheses
+
+-   Null Hypothesis (H₀):\
+    The mean score is the same across all ownership groups.\
+    $$
+    \mu_{\text{public}} = \mu_{\text{Private}} = \mu_{\text{Government}}
+    $$
+
+-   Alternative Hypothesis (Hₐ):\
+    At least one group has a different mean score.\
+    $\mu_i \ne \mu_j$
+
+**Assumption checks for ANOVA**
+
+Before applying ANOVA to compare gender assessment scores across ownership types, it is essential to verify that the assumptions underlying the test are met.
+
+**1. Independence of Observations**
+
+-   Observations within and across groups must be independent: In our case, this means that each company’s gender assessment score is independent of the others.This assumption is generally satisfied by the dataset design, provided that each company appears only once and that there is no clustering of related firms or repeated measurements. Since our dataset includes one record per company without repeated measures, we consider the independence assumption to be reasonably met.
+
+**2. Normality of Residuals**
+
+ANOVA assumes that the residuals are normally distributed. We assess this using the Shapiro-Wilk test:
+
+```{r}
+anova_model <- aov(score ~ ownership, data = gender_data)
+shapiro.test(residuals(anova_model))
+```
+
+**Inference**
+
+Since the p-value is less than 0.05, we reject the null hypothesis of normality. The residuals are not normally distributed, violating the normality assumption for ANOVA.
+
+**3. Homogeneity of Variances**
+
+Another key assumption is that the variance of scores is roughly equal across the ownership types. We use **Levene’s Test** to assess this:
+
+```{r}
+leveneTest(score ~ ownership, data = gender_data)
+```
+
+**Inference**: As the p-value is well below 0.05, we reject the null hypothesis of equal variances. The assumption of **homogeneity of variance is violated**.
+
+Since both the normality of residuals and homogeneity of variance assumptions are violated, a non-parametric alternative to ANOVA is more appropriate.
+
+#### 4. Kruskal-Wallis test
+
+To evaluate whether the score differs across different types of business ownership, we use the Kruskal–Wallis test.
+
+**Hypotheses**
+
+-   Null Hypothesis (H₀):\
+    The median score is the same across all ownership groups.\
+    $$
+    \mu_{\text{public}} = \mu_{\text{Private}} = \mu_{\text{Government}}
+    $$
+
+-   Alternative Hypothesis (Hₐ):\
+    At least one group's median score differs.\
+    $\mu_i \ne \mu_j$
+
+**Assumptions of the Kruskal-Wallis Test**
+
+-   Ordinal or Continuous Dependent Variable: The variable `score` is numeric, satisfying this assumption.
+
+-   Independent Groups: Each `business` (or observation) belongs to only one ownership type. This ensures group independence.
+
+-   Independent Observations: Each row in the data set represents a unique business entity, so the observations are independent.
+
+```{r}
+kruskal.test(score ~ ownership, data = gender_data)
+```
+
+-   The p-value is small (\< 0.05), meaning we **reject the null hypothesis (H₀)** that all ownership groups have the same median score.
+-   There are statistically significant differences in `score` between at least two ownership types.
+
+Since the test indicates that not all ownership groups are equal, we need to conduct a post-hoc test to identify which specific groups differ.
+
+#### 5. Dunn’s Post-Hoc Test (with Bonferroni Correction)
+
+To determine which ownership groups differ, we conduct Dunn's test with Bonferroni adjustment for multiple comparisons.
+
+```{r}
+# Run Dunn's test with Bonferroni correction
+dunnTest(score ~ ownership, data = gender_data, method = "bonferroni")
+
+```
+
+**Inference**
+
+Pairwise comparisons using Dunn’s test (with Bonferroni correction) indicate statistically significant differences in gender assessment scores across all ownership types:
+
+-   Government-owned companies have significantly lower scores than both Private and Public companies.
+
+-   Private companies also score significantly lower than Public companies.
+
+### Discussion
+
+This analysis highlights notable disparities in gender assessment performance across industries, ownership types, and regions. Industries demonstrated varying levels of engagement with gender equity, with the Personal & Household Products sector achieving the highest average scores. In contrast, the Pension Funds industry consistently lagged behind, pointing to potential structural or cultural barriers that may impede progress in specific sectors.
+
+Ownership structure played a critical role in performance. Government-owned companies significantly outperformed both privately held and publicly traded firms. In contrast, publicly traded companies, despite their visibility and access to resources, showed relatively poor performance.
+
+Despite the insights provided, this analysis faces some limitations. One key challenge is the variability in data availability and completeness across regions and companies, which may introduce bias. While average scores are useful for summarizing overall trends, they can hide meaningful differences within subgroup like firm size or revenue. Finally, comparing scores across years can be challenging, as changes in how data is reported or delays in reporting may affect the results. This makes it harder to draw strong conclusions about trends over time.
