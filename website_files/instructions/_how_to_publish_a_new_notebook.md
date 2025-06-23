@@ -58,13 +58,15 @@ class="grid-item" data-featured="true" data-tags="r"
 
 *Action:*
 
-Generate and save the image directly from your notebook using a reproducible method. Make sure the filename matches what’s referenced in Step 1.
+Generate and save a `ggplot` image directly from your notebook using a reproducible method. Make sure the filename matches what’s referenced in Step 1.
 
 *Example (in R)*:
 
 ```yaml
 ggsave("../img/<image>.png", plot = plot_object_name, width = 6, height = 4, dpi = 300)
 ```
+
+In case you are interested in saving an html-based image, you can use the `htmlwidgets` and `webshot2` libraries. A usage example is available on the `bcindigenousbiz` notebook.
 
 **6 - Preview and Render Changes**
 
