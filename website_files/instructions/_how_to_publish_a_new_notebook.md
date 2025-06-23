@@ -24,7 +24,7 @@ These steps assume you already have a completed working **.qmd notebook file** t
 *What to include:*
 
 - Page title (`title:`)
-- Data Set Information section
+- `About the Data` section
 - Download button (`href`) path
 - Complete metadata table (`field-value`)
 - Variable table (respect header structures)
@@ -38,7 +38,7 @@ These steps assume you already have a completed working **.qmd notebook file** t
 *Structure:*
 
 - Follow the template format.
-- Should include: `About the Data` (Key Features on Dataset, Purpose and Use Cases), `Case Study` (Objective, Methodology) 
+- Should include: `Key Features on Dataset`, `Purpose and Use Cases`, `Case Study` (Objective, Methodology) 
 
 **4 - Feature the Dataset (Optional).**
 
