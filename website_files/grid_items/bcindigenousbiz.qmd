@@ -2,7 +2,7 @@
   <img src="/website_files/img/bcindigenousbiz.png" width="20px" height="20px">
   <h3>BC Indigenous Businesses</h3>
   <p>
-<strong>Description</strong>: Test
+<strong></strong>Test
 </p>
   <a href="https://diverse-data-hub.github.io/website_files/description_pages/bcindigenousbiz.html" class="btn btn-outline-dark">More Details</a>
 </div>
