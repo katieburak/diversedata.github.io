@@ -273,13 +273,14 @@ cluster_map <- leaflet(data = indigenousbiz_data) |>
   )
 
 cluster_map
-
 ```
 
-```{r img_save, echo = FALSE}
+```{r img_save, echo = FALSE, include = FALSE, warning = FALSE, message = FALSE}
+library(htmlwidgets)
+library(webshot2)
 
-ggsave("../img/bcindigenousbiz.png", plot = cluster_map, width = 6, height = 4, dpi = 300)
-
+saveWidget(cluster_map, "../img/cluster_map.html", selfcontained = TRUE)
+webshot("../img/cluster_map.html", file = "../img/bcindigenousbiz.png", vwidth = 800, vheight = 600)
 ```
 
 #### 5. Treemap of Industry sectors within cluster
