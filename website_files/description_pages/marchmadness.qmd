@@ -28,7 +28,7 @@ Analyzing NCAA Women's March Madness results and promoting visibility of women i
 
 <div class="description-grid">
   <div class="field-label">CSV Name</div><div class="field-value">womensmarchmadness.csv</div>
-  <div class="field-label">Dataset Characteristics</div><div class="field-value">Multivariate</div>
+  <div class="field-label">Data Set Characteristics</div><div class="field-value">Multivariate</div>
   <div class="field-label">Subject Area</div><div class="field-value">Women In Sports</div>
   <div class="field-label">Associated Tasks</div><div class="field-value">Regression, Classification</div>
   <div class="field-label">Feature Type</div><div class="field-value">Factor, Integer, Numeric</div>
@@ -71,7 +71,7 @@ Analyzing NCAA Women's March Madness results and promoting visibility of women i
 
 ## Attribution
 
-Data sourced from FiveThirtyEight's NCAA Women's Basketball Tournament dataset, available under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). Original dataset: [FiveThirtyEight GitHub Repository](https://github.com/fivethirtyeight/data/tree/master/ncaa-womens-basketball-tournament). Story: [Louisiana Tech Was the UConn of the '80s](https://fivethirtyeight.com/features/louisiana-tech-was-the-uconn-of-the-80s/).
+Data sourced from FiveThirtyEight's NCAA Women's Basketball Tournament data set, available under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). Original data set: [FiveThirtyEight GitHub Repository](https://github.com/fivethirtyeight/data/tree/master/ncaa-womens-basketball-tournament). Story: [Louisiana Tech Was the UConn of the '80s](https://fivethirtyeight.com/features/louisiana-tech-was-the-uconn-of-the-80s/).
 
 
 Brooke-Marciniak, B. A. (2016, February 7). Here’s why women who play sports are more successful. [LinkedIn article](https://www.linkedin.com/pulse/heres-why-women-who-play-sports-more-successful-brooke-marciniak/).

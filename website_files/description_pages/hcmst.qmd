@@ -30,7 +30,7 @@ This analysis contributes to discussions around partnership resilience, healthy 
 
 <div class="description-grid">
   <div class="field-label">CSV Name</div><div class="field-value">hcmst.csv</div>
-  <div class="field-label">Dataset Characteristics</div><div class="field-value">Multivariate</div>
+  <div class="field-label">Data Set Characteristics</div><div class="field-value">Multivariate</div>
   <div class="field-label">Subject Area</div><div class="field-value">Family and Relationships</div>
   <div class="field-label">Associated Tasks</div><div class="field-value">Classification</div>
   <div class="field-label">Feature Type</div><div class="field-value">Factor, Integer, Numeric</div>
@@ -75,6 +75,6 @@ This analysis contributes to discussions around partnership resilience, healthy 
 
 ## Attribution
 
-Data adapted from Rosenfeld, Michael J., Reuben J. Thomas, and Sonia Hausen. 2023. How Couples Meet and Stay Together 2017-2020-2022 Combined Dataset. [Computer files]. Stanford, CA: Stanford University Libraries. [Data](https://data.stanford.edu/hcmst2017).
+Data adapted from Rosenfeld, Michael J., Reuben J. Thomas, and Sonia Hausen. 2023. How Couples Meet and Stay Together 2017-2020-2022 Combined Data Set. [Computer files]. Stanford, CA: Stanford University Libraries. [Data](https://data.stanford.edu/hcmst2017).
 
 Derbyshire K, Thai S, Midgley C, Lockwood P. Love under lockdown: How changes in time with partner impacted stress and relationship outcomes during the COVID-19 pandemic. J Soc Pers Relat. 2023 Sep;40(9):2918-2945. DOI: 10.1177/02654075231162599. Epub 2023 Mar 9. PMID: 37744688; PMCID: PMC10009005.

@@ -13,7 +13,7 @@ These steps assume you already have a completed working **.qmd notebook file** t
 - `data-featured` - `true` or `false` (should be `false` by default - K. Burak approves featured status)
 - `data-tags` - `python` or `r` (programming language used)
 - `img src` - Path to image to display in card
-- `<h3>` - dataset title
+- `<h3>` - data set title
 - Data set description
 - `href` - link to full notebook (e.g., `https://diverse-data-hub.github.io/website_files/description_pages/<datasetname>.html`)
 
@@ -38,9 +38,9 @@ These steps assume you already have a completed working **.qmd notebook file** t
 *Structure:*
 
 - Follow the template format.
-- Should include: `Key Features on Dataset`, `Purpose and Use Cases`, `Case Study` (Objective, Methodology) 
+- Should include: `Key Features on Data Set`, `Purpose and Use Cases`, `Case Study` (Objective, Methodology) 
 
-**4 - Feature the Dataset (Optional).**
+**4 - Feature the Data Set (Optional).**
 
 *File*: `website_files/grid_items/<file>.qmd`
 
