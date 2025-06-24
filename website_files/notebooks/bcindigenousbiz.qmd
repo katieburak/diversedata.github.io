@@ -29,9 +29,9 @@ The data set offers rich, structured information about Indigenous-owned business
 
 The purpose of this document is to:
 
--   Explore the growth and economic contributions of Indigenous businesses
--   Analyze key challenges and opportunities they face
--   Demonstrate how data can support policy and development decisions
+-   Explore the growth and economic contributions of Indigenous businesses.
+-   Analyze key challenges and opportunities they face.
+-   Demonstrate how data can support policy and development decisions.
 
 ## Case Study
 
@@ -64,7 +64,7 @@ To ensure the quality and consistency of the data set, several pre-processing st
 
 -   **Converted field types**: The `Industry Sector` column was converted to a factor for categorical analysis, and `Year Formed` was converted to integer to allow for chronological trends and filtering.
 
-```{r}
+```{r data_load}
 
 # Load and clean the data
 indigenousbiz_data <- bcindigenousbiz |>
@@ -84,7 +84,7 @@ indigenousbiz_data |>
 
 **Business count by Region**
 
-```{r warning=FALSE, message=FALSE}
+```{r eda_1, warning=FALSE, message=FALSE}
 # Business count by region with tidyverse style
 indigenousbiz_data |>
   count(region, sort = TRUE) |>
@@ -109,7 +109,7 @@ indigenousbiz_data |>
 
 **Mapping Businesses**
 
-```{r business-map,warning=FALSE, message=FALSE, fig.width=7, fig.height=9}
+```{r eda_2, business-map,warning=FALSE, message=FALSE, fig.width=7, fig.height=9}
 # Create leaflet map
 indigenousbiz_data |>
   leaflet() |>
@@ -129,7 +129,7 @@ indigenousbiz_data |>
 
 **Industry Analysis**
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
+```{r eda_3, warning=FALSE, message=FALSE, echo=FALSE}
 # Plot top 10 industry sectors
 indigenousbiz_data |>
   count(industry_sector, sort = TRUE) |>
@@ -170,7 +170,7 @@ To better understand the relationship between Indigenous business locations and 
 
 -   Expected Count: The Chi-square test expects that all expected cell frequencies are ≥ 5. In our case this assumption is violated.
 
-```{r}
+```{r analysis_1}
 ## Assumptions check
 
 # Step 1: Chi-Square Assumption Check
@@ -204,7 +204,7 @@ The simulation-based tests still require some assumptions to hold:
 
 -   The permutations assume that under the null hypothesis, the distribution of values across categories is exchangeable.
 
-```{r}
+```{r analysis_2}
 # Generate null distribution
 null_distribution <- indigenousbiz_data |>
   specify(type ~ region) |>
@@ -239,7 +239,7 @@ To assess whether there is an association between business type and region, we c
 
 To explore geographic patterns in Indigenous business, the technique of clustering based on latitude and longitude coordinates was applied. This analysis revealed several spatial clusters of Indigenous businesses across British Columbia. The treemap provided more information on which were the prominent industries in each cluster.
 
-```{r}
+```{r analysis_3}
 ## DBSCAN Clustering and Leaflet Map
 
 coords <- indigenousbiz_data |>
@@ -279,13 +279,14 @@ cluster_map
 library(htmlwidgets)
 library(webshot2)
 
-saveWidget(cluster_map, "../img/cluster_map.html", selfcontained = TRUE)
-webshot("../img/cluster_map.html", file = "../img/bcindigenousbiz.png", vwidth = 800, vheight = 600)
+saveWidget(cluster_map, "cluster_map.html", selfcontained = TRUE)
+webshot("cluster_map.html", file = "../img/bcindigenousbiz.png", vwidth = 800, vheight = 600)
+file.remove("cluster_map.html")
 ```
 
 #### 5. Treemap of Industry sectors within cluster
 
-```{r}
+```{r analysis_4}
 
 ## Industry Counts and Treemap Visualization
 
