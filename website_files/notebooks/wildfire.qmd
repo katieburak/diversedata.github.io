@@ -5,7 +5,7 @@
 #| collapse: true
 ```
 
-### Key Features of the Dataset
+### Key Features of the Data Set
 
 Each row represents a single wildfire incident and includes information such as:
 
@@ -29,7 +29,7 @@ Each row represents a single wildfire incident and includes information such as:
 
 ### Purpose and Use Cases
 
-This dataset is designed to support analysis of:
+This data set is designed to support analysis of:
 
 -   Factors contributing to the spread, intensity, and size of wildfires
 
@@ -59,7 +59,7 @@ The goal is to explore potential predictors of fire size, such as weather, fire 
 
 ```{r load-libraries, results = "hide", warning = FALSE, message = FALSE}
 # Data
-library(diversedata)      # Diverse Data Hub datasets
+library(diversedata)      # Diverse Data Hub data sets
 
 # Core libraries
 library(tidyverse)        
@@ -127,7 +127,7 @@ This interactive map displays the geographic distribution and relative size of w
 > **Note**  
 > To provide geographic context for our wildfire data, we added a shapefile representing Alberta's boundaries.  
 > This shapefile was sourced from the [Alberta Government Open Data Portal](https://open.alberta.ca/opendata) and specifically corresponds to the *Electoral Division Shapefile (Bill 33, 2017)*.  
-> The data was processed and transformed to the appropriate geographic coordinate system to enable mapping alongside our wildfire dataset.
+> The data was processed and transformed to the appropriate geographic coordinate system to enable mapping alongside our wildfire data set.
 
 ```{r load-and-transform-shapefiles, warning=FALSE, message=FALSE, echo=FALSE, results='hide'}
 invisible({
@@ -239,7 +239,7 @@ In [Decision Making for Wildfires: A Guide for Applying a Risk Management Proces
 
 We built a logistic regression model to predict the likelihood of a fire becoming large based on a set of environmental and operational factors that are consistently measurable, statistically significant, and operationally relevant.
 
-In our logistic regression model, we selected key environmental and contextual variables from the `wildfire_clean` dataset that are well-established drivers of wildfire behavior. These include:
+In our logistic regression model, we selected key environmental and contextual variables from the `wildfire_clean` data set that are well-established drivers of wildfire behavior. These include:
 
 -   `temperature`: Higher temperatures increase evaporation, dry out vegetation, and promote ignition and fire spread.
 

@@ -2,7 +2,7 @@
 title: "Citation"
 ---
 
-Burak K, Khoda E (2025). diversedata: Diverse Dataset Hub. R Package Version 1.0.0, [https://github.com/diverse-data-hub/diversedata](https://github.com/diverse-data-hub/diversedata)
+Burak K, Khoda E (2025). diversedata: Diverse Data Hub. R Package Version 1.0.0, [https://github.com/diverse-data-hub/diversedata](https://github.com/diverse-data-hub/diversedata)
 
 ```bash
 @Manual{diversedata,

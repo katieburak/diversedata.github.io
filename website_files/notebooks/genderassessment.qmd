@@ -61,7 +61,7 @@ library(FSA) # For Dunn's test
 
 #### 1. Data Cleaning & Processing
 
-```{r}
+```{r data_load}
 gender_data <- genderassessment |> 
   clean_names() |> 
   drop_na(score) |> 
@@ -77,7 +77,7 @@ head(gender_data)
 
 **Average Overall Assessment Score by Industry**
 
-```{r}
+```{r eda_1}
 industry_stats <- gender_data |> 
   group_by(industry) |> 
   summarise(
@@ -94,7 +94,7 @@ kable(industry_stats, digits = 2, caption = "Average Score by Industry")
 
 **Visualization: Average Overall Gender Assessment by Industry Group**
 
-```{r}
+```{r eda_2}
 
 gender_data_grouped <- gender_data |> 
   mutate(industry_group = case_when(
@@ -143,9 +143,8 @@ ggsave("../img/genderassessment.png", plot = gender_by_group, width = 6, height 
 
 **Comparison of Average Overall Gender Assessment Scores Between 2023 vs 2024 by Region**
 
-```{r}
+```{r eda_3}
 
-# Add this code before the dumbbell plot
 region_wide <- gender_data |> 
   filter(year %in% c(2023, 2024)) |>  # Ensure only these years are included
   group_by(region, year) |> 
@@ -189,7 +188,7 @@ ggplot(region_wide, aes(x = `2023`, xend = `2024`, y = reorder(region, `2024`)))
 
 In addition to industry-based analysis, we examine whether ownership structure affects the overall gender performance scores. The following box plot illustrates how scores vary by ownership category
 
-```{r}
+```{r analysis_1}
 filtered_data <- gender_data |>
   subset(!is.na(score) & !is.na(ownership))
 
@@ -218,8 +217,7 @@ Hypotheses
     $$
 
 -   Alternative Hypothesis (Hₐ):\
-    At least one group has a different mean score.\
-    $\mu_i \ne \mu_j$
+    Not all group means are equal.\
 
 **Assumption checks for ANOVA**
 
@@ -227,13 +225,13 @@ Before applying ANOVA to compare gender assessment scores across ownership types
 
 **1. Independence of Observations**
 
--   Observations within and across groups must be independent: In our case, this means that each company’s gender assessment score is independent of the others.This assumption is generally satisfied by the dataset design, provided that each company appears only once and that there is no clustering of related firms or repeated measurements. Since our dataset includes one record per company without repeated measures, we consider the independence assumption to be reasonably met.
+-   Observations within and across groups must be independent: This assumption is satisfied by the data set design, provided that each company appears only once. This assumption is generally satisfied by the data set design, provided that each company appears only once and that there is no clustering of related firms or repeated measurements. Since our data set includes one record per company without repeated measures, we consider the independence assumption to be reasonably met.
 
 **2. Normality of Residuals**
 
 ANOVA assumes that the residuals are normally distributed. We assess this using the Shapiro-Wilk test:
 
-```{r}
+```{r analysis_2}
 anova_model <- aov(score ~ ownership, data = gender_data)
 shapiro.test(residuals(anova_model))
 ```
@@ -246,7 +244,7 @@ Since the p-value is less than 0.05, we reject the null hypothesis of normality.
 
 Another key assumption is that the variance of scores is roughly equal across the ownership types. We use **Levene’s Test** to assess this:
 
-```{r}
+```{r analysis_3}
 leveneTest(score ~ ownership, data = gender_data)
 ```
 
@@ -263,12 +261,11 @@ To evaluate whether the score differs across different types of business ownersh
 -   Null Hypothesis (H₀):\
     The median score is the same across all ownership groups.\
     $$
-    \mu_{\text{public}} = \mu_{\text{Private}} = \mu_{\text{Government}}
+    \hat{\mu}_{\text{public}} = \hat{\mu}_{\text{Private}} = \hat{\mu}_{\text{Government}}
     $$
 
 -   Alternative Hypothesis (Hₐ):\
-    At least one group's median score differs.\
-    $\mu_i \ne \mu_j$
+    Not all group medians are equal.\
 
 **Assumptions of the Kruskal-Wallis Test**
 
@@ -278,12 +275,12 @@ To evaluate whether the score differs across different types of business ownersh
 
 -   Independent Observations: Each row in the data set represents a unique business entity, so the observations are independent.
 
-```{r}
+```{r analysis_4}
 kruskal.test(score ~ ownership, data = gender_data)
 ```
 
 -   The p-value is small (\< 0.05), meaning we **reject the null hypothesis (H₀)** that all ownership groups have the same median score.
--   There are statistically significant differences in `score` between at least two ownership types.
+-   There are statistically significant differences in median `score` between at least two ownership types.
 
 Since the test indicates that not all ownership groups are equal, we need to conduct a post-hoc test to identify which specific groups differ.
 
@@ -291,7 +288,7 @@ Since the test indicates that not all ownership groups are equal, we need to con
 
 To determine which ownership groups differ, we conduct Dunn's test with Bonferroni adjustment for multiple comparisons.
 
-```{r}
+```{r analysis_5}
 # Run Dunn's test with Bonferroni correction
 dunnTest(score ~ ownership, data = gender_data, method = "bonferroni")
 
@@ -311,4 +308,4 @@ This analysis highlights notable disparities in gender assessment performance ac
 
 Ownership structure played a critical role in performance. Government-owned companies significantly outperformed both privately held and publicly traded firms. In contrast, publicly traded companies, despite their visibility and access to resources, showed relatively poor performance.
 
-Despite the insights provided, this analysis faces some limitations. One key challenge is the variability in data availability and completeness across regions and companies, which may introduce bias. While average scores are useful for summarizing overall trends, they can hide meaningful differences within subgroup like firm size or revenue. Finally, comparing scores across years can be challenging, as changes in how data is reported or delays in reporting may affect the results. This makes it harder to draw strong conclusions about trends over time.
+Despite the insights provided, this analysis faces some limitations. While average scores are useful for summarizing overall trends, they can hide meaningful differences within subgroup like firm size or revenue.
