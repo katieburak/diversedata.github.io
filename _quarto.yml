@@ -13,7 +13,7 @@ website:
   navbar:
     left:
       - href: website_files/datasets.qmd
-        text: Datasets
+        text: Data Sets
 
   page-footer:
     right: "This page is built with [Quarto](https://quarto.org/)."

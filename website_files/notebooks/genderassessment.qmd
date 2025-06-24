@@ -48,7 +48,7 @@ By analyzing the `score` variable across industry and ownership categories, and 
 
 **Loading Libraries**
 
-```{r setup}
+```{r setup, results = "hide", warning = FALSE, message = FALSE}
 library(diversedata)
 library(tidyverse)  # includes ggplot2, readr, dplyr
 library(janitor)    # for data cleaning
@@ -125,7 +125,7 @@ gender_data_grouped <- gender_data |>
     TRUE ~ "Other"
   ))
 
-ggplot(gender_data_grouped, aes(x = reorder(industry_group, score, FUN = median), y = score)) +
+gender_by_group <- ggplot(gender_data_grouped, aes(x = reorder(industry_group, score, FUN = median), y = score)) +
   geom_boxplot(width = 0.5, fill = "skyblue", outlier.alpha = 0.4) +  # width < 1 reduces box width
   coord_flip() +
   labs(
@@ -134,7 +134,11 @@ ggplot(gender_data_grouped, aes(x = reorder(industry_group, score, FUN = median)
   ) +
   theme_minimal(base_size = 12)
 
+gender_by_group
+```
 
+```{r img_save, echo = FALSE}
+ggsave("../img/genderassessment.png", plot = gender_by_group, width = 6, height = 4, dpi = 300)
 ```
 
 **Comparison of Average Overall Gender Assessment Scores Between 2023 vs 2024 by Region**

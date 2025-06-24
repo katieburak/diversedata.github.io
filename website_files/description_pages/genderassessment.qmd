@@ -12,7 +12,7 @@ The Global Gender Assessment data set provides insights into how companies acros
 
 Collected in 2023, the data allows for comparative evaluation across countries, sectors, and ownership types (e.g., Public, Private, Government). Each record represents a company and its corresponding evaluation across 28 detailed gender-related indicators, offering a comprehensive snapshot of corporate gender responsibility worldwide.
 
-The data set can be used by researchers, policy analysts, and advocacy groups to track progress on corporate gender equity, identify gaps, and support data-driven decision-making in both public and private sectors.
+The data set can be used by researchers, policy analysts, and advocacy groups to track progress on corporate gender equity, identify gaps, and support data driven decision-making in both public and private sectors.
 
 ### Download
 
@@ -126,7 +126,7 @@ Yes
 :::
 :::
 
-{{< include ../notebooks/gender_assessment.qmd >}}
+{{< include ../notebooks/genderassessment.qmd >}}
 
 ## Attribution
 
