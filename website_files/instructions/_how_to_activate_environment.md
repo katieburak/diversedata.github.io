@@ -8,37 +8,37 @@ The following R packages are used in various analyses and must be installed to r
 
 # Adding Data Sets form Diverse data hub For All Analysis:
 
-library("diversedata")
+library(diversedata)
 
 # For `Women's March Madness`:
 
-library("tidyverse")
-library("AER")
-library("broom")
-library("knitr")
-library("MASS")
+library(tidyverse)
+library(AER)
+library(broom)
+library(knitr)
+library(MASS)
 
 # For `Wildfire` (Additional to what's listed above)
 
-library("lubridate")
-library("gt")
-library("ggmap")
-library("ggspatial")
-library("sf")
-library("terra")
-library("maptiles")
-library("viridis")
-library("marginaleffects")
-library("broom")
-library("kableExtra")
+library(lubridate)
+library(gt)
+library(ggmap)
+library(ggspatial)
+library(sf)
+library(terra)
+library(maptiles)
+library(viridis)
+library(marginaleffects)
+library(broom)
+library(kableExtra)
 library(leaflet.extras)
 
 # For `How Couples Meet and Stay Together` (Additional to what's listed above)
 
-library("scales")
-library("cowplot")
-library("brant")
-library("knitr")
+library(scales)
+library(cowplot)
+library(brant)
+library(knitr)
 
 # For `Global Rights` (Additional to what's listed above)
 
@@ -56,7 +56,11 @@ library(treemapify)
 
 # For `Gender Assessment` (Additional to what's listed above)
 
-TBD
+library(janitor)
+library(car)
+library(ggthemes)
+library(ggalt)
+library(FSA)
 
 ```
 

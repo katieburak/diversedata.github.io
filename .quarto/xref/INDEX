@@ -190,5 +190,11 @@
   },
   "website_files/notebooks/bcindigenousbiz.qmd": {
     "bcindigenousbiz.html": "b66c48fd"
+  },
+  "website_files/description_pages/genderassessment.qmd": {
+    "genderassessment.html": "1c3f8f63"
+  },
+  "website_files/notebooks/genderassessment.qmd": {
+    "genderassessment.html": "62b0ad9d"
   }
 }
