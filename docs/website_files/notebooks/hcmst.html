@@ -222,7 +222,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#key-features-of-the-dataset" id="toc-key-features-of-the-dataset" class="nav-link active" data-scroll-target="#key-features-of-the-dataset">Key Features of the Dataset</a></li>
+  <li><a href="#key-features-of-the-data-set" id="toc-key-features-of-the-data-set" class="nav-link active" data-scroll-target="#key-features-of-the-data-set">Key Features of the Data Set</a></li>
   <li><a href="#purpose-and-use-cases" id="toc-purpose-and-use-cases" class="nav-link" data-scroll-target="#purpose-and-use-cases">Purpose and Use Cases</a></li>
   <li><a href="#case-study" id="toc-case-study" class="nav-link" data-scroll-target="#case-study">Case Study</a>
   <ul class="collapse">
@@ -243,8 +243,8 @@ window.Quarto = {
 
 
 
-<section id="key-features-of-the-dataset" class="level3">
-<h3 class="anchored" data-anchor-id="key-features-of-the-dataset">Key Features of the Dataset</h3>
+<section id="key-features-of-the-data-set" class="level3">
+<h3 class="anchored" data-anchor-id="key-features-of-the-data-set">Key Features of the Data Set</h3>
 <p>Each row in the data set represents an individual subject and includes the following selected variables:</p>
 <ul>
 <li><p><strong>Subject demographics</strong>: age, sex, ethnicity, education level, income level, and employment status</p></li>
@@ -886,7 +886,7 @@ occur. Because of that, the test results might be invalid.</code></pre>
 </div>
 </div>
 <p>Note that with an <span class="math inline">\(\alpha = 0.05\)</span>, we do not have evidence of a violation of the proportional odds assumption, as indicated by the p-values in the <code>probability</code> column.</p>
-<p>However, during both the model fitting process and the Brant-Wald test, several warnings were issued. These are due to instances where combinations of the response variable and predictor levels have no observations. One warning from the Brant test indicates that over 3,000,000 combinations of the dependent variable (<code>dv</code>) and independent variables (<code>ivs</code>) are not present in the dataset.</p>
+<p>However, during both the model fitting process and the Brant-Wald test, several warnings were issued. These are due to instances where combinations of the response variable and predictor levels have no observations. One warning from the Brant test indicates that over 3,000,000 combinations of the dependent variable (<code>dv</code>) and independent variables (<code>ivs</code>) are not present in the data set.</p>
 <p>When models include multiple categorical predictors with many levels, the number of possible combinations of predictors and outcomes grows exponentially. In real-world survey data, especially from large data sets, many of these combinations are either extremely rare or entirely missing. This sparsity can compromise the reliability of the Brant test, which assumes sufficient data within each combination to estimate parameters.</p>
 <p>One potential solution is to bin levels of categorical variables that have low counts, reducing the number of empty combinations. However, when there are many predictors with multiple levels, even binning may not fully resolve the issue.</p>
 <p>This limitation is common in multivariable modeling and reflects constraints in data collection and the inherent sparsity of data. As such, the results from diagnostics like the Brant test should be interpreted with caution.</p>

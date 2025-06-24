@@ -1,24 +1,24 @@
 ::: {.hero-banner}
 
-**Diverse Data Hub** is an open educational resource offering curated datasets focused on equity, diversity, inclusion, and other socially relevant topics. It is designed to support students, educators, and researchers in accessing and working with meaningful data in their teaching, learning, and analysis.
+**Diverse Data Hub** is an open educational resource offering curated data sets focused on equity, diversity, inclusion, and other socially relevant topics. It is designed to support students, educators, and researchers in accessing and working with meaningful data in their teaching, learning, and analysis.
 
-Datasets are available through the `diversedata` R package, allowing for straightforward integration into data science workflows. Each dataset includes detailed documentation and contextual background to support informed exploration and connection to real-world topics. Example case studies are also included to illustrate practical applications.
+Data sets are available through the `diversedata` R package, allowing for straightforward integration into data science workflows. Each data set includes detailed documentation and contextual background to support informed exploration and connection to real-world topics. Example case studies are also included to illustrate practical applications.
 
 [Get Started →](https://diverse-data-hub.github.io/website_files/datasets.html){.btn .btn-primary}
 :::
 
-## Featured Datasets 
+## Featured Data Sets 
 
 :::{.grid-container-3}
 
 <!-- To change featured data set, go into file and change value of data-featured="true". -->
 
-<!-- These are the featured datasets -->
+<!-- These are the featured data sets -->
 
 {{< include website_files/grid_items/marchmadness.qmd >}}
 {{< include website_files/grid_items/hcmst.qmd >}}
 
-<!-- These are NOT featured datasets -->
+<!-- These are NOT featured data sets -->
 
 {{< include website_files/grid_items/wildfire.qmd >}}
 {{< include website_files/grid_items/bcindigenousbiz.qmd >}}
@@ -62,13 +62,13 @@ library(diversedata)
 Once installed, you can explore the available data sets and their documentation:
 
 ``` r
-# List available datasets
+# List available data sets
 data(package = "diversedata")
 
-# View documentation for a specific dataset
+# View documentation for a specific data set
 ?wildfire
 
-# To load a dataset into the environment:
+# To load a data set into the environment:
 data("wildfire")
 ```
 

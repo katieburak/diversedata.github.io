@@ -193,7 +193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#featured-datasets" id="toc-featured-datasets" class="nav-link active" data-scroll-target="#featured-datasets">Featured Datasets</a></li>
+  <li><a href="#featured-data-sets" id="toc-featured-data-sets" class="nav-link active" data-scroll-target="#featured-data-sets">Featured Data Sets</a></li>
   <li><a href="#install-diversedata" id="toc-install-diversedata" class="nav-link" data-scroll-target="#install-diversedata">Install <code>diversedata</code></a>
   <ul class="collapse">
   <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
@@ -221,15 +221,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="hero-banner">
-<p><strong>Diverse Data Hub</strong> is an open educational resource offering curated datasets focused on equity, diversity, inclusion, and other socially relevant topics. It is designed to support students, educators, and researchers in accessing and working with meaningful data in their teaching, learning, and analysis.</p>
-<p>Datasets are available through the <code>diversedata</code> R package, allowing for straightforward integration into data science workflows. Each dataset includes detailed documentation and contextual background to support informed exploration and connection to real-world topics. Example case studies are also included to illustrate practical applications.</p>
+<p><strong>Diverse Data Hub</strong> is an open educational resource offering curated data sets focused on equity, diversity, inclusion, and other socially relevant topics. It is designed to support students, educators, and researchers in accessing and working with meaningful data in their teaching, learning, and analysis.</p>
+<p>Data sets are available through the <code>diversedata</code> R package, allowing for straightforward integration into data science workflows. Each data set includes detailed documentation and contextual background to support informed exploration and connection to real-world topics. Example case studies are also included to illustrate practical applications.</p>
 <p><a href="https://diverse-data-hub.github.io/website_files/datasets.html" class="btn btn-primary">Get Started →</a></p>
 </div>
-<section id="featured-datasets" class="level2">
-<h2 class="anchored" data-anchor-id="featured-datasets">Featured Datasets</h2>
+<section id="featured-data-sets" class="level2">
+<h2 class="anchored" data-anchor-id="featured-data-sets">Featured Data Sets</h2>
 <div class="grid-container-3">
 <!-- To change featured data set, go into file and change value of data-featured="true". -->
-<!-- These are the featured datasets -->
+<!-- These are the featured data sets -->
 <div class="grid-item" data-featured="true" data-tags="r">
 <img src="./website_files/img/marchmadness.png" width="20px" height="20px">
 <h3 class="anchored">
@@ -250,7 +250,7 @@ How Couples Meet and Stay Together
 </p>
 <p><a href="https://diverse-data-hub.github.io/website_files/description_pages/hcmst.html" class="btn btn-outline-dark">More Details</a></p>
 </div>
-<!-- These are NOT featured datasets -->
+<!-- These are NOT featured data sets -->
 <div class="grid-item" data-featured="false" data-tags="r">
 <img src="./website_files/img/wildfire.png" width="20px" height="40px">
 <h3 class="anchored">
@@ -267,7 +267,7 @@ Wildfire
 BC Indigenous Businesses
 </h3>
 <p>
-<strong></strong>The BC Indigenous Business Listings dataset, compiled in 2025 by the Government of British Columbia, offers a detailed snapshot of Indigenous-owned businesses throughout the province. It includes information on the Indigenous entrepreneurship in urban and rural areas. This data set highlights economic activities across various traditional territories and sectors.
+<strong></strong>The BC Indigenous Business Listings data set, compiled in 2025 by the Government of British Columbia, offers a detailed snapshot of Indigenous-owned businesses throughout the province. It includes information on the Indigenous entrepreneurship in urban and rural areas. This data set highlights economic activities across various traditional territories and sectors.
 </p>
 <p><a href="https://diverse-data-hub.github.io/website_files/description_pages/bcindigenousbiz.html" class="btn btn-outline-dark">More Details</a></p>
 </div>
@@ -277,7 +277,7 @@ BC Indigenous Businesses
 Gender Assessment
 </h3>
 <p>
-<strong></strong>The Gender Assessment dataset from the World Benchmarking Alliance evaluates nearly 2,000 of the world’s most influential companies on gender equality. Covering data from 2023 and 2024, the dataset highlights early corporate actions and progress on gender issues. It serves as a benchmarking tool for identifying gaps and holding companies accountable for advancing gender equality.
+<strong></strong>The Gender Assessment data set from the World Benchmarking Alliance evaluates nearly 2,000 of the world’s most influential companies on gender equality. Covering data from 2023 and 2024, the data set highlights early corporate actions and progress on gender issues. It serves as a benchmarking tool for identifying gaps and holding companies accountable for advancing gender equality.
 </p>
 <p><a href="https://diverse-data-hub.github.io/website_files/description_pages/genderassessment.html" class="btn btn-outline-dark">More Details</a></p>
 </div>
@@ -287,7 +287,7 @@ Gender Assessment
 Global Rights
 </h3>
 <p>
-</p><p><strong></strong>This dataset provides yearly, country-level information on LGBTQ+ rights, economic indicators, and education spending. The data is compiled from Our World in Data, with primary sources including Equaldex, the World Bank, and other open-access datasets.</p>
+</p><p><strong></strong>This data set provides yearly, country-level information on LGBTQ+ rights, economic indicators, and education spending. The data is compiled from Our World in Data, with primary sources including Equaldex, the World Bank, and other open-access data sets.</p>
 <p></p>
 <p><a href="https://diverse-data-hub.github.io/website_files/description_pages/globalrights.html" class="btn btn-outline-dark">More Details</a></p>
 </div>
@@ -317,13 +317,13 @@ Global Rights
 <section id="usage" class="level3">
 <h3 class="anchored" data-anchor-id="usage">Usage</h3>
 <p>Once installed, you can explore the available data sets and their documentation:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List available datasets</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List available data sets</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="at">package =</span> <span class="st">"diversedata"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View documentation for a specific dataset</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View documentation for a specific data set</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>?wildfire</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># To load a dataset into the environment:</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># To load a data set into the environment:</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"wildfire"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>

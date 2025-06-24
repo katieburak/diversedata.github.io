@@ -5,7 +5,7 @@
 #| collapse: true
 ```
 
-### Key Features of the Dataset
+### Key Features of the Data Set
 
 Each row in the data set represents an individual subject and includes the following selected variables:
 
@@ -409,7 +409,7 @@ kable(bt, digits = 2)
 
 Note that with an $\alpha = 0.05$, we do not have evidence of a violation of the proportional odds assumption, as indicated by the p-values in the `probability` column.
 
-However, during both the model fitting process and the Brant-Wald test, several warnings were issued. These are due to instances where combinations of the response variable and predictor levels have no observations. One warning from the Brant test indicates that over 3,000,000 combinations of the dependent variable (`dv`) and independent variables (`ivs`) are not present in the dataset.
+However, during both the model fitting process and the Brant-Wald test, several warnings were issued. These are due to instances where combinations of the response variable and predictor levels have no observations. One warning from the Brant test indicates that over 3,000,000 combinations of the dependent variable (`dv`) and independent variables (`ivs`) are not present in the data set.
 
 When models include multiple categorical predictors with many levels, the number of possible combinations of predictors and outcomes grows exponentially. In real-world survey data, especially from large data sets, many of these combinations are either extremely rare or entirely missing. This sparsity can compromise the reliability of the Brant test, which assumes sufficient data within each combination to estimate parameters.
 
