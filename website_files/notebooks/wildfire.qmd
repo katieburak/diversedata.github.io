@@ -92,7 +92,7 @@ library(broom)
 -   Created a binary variable `large_fire` (TRUE if \>200 ha)
 -   Filtered out incomplete records
 
-```{r prepare-wildfire-data, warning=FALSE, message=FALSE, echo=FALSE}
+```{r prepare-wildfire-data, warning=FALSE, message=FALSE}
 
 # Reading Data  
 wildfire_data <- wildfire
