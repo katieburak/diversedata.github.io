@@ -12,7 +12,7 @@ This adapted data set contains historical records of every NCAA Division I Women
 
 The rise in popularity of the NCAA Women’s March Madness, fueled by athletes like Caitlin Clark and Paige Bueckers, reflects a broader cultural shift in the recognition of women’s sports. Beyond entertainment and athletic achievement, women’s participation in sport has social and professional benefits.
 
-As Beth A. Brooke notes in her article [Here’s Why Women Who Play Sports Are More Successful](https://www.linkedin.com/pulse/heres-why-women-who-play-sports-more-successful-brooke-marciniak/), research from EY shows that 94% of women in executive leadership roles played sports, and over half competed at the university level. Participation in sports hel develop skills such as resilience, teamwork, and competitiveness, traits that critical for career success.
+As Beth A. Brooke notes in her article [Here’s Why Women Who Play Sports Are More Successful](https://www.linkedin.com/pulse/heres-why-women-who-play-sports-more-successful-brooke-marciniak/), research from EY shows that 94% of women in executive leadership roles played sports, and over half competed at the university level. Participation in sports help develop skills such as resilience, teamwork, and competitiveness, traits that critical for career success.
 
 Analyzing NCAA Women's March Madness results and promoting visibility of women in sports, beyond exercising our data skills, supports advocation for equity, opportunity, and empowerment of women in leadership.
 
