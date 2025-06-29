@@ -18,6 +18,21 @@ Each row represents a single company's gender assessment in a given year and inc
 
 -   **percent_score** – The overall gender assessment score expressed as a percentage for easier comparison.
 
+### Gender Assessment Score Components
+
+The Overall Gender Assessment Score is a weighted composite score derived from six thematic areas, as shown below:
+
+| **Theme** | **Category**              | **Weight (%)** | **Description**                                                                  |
+|-----------|---------------------------|----------------|----------------------------------------------------------------------------------|
+| A         | Governance and Strategy   | 20%            | Integration of gender equality in corporate governance and strategic frameworks. |
+| B         | Representation            | 17.5%          | Gender balance in leadership, workforce, and management.                         |
+| C         | Compensation and Benefits | 17.5%          | Pay equity, benefits, and family-friendly policies.                              |
+| D         | Health and Well-being     | 17.5%          | Worker well-being, safe working conditions, and health services.                 |
+| E         | Violence and Harassment   | 17.5%          | Policies and mechanisms to prevent and respond to gender-based violence.         |
+| F         | Marketplace and Community | 10%            | Gender-inclusive procurement, community programs, and marketing practices.       |
+
+The final overall score is computed out of 35, based on these weighted components, and scaled to percentage (out of 100%) for easier comparison.
+
 ### Purpose and Use Cases
 
 This data set supports analysis of:
